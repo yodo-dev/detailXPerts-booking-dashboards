@@ -41,7 +41,7 @@ const OverviewCard: React.FC<OverviewCardProps> = ({
 
       {renderMainValue()}
       <p className="text-gray-800 font-medium">{title}</p>
-      <p className="text-sm text-blue-700">
+      <p className="text-sm text-blue-700 mt-1">
         <span>{averageIncrese}</span> <span>{averageTitle}</span>
       </p>
     </div>

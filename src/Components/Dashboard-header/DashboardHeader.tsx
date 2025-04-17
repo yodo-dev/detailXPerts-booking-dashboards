@@ -11,7 +11,7 @@ const DashboardHeader:React.FC = () => {
     const headerLinks =[
         {id:uuid(), path:"/", name:"Dashboard"},
         {id:uuid(), path:"/booking-management", name:"Booking"},
-        {id:uuid(), path:"#", name:"Franchise"},
+        {id:uuid(), path:"/frenchise-management", name:"Franchise"},
         {id:uuid(), path:"#", name:"Detailers"},
         {id:uuid(), path:"#", name:"Customers"},
         {id:uuid(), path:"#", name:"Payments"},

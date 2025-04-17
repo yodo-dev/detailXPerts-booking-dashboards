@@ -64,6 +64,8 @@ body {
 .shadow_bg{
   box-shadow: 0px 4px 30px 0px #3629B712;
 }
+
+
 .common_section_bg{
   background-color: white;
   border: 1px solid var(--border-creamy);

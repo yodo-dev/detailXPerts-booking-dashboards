@@ -38,7 +38,7 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
     </Link>
   ) : (
     <button
-      className={`rounded-lg cursor-pointer ${btnClass}`}
+      className={`rounded-lg cursor-pointer w-full ${btnClass}`}
       onClick={onClick}
     >
       {content}

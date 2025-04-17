@@ -1,11 +1,19 @@
-import MainLayout from "@layouts/MainLayout";
 import React from "react";
-import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
-import CommonInput from "@components/inputs/CommonInput";
-import Table from "@components/Table/Table";
+import Chevron from "../../assets/svgs/chevron.svg";
 
-const BookingManagement: React.FC = () => {
+interface TableProps {
+  // define your props here
+}
+
+const Table: React.FC = ({
+  franchise,
+  detailer,
+  customer,
+  dateTab,
+  serviceTh,
+  earningTh,
+}: string) => {
   const rows = [
     {
       id: "001",
@@ -80,68 +88,92 @@ const BookingManagement: React.FC = () => {
   ];
 
   return (
-    <MainLayout>
-      <div className="default_container p-4 overflow-x-auto bg-white rounded-lg shadow">
-        <div className="flex items-center justify-between mb-7">
-          <h2>Bookings Management</h2>
-          <CommonInput placeholder="Search" showImg={true} />
-        </div>
-
-        {/* <table className="w-full  text-sm text-left border-separate border-spacing-y-2">
-          <thead className="bg-[#F1F3FB] uppercase text-xs ">
-            <tr>
-              <th className="px-3 py-4 font-normal">
-                {" "}
-                <span className="flex">ID</span>{" "}
-              </th>
+    <div className="p-4 overflow-x-auto bg-white rounded-lg shadow">
+      <table className="w-full  text-sm text-left border-separate border-spacing-y-2">
+        <thead className="bg-[#F1F3FB] uppercase text-xs ">
+          <tr>
+            <th className="px-3 py-4 font-normal">
+              {" "}
+              <span className="flex">ID</span>{" "}
+            </th>
+            {franchise ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Franchise <ReactSVG src={Chevron} />
                 </span>{" "}
               </th>
+            ) : (
+              ""
+            )}
+            {detailer ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Detailer <ReactSVG src={Chevron} />{" "}
                 </span>
               </th>
+            ) : (
+              ""
+            )}
+
+            {customer ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Customer <ReactSVG src={Chevron} />
                 </span>
               </th>
+            ) : (
+              ""
+            )}
+
+            {dateTab ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Date <ReactSVG src={Chevron} />
                 </span>
               </th>
+            ) : (
+              ""
+            )}
+
+            {serviceTh ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Service <ReactSVG src={Chevron} />
                 </span>
               </th>
-              <th className="px-3 py-4 font-normal">
-                <span className="flex gap-3">
-                  Vehicle <ReactSVG src={Chevron} />
-                </span>
-              </th>
+            ) : (
+              ""
+            )}
+            <th className="px-3 py-4 font-normal">
+              <span className="flex gap-3">
+                Vehicle <ReactSVG src={Chevron} />
+              </span>
+            </th>
+
+            {earningTh ? (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
                   Earning <ReactSVG src={Chevron} />
                 </span>
               </th>
-              <th className="px-3 py-4 font-normal">
-                <span className="flex gap-3">
-                  Status <ReactSVG src={Chevron} />
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.id} className="bg-gray-50 rounded-md shadow-sm">
-                <td className="px-3 py-2 font-semibold text-gray-700">
-                  {row.id}
-                </td>
+            ) : (
+              ""
+            )}
+            <th className="px-3 py-4 font-normal">
+              <span className="flex gap-3">
+                Status <ReactSVG src={Chevron} />
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.id} className="bg-gray-50 rounded-md shadow-sm">
+              <td className="px-3 py-2 font-semibold text-gray-700">
+                {row.id}
+              </td>
+
+              {franchise ? (
                 <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
                     <img
@@ -157,7 +189,11 @@ const BookingManagement: React.FC = () => {
                     </div>
                   </div>
                 </td>
+              ) : (
+                ""
+              )}
 
+              {detailer ? (
                 <td className="px-3 py-2">
                   <div className="flex gap-2">
                     <img
@@ -173,6 +209,10 @@ const BookingManagement: React.FC = () => {
                     </div>
                   </div>
                 </td>
+              ) : (
+                ""
+              )}
+              {customer ? (
                 <td className="px-3 py-2">
                   <div className="flex gap-2">
                     <img
@@ -188,40 +228,41 @@ const BookingManagement: React.FC = () => {
                     </div>
                   </div>
                 </td>
-                <td className="px-3 py-2">{row.service}</td>
-                <td className="px-3 py-2">{row.vehicle}</td>
-                <td className="px-3 py-2">{row.earning}</td>
-                <td className="px-3 py-2">
-             
-                  <span className="bg-[#0676471A] text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300">
-                    Completed
-                  </span>
-                </td>
-                <td className="px-3 py-2">{row.earning}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
+              ) : (
+                ""
+              )}
 
-        <Table franchise={true} detailer={true} customer={true} dateTab={true} serviceTh={false} earningTh={true} />
+              {dateTab ? <td className="px-3 py-2">{row.service}</td> : ""}
 
-        {/* Pagination */}
-        <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-          <p>Showing 1 to 10 of 200 entries</p>
-          <div className="space-x-2">
-            <button className="px-3 py-1 border rounded-md">Prev</button>
-            <button className="px-3 py-1 border bg-blue-500 text-white rounded-md">
-              1
-            </button>
-            <button className="px-3 py-1 border rounded-md">2</button>
-            <button className="px-3 py-1 border rounded-md">3</button>
-            <button className="px-3 py-1 border rounded-md">4</button>
-            <button className="px-3 py-1 border rounded-md">Next</button>
-          </div>
+              {serviceTh ? <td className="px-3 py-2">{row.vehicle}</td> : ""}
+              {earningTh ? <td className="px-3 py-2">{row.earning}</td> : ""}
+              <td className="px-3 py-2">
+                <span className="bg-[#0676471A] text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300">
+                  Completed
+                </span>
+              </td>
+              <td className="px-3 py-2">{row.earning}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Pagination */}
+      {/* <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+        <p>Showing 1 to 10 of 200 entries</p>
+        <div className="space-x-2">
+          <button className="px-3 py-1 border rounded-md">Prev</button>
+          <button className="px-3 py-1 border bg-blue-500 text-white rounded-md">
+            1
+          </button>
+          <button className="px-3 py-1 border rounded-md">2</button>
+          <button className="px-3 py-1 border rounded-md">3</button>
+          <button className="px-3 py-1 border rounded-md">4</button>
+          <button className="px-3 py-1 border rounded-md">Next</button>
         </div>
-      </div>
-    </MainLayout>
+      </div> */}
+    </div>
   );
 };
 
-export default BookingManagement;
+export default Table;
