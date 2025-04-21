@@ -12,15 +12,15 @@ const DashboardHeader:React.FC = () => {
         {id:uuid(), path:"/", name:"Dashboard"},
         {id:uuid(), path:"/booking-management", name:"Booking"},
         {id:uuid(), path:"/frenchise-management", name:"Franchise"},
-        {id:uuid(), path:"#", name:"Detailers"},
-        {id:uuid(), path:"#", name:"Customers"},
-        {id:uuid(), path:"#", name:"Payments"},
-        {id:uuid(), path:"#", name:"Feedback & Support"},
+        {id:uuid(), path:"/detailers-management", name:"Detailers"},
+        {id:uuid(), path:"/customers-management", name:"Customers"},
+        {id:uuid(), path:"/payment-management", name:"Payments"},
+        {id:uuid(), path:"/feedback-support", name:"Feedback & Support"},
     ]
   return (
-    <div className='bg-[var(--primary-color)]  py-5 mb-10' style={{borderRadius:"0px 0px 40px 40px"}}>
+    <div className='bg-[var(--primary-color)] py-5 mb-10' style={{borderRadius:"0px 0px 40px 40px"}}>
         <div className='default_container flex items-center justify-between'>
-    <div className='flex items-center gap-4'>
+    <div className='flex items-center gap-[50px]'>
         <div> <img src={DetailXpertsLogo} alt='DetailXperts' className='w-[50px] h-[50px]' /></div>
         <div> 
         {headerLinks.map((link) => {
@@ -38,9 +38,15 @@ const DashboardHeader:React.FC = () => {
         </div>
     </div>
     <div className='flex items-center gap-[18px]'>
+        <Link to="/settings">
        <div className='bg-[var(--dull-white-bg)] w-[48px] h-[48px]  flex items-center justify-center rounded-full'> <img src={settingIcon} alt='Profile Settings' className='size-6 ' /></div>
+        </Link>
+    <Link to="/notifications">
         <div className='bg-[var(--dull-white-bg)] w-[48px] h-[48px]  flex items-center justify-center rounded-full'><img src={notificationIcon} alt='Notifications' className='size-6 object-cover' /></div>
+    </Link>
+    <Link to={"/profile"}>
        <div> <img src={userImg} alt='User' className='w-[60px] h-[60px] rounded-full' /></div>
+    </Link>
     </div>
         </div>
     </div>

@@ -4,9 +4,8 @@ import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
-import { PrimaryButton } from "@components/Buttons/CommonButtons";
 
-const FrenchiseManagement: React.FC = () => {
+const CustomersManagement: React.FC = () => {
   const rows = [
     {
       id: "001",
@@ -84,27 +83,11 @@ const FrenchiseManagement: React.FC = () => {
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
         <div className="flex items-center justify-between mb-7">
-          <h2>Frenchise Management</h2>
-
-          <div className="flex items-center gap-4 ml-auto">
-            <CommonInput placeholder="Search" showImg={true} />
-            <PrimaryButton
-              btnText="Add a franchise"
-              btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] !w-[235px]"
-              btnTextClass="text-[16px]"
-              onClick={() => console.log("Button clicked")}
-            />
-          </div>
+          <h2>Customers Management</h2>
+          <CommonInput placeholder="Search" showImg={true} />
         </div>
-        {/* <Table  /> */}
-        <Table
-          id={true}
-          franchise={true}
-          statusTh={true}
-          locationTh={true}
-          numberDetailsTh={true}
-          earningTh={true}
-        />
+
+        <Table id={true} customer={true} bookingth={true} lastBookingth={true} spendingth={true} statusTh={true} />
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
@@ -125,4 +108,4 @@ const FrenchiseManagement: React.FC = () => {
   );
 };
 
-export default FrenchiseManagement;
+export default CustomersManagement;

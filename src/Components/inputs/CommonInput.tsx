@@ -1,8 +1,10 @@
 import React from 'react'
 import { CommonInputsProps } from './types'
 import searchIcon from "@assets/svgs/search-normal.svg"
+import Edit from "@assets/svgs/edit.svg"
 
-const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeholder }) => {
+
+const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeholder, showEdit }) => {
   return (
     <div className="relative max-w-[366px] w-full" >
       {showImg && (
@@ -15,10 +17,15 @@ const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeho
       <input
         type="text"
         placeholder={placeholder}
-        className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${showImg ? 'pl-10' : 'pl-3'} pr-3 ${inputClass}`}
+        className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${showImg ? 'pl-10' : 'pl-3'} ${showEdit ? 'pl-10' : 'pl-3'} pr-3 ${inputClass}`}
       />
+      {
+        showEdit && (
+          <img src={Edit} alt="" className='absolute right-3 top-1/2 -translate-y-1/2 size-4 cursor-pointer' />
+        )
+      }
     </div>
   )
 }
 
-export default CommonInput;
+export default CommonInput;   

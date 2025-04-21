@@ -3,7 +3,29 @@ import { ReactSVG } from "react-svg";
 import Chevron from "../../assets/svgs/chevron.svg";
 
 interface TableProps {
-  // define your props here
+  franchise?: boolean;
+  detailer?: boolean;
+  customer?: boolean;
+  dateTab?: boolean;
+  serviceTh?: boolean;
+  vehicleTh?: boolean;
+  earningTh?: boolean;
+  statusTh?: boolean;
+  locationTh?: boolean;
+  numberDetailsTh?: boolean;
+  joinedTh?: boolean;
+  jobCompleteTh?: boolean;
+  bookingth?: boolean;
+  lastBookingth?: boolean;
+  spendingth?: boolean;
+  amountth?: boolean;
+  payMethodth?: boolean;
+  invoicethv?: boolean;
+  user?: boolean;
+  category?: boolean;
+  issue?: boolean;
+  incident?: boolean;
+  suggestions?: boolean;
 }
 
 const Table: React.FC = ({
@@ -12,7 +34,29 @@ const Table: React.FC = ({
   customer,
   dateTab,
   serviceTh,
+  vehicleTh,
   earningTh,
+  statusTh,
+  locationTh,
+  numberDetailsTh,
+  joinedTh,
+  jobCompleteTh,
+  bookingth,
+  lastBookingth,
+  spendingth,
+  amountth,
+  payMethodth,
+  invoicethv,
+  user,
+  category,
+  issue,
+  incident,
+  appHelpfull,
+  suggestions,
+  recommendapp,
+  howHelpfullApp,
+  rate,
+  userSuggestion,
 }: string) => {
   const rows = [
     {
@@ -28,6 +72,14 @@ const Table: React.FC = ({
       vehicle: "Phoenix",
       earning: "$0.00",
       status: "Completed",
+      location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
+      numberDetails: 20,
+      joined: "10-01-2025",
+      jobComplete: 10,
+      booking: 20,
+      lastBooking: "10-june-2025",
+      spending: "$0.00",
+      amount: "$0.00",
     },
     {
       id: "002",
@@ -42,6 +94,14 @@ const Table: React.FC = ({
       vehicle: "Cobra",
       earning: "$0.00",
       status: "In Progress",
+      location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
+      numberDetails: 20,
+      joined: "10-01-2025",
+      jobComplete: 10,
+      booking: 20,
+      lastBooking: "10-june-2025",
+      spending: "$0.00",
+      amount: "$0.00",
     },
     {
       id: "003",
@@ -56,6 +116,14 @@ const Table: React.FC = ({
       vehicle: "Raptor",
       earning: "$0.00",
       status: "In Progress",
+      location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
+      numberDetails: 20,
+      joined: "10-01-2025",
+      jobComplete: 10,
+      booking: 20,
+      lastBooking: "10-june-2025",
+      spending: "$0.00",
+      amount: "$0.00",
     },
     {
       id: "004",
@@ -70,6 +138,14 @@ const Table: React.FC = ({
       vehicle: "Vortex",
       earning: "$20.00",
       status: "Completed",
+      location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
+      numberDetails: 20,
+      joined: "10-01-2025",
+      jobComplete: 10,
+      booking: 20,
+      lastBooking: "10-june-2025",
+      spending: "$0.00",
+      amount: "$0.00",
     },
     {
       id: "005",
@@ -84,11 +160,19 @@ const Table: React.FC = ({
       vehicle: "Stingray",
       earning: "$0.00",
       status: "Canceled",
+      location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
+      numberDetails: 20,
+      joined: "10-01-2025",
+      jobComplete: 10,
+      booking: 20,
+      lastBooking: "10-june-2025",
+      spending: "$0.00",
+      amount: "$0.00",
     },
   ];
 
   return (
-    <div className="p-4 overflow-x-auto bg-white rounded-lg shadow">
+    <div className="p-4 overflow-x-auto bg-white ">
       <table className="w-full  text-sm text-left border-separate border-spacing-y-2">
         <thead className="bg-[#F1F3FB] uppercase text-xs ">
           <tr>
@@ -144,11 +228,16 @@ const Table: React.FC = ({
             ) : (
               ""
             )}
-            <th className="px-3 py-4 font-normal">
-              <span className="flex gap-3">
-                Vehicle <ReactSVG src={Chevron} />
-              </span>
-            </th>
+
+            {vehicleTh ? (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  Vehicle <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            ) : (
+              ""
+            )}
 
             {earningTh ? (
               <th className="px-3 py-4 font-normal">
@@ -159,11 +248,175 @@ const Table: React.FC = ({
             ) : (
               ""
             )}
-            <th className="px-3 py-4 font-normal">
+            {statusTh ? (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  Status <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            ) : (
+              ""
+            )}
+
+            {/* <th className="px-3 py-4 font-normal">
               <span className="flex gap-3">
                 Status <ReactSVG src={Chevron} />
               </span>
-            </th>
+            </th> */}
+
+            {joinedTh && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  Joined Data <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {jobCompleteTh && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  Job Completed <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {numberDetailsTh && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  number of Detailers <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {locationTh && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  location <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {bookingth && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  booking <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {lastBookingth && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  last Booking <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {spendingth && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  spending <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {amountth && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  amount <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {payMethodth && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  Payment method <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {invoicethv && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  invoice data <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {user && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  user <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {category && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  category <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {issue && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  issue <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {incident && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                  incident <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+
+            {appHelpfull && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                Is this app helpful for you?
+                  <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {recommendapp && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                Will you recommend this ap to your friends? <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {howHelpfullApp && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                How helpful this app for you? <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {rate && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                How helpful this app for you? <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {userSuggestion && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                Users Suggestion <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
+            {suggestions && (
+              <th className="px-3 py-4 font-normal">
+                <span className="flex gap-3">
+                Suggestion <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -173,7 +426,7 @@ const Table: React.FC = ({
                 {row.id}
               </td>
 
-              {franchise ? (
+              {franchise && (
                 <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
                     <img
@@ -189,11 +442,9 @@ const Table: React.FC = ({
                     </div>
                   </div>
                 </td>
-              ) : (
-                ""
               )}
 
-              {detailer ? (
+              {detailer && (
                 <td className="px-3 py-2">
                   <div className="flex gap-2">
                     <img
@@ -202,46 +453,73 @@ const Table: React.FC = ({
                       className="w-8 h-8 rounded-full"
                     />
                     <div>
-                      <div className="text-sm">{row.franchise}</div>
-                      <div className="text-xs text-gray-400">
-                        📍 9272 Westheimer...
-                      </div>
+                      <div className="text-sm">{row.detailer.name}</div>
                     </div>
                   </div>
                 </td>
-              ) : (
-                ""
               )}
-              {customer ? (
+
+              {customer && (
                 <td className="px-3 py-2">
                   <div className="flex gap-2">
-                    <img
-                      src={row.detailer.avatar}
-                      alt={row.detailer.name}
-                      className="w-8 h-8 rounded-full"
-                    />
-                    <div>
-                      <div className="text-sm">{row.franchise}</div>
-                      <div className="text-xs text-gray-400">
-                        📍 9272 Westheimer...
-                      </div>
-                    </div>
+                    <div className="text-sm">{row.customer}</div>
                   </div>
                 </td>
-              ) : (
-                ""
               )}
 
-              {dateTab ? <td className="px-3 py-2">{row.service}</td> : ""}
+              {dateTab && <td className="px-3 py-2">{row.date}</td>}
 
-              {serviceTh ? <td className="px-3 py-2">{row.vehicle}</td> : ""}
-              {earningTh ? <td className="px-3 py-2">{row.earning}</td> : ""}
-              <td className="px-3 py-2">
-                <span className="bg-[#0676471A] text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300">
-                  Completed
-                </span>
-              </td>
-              <td className="px-3 py-2">{row.earning}</td>
+              {serviceTh && <td className="px-3 py-2">{row.service}</td>}
+
+              {vehicleTh && <td className="px-3 py-2">{row.vehicle}</td>}
+
+              {earningTh && <td className="px-3 py-2">{row.earning}</td>}
+
+              {joinedTh && <td className="px-3 py-2">{row.joined}</td>}
+
+              {bookingth && <td className="px-3 py-2">{row.booking}</td>}
+
+              {payMethodth && <td className="px-3 py-2">{row.payMethod}</td>}
+
+              {invoicethv && <td className="px-3 py-2">{row.invoice}</td>}
+
+              {suggestions && <td className="px-3 py-2">{row.suggestions}</td>}
+
+              {lastBookingth && (
+                <td className="px-3 py-2">{row.lastBooking}</td>
+              )}
+
+              {spendingth && <td className="px-3 py-2">{row.spending}</td>}
+
+              {amountth && <td className="px-3 py-2">{row.amount}</td>}
+
+              {jobCompleteTh && (
+                <td className="px-3 py-2">{row.jobComplete}</td>
+              )}
+
+              {numberDetailsTh && (
+                <td className="px-3 py-2">{row.numberDetails}</td>
+              )}
+
+              {locationTh && <td className="px-3 py-2">{row.location}</td>}
+
+              {statusTh && (
+                <td className="px-3 py-2">
+                  <span
+                    className={`text-xs font-extrabold me-2 px-2.5 py-1 rounded-full ${
+                      row.status === "Completed"
+                        ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
+                        : row.status === "In Progress"
+                        ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
+                        : row.status === "Canceled"
+                        ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
+                        : "bg-[#F1F3FB] text-gray-600" // Default color for other statuses
+                    }`}
+                  >
+                    {row.status}
+                  </span>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
