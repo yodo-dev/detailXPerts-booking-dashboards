@@ -4,8 +4,6 @@ import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 
 const BookingManagement: React.FC = () => {
-
-
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
@@ -14,9 +12,16 @@ const BookingManagement: React.FC = () => {
           <CommonInput placeholder="Search" showImg={true} />
         </div>
 
-
-
-        <Table franchise={true} detailer={true} customer={true} dateTab={true} serviceTh={true} vehicleTh={true} earningTh={true} statusTh={true} />
+        <Table
+          franchise={true}
+          detailer={true}
+          customer={true}
+          dateTab={true}
+          serviceTh={true}
+          vehicleTh={true}
+          earningTh={true}
+          statusTh={true}
+        />
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

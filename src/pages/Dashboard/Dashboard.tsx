@@ -13,7 +13,7 @@ import girlPic from "../../assets/svgs/girlPic.svg";
 import messageIcon from "../../assets/svgs/message-text.svg";
 
 const Dashboard: React.FC = () => {
-  const [role, setRole] = useState(0);
+  const [role, setRole] = useState(1);
   const [people, setPeople] = useState(["_", "_", "_", "_", "_"]);
 
   return (

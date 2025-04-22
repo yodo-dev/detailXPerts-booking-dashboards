@@ -1,8 +1,8 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
-import VehicleCar from "../../assets/svgs/honda civic car.svg"
-import CallIcon from "@assets/svgs/call.svg"
-import MessageIcon from "@assets/svgs/message-text.svg"
+import VehicleCar from "../../assets/svgs/honda civic car.svg";
+import CallIcon from "@assets/svgs/call.svg";
+import MessageIcon from "@assets/svgs/message-text.svg";
 
 import ReactSwitch from "react-switch";
 type VehicleCardProps = {
@@ -37,8 +37,10 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
       <div className="flex justify-between items-start">
         <div>
           <p className="text-gray-400 text-sm">Vehicle Details</p>
-          <h2 className="!text-[18px] !font-bold">{vehicleName}</h2>
-          <p className="text-gray-500 font-normal text-[14px]">{vehicleYear}</p>
+          <h2 className="!text-[18px] !font-bold mt-[10px]">{vehicleName}</h2>
+          <p className="text-gray-500 font-normal text-[14px] mt-[10px]">
+            {vehicleYear}
+          </p>
         </div>
         {/* <img src={vehicleImage} alt={vehicleName} className="w-24 h-auto" /> */}
         <ReactSVG src={VehicleCar} />

@@ -84,7 +84,7 @@ const DetailersManagement: React.FC = () => {
       <div className="default_container p-4 overflow-x-auto bg-white">
         <div className="flex items-center justify-between mb-7">
           <h2>Detailers Management</h2>
-          <CommonInput placeholder="Search" showImg={true} />
+          <CommonInput placeholder="filter by franchise, rating, location" showImg={true} />
         </div>
 
         <Table id={true} detailer={true} franchise={true} joinedTh={true} jobCompleteTh={true} earningTh={true} statusTh={true} />

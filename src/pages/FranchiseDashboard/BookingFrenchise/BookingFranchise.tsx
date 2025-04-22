@@ -1,10 +1,7 @@
 import MainLayout from "@layouts/MainLayout";
 import React from "react";
-import CommonInput from "@components/inputs/CommonInput";
 import arrowDown from "../../../assets/svgs/arrow-down.svg";
-import Table from "@components/Table/Table";
 import { ReactSVG } from "react-svg";
-import hondaCar from "../../../assets/svgs/honda civic car.svg";
 import VehicleCard from "@components/CarCards/CarCards";
 
 const BookingFranchise: React.FC = () => {
@@ -40,8 +37,7 @@ const BookingFranchise: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-3 ">
-          {/* <div className=""> */}
-          <div className="col-span-1">
+          <div className="col-span-1 flex justify-center items-center">
             {/* <div className="flex justify-between items-center ">
               <div className="">
                 <span className="font-semibold text-[14px] font-semibold text-[#B0B0B0]">
@@ -74,9 +70,8 @@ const BookingFranchise: React.FC = () => {
             />
           </div>
 
-          <div className="col-span-1">
-            
-          <VehicleCard
+          <div className="col-span-1 flex justify-center items-center">
+            <VehicleCard
               vehicleName="Honda Civic"
               vehicleYear={2025}
               //   vehicleImage={carImage}
@@ -97,9 +92,8 @@ const BookingFranchise: React.FC = () => {
             />
           </div>
 
-          <div className="col-span-1">
-           
-          <VehicleCard
+          <div className="col-span-1 flex justify-center items-center">
+            <VehicleCard
               vehicleName="Honda Civic"
               vehicleYear={2025}
               //   vehicleImage={carImage}
@@ -119,7 +113,85 @@ const BookingFranchise: React.FC = () => {
               }}
             />
           </div>
-          {/* </div> */}
+        </div>
+
+        <div className="grid grid-cols-3 mt-[54px]">
+          <div className="col-span-1 flex justify-center items-center">
+            {/* <div className="flex justify-between items-center ">
+              <div className="">
+                <span className="font-semibold text-[14px] font-semibold text-[#B0B0B0]">
+                  Vehicle Details
+                </span>
+                <p className="font-bold text-[18px]">Honda Civic</p>
+                <p className="font-normal text-[14px] mt-[10px]">2025</p>
+              </div>
+              <ReactSVG src={hondaCar} />
+            </div> */}
+
+            <VehicleCard
+              vehicleName="Honda Civic"
+              vehicleYear={2025}
+              //   vehicleImage={carImage}
+              fromLocation={{
+                title: "2972 Westheimer",
+                address: "Rd. Santa Ana, Illinois 85486",
+              }}
+              toLocation={{
+                title: "8502 Preston",
+                address: "Rd. Inglewood, Maine 98380",
+              }}
+              customer={{
+                name: "Darrell Steward",
+                company: "Mariene, LTD",
+                avatar:
+                  "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
+              }}
+            />
+          </div>
+
+          <div className="col-span-1 flex justify-center items-center">
+            <VehicleCard
+              vehicleName="Honda Civic"
+              vehicleYear={2025}
+              //   vehicleImage={carImage}
+              fromLocation={{
+                title: "2972 Westheimer",
+                address: "Rd. Santa Ana, Illinois 85486",
+              }}
+              toLocation={{
+                title: "8502 Preston",
+                address: "Rd. Inglewood, Maine 98380",
+              }}
+              customer={{
+                name: "Darrell Steward",
+                company: "Mariene, LTD",
+                avatar:
+                  "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
+              }}
+            />
+          </div>
+
+          <div className="col-span-1 flex justify-center items-center">
+            <VehicleCard
+              vehicleName="Honda Civic"
+              vehicleYear={2025}
+              //   vehicleImage={carImage}
+              fromLocation={{
+                title: "2972 Westheimer",
+                address: "Rd. Santa Ana, Illinois 85486",
+              }}
+              toLocation={{
+                title: "8502 Preston",
+                address: "Rd. Inglewood, Maine 98380",
+              }}
+              customer={{
+                name: "Darrell Steward",
+                company: "Mariene, LTD",
+                avatar:
+                  "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
+              }}
+            />
+          </div>
         </div>
 
         {/* Pagination */}

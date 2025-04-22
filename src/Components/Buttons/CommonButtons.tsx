@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { PrimaryBtnProps } from "./types";
+import downloadBtn from "../../assets/svgs/downloadBtn.svg"
 
 export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   btnText,

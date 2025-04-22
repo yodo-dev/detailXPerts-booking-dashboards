@@ -87,7 +87,7 @@ const FrenchiseManagement: React.FC = () => {
           <h2>Frenchise Management</h2>
 
           <div className="flex items-center gap-4 ml-auto">
-            <CommonInput placeholder="Search" showImg={true} />
+            <CommonInput placeholder="search by city, plan, activity" showImg={true} />
             <PrimaryButton
               btnText="Add a franchise"
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] !w-[235px]"
