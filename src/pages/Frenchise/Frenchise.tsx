@@ -1,10 +1,11 @@
 import MainLayout from "@layouts/MainLayout";
-import React from "react";
+import React, { useState } from "react";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
+import AddFranchise from "./Components/AddFranchise";
 
 const FrenchiseManagement: React.FC = () => {
   const rows = [
@@ -80,6 +81,18 @@ const FrenchiseManagement: React.FC = () => {
     },
   ];
 
+  const [showModal, setShowModal] = useState(true);
+
+  const tableData = [
+    { key: "id", label: "ID" },
+    { key: "franchise", label: "Franchise" },
+    { key: "location", label: "Location" },
+    { key: "no_detailer", label: "Number of  Detailers" },
+    { key: "earning", label: "Earning" },
+    { key: "status", label: "Status" },
+    { key: "action", label: "Action" },
+  ];
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
@@ -87,7 +100,10 @@ const FrenchiseManagement: React.FC = () => {
           <h2>Frenchise Management</h2>
 
           <div className="flex items-center gap-4 ml-auto">
-            <CommonInput placeholder="search by city, plan, activity" showImg={true} />
+            <CommonInput
+              placeholder="search by city, plan, activity"
+              showImg={true}
+            />
             <PrimaryButton
               btnText="Add a franchise"
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] !w-[235px]"
@@ -104,7 +120,12 @@ const FrenchiseManagement: React.FC = () => {
           locationTh={true}
           numberDetailsTh={true}
           earningTh={true}
+          tableData={tableData}
+          action={true}
+          setShowModal={setShowModal}
         />
+
+        {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

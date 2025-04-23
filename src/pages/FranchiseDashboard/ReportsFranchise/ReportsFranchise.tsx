@@ -155,8 +155,10 @@ const ReportsFranchise: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-4 p-6 bg-[#f9fbfd] rounded-lg">
           {/* Left Card */}
           <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col items-center justify-center w-full lg:w-1/3">
-            <h4 className="text-sm text-gray-500 mb-2">Total Income</h4>
-            <h2 className="text-2xl font-bold mb-4">$10K</h2>
+            <h4 className="!text-[14px] !font-medium text-gray-500 mb-2">
+              Total Income
+            </h4>
+            <h2 className="!text-[30px] !font-bold mb-4">$10K</h2>
 
             {/* Circle Progress — Simulated (use a library for real circle) */}
             <div className="relative w-[120px] h-[120px] mb-4">
@@ -186,11 +188,13 @@ const ReportsFranchise: React.FC = () => {
 
 const StatRow = ({ label, value, bold }) => (
   <div className="flex justify-between items-center">
-    <span className="text-gray-600 text-sm">{label}</span>
+    <span className="text-gray-600 !text-normal !text-[#252525] !text-[16px]">
+      {label}
+    </span>
     <span
-      className={`px-4 py-1 rounded-md text-sm ${
+      className={`px-4 py-1  rounded-md text-sm ${
         bold ? "font-semibold" : "font-medium"
-      }`}
+      } !font-bold !text-[22px]`}
     >
       {value}
     </span>

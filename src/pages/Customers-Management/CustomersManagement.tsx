@@ -79,6 +79,17 @@ const CustomersManagement: React.FC = () => {
     },
   ];
 
+  const tableData = [
+    { key: "id", label: "ID" },
+    { key: "customers", label: "Customers" },
+    { key: "bookings", label: "Bookings" },
+    { key: "last_booking", label: "Last Booking" },
+    { key: "spending", label: "Spending" },
+    { key: "status", label: "Status" },
+    { key: "action", label: "Action" },
+
+  ];
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
@@ -87,7 +98,16 @@ const CustomersManagement: React.FC = () => {
           <CommonInput placeholder="Search" showImg={true} />
         </div>
 
-        <Table id={true} customer={true} bookingth={true} lastBookingth={true} spendingth={true} statusTh={true} />
+        <Table
+          id={true}
+          customer={true}
+          bookingth={true}
+          lastBookingth={true}
+          spendingth={true}
+          statusTh={true}
+          tableData={tableData}
+          action={true}
+        />
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

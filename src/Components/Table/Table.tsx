@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import Chevron from "../../assets/svgs/chevron.svg";
+import Logo1 from "@assets/svgs/logo1.svg";
+import LocationIcon from "@assets/svgs/location.svg";
+import { ReactNode } from "react";
+import Dots from "@assets/svgs/dots.svg";
+import Eye from "@assets/svgs/eye.svg";
+import EditIcon from "@assets/svgs/edit-2.svg";
+import Trash from "@assets/svgs/trash.svg";
+import blockUser from "@assets/svgs/profile-delete.svg";
 
 interface TableProps {
   franchise?: boolean;
@@ -26,9 +34,14 @@ interface TableProps {
   issue?: boolean;
   incident?: boolean;
   suggestions?: boolean;
+  tableData: string[];
 }
 
-const Table: React.FC = ({
+// interface Props {
+//   type: "a" | "b" | "c";
+// }
+
+const Table: React.FC<TableProps> = ({
   franchise,
   detailer,
   customer,
@@ -57,6 +70,9 @@ const Table: React.FC = ({
   howHelpfullApp,
   rate,
   userSuggestion,
+  tableData,
+  action,
+  setShowModal
 }: string) => {
   const rows = [
     {
@@ -64,7 +80,7 @@ const Table: React.FC = ({
       franchise: "Vaclucia Motors",
       detailer: {
         name: "Ahmad Septiwan",
-        avatar: "https://i.pravatar.cc/40?img=1",
+        avatar: Logo1,
       },
       customer: "Kaiya Botar",
       date: "04-05-2025",
@@ -83,10 +99,10 @@ const Table: React.FC = ({
     },
     {
       id: "002",
-      franchise: "DreamDrive Automobiles",
+      franchise: "DreamDrive",
       detailer: {
         name: "Erin Vetrov",
-        avatar: "https://i.pravatar.cc/40?img=2",
+        avatar: Logo1,
       },
       customer: "Alfredo Soris",
       date: "04-05-2025",
@@ -107,8 +123,8 @@ const Table: React.FC = ({
       id: "003",
       franchise: "Healthride Vehicles",
       detailer: {
-        name: "Giancu Batrom Bachman",
-        avatar: "https://i.pravatar.cc/40?img=3",
+        name: "Giancu Batrom",
+        avatar: Logo1,
       },
       customer: "Lincoln Gusae",
       date: "04-05-2025",
@@ -130,7 +146,7 @@ const Table: React.FC = ({
       franchise: "Biwered Motors",
       detailer: {
         name: "Alfredo Rihidl Madsson",
-        avatar: "https://i.pravatar.cc/40?img=4",
+        avatar: Logo1,
       },
       customer: "Aspen Schieffer",
       date: "04-05-2025",
@@ -152,7 +168,7 @@ const Table: React.FC = ({
       franchise: "Fantasy Auto Group",
       detailer: {
         name: "Tachiona Curtis",
-        avatar: "https://i.pravatar.cc/40?img=5",
+        avatar: Logo1,
       },
       customer: "Alfredo Philips",
       date: "04-05-2025",
@@ -171,18 +187,25 @@ const Table: React.FC = ({
     },
   ];
 
+  console.log("tttttaaaaa", tableData);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState(true);
+
+  const handleDropdownToggle = (index: number) => {
+    setOpenDropdownIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <div className="p-4 overflow-x-auto bg-white ">
       <table className="w-full  text-sm text-left border-separate border-spacing-y-2">
-        <thead className="bg-[#F1F3FB] uppercase text-xs ">
+        {/* <thead className="bg-[#F1F3FB] text-xs ">
           <tr>
             <th className="px-3 py-4 font-normal">
               {" "}
-              <span className="flex">ID</span>{" "}
+              <span className="flex font-normal text-[12px]">ID</span>{" "}
             </th>
             {franchise ? (
               <th className="px-3 py-4 font-normal">
-                <span className="flex gap-3">
+                <span className="flex gap-3 font-normal text-[12px]">
                   Franchise <ReactSVG src={Chevron} />
                 </span>{" "}
               </th>
@@ -257,12 +280,6 @@ const Table: React.FC = ({
             ) : (
               ""
             )}
-
-            {/* <th className="px-3 py-4 font-normal">
-              <span className="flex gap-3">
-                Status <ReactSVG src={Chevron} />
-              </span>
-            </th> */}
 
             {joinedTh && (
               <th className="px-3 py-4 font-normal">
@@ -377,7 +394,7 @@ const Table: React.FC = ({
             {appHelpfull && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                Is this app helpful for you?
+                  Is this app helpful for you?
                   <ReactSVG src={Chevron} />
                 </span>
               </th>
@@ -385,59 +402,73 @@ const Table: React.FC = ({
             {recommendapp && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                Will you recommend this ap to your friends? <ReactSVG src={Chevron} />
+                  Will you recommend this ap to your friends?{" "}
+                  <ReactSVG src={Chevron} />
                 </span>
               </th>
             )}
             {howHelpfullApp && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                How helpful this app for you? <ReactSVG src={Chevron} />
+                  How helpful this app for you? <ReactSVG src={Chevron} />
                 </span>
               </th>
             )}
             {rate && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                How helpful this app for you? <ReactSVG src={Chevron} />
+                  How helpful this app for you? <ReactSVG src={Chevron} />
                 </span>
               </th>
             )}
             {userSuggestion && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                Users Suggestion <ReactSVG src={Chevron} />
+                  Users Suggestion <ReactSVG src={Chevron} />
                 </span>
               </th>
             )}
             {suggestions && (
               <th className="px-3 py-4 font-normal">
                 <span className="flex gap-3">
-                Suggestion <ReactSVG src={Chevron} />
+                  Suggestion <ReactSVG src={Chevron} />
                 </span>
               </th>
             )}
           </tr>
+        </thead> */}
+
+        <thead className="bg-[#F1F3FB] text-xs">
+          <tr>
+            {tableData?.map(({ key, label }) => (
+              <th key={key} className="px-3 py-4 font-normal">
+                <span className="flex gap-3 text-[12px] font-normal">
+                  {label} <ReactSVG src={Chevron} />
+                </span>
+              </th>
+            ))}
+          </tr>
         </thead>
+
         <tbody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <tr key={row.id} className="bg-gray-50 rounded-md shadow-sm">
-              <td className="px-3 py-2 font-semibold text-gray-700">
-                {row.id}
-              </td>
+              <td className="px-3 py-2 font-medium text-gray-700">{row.id}</td>
 
               {franchise && (
                 <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
-                    <img
-                      src={row.detailer.avatar}
-                      alt={row.detailer.name}
-                      className="w-8 h-8 rounded-full"
-                    />
+                    <div className="w-[35px] flex items-center justify-center border border-[#25252526] rounded-full">
+                      <img
+                        src={row.detailer.avatar}
+                        alt={row.detailer.name}
+                        className="w-5 h-5 rounded-full"
+                      />
+                    </div>
                     <div>
                       <div className="text-sm">{row.franchise}</div>
-                      <div className="text-xs text-gray-400">
-                        📍 9272 Westheimer...
+                      <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                        <ReactSVG src={LocationIcon} /> 9272 Westheimer...
                       </div>
                     </div>
                   </div>
@@ -445,24 +476,41 @@ const Table: React.FC = ({
               )}
 
               {detailer && (
-                <td className="px-3 py-2">
+                <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
-                    <img
-                      src={row.detailer.avatar}
-                      alt={row.detailer.name}
-                      className="w-8 h-8 rounded-full"
-                    />
+                    <div className="w-[35px] flex items-center justify-center border border-[#25252526] rounded-full">
+                      <img
+                        src={row.detailer.avatar}
+                        alt={row.detailer.name}
+                        className="w-5 h-5 rounded-full"
+                      />
+                    </div>
                     <div>
-                      <div className="text-sm">{row.detailer.name}</div>
+                      <div className="text-sm">{row.franchise}</div>
+                      <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                        <ReactSVG src={LocationIcon} /> 9272 Westheimer...
+                      </div>
                     </div>
                   </div>
                 </td>
               )}
 
               {customer && (
-                <td className="px-3 py-2">
+                <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
-                    <div className="text-sm">{row.customer}</div>
+                    <div className="w-[35px] flex items-center justify-center border border-[#25252526] rounded-full">
+                      <img
+                        src={row.detailer.avatar}
+                        alt={row.detailer.name}
+                        className="w-5 h-5 rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <div className="text-sm">{row.franchise}</div>
+                      <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                        hello@wildflower.bio
+                      </div>
+                    </div>
                   </div>
                 </td>
               )}
@@ -506,7 +554,7 @@ const Table: React.FC = ({
               {statusTh && (
                 <td className="px-3 py-2">
                   <span
-                    className={`text-xs font-extrabold me-2 px-2.5 py-1 rounded-full ${
+                    className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
                       row.status === "Completed"
                         ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
                         : row.status === "In Progress"
@@ -518,6 +566,63 @@ const Table: React.FC = ({
                   >
                     {row.status}
                   </span>
+                </td>
+              )}
+
+              {/* <td className="px-3 py-2 !relative">
+                <div className="!relative !z-40">
+                  <span className="text-center ">
+                    <ReactSVG className="ms-4 cursor-pointer" src={Dots} />
+                  </span>
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-50">
+                    <button className="flex text-[14px] font-medium gap-[7px] mb-[20px]">
+                      {" "}
+                      <ReactSVG src={Eye} /> View
+                    </button>
+                    <button className="flex gap-[7px] mb-[20px]">
+                      {" "}
+                      <ReactSVG src={EditIcon} /> Edit
+                    </button>
+                    <button className="flex gap-[7px] mb-[20px]">
+                      {" "}
+                      <ReactSVG src={blockUser} /> Block
+                    </button>
+                    <button className="flex gap-[7px] mb-[0px]">
+                      {" "}
+                      <ReactSVG src={Trash} /> Delete
+                    </button>
+                  </div>
+                </div>
+              </td> */}
+              {action !== true ? (
+                ""
+              ) : (
+                <td className="px-3 py-2 relative">
+                  <div className="relative inline-block text-left">
+                    <span
+                      className="text-center"
+                      onClick={() => handleDropdownToggle(index)}
+                    >
+                      <ReactSVG className="ms-4 cursor-pointer" src={Dots} />
+                    </span>
+
+                    {openDropdownIndex === index && (
+                    <div className="absolute right-0 mt-2 pt-2 pb-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-[999999]">
+                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                        <ReactSVG src={Eye} className="mr-2" /> View
+                      </button>
+                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full" onClick={()=>{setShowModal(true); setOpenDropdownIndex(false)}} >
+                        <ReactSVG src={EditIcon} className="mr-2"  /> Edit
+                      </button>
+                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                        <ReactSVG src={blockUser} className="mr-2" /> Block
+                      </button>
+                      <button className="cursor-pointer flex items-center text-sm text-red-600 px-4 py-2 hover:bg-red-100 w-full">
+                        <ReactSVG src={Trash} className="mr-2" /> Delete
+                      </button>
+                    </div>
+                  )}
+                  </div>
                 </td>
               )}
             </tr>

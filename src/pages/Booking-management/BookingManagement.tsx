@@ -2,8 +2,21 @@ import MainLayout from "@layouts/MainLayout";
 import React from "react";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
+import { table } from "console";
 
 const BookingManagement: React.FC = () => {
+  const tableData = [
+    { key: "id", label: "ID" },
+    { key: "franchise", label: "Franchise" },
+    { key: "detailer", label: "Detailer" },
+    { key: "customer", label: "Customer" },
+    { key: "date", label: "Date" },
+    { key: "service", label: "Service" },
+    { key: "vehicle", label: "Vehicle" },
+    { key: "earning", label: "Earning" },
+    { key: "status", label: "Status" },
+  ];
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
@@ -21,6 +34,8 @@ const BookingManagement: React.FC = () => {
           vehicleTh={true}
           earningTh={true}
           statusTh={true}
+          tableData={tableData}
+          action={false}
         />
 
         {/* Pagination */}

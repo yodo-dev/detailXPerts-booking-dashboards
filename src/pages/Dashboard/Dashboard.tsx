@@ -5,7 +5,7 @@ import exportIcon from "@assets/svgs/export-icon.svg";
 import React, { useState } from "react";
 import OverviewCard from "@components/Cards/Quick-overview-cards/OverviewCard";
 import cardImg1 from "@assets/svgs/coverview-card1-img.svg";
-import Linechart from "./Components/Linechart";
+import Linechart from "@components/Charts/Linechart";
 import greenBorder from "../../assets/svgs/Border.svg";
 import redBorder from "../../assets/svgs/redBorder.svg";
 import { ReactSVG } from "react-svg";
@@ -15,6 +15,21 @@ import messageIcon from "../../assets/svgs/message-text.svg";
 const Dashboard: React.FC = () => {
   const [role, setRole] = useState(1);
   const [people, setPeople] = useState(["_", "_", "_", "_", "_"]);
+
+  const data = [
+    { name: "Jan", Approved: 200, Pending: 10, Canceled: 200 },
+    { name: "Feb", Approved: 200, Pending: 200, Canceled: 400 },
+    { name: "Mar", Approved: 200, Pending: 200, Canceled: 200 },
+    { name: "Apr", Approved: 304, Pending: 200, Canceled: 250 },
+    { name: "May", Approved: 200, Pending: 125, Canceled: 400 },
+    { name: "Jun", Approved: 200, Pending: 243, Canceled: 200 },
+    { name: "Jul", Approved: 242, Pending: 114, Canceled: 400 },
+    { name: "Aug", Approved: 329, Pending: 128, Canceled: 200 },
+    { name: "Sep", Approved: 134, Pending: 249, Canceled: 400 },
+    { name: "Oct", Approved: 249, Pending: 215, Canceled: 200 },
+    { name: "Nov", Approved: 245, Pending: 213, Canceled: 400 },
+    { name: "Dec", Approved: 420, Pending: 313, Canceled: 200 },
+  ];
 
   return (
     <MainLayout>
@@ -219,7 +234,12 @@ const Dashboard: React.FC = () => {
                   </td>
 
                   <td className="px-6 py-5 !text-[16px] text-[#252525]">
-                    12:45 Am
+                    <div className="h-[4px] bg-[#CDE7FF] rounded relative ">
+                      <div className="h-[100%] w-[30%] bg-[#0095FF] rounded"></div>
+                      <span className="absolute top-[-7px] right-[-38px] text-[12px] font-normal">
+                        25%
+                      </span>
+                    </div>
                   </td>
 
                   <td className="px-6 py-5 !text-[16px]  text-[#252525] text-center pe-0">
@@ -239,7 +259,12 @@ const Dashboard: React.FC = () => {
                   </td>
 
                   <td className="px-6 py-5 !text-[16px] text-[#252525] text-gray-700">
-                    12:45 Am
+                    <div className="h-[4px] bg-[#C5A8FF] rounded relative ">
+                      <div className="h-[100%] w-[30%] bg-[#884DFF] rounded"></div>
+                      <span className="absolute top-[-7px] right-[-38px] text-[12px] font-normal">
+                        25%
+                      </span>
+                    </div>
                   </td>
 
                   <td className="px-6 py-5 !text-[16px]  text-[#252525] text-center pe-0">
@@ -259,7 +284,12 @@ const Dashboard: React.FC = () => {
                   </td>
 
                   <td className="px-6 py-5 !text-[16px] text-[#252525] text-gray-700">
-                    12:45 Am
+                    <div className="h-[4px] bg-[#FFD5A4] rounded relative ">
+                      <div className="h-[100%] w-[30%] bg-[#FF8F0D] rounded"></div>
+                      <span className="absolute top-[-7px] right-[-38px] text-[12px] font-normal">
+                        25%
+                      </span>
+                    </div>
                   </td>
 
                   <td className="px-6 py-5 !text-[16px]  text-[#252525] text-center pe-0">
@@ -272,11 +302,11 @@ const Dashboard: React.FC = () => {
             </table>
           </div>
           <div className="insights common_section_bg py-7 px-6">
-            <h2 className="!text-[25px] text-[#252525] !font-semibold">
+            <h2 className="!text-[25px] text-[#252525] !font-semibold mb-10">
               Insights
             </h2>
 
-            <Linechart />
+            <Linechart data={data} legend={true} />
           </div>
         </div>
       </div>

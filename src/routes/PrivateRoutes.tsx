@@ -1,5 +1,5 @@
-// import BookingManagement from "@pages/Booking-management/BookingManagement";
-import BookingManagementFranchise from "@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise";
+import BookingManagement from "@pages/Booking-management/BookingManagement";
+// import BookingManagementFranchise from "@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise";
 
 import CustomersManagement from "@pages/Customers-Management/CustomersManagement";
 import DetailersManagement from "@pages/Detailers-Management/DetailersManagement";
@@ -18,8 +18,8 @@ import FranchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/Setti
 import ProfileFranchise from "@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise";
 
 const PrivateRoutes = [
-  // {path:'/booking-management', element:<BookingManagement/>},
-  { path: "/booking-management", element: <BookingManagementFranchise /> },
+  {path:'/booking-management', element:<BookingManagement/>},
+  // { path: "/booking-management", element: <BookingManagementFranchise /> },
 
   { path: "/frenchise-management", element: <FrenchiseManagement /> },
   { path: "/detailers-management", element: <DetailersManagement /> },

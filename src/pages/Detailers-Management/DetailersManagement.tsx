@@ -79,15 +79,39 @@ const DetailersManagement: React.FC = () => {
     },
   ];
 
+  const tableData = [
+    { key: "id", label: "ID" },
+    { key: "detailers", label: "Detailers" },
+    { key: "franchise", label: "Franchise" },
+    { key: "joined_date", label: "Joined Date" },
+    { key: "jobs_completed", label: "Jobs Completed" },
+    { key: "earning", label: "Earning" },
+    { key: "status", label: "Status" },
+    { key: "action", label: "Action" },
+  ];
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
         <div className="flex items-center justify-between mb-7">
           <h2>Detailers Management</h2>
-          <CommonInput placeholder="filter by franchise, rating, location" showImg={true} />
+          <CommonInput
+            placeholder="filter by franchise, rating, location"
+            showImg={true}
+          />
         </div>
 
-        <Table id={true} detailer={true} franchise={true} joinedTh={true} jobCompleteTh={true} earningTh={true} statusTh={true} />
+        <Table
+          id={true}
+          detailer={true}
+          franchise={true}
+          joinedTh={true}
+          jobCompleteTh={true}
+          earningTh={true}
+          statusTh={true}
+          tableData={tableData}
+          action={true}
+        />
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

@@ -11,6 +11,7 @@ import {
 import { Legend } from "recharts";
 import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
+import Linechart from "@components/Charts/Linechart";
 
 const PaymentFranchise: React.FC = () => {
   //   const data = [
@@ -86,7 +87,7 @@ const PaymentFranchise: React.FC = () => {
               </div>
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={300}>
+          {/* <ResponsiveContainer width="100%" height={300}>
             <LineChart
               width={600}
               height={300}
@@ -96,8 +97,8 @@ const PaymentFranchise: React.FC = () => {
               <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="name"
-                axisLine={false} // Removes bottom axis line
-                tickLine={false} // Removes small tick lines/>
+                axisLine={false} 
+                tickLine={false}
                 tick={{ fontSize: 16, fill: "#252525" }}
               />
               <YAxis
@@ -107,8 +108,6 @@ const PaymentFranchise: React.FC = () => {
               />
 
               <Tooltip />
-
-              {/* <Legend /> */}
 
               <Line
                 type="monotone"
@@ -134,15 +133,19 @@ const PaymentFranchise: React.FC = () => {
               <YAxis />
               <Tooltip />
             </LineChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer> */}
+
+          <Linechart data={data} />
         </div>
 
         <div className="grid grid-cols-4">
-          <div className="col-span-1 bg-[#eeeeeed2] relative">
-            <div className="bg-red absolute top-20 left-[20%]">
-              <p>Payment Received</p>
+          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+            <div className=" absolute top-20  ">
+              <p className="text-[14px] font-normal w-[100%] ">
+                Payment Received
+              </p>
             </div>
-            <PieChart width={250} height={400}>
+            <PieChart width={250} height={300}>
               {/* Full 360° background ring */}
               <Pie
                 data={[{ value: 100 }]} // Dummy data to create a full circle
@@ -175,7 +178,7 @@ const PaymentFranchise: React.FC = () => {
                 ))}
 
                 <Label
-                  value="32k"
+                  value="3.8K"
                   position="center"
                   style={{
                     fontSize: 38,
@@ -185,20 +188,24 @@ const PaymentFranchise: React.FC = () => {
                 />
               </Pie>
             </PieChart>
+            <p className="text-center absolute bottom-14 text-[12px] font-normal">
+              Revived
+            </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative">
-            <div className="bg-red absolute top-20 left-[20%]">
-              <p>Payment In Process</p>
+          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+            <div className=" absolute top-20  ">
+              <p className="text-[14px] font-normal w-[100%] ">
+                Payment Received
+              </p>
             </div>
-            <PieChart width={250} height={400}>
+            <PieChart width={250} height={300}>
               {/* Full 360° background ring */}
               <Pie
                 data={[{ value: 100 }]} // Dummy data to create a full circle
                 cx={120}
                 cy={200}
                 innerRadius={60}
-                // outerRadius={80}
                 outerRadius={75}
                 startAngle={0}
                 endAngle={360} // Full circle
@@ -225,7 +232,7 @@ const PaymentFranchise: React.FC = () => {
                 ))}
 
                 <Label
-                  value="32k"
+                  value="22K"
                   position="center"
                   style={{
                     fontSize: 38,
@@ -235,13 +242,18 @@ const PaymentFranchise: React.FC = () => {
                 />
               </Pie>
             </PieChart>
+            <p className="text-center absolute bottom-14 text-[12px] font-normal">
+              Revived
+            </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative">
-            <div className="bg-red absolute top-20 left-[20%]">
-              <p>Canceled Amount</p>
+          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+            <div className=" absolute top-20  ">
+              <p className="text-[14px] font-normal w-[100%] ">
+                Payment Received
+              </p>
             </div>
-            <PieChart width={250} height={400}>
+            <PieChart width={250} height={300}>
               {/* Full 360° background ring */}
               <Pie
                 data={[{ value: 100 }]} // Dummy data to create a full circle
@@ -274,7 +286,7 @@ const PaymentFranchise: React.FC = () => {
                 ))}
 
                 <Label
-                  value="32k"
+                  value="$4"
                   position="center"
                   style={{
                     fontSize: 38,
@@ -284,13 +296,18 @@ const PaymentFranchise: React.FC = () => {
                 />
               </Pie>
             </PieChart>
+            <p className="text-center absolute bottom-14 text-[12px] font-normal">
+              Revived
+            </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative">
-            <div className="bg-red absolute top-20 left-[20%]">
-              <p>Booking Closes</p>
+          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+            <div className=" absolute top-20  ">
+              <p className="text-[14px] font-normal w-[100%] ">
+                Payment Received
+              </p>
             </div>
-            <PieChart width={250} height={400}>
+            <PieChart width={250} height={300}>
               {/* Full 360° background ring */}
               <Pie
                 data={[{ value: 100 }]} // Dummy data to create a full circle
@@ -323,7 +340,7 @@ const PaymentFranchise: React.FC = () => {
                 ))}
 
                 <Label
-                  value="15%"
+                  value="3.8K"
                   position="center"
                   style={{
                     fontSize: 38,
@@ -333,6 +350,9 @@ const PaymentFranchise: React.FC = () => {
                 />
               </Pie>
             </PieChart>
+            <p className="text-center absolute bottom-14 text-[12px] font-normal">
+              Revived
+            </p>
           </div>
         </div>
       </div>
