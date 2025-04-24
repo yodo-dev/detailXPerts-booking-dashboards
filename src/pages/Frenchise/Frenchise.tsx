@@ -95,23 +95,25 @@ const FrenchiseManagement: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="default_container p-4 overflow-x-auto bg-white">
-        <div className="flex items-center justify-between mb-7">
-          <h2>Frenchise Management</h2>
+      <div className="default_container p-4 overflow-x-auto">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
+          <h2 className="text-lg font-semibold md:mb-0 mb-2">Franchise Management</h2>
 
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 md:w-[600px]">
             <CommonInput
               placeholder="search by city, plan, activity"
               showImg={true}
+              inputClass="w-full"
             />
             <PrimaryButton
               btnText="Add a franchise"
-              btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] !w-[235px]"
+              btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] w-full sm:max-w-[210px]"
               btnTextClass="text-[16px]"
-              onClick={() => setShowModal(true) }
+              onClick={() => setShowModal(true)}
             />
           </div>
         </div>
+
         {/* <Table  /> */}
         <Table
           id={true}
@@ -127,20 +129,6 @@ const FrenchiseManagement: React.FC = () => {
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 
-        {/* Pagination */}
-        {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
-          <p>Showing 1 to 10 of 200 entries</p>
-          <div className="space-x-2">
-            <button className="px-3 py-1  rounded-md">Prev</button>
-            <button className="px-3 py-1  bg-[#003CA6] text-white rounded-md">
-              1
-            </button>
-            <button className="px-3 py-1  rounded-md">2</button>
-            <button className="px-3 py-1  rounded-md">3</button>
-            <button className="px-3 py-1  rounded-md">4</button>
-            <button className="px-3 py-1 text-[#003CA6] rounded-md">Next</button>
-          </div>
-        </div> */}
       </div>
     </MainLayout>
   );
