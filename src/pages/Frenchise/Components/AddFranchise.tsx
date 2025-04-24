@@ -3,6 +3,10 @@ import { Controller, useForm } from "react-hook-form";
 import { ReactSVG } from "react-svg";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { PrimaryButton } from "@components/Buttons/CommonButtons";
+import uploadServer from "../../../assets/svgs/uploadServer.svg"
+import userIcon from "../../../assets/svgs/userIcon.svg"
+import CommonInput from "@components/inputs/CommonInput";
 
 const  AddFranchise=({setShowModal}) =>{
   const {
@@ -16,7 +20,7 @@ const  AddFranchise=({setShowModal}) =>{
     <div className="fixed  inset-0 bg-[#363636CC] flex items-center justify-center z-50">
       <div className="bg-white overflow-y-scroll rounded-xl w-[500px] h-[95vh] p-6 shadow-lg">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="!text-[18px] !font-bold ">Add Caregiver</h2>
+          <h2 className="!text-[18px] !font-bold ">Add Detailer</h2>
           <button
             //   onClick={() => setIsModalOpen(false)}
             className="text-gray-500 hover:text-black text-4xl cursor-pointer"
@@ -44,7 +48,7 @@ const  AddFranchise=({setShowModal}) =>{
             />
           </div>
         ) : ( */}
-          {/* //   <ReactSVG src={UserPic} /> */}
+           <ReactSVG src={userIcon} />
           {/* // )} */}
 
           {/* Image Upload */}
@@ -52,23 +56,23 @@ const  AddFranchise=({setShowModal}) =>{
             //   onClick={handleDivClick}
             className="flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]"
           >
-            <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
               <span className="text-2xl text-gray-500">
-                {/* <ReactSVG src={uploadServer} /> */}
+                <ReactSVG src={uploadServer} />
               </span>
             </div>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-[#5B5B5B]">
               <strong className="text-black">Click to upload</strong> or drag
               and drop
             </p>
-            <p className="text-xs text-black mt-1">
+            <p className="text-[12px] text-[#5B5B5B] mt-1">
               SVG, PNG, JPG or GIF (max. 800x400px)
             </p>
           </div>
         </div>
         <input
           id="img"
-          // ref={fileInputRef}
+          // ref={userIcon}
           // onChange={handleFileChange}
           type="file"
           hidden
@@ -78,49 +82,37 @@ const  AddFranchise=({setShowModal}) =>{
         <form className="space-y-4">
           <div className="flex gap-4">
             <div className="w-1/2">
-              <label className="text-sm font-normal text-[#5B5B5B]">
+              <label className="text-[14px] font-medium text-[#5B5B5B]">
                 First name <span className="text-red-500">*</span>
               </label>
-              <input
-                type="text"
-                className="custom-input"
-                placeholder="First Name"
-                //   {...register("name", {
-                //     required: "First name must required",
-                //   })}
+              <CommonInput 
+              inputClass="custom-input"
+              placeholder="First Name"
               />
             </div>
             <div className="w-1/2">
-              <label className="text-sm font-normal text-[#5B5B5B]">
+              <label className="text-[14px] font-medium text-[#5B5B5B]">
                 Last name <span className="text-red-500">*</span>
               </label>
-              <input
-                type="text"
-                className="custom-input"
-                placeholder="Last Name"
-                //   {...register("last_name", {
-                //     required: "Last name must required",
-                //   })}
+              <CommonInput 
+              inputClass="custom-input"
+              placeholder="Last Name"
               />
             </div>
           </div>
 
           <div>
-            <label className="text-sm font-normal text-[#5B5B5B]">
+            <label className="text-[14px] font-medium text-[#5B5B5B]">
               Email address <span className="text-red-500">*</span>
             </label>
-            <input
-              type="email"
+            <CommonInput 
+              inputClass="custom-input !w-[118.5%]" 
               placeholder="Enter Your Email"
-              className="custom-input"
-              // {...register("email", {
-              //   required: "Email Address must required",
-              // })}
-            />
+              />
           </div>
 
           <div className="mb-4 ">
-            <label className="block font-normal text-sm mb-3 text-[#5B5B5B]">
+            <label className="block mb-3 text-[14px] font-medium text-[#5B5B5B]">
               Contact Number <span className="text-red-500">*</span>
             </label>
             <Controller
@@ -134,7 +126,7 @@ const  AddFranchise=({setShowModal}) =>{
                   country={"us"}
                   value={field.value} // Bind the phone input value to React Hook Form
                   onChange={(value) => field.onChange(value)} // Handle phone input change
-                  inputClass="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow w-full" // Custom classes for the input field
+                  inputClass="!w-[100%] bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow w-full" // Custom classes for the input field
                   containerClass="w-full" // Optional container class
                   inputProps={{
                     required: true,
@@ -149,9 +141,9 @@ const  AddFranchise=({setShowModal}) =>{
           )} */}
           </div>
 
-          <div className="">
+          <div className="mb-[40px]">
             <div className="">
-              <label className="text-sm font-medium text-[#5B5B5B]">
+              <label className="text-[14px] font-medium text-[#5B5B5B]">
                 About <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -167,20 +159,13 @@ const  AddFranchise=({setShowModal}) =>{
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-end gap-2 mt-4">
-            <button
-              type="button"
-              className="cursor-pointer px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
-              // onClick={() => setIsModalOpen(false)}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="cursor-pointer px-4 py-2 bg-[#003CA6] text-white rounded-md hover:bg-blue-700"
-            >
-              Add
-            </button>
+          <div className="flex justify-end gap-2 border-[#88888850] border-t">
+            <PrimaryButton
+            btnText="Cancel"
+            btnClass="cursor-pointer px-4 py-2 mt-[16px] rounded-md !font-medium !w-[97px] border border-gray-300 text-[#5B5B5B] hover:bg-gray-100"/>
+            <PrimaryButton 
+            btnText="Add"
+            btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-[77px] text-white rounded-md hover:bg-blue-700"/>
           </div>
         </form>
       </div>

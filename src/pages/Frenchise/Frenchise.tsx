@@ -81,7 +81,7 @@ const FrenchiseManagement: React.FC = () => {
     },
   ];
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const tableData = [
     { key: "id", label: "ID" },
@@ -108,7 +108,7 @@ const FrenchiseManagement: React.FC = () => {
               btnText="Add a franchise"
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] !w-[235px]"
               btnTextClass="text-[16px]"
-              onClick={() => console.log("Button clicked")}
+              onClick={() => setShowModal(true) }
             />
           </div>
         </div>

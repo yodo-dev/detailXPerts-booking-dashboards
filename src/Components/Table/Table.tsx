@@ -187,7 +187,6 @@ const Table: React.FC<TableProps> = ({
     },
   ];
 
-  console.log("tttttaaaaa", tableData);
   const [openDropdownIndex, setOpenDropdownIndex] = useState(true);
 
   const handleDropdownToggle = (index: number) => {
@@ -608,7 +607,7 @@ const Table: React.FC<TableProps> = ({
 
                     {openDropdownIndex === index && (
                     <div className="absolute right-0 mt-2 pt-2 pb-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-[999999]">
-                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                      <button onClick={() => {window.location.href = "/detailers-franchise"}} className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
                         <ReactSVG src={Eye} className="mr-2" /> View
                       </button>
                       <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full" onClick={()=>{setShowModal(true); setOpenDropdownIndex(false)}} >

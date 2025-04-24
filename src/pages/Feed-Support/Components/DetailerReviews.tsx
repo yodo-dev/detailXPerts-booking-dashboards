@@ -1,52 +1,65 @@
 import React from "react";
-import UserPic from "../../../assets/images/user-profile-img.png";
-import StartPic from "../../../assets/svgs/starsRating.svg";
-
+// import UserPic from "../../../assets/images/user-profile-img.png";
+// import StartPic from "../../../assets/svgs/starsRating.svg";
+// import Dollar from "../../../assets/svgs/dollar-circle.svg";
+// import Callender from "../../../assets/svgs/calendar.svg";
+// import settingsIcon from "../../../assets/svgs/setting-icon.svg";
 const CustomerReviews: React.FC = () => {
   return (
     <div className="rounded-xl flex flex-col items-start p-[20px] gap-3 border border-[#0000001A]">
       <div className="flex gap-2">
         <img src={UserPic} className="w-8 h-8 rounded-full" />
         <div>
-          <div className="text-[16px] font-bold">John</div>
+          <div className="text-[16px] font-semibold">John</div>
           <div className="text-[12px] font-medium text-gray-400">Detailer</div>
         </div>
       </div>
 
       <div className="bg-[#F7F8FC] p-[20px] w-full rounded-[20px]">
-        <div className="bg-[#F7F8FC] p-[15px] w-full rounded-[20px] flex">
+        <div className="bg-[#fff] p-[15px] w-full rounded-[20px] flex">
           <div className="w-full">
-            <h3>Detailer & Service Info:</h3>
+            <h3 className="!text-[20px] !font-semibold text-[#252525]">
+              Customer & Service Info:
+            </h3>
             <div className="flex flex-col gap-2 mt-[16px]">
               <div className="flex gap-2">
                 <img src={UserPic} className="w-8 h-8 rounded-full" />
                 <div>
-                  <div className="text-[16px] font-bold">Ryna</div>
+                  <div className="text-[16px] font-semibold">Rayna Franci</div>
                   <div className="text-[12px] font-medium text-gray-400">
                     Customer
                   </div>
                 </div>
               </div>
               <div className="flex gap-3">
-                <p className="text-[14px] font-normal">Detailer Rating</p>
-                <img src={StartPic} alt="" />
+                <p className="text-[14px] !font-medium">Customer Rating</p>
+                {/* <img src={StartPic} alt="" /> */}
               </div>
             </div>
           </div>
 
           <div className="bg-[#003CA608] w-full pt-[17px] ps-[10px] pe-[10px] rounded-[8px]">
             <div>
-              <div className="border-[#0000001A] border-b flex justify-between pb-[10px]">
-                <span className="text-[14px] font-medium">Date:</span>
+              <div className="border-[#0000001A] border-b flex justify-between mb-2 pb-[10px]">
+                <div className="flex items-center justify-center gap-1.5 ">
+                  <img src={Callender} alt="" />{" "}
+                  <span className="text-[14px] font-medium">Date:</span>
+                </div>
                 <span className="text-[14px] font-medium">14 April 2025</span>
               </div>
-              <div className="border-[#0000001A] border-b flex justify-between pb-[10px]">
-                <span className="text-[14px] font-medium">Service:</span>
-                <span className="text-[14px] font-medium">services</span>
+              <div className="border-[#0000001A] border-b flex justify-between mb-2 pb-[10px]">
+                <div className="flex items-center justify-center gap-1.5 ">
+                  <img src={settingsIcon} alt="" />{" "}
+                  <span className="text-[14px] font-medium">Service:</span>
+                </div>
+                <span className="text-[14px] font-medium">Premium Wash</span>
               </div>
-              <div className="border-[#0000001A] flex justify-between">
-                <span className="text-[14px] font-medium">Price:</span>
-                <span className="text-[14px] font-medium">$132.39</span>
+              <div className="border-[#0000001A] flex items-center pb-[10px] justify-between">
+                <div className="flex items-center justify-center gap-1.5 ">
+                  <img src={Dollar} alt="" />{" "}
+                  <span className="text-[14px] font-medium">Price:</span>
+                </div>
+                <span className="text-[14px] font-medium">$1325,00</span>
               </div>
             </div>
           </div>
@@ -54,18 +67,30 @@ const CustomerReviews: React.FC = () => {
 
         <div className="w-full">
           <div className="flex justify-between items-center">
-            <h3 className="mb-2 text-[16px] font-bold mt-[20px]">
-              Customer Comment:
+            <h3 className="mb-2 !text-[18px] !font-semibold mt-[20px]">
+              Detailer Comment:
             </h3>
             <div className="flex items-center gap-3 pt-3 pr-4">
-              <p className="text-[14px] font-normal">Detailer Rating</p>
-              <img src={StartPic} alt="" className="w-[100px]" />
+              <p className="!font-semibold !text-[16px] pr-1.5">Feedback:</p>
+              <p className="text-[14px] font-medium">Rating</p>
+              {/* <img src={StartPic} alt="" className="w-[100px]" /> */}
             </div>
           </div>
-          <textarea
-            className="border !border-[#CECECE] bg-white w-full rounded-[8px]"
-            rows={6}
-          ></textarea>
+          <div className="bg-white border border-[#CECECE] !font-normal !text-[14px] !text-[#A1A1A1] rounded-[8px] p-[15px]">
+            <p>
+              Last week, my car suddenly broke down while I was driving to work.
+              I noticed a strange knocking sound coming from the engine just
+              before it stalled. I quickly pulled over to a safe spot and called
+              roadside assistance. The car was towed to a nearby garage for
+              inspection. After a quick diagnosis, the mechanic found that the
+              timing belt was damaged. They also discovered a minor oil leak
+              near the valve cover. I was told the repairs would take around two
+              days. The total cost, including parts and labor, came to about
+              $850. Once the repairs were done, the car started running smoothly
+              again. The mechanic advised a follow-up check in three months just
+              to be safe.
+            </p>
+          </div>
         </div>
       </div>
     </div>

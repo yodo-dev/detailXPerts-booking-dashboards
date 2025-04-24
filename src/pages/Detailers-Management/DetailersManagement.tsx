@@ -1,9 +1,10 @@
 import MainLayout from "@layouts/MainLayout";
-import React from "react";
+import React, { useState } from "react";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
+import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
 
 const DetailersManagement: React.FC = () => {
   const rows = [
@@ -90,6 +91,8 @@ const DetailersManagement: React.FC = () => {
     { key: "action", label: "Action" },
   ];
 
+    const [showModal, setShowModal] = useState(false);
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto bg-white">
@@ -111,7 +114,10 @@ const DetailersManagement: React.FC = () => {
           statusTh={true}
           tableData={tableData}
           action={true}
+          setShowModal={setShowModal}
         />
+        {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
+
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

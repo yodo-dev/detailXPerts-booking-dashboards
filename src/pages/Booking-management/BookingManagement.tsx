@@ -13,8 +13,8 @@ const BookingManagement: React.FC = () => {
     { key: "date", label: "Date" },
     { key: "service", label: "Service" },
     { key: "vehicle", label: "Vehicle" },
-    { key: "earning", label: "Earning" },
     { key: "status", label: "Status" },
+    { key: "earning", label: "Earning" },
   ];
 
   return (
