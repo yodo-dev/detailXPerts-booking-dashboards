@@ -49,7 +49,7 @@ const ReportsFranchise: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
-        <div className="flex justify-between mb-[50px]">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 lg:mb-11 mb-8">
           <h1 className="!font-normal !text-[32px] !text-black">
             Performance Report
           </h1>
@@ -59,7 +59,7 @@ const ReportsFranchise: React.FC = () => {
               img={downloadBtn}
               showImg={true}
               btnText="Download Report"
-              btnClass="bg-[#003CA6] rounded-xl text-white !px-[14px] !py-[18px] !w-[235px]"
+              btnClass="bg-[#003CA6] rounded-xl text-white !px-[14px] !py-[18px] md:w-[235px]"
               btnTextClass="text-[16px]"
               onClick={() => console.log("Button clicked")}
             />

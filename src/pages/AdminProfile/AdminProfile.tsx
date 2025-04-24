@@ -15,7 +15,7 @@ export default function AdminProfile() {
 
   return (
     <MainLayout>
-      <div className="p-6 mx-auto bg-gray-50 min-h-screen">
+      <div className="default_container">
         <h2 className="text-2xl font-semibold mb-6">Admin Profile:</h2>
 
         <div className="bg-white shadow rounded-xl p-6">
@@ -32,6 +32,7 @@ export default function AdminProfile() {
                 }
                 alt="Profile"
                 className="w-20 h-20 rounded-[15px] object-cover"
+                style={{border:"1px solid rgba(0,0,0,10%)"}}
               />
               <div className="flex-1">
                 <p className="font-semibold text-[16px]">Brooklyn Simmons</p>
@@ -63,7 +64,7 @@ export default function AdminProfile() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pt-4">
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 pt-4">
             <div className="flex flex-col w-full">
               <p className="text-[12px] font-semibold text-[#252525] mb-1">
                 Full Name
@@ -100,7 +101,7 @@ export default function AdminProfile() {
 
           <h3 className="font-medium !text-[18px] mb-2">Address Details</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="flex flex-col w-full">
               <p className="text-[12px] font-semibold text-[#252525] mb-1">
                 Flat/House/building Number
@@ -157,8 +158,9 @@ export default function AdminProfile() {
             </button>
           </div>
 
-          {fieldStep >= 1 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+         {fieldStep >= 1 && (
+            <div className="">
               <div className="flex flex-col w-full">
                 <p className="text-[12px] font-semibold text-[#252525] mb-1">
                   Flat/House
@@ -172,7 +174,7 @@ export default function AdminProfile() {
             </div>
           )}
           {fieldStep >= 2 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div>
               <div className="flex flex-col w-full">
                 <p className="text-[12px] font-semibold text-[#252525] mb-1">
                   Building Number
@@ -186,7 +188,7 @@ export default function AdminProfile() {
             </div>
           )}
           {fieldStep >= 3 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div>
               <div className="flex flex-col w-full">
                 <p className="text-[12px] font-semibold text-[#252525] mb-1">
                   Street No
@@ -199,6 +201,7 @@ export default function AdminProfile() {
               </div>
             </div>
           )}
+         </div>
           <button className="w-full bg-[#1B3D96] text-white py-2 rounded-[8px] cursor-pointer">
             Update
           </button>
