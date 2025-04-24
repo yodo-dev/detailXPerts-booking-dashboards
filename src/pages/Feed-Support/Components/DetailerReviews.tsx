@@ -6,24 +6,26 @@ import React from "react";
 // import settingsIcon from "../../../assets/svgs/setting-icon.svg";
 const CustomerReviews: React.FC = () => {
   return (
-    <div className="rounded-xl flex flex-col items-start p-[20px] gap-3 border border-[#0000001A]">
+    <div className="rounded-xl flex flex-col items-start flex-wrap p-[20px] gap-3 border border-[#0000001A]">
       <div className="flex gap-2">
-        <img src={UserPic} className="w-8 h-8 rounded-full" />
+        {/* <img src={UserPic} className="w-8 h-8 rounded-full" /> */}
         <div>
           <div className="text-[16px] font-semibold">John</div>
           <div className="text-[12px] font-medium text-gray-400">Detailer</div>
         </div>
       </div>
 
+      {/* asasdasdasdasd */}
+
       <div className="bg-[#F7F8FC] p-[20px] w-full rounded-[20px]">
-        <div className="bg-[#fff] p-[15px] w-full rounded-[20px] flex">
-          <div className="w-full">
+        <div className="bg-[#fff] p-[15px] w-full rounded-[20px] grid grid-cols-2 ">
+          <div className="w-full col-span-2 lg:col-span-1">
             <h3 className="!text-[20px] !font-semibold text-[#252525]">
               Customer & Service Info:
             </h3>
             <div className="flex flex-col gap-2 mt-[16px]">
               <div className="flex gap-2">
-                <img src={UserPic} className="w-8 h-8 rounded-full" />
+                {/* <img src={UserPic} className="w-8 h-8 rounded-full" /> */}
                 <div>
                   <div className="text-[16px] font-semibold">Rayna Franci</div>
                   <div className="text-[12px] font-medium text-gray-400">
@@ -38,25 +40,25 @@ const CustomerReviews: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-[#003CA608] w-full pt-[17px] ps-[10px] pe-[10px] rounded-[8px]">
+          <div className="bg-[#003CA608] w-full pt-[17px] ps-[10px] pe-[10px] rounded-[8px] col-span-2 lg:col-span-1">
             <div>
               <div className="border-[#0000001A] border-b flex justify-between mb-2 pb-[10px]">
                 <div className="flex items-center justify-center gap-1.5 ">
-                  <img src={Callender} alt="" />{" "}
+                  {/* <img src={Callender} alt="" />{" "} */}
                   <span className="text-[14px] font-medium">Date:</span>
                 </div>
                 <span className="text-[14px] font-medium">14 April 2025</span>
               </div>
               <div className="border-[#0000001A] border-b flex justify-between mb-2 pb-[10px]">
                 <div className="flex items-center justify-center gap-1.5 ">
-                  <img src={settingsIcon} alt="" />{" "}
+                  {/* <img src={settingsIcon} alt="" />{" "} */}
                   <span className="text-[14px] font-medium">Service:</span>
                 </div>
                 <span className="text-[14px] font-medium">Premium Wash</span>
               </div>
               <div className="border-[#0000001A] flex items-center pb-[10px] justify-between">
                 <div className="flex items-center justify-center gap-1.5 ">
-                  <img src={Dollar} alt="" />{" "}
+                  {/* <img src={Dollar} alt="" />{" "} */}
                   <span className="text-[14px] font-medium">Price:</span>
                 </div>
                 <span className="text-[14px] font-medium">$1325,00</span>
@@ -65,8 +67,10 @@ const CustomerReviews: React.FC = () => {
           </div>
         </div>
 
+        {/* asasdasdasdasd */}
+
         <div className="w-full">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap">
             <h3 className="mb-2 !text-[18px] !font-semibold mt-[20px]">
               Detailer Comment:
             </h3>

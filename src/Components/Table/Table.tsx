@@ -72,7 +72,9 @@ const Table: React.FC<TableProps> = ({
   userSuggestion,
   tableData,
   action,
-  setShowModal
+  setShowModal,
+  userTd,
+  issueTd
 }: string) => {
   const rows = [
     {
@@ -96,6 +98,7 @@ const Table: React.FC<TableProps> = ({
       lastBooking: "10-june-2025",
       spending: "$0.00",
       amount: "$0.00",
+      issue:"Issue"
     },
     {
       id: "002",
@@ -118,6 +121,8 @@ const Table: React.FC<TableProps> = ({
       lastBooking: "10-june-2025",
       spending: "$0.00",
       amount: "$0.00",
+      issue:"Issue"
+
     },
     {
       id: "003",
@@ -140,6 +145,8 @@ const Table: React.FC<TableProps> = ({
       lastBooking: "10-june-2025",
       spending: "$0.00",
       amount: "$0.00",
+      issue:"Issue"
+
     },
     {
       id: "004",
@@ -162,6 +169,8 @@ const Table: React.FC<TableProps> = ({
       lastBooking: "10-june-2025",
       spending: "$0.00",
       amount: "$0.00",
+      issue:"Issue"
+
     },
     {
       id: "005",
@@ -184,6 +193,8 @@ const Table: React.FC<TableProps> = ({
       lastBooking: "10-june-2025",
       spending: "$0.00",
       amount: "$0.00",
+      issue:"Issue"
+
     },
   ];
 
@@ -452,16 +463,16 @@ const Table: React.FC<TableProps> = ({
         <tbody>
           {rows.map((row, index) => (
             <tr key={row.id} className="bg-gray-50 rounded-md shadow-sm">
-              <td className="px-3 py-2 font-medium text-gray-700">{row.id}</td>
+              {/* <td className="px-3 py-2 font-medium text-gray-700">{row.id}</td> */}
 
               {franchise && (
                 <td className="px-3 py-2 text-gray-700">
                   <div className="flex gap-2">
-                    <div className="w-[35px] flex items-center justify-center border border-[#25252526] rounded-full">
+                    <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center border border-[#25252526] ">
                       <img
                         src={row.detailer.avatar}
                         alt={row.detailer.name}
-                        className="w-5 h-5 rounded-full"
+                        className=" rounded-full w-[40px] h-[40px] object-cover  "
                       />
                     </div>
                     <div>
@@ -514,9 +525,34 @@ const Table: React.FC<TableProps> = ({
                 </td>
               )}
 
+              
+
+              {userTd && (
+                <td className="px-3 py-2 text-gray-700">
+                  <div className="flex gap-2">
+                    <div className="w-[35px] flex items-center justify-center border border-[#25252526] rounded-full">
+                      <img
+                        src={row.detailer.avatar}
+                        alt={row.detailer.name}
+                        className="w-5 h-5 rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <div className="text-sm">{row.franchise}</div>
+                      <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                        hello@wildflower.bio
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              )}
+              {serviceTh && <td className="px-3 py-2">{row.service}</td>}
+              
+              {issueTd && ( <td className="px-3 py-2">{row.issue}</td>)}
+
+
               {dateTab && <td className="px-3 py-2">{row.date}</td>}
 
-              {serviceTh && <td className="px-3 py-2">{row.service}</td>}
 
               {vehicleTh && <td className="px-3 py-2">{row.vehicle}</td>}
 
@@ -606,21 +642,32 @@ const Table: React.FC<TableProps> = ({
                     </span>
 
                     {openDropdownIndex === index && (
-                    <div className="absolute right-0 mt-2 pt-2 pb-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-[999999]">
-                      <button onClick={() => {window.location.href = "/detailers-franchise"}} className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
-                        <ReactSVG src={Eye} className="mr-2" /> View
-                      </button>
-                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full" onClick={()=>{setShowModal(true); setOpenDropdownIndex(false)}} >
-                        <ReactSVG src={EditIcon} className="mr-2"  /> Edit
-                      </button>
-                      <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
-                        <ReactSVG src={blockUser} className="mr-2" /> Block
-                      </button>
-                      <button className="cursor-pointer flex items-center text-sm text-red-600 px-4 py-2 hover:bg-red-100 w-full">
-                        <ReactSVG src={Trash} className="mr-2" /> Delete
-                      </button>
-                    </div>
-                  )}
+                      <div className="absolute right-0 mt-2 pt-2 pb-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-[999999]">
+                        <button
+                          onClick={() => {
+                            window.location.href = "/detailers-franchise";
+                          }}
+                          className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full"
+                        >
+                          <ReactSVG src={Eye} className="mr-2" /> View
+                        </button>
+                        <button
+                          className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full"
+                          onClick={() => {
+                            setShowModal(true);
+                            setOpenDropdownIndex(false);
+                          }}
+                        >
+                          <ReactSVG src={EditIcon} className="mr-2" /> Edit
+                        </button>
+                        <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                          <ReactSVG src={blockUser} className="mr-2" /> Block
+                        </button>
+                        <button className="cursor-pointer flex items-center text-sm text-red-600 px-4 py-2 hover:bg-red-100 w-full">
+                          <ReactSVG src={Trash} className="mr-2" /> Delete
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </td>
               )}
