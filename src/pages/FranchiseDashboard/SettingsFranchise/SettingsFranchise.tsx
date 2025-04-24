@@ -205,17 +205,22 @@ const Settings: React.FC = () => {
               </div>
             </div>
 
-            <div className="border-t mt-7 mb-[50px] flex justify-between pt-[50px] border-[#acacac3a]">
-              <h2 className="!text-[25px] !font-semibold">
-                2 Factor Authentication (2FA)
-              </h2>
-              <div>
+            <div className="border-t mt-7 mb-[50px] grid grid-cols-3 pt-[50px] border-[#acacac3a]">
+              <div className="col-span-1">
+                <h2 className="!text-[25px] !font-semibold">
+                  2 Factor Authentication (2FA)
+                </h2>
+              </div>
+              <div className="col-span-1">
+                <div className="flex justify-end me-3">
                 <ReactSwitch
                   checked={viewJobStatus}
                   onChange={setViewJobStatus}
                   checkedIcon={false}
                   uncheckedIcon={false}
                 />
+
+                </div>
               </div>
             </div>
 

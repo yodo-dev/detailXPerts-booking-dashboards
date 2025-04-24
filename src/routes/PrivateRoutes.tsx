@@ -18,7 +18,7 @@ import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
 import Notifications from "@pages/Notification/Notifications";
 import AdminProfile from "@pages/AdminProfile/AdminProfile";
 import Settings from "@pages/Settings/Settings";
-// import FrenchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
+import FrenchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
 
 import ReportsFranchise from "@pages/FranchiseDashboard/ReportsFranchise/ReportsFranchise";
 // import FranchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";

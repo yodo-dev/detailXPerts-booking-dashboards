@@ -13,6 +13,8 @@ import whiteBuld from "../../assets/svgs/whiteBulb.svg";
 import WhiteStart from "../../assets/svgs/WhiteStar.svg";
 import BlackStar from "../../assets/svgs/BlackStart.svg";
 import ReviewsSection from "./Components/ReviewsSection";
+import MenuIcon from "@assets/svgs/menu.svg";
+import { Menu, X } from "lucide-react";
 
 // import White
 
@@ -31,6 +33,7 @@ const FeedSupport: React.FC = () => {
       vehicle: "Phoenix",
       earning: "$0.00",
       status: "Completed",
+      issue: "issue",
     },
     {
       id: "002",
@@ -90,6 +93,7 @@ const FeedSupport: React.FC = () => {
     },
   ];
 
+  const [openModal, setModalOpen] = useState(false);
   const [tabs, setTabs] = useState(0);
   const [hoveredBug, setHoveredBug] = useState(false);
   const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
@@ -97,119 +101,140 @@ const FeedSupport: React.FC = () => {
   const [hoveredStar, setHoveredStar] = useState(false);
 
   const tableData = [
-    { key: "id", label: "ID" },
-    { key: "franchise", label: "Franchise" },
-    { key: "detailer", label: "Detailer" },
-    { key: "customer", label: "Customer" },
-    { key: "date", label: "Date" },
-    { key: "service", label: "Service" },
-    { key: "vehicle", label: "Vehicle" },
-    { key: "status", label: "Status" },
-    { key: "earning", label: "Earning" },
+    { key: "user", label: "User" },
+    { key: "category", label: "Category" },
+    { key: "issue", label: "Issue" },
+    { key: "action", label: "Action" },
   ];
 
+  console.log("-----", openModal);
   return (
     <MainLayout>
-      <div className=" default_container p-4 overflow-x-auto bg-white">
+      <div className=" default_container p-4 overflow-x-auto bg-white ">
         <div className="flex items-center justify-between mb-7">
-          <h2>Feedback & Support</h2>
+          <h2 className="!text-[24px] font-medium lg:!text-[32px] flex justify-center items-center gap-3">
+            {" "}
+            <ReactSVG
+              className="block lg:hidden "
+              onClick={() => setModalOpen(!openModal)}
+              src={MenuIcon}
+            />
+            Feedback & Support
+          </h2>
           {/* <CommonInput placeholder="Search" showImg={true} /> */}
         </div>
-        <div className=" flex justify-center p-[20px]">
-          <div className="w-[20%] flex flex-col mt-[20px]">
-            <button
-              onClick={() => setTabs(0)}
-              onMouseEnter={() => setHoveredBug(true)}
-              onMouseLeave={() => setHoveredBug(false)}
-              type="button"
-              className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[226px] focus:outline-none
+        <div className=" flex justify-start items-start gap-10  ">
+          <div
+            className={`
+              flex flex-col bg-white z-40 w-[290px] 
+              p-[20px]
+              lg:relative lg:translate-x-0 lg:transition-none
+              fixed top-0 h-full left-0 transition-transform duration-300 ease-in-out
+               ${openModal ? "translate-x-0" : "-translate-x-full"}
+            `}
+          >
+
+
+            <div
+              className={` ${
+                openModal ? "" : "hidden"
+              } flex justify-end cursor-pointer`}
+              onClick={() => setModalOpen(false)}
+            >
+              <X />
+            </div>
+
+            <div className="!mt-[100px] lg:!mt-[0]">
+              <button
+                onClick={() => setTabs(0)}
+                onMouseEnter={() => setHoveredBug(true)}
+                onMouseLeave={() => setHoveredBug(false)}
+                type="button"
+                className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[100%] focus:outline-none
                                 ${
                                   tabs === 0
                                     ? "bg-[#003CA6] text-white"
                                     : "bg-white text-black"
                                 }`}
-            >
-              <ReactSVG
-                className="fill-current"
-                width={24}
-                src={tabs == 0 ? BugIcon : BlackbubIcon}
-              />
-              Bugs
-            </button>
+              >
+                <ReactSVG
+                  className="fill-current"
+                  width={24}
+                  src={tabs == 0 ? BugIcon : BlackbubIcon}
+                />
+                Bugs
+              </button>
 
-            <button
-              onClick={() => setTabs(1)}
-              onMouseEnter={() => setHoveredSuggestion(true)}
-              onMouseLeave={() => setHoveredSuggestion(false)}
-              type="button"
-              className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[226px] focus:outline-none
+              <button
+                onClick={() => setTabs(1)}
+                onMouseEnter={() => setHoveredSuggestion(true)}
+                onMouseLeave={() => setHoveredSuggestion(false)}
+                type="button"
+                className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[100%] focus:outline-none
                                 ${
                                   tabs === 1
                                     ? "bg-[#003CA6] text-white"
                                     : "bg-white text-black"
                                 }`}
-            >
-              <ReactSVG
-                className="fill-current "
-                width={24}
-                src={tabs == 1 ? whiteBuld : BulbIcon}
-              />
-              Suggestions
-            </button>
+              >
+                <ReactSVG
+                  className="fill-current "
+                  width={24}
+                  src={tabs == 1 ? whiteBuld : BulbIcon}
+                />
+                Suggestions
+              </button>
 
-            <button
-              onClick={() => setTabs(2)}
-              onMouseEnter={() => setHoveredSurvey(true)}
-              onMouseLeave={() => setHoveredSurvey(false)}
-              type="button"
-              className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[226px] focus:outline-none
+              <button
+                onClick={() => setTabs(2)}
+                onMouseEnter={() => setHoveredSurvey(true)}
+                onMouseLeave={() => setHoveredSurvey(false)}
+                type="button"
+                className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[100%] focus:outline-none
                                 ${
                                   tabs === 2
                                     ? "bg-[#003CA6] text-white"
                                     : "bg-white text-black"
                                 }`}
-            >
-              <ReactSVG
-                className="fill-current text-black"
-                width={24}
-                src={tabs == 2 ? WhiteUser : UsersList}
-              />
-              Survey Feedback
-            </button>
+              >
+                <ReactSVG
+                  className="fill-current text-black"
+                  width={24}
+                  src={tabs == 2 ? WhiteUser : UsersList}
+                />
+                Survey Feedback
+              </button>
 
-            <button
-              onClick={() => setTabs(3)}
-              onMouseEnter={() => setHoveredStar(true)}
-              onMouseLeave={() => setHoveredStar(false)}
-              type="button"
-              className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[226px] focus:outline-none
+              <button
+                onClick={() => setTabs(3)}
+                onMouseEnter={() => setHoveredStar(true)}
+                onMouseLeave={() => setHoveredStar(false)}
+                type="button"
+                className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[100%] focus:outline-none
                                 ${
                                   tabs === 3
                                     ? "bg-[#003CA6] text-white"
                                     : "bg-white text-black"
                                 }`}
-            >
-              <ReactSVG
-                className="fill-current text-black"
-                width={24}
-                src={tabs == 3 ? WhiteStart : BlackStar}
-              />
-              Rating & Starts
-            </button>
+              >
+                <ReactSVG
+                  className="fill-current text-black"
+                  width={24}
+                  src={tabs == 3 ? WhiteStart : BlackStar}
+                />
+                Rating & Starts
+              </button>
+            </div>
           </div>
 
-          <div className="w-[70%]">
+          <div className="w-[100%]">
             {tabs == 0 ? (
               <Table
-                id={false}
-                franchise={false}
-                detailer={false}
-                user={true}
-                category={true}
-                issue={true}
-                incident={true}
-                serviceTh={false}
+                userTd={true}
+                issueTd={true}
                 tableData={tableData}
+                serviceTh={true}
+                action={true}
               />
             ) : tabs == 1 ? (
               <Table

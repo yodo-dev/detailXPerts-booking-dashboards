@@ -1,12 +1,12 @@
 import React from "react";
-import UserPic from "../../../assets/images/user-profile-img.png";
+// import UserPic from "../../../assets/images/user-profile-img.png";
 // import StartPic from "../../../assets/svgs/starsRating.svg";
 
 const CustomerReviews: React.FC = () => {
   return (
     <div className="rounded-xl flex flex-col items-start p-[20px] gap-3 border border-[#0000001A]">
       <div className="flex gap-2">
-        <img src={UserPic} className="w-8 h-8 rounded-full" />
+        {/* <img src={UserPic} className="w-8 h-8 rounded-full" /> */}
         <div>
           <div className="text-[16px] font-bold">John</div>
           <div className="text-[12px] font-medium text-gray-400">Detailer</div>
@@ -19,7 +19,7 @@ const CustomerReviews: React.FC = () => {
             <h3>Detailer & Service Info:</h3>
             <div className="flex flex-col gap-2 mt-[16px]">
               <div className="flex gap-2">
-                <img src={UserPic} className="w-8 h-8 rounded-full" />
+                {/* <img src={UserPic} className="w-8 h-8 rounded-full" /> */}
                 <div>
                   <div className="text-[16px] font-bold">Ryna</div>
                   <div className="text-[12px] font-medium text-gray-400">
