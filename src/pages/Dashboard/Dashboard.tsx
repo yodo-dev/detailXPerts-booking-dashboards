@@ -83,16 +83,14 @@ const Dashboard: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container">
-        <div className="!w-full md:flex-row flex-col flex md:items-center  justify-between mb-7 md:w-full">
-          {/* <h2 className="mb-4 md:text-[18px]">Welcome back. Jane! 👋</h2> */}
+        <div className="w-full md:flex-row flex-col flex md:items-center  justify-between mb-7 md:w-full">
           <h2 className="mb-4 text-[20px] md:text-[16px]">
             Welcome back. Jane! 👋
           </h2>
-          {/* <h2 className="mb-4 md:!text-[16px]">
-            Welcome back. Jane! 👋
-          </h2> */}
 
+          <div className="md:w-[366px]">
           <CommonInput placeholder="Search" showImg={true} />
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-6">
           <div className="overview_section col-span-1 lg:col-span-2 sm:col-span-1 common_section_bg py-[40px]  p-0">
