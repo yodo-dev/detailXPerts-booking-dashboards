@@ -1,11 +1,23 @@
 import MainLayout from "@layouts/MainLayout";
-import React from "react";
+import React, { useState } from "react";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
+import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
 
 const PaymentManagement: React.FC = () => {
+  const tableData = [
+    { key: "id", label: "Invoice ID" },
+    { key: "franchise", label: "Franchise" },
+    { key: "amount", label: "Amount" },
+    { key: "paymentMethod", label: "Payment Method" },
+    { key: "bookings", label: "Bookings" },
+
+    { key: "invoiceDate", label: "Invoice date" },
+    { key: "status", label: "Status" },
+    { key: "action", label: "Action" },
+  ];
   const rows = [
     {
       id: "001",
@@ -15,7 +27,7 @@ const PaymentManagement: React.FC = () => {
         avatar: "https://i.pravatar.cc/40?img=1",
       },
       customer: "Kaiya Botar",
-      date: "04-05-2025",
+      invoiceDate: "04-05-2025",
       service: "Car Wash",
       vehicle: "Phoenix",
       earning: "$0.00",
@@ -79,30 +91,41 @@ const PaymentManagement: React.FC = () => {
     },
   ];
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <MainLayout>
-      <div className="default_container p-4 overflow-x-auto bg-white">
-        <div className="flex items-center justify-between mb-7">
-          <h2>Payment Management</h2>
-          <CommonInput placeholder="Search" showImg={true} />
+      <div className="default_container p-4 overflow-x-auto">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
+          <h2>Payments & Invoicing</h2>
+          <div className="md:w-[366px]">
+            <CommonInput
+              placeholder="filter by franchise, rating, location"
+              showImg={true}
+            />
+          </div>
         </div>
 
-        <Table franchise={true} amountth={true} payMethodth={true} bookingth={true} invoicethv={true} statusTh={true} />
+        <Table
+          action={true}
+          franchise={true}
+          // amountth={true}
+          // payMethodth={true}
+          lastBookingth={true}
+          suggestions={true}
+          invoicethv={true}
+          statusTh={true}
+          tableData={tableData}
+          // payMethodth={true}
+          amountth={true}
+          setShowModal={setShowModal}
+        />
 
-        {/* Pagination */}
-        {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
-          <p>Showing 1 to 10 of 200 entries</p>
-          <div className="space-x-2">
-            <button className="px-3 py-1  rounded-md">Prev</button>
-            <button className="px-3 py-1  bg-[#003CA6] text-white rounded-md">
-              1
-            </button>
-            <button className="px-3 py-1  rounded-md">2</button>
-            <button className="px-3 py-1  rounded-md">3</button>
-            <button className="px-3 py-1  rounded-md">4</button>
-            <button className="px-3 py-1 text-[#003CA6] rounded-md">Next</button>
-          </div>
-        </div> */}
+        {showModal ? (
+          <AddFranchise setShowModal={setShowModal} title={"Edit Payments"} />
+        ) : (
+          ""
+        )}
       </div>
     </MainLayout>
   );

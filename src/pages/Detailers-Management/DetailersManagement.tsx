@@ -84,30 +84,31 @@ const DetailersManagement: React.FC = () => {
     { key: "id", label: "ID" },
     { key: "detailers", label: "Detailers" },
     { key: "franchise", label: "Franchise" },
-    { key: "joined_date", label: "Joined Date" },
     { key: "jobs_completed", label: "Jobs Completed" },
+    { key: "joined_date", label: "Joined Date" },
     { key: "earning", label: "Earning" },
     { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
 
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <MainLayout>
-      <div className="default_container p-4 overflow-x-auto bg-white">
-        <div className="flex items-center justify-between mb-7">
-          <h2>Detailers Management</h2>
-          <CommonInput
-            placeholder="filter by franchise, rating, location"
-            showImg={true}
-          />
+      <div className="default_container p-4 overflow-x-auto">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
+          <h2 className="md:mb-0 mb-2">Detailers Management</h2>
+          <div className="md:w-[366px]">
+            <CommonInput
+              placeholder="filter by franchise, rating, location"
+              showImg={true}
+            />
+          </div>
         </div>
-
         <Table
           id={true}
           detailer={true}
-          franchise={true}
+          // franchise={true}
           joinedTh={true}
           jobCompleteTh={true}
           earningTh={true}
@@ -115,24 +116,9 @@ const DetailersManagement: React.FC = () => {
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}
+          Bookingfranchise={true}
         />
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
-
-
-        {/* Pagination */}
-        {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
-          <p>Showing 1 to 10 of 200 entries</p>
-          <div className="space-x-2">
-            <button className="px-3 py-1  rounded-md">Prev</button>
-            <button className="px-3 py-1  bg-[#003CA6] text-white rounded-md">
-              1
-            </button>
-            <button className="px-3 py-1  rounded-md">2</button>
-            <button className="px-3 py-1  rounded-md">3</button>
-            <button className="px-3 py-1  rounded-md">4</button>
-            <button className="px-3 py-1 text-[#003CA6] rounded-md">Next</button>
-          </div>
-        </div> */}
       </div>
     </MainLayout>
   );

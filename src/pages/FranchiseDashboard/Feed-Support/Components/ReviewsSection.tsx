@@ -8,7 +8,7 @@ const ReviewsSection: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"customer" | "detailer">("customer");
 
     return (
-        <div className="default_container p-4 overflow-x-auto bg-white">
+        <div className="default_container p-0 overflow-x-auto bg-white">
 
             <div className="rounded-2xl p-3 flex gap-3 justify-start items-center border w-fit border-[#0000001A] mb-[20px]">
                 <button

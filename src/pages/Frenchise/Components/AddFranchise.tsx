@@ -8,7 +8,7 @@ import uploadServer from "../../../assets/svgs/uploadServer.svg"
 import userIcon from "../../../assets/svgs/userIcon.svg"
 import CommonInput from "@components/inputs/CommonInput";
 
-const  AddFranchise=({setShowModal}) =>{
+const  AddFranchise=({setShowModal,title}) =>{
   const {
     register,
     control,
@@ -20,7 +20,7 @@ const  AddFranchise=({setShowModal}) =>{
     <div className="fixed  inset-0 bg-[#363636CC] flex items-center justify-center z-50">
       <div className="bg-white overflow-y-scroll rounded-xl w-[500px] h-[95vh] p-6 shadow-lg">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="!text-[18px] !font-bold ">Add Detailer</h2>
+          <h2 className="!text-[18px] !font-bold ">{title}</h2>
           <button
             //   onClick={() => setIsModalOpen(false)}
             className="text-gray-500 hover:text-black text-4xl cursor-pointer"
@@ -31,29 +31,8 @@ const  AddFranchise=({setShowModal}) =>{
         </div>
 
         <div className="flex justify-between">
-          {/* {image ? (
-          <div className="me-5 relative">
-            <img
-              className="w-[90px] h-[80px] rounded-full object-cover"
-              src={image}
-              alt=""
-            />
-            <X
-              onClick={() => {
-                setImage("");
-                setFile("");
-              }}
-              size={20}
-              className="absolute top-0 right-0 bg-red-400 text-white cursor-pointer rounded-full p-1"
-            />
-          </div>
-        ) : ( */}
            <ReactSVG src={userIcon} />
-          {/* // )} */}
-
-          {/* Image Upload */}
           <div
-            //   onClick={handleDivClick}
             className="flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
@@ -72,16 +51,14 @@ const  AddFranchise=({setShowModal}) =>{
         </div>
         <input
           id="img"
-          // ref={userIcon}
-          // onChange={handleFileChange}
           type="file"
           hidden
         />
 
         {/* Form */}
         <form className="space-y-4">
-          <div className="flex gap-4">
-            <div className="w-1/2">
+          <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
+            <div >
               <label className="text-[14px] font-medium text-[#5B5B5B]">
                 First name <span className="text-red-500">*</span>
               </label>
@@ -90,7 +67,7 @@ const  AddFranchise=({setShowModal}) =>{
               placeholder="First Name"
               />
             </div>
-            <div className="w-1/2">
+            <div>
               <label className="text-[14px] font-medium text-[#5B5B5B]">
                 Last name <span className="text-red-500">*</span>
               </label>
@@ -106,7 +83,7 @@ const  AddFranchise=({setShowModal}) =>{
               Email address <span className="text-red-500">*</span>
             </label>
             <CommonInput 
-              inputClass="custom-input !w-[118.5%]" 
+              inputClass="custom-input w-full" 
               placeholder="Enter Your Email"
               />
           </div>

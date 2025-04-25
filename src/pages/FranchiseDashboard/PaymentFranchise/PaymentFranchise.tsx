@@ -20,21 +20,6 @@ const PaymentFranchise: React.FC = () => {
   //     { name: "Page C", uv: 400, pv: 2400, amt: 2400 },
   //   ];
 
-  const data = [
-    { name: "Jan", Approved: 200, Pending: 10, Canceled: 200 },
-    { name: "Feb", Approved: 200, Pending: 200, Canceled: 400 },
-    { name: "Mar", Approved: 200, Pending: 200, Canceled: 200 },
-    { name: "Apr", Approved: 304, Pending: 200, Canceled: 250 },
-    { name: "May", Approved: 200, Pending: 125, Canceled: 400 },
-    { name: "Jun", Approved: 200, Pending: 243, Canceled: 200 },
-    { name: "Jul", Approved: 242, Pending: 114, Canceled: 400 },
-    { name: "Aug", Approved: 329, Pending: 128, Canceled: 200 },
-    { name: "Sep", Approved: 134, Pending: 249, Canceled: 400 },
-    { name: "Oct", Approved: 249, Pending: 215, Canceled: 200 },
-    { name: "Nov", Approved: 245, Pending: 213, Canceled: 400 },
-    { name: "Dec", Approved: 420, Pending: 313, Canceled: 200 },
-  ];
-
   const PieChartData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -42,47 +27,121 @@ const PaymentFranchise: React.FC = () => {
     { name: "Group D", value: 200 },
   ];
 
-  const COLORS = ["#0088FE", "#0088FE", "#0088FE", "#0088FE"];
+
+  const data = [
+    {
+      name: "Jan",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Feb",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "Mar",
+      "Loyal Customers": 240,
+      "New Customers": 50,
+      "Unique Customers": 160,
+    },
+    {
+      name: "Apr",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "May",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Jun",
+      "Loyal Customers": 180,
+      "New Customers": 20,
+      "Unique Customers": 70,
+    },
+    {
+      name: "Jul",
+      "Loyal Customers": 160,
+      "New Customers": 10,
+      "Unique Customers": 40,
+    },
+    {
+      name: "Aug",
+      "Loyal Customers": 180,
+      "New Customers": 20,
+      "Unique Customers": 70,
+    },
+    {
+      name: "Sep",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Oct",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "Nov",
+      "Loyal Customers": 240,
+      "New Customers": 50,
+      "Unique Customers": 160,
+    },
+    {
+      name: "Dec",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+  ];
 
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
-        <div className="flex justify-between mb-[50px]">
-          <h1 className="!font-normal !text-[32px] !text-black">
+        <div className="flex flex-wrap gap-1.5 justify-between mb-[40px]">
+          <h1 className="!font-normal sm:mb-0 mb-[15px] !text-[32px] !text-black">
             Payments Overview
           </h1>
           <input
             type="date"
             name=""
             id=""
-            className="border px-[15px] py-[10px] rounded-[7px] text-[13px] font-medium text-[#082042]"
+            className="border px-[15px] bg-[#fff]] py-[10px] rounded-[7px] text-[13px] font-medium text-[#082042]"
           />
         </div>
 
-        <div className="p-[30px] pt-[40px] bg-[#eeeeeed2] rounded-[8px] mb-[30px]">
-          <div className="flex justify-between items-center mb-[40px]">
-            <h3 className="!text-[20px] !font-bold ">Overview</h3>
+        <div className="lg:pt-[21px] lg:pl-[30px] lg:pr-[67px] lg:pb-[27px] bg-[#fff] rounded-[8px] pb-[25px] mb-[20px]">
+          <div className="flex flex-wrap gap-1.5 justify-between items-center mb-[40px] pt-[18px] ps-[20px] pe-[20px]">
+            <h3 className="!text-[20px] !font-semibold ">Overview</h3>
 
             <div className="flex justify-between">
               {/* <h2 className="text-[22px] font-md mb-4 ">Billing Summary</h2> */}
 
-              <div className="flex items-center space-x-6">
+              <div className="flex flex-wrap items-center sm:gap-0 gap-2 space-x-6">
                 {/* Approved */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-cyan-400"></span>
-                  <span className="text-gray-900">Approved</span>
+                  <span className="text-gray-900">$100k+ Sales</span>
                 </div>
 
                 {/* Pending */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-yellow-300"></span>
-                  <span className="text-gray-900">Pending</span>
+                  <span className="text-gray-900">200+ Bookings Completed</span>
                 </div>
 
                 {/* Rejected */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-red-500"></span>
-                  <span className="text-gray-900">Rejected</span>
+                  <span className="text-gray-900">5 Canceled Bookings</span>
                 </div>
               </div>
             </div>
@@ -135,11 +194,17 @@ const PaymentFranchise: React.FC = () => {
             </LineChart>
           </ResponsiveContainer> */}
 
-          <Linechart data={data} />
+          <Linechart
+            data={data}
+            legend={false}
+            color1={"#00D5D2"}
+            color2={"#FC5A41"}
+            color3={"#F9E844"}
+          />
         </div>
 
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+        <div className="grid grid-cols-4 gap-[30px]">
+          <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-20  ">
               <p className="text-[14px] font-normal w-[100%] ">
                 Payment Received
@@ -193,7 +258,7 @@ const PaymentFranchise: React.FC = () => {
             </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+          <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-20  ">
               <p className="text-[14px] font-normal w-[100%] ">
                 Payment Received
@@ -247,7 +312,7 @@ const PaymentFranchise: React.FC = () => {
             </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+          <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-20  ">
               <p className="text-[14px] font-normal w-[100%] ">
                 Payment Received
@@ -301,7 +366,7 @@ const PaymentFranchise: React.FC = () => {
             </p>
           </div>
 
-          <div className="col-span-1 bg-[#eeeeeed2] relative flex flex-col justify-start items-center">
+          <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-20  ">
               <p className="text-[14px] font-normal w-[100%] ">
                 Payment Received

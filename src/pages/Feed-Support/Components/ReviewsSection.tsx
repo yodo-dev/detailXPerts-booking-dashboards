@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import CustomerReviews from "../Components/CustomerReviews";
 import DetailerReviews from "../Components/DetailerReviews";
-// import PeopleWhite from "../../../assets/svgs/people.sv"
-// import Peopleblack from "../../../assets/svgs/peopleblack.svg"
-// import User from "../../../assets/svgs/user (1).svg"
-// import Userblack from "../../../assets/svgs/userblack.svg"
+import PeopleWhite from "../../../assets/svgs/people.svg"
+import Peopleblack from "../../../assets/svgs/peopleblack.svg"
+import User from "../../../assets/svgs/user (1).svg"
+import Userblack from "../../../assets/svgs/userblack.svg"
 
 const ReviewsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"customer" | "detailer">(
@@ -14,8 +14,8 @@ const ReviewsSection: React.FC = () => {
   );
 
   return (
-    <div className="default_container p-4 overflow-x-auto bg-white">
-      <div className="rounded-2xl pt-[8px] px-[8px] pb-[2px] flex gap-3 justify-start items-center border w-fit border-[#0000001A] mb-[20px]">
+    <div className="default_container !p-0 overflow-x-auto bg-white">
+      <div className="rounded-2xl pt-[8px] px-[8px] pb-[2px] flex gap-3 justify-start items-center flex-wrap border w-fit border-[#0000001A] mb-[20px]">
         <button
           type="button"
           onClick={() => setActiveTab("customer")}
@@ -26,7 +26,7 @@ const ReviewsSection: React.FC = () => {
           <ReactSVG
             className="fill-current"
             width={24}
-            // src={activeTab === "customer" ? PeopleWhite : Peopleblack}
+            src={activeTab === "customer" ? PeopleWhite : Peopleblack}
           />
           Customers Reviews
         </button>
@@ -41,7 +41,7 @@ const ReviewsSection: React.FC = () => {
           <ReactSVG
             className="fill-current"
             width={24}
-            // src={activeTab === "detailer" ? User : Userblack}
+            src={activeTab === "detailer" ? User : Userblack}
           />
           Detailer Reviews
         </button>

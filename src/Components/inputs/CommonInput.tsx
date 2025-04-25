@@ -6,7 +6,7 @@ import Edit from "@assets/svgs/edit.svg"
 
 const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeholder, showEdit }) => {
   return (
-    <div className="relative max-w-[366px] w-full" >
+    <div className="relative w-full  " >
       {showImg && (
         <img
           src={searchIcon}

@@ -104,13 +104,37 @@ const FeedSupport: React.FC = () => {
     { key: "user", label: "User" },
     { key: "category", label: "Category" },
     { key: "issue", label: "Issue" },
+    { key: "incident", label: "Incident" },
+
     { key: "action", label: "Action" },
+  ];
+
+  const tableData2 = [
+    { key: "user", label: "User" },
+    { key: "category", label: "Category" },
+    { key: "suggestion", label: "Suggestion" },
+
+    { key: "action", label: "Action" },
+  ];
+
+  const tableData3 = [
+    { key: "user", label: "User" },
+    { key: "app_helpfull", label: "Is this app helpful for you?" },
+    { key: "recomended_app", label: "Will you recommend this app to your friends?" },
+    { key: "helpfull_app", label: "How helpful this app for you?" },
+    { key: "helpfull_app", label: "How helpful this app for you?" },
+    { key: "user_suggestions", label: "Users Suggestion?" },
+    
+
+
+
+
   ];
 
   console.log("-----", openModal);
   return (
     <MainLayout>
-      <div className=" default_container p-4 overflow-x-auto bg-white ">
+      <div className=" default_container p-0 overflow-x-auto bg-white ">
         <div className="flex items-center justify-between mb-7">
           <h2 className="!text-[24px] font-medium lg:!text-[32px] flex justify-center items-center gap-3">
             {" "}
@@ -133,8 +157,6 @@ const FeedSupport: React.FC = () => {
                ${openModal ? "translate-x-0" : "-translate-x-full"}
             `}
           >
-
-
             <div
               className={` ${
                 openModal ? "" : "hidden"
@@ -230,10 +252,10 @@ const FeedSupport: React.FC = () => {
           <div className="w-[100%]">
             {tabs == 0 ? (
               <Table
-                userTd={true}
+                user={true}
                 issueTd={true}
                 tableData={tableData}
-                serviceTh={true}
+                incidentTh={true}
                 action={true}
               />
             ) : tabs == 1 ? (
@@ -241,8 +263,8 @@ const FeedSupport: React.FC = () => {
                 user={true}
                 category={true}
                 suggestions={true}
-                serviceTh={false}
-                tableData={tableData}
+                tableData={tableData2}
+                action={true}
               />
             ) : tabs == 2 ? (
               <Table
@@ -251,7 +273,10 @@ const FeedSupport: React.FC = () => {
                 recommendapp={true}
                 howHelpfullApp={true}
                 userSuggestion={true}
-                tableData={tableData}
+                tableData={tableData3}
+                action={false}
+                idNot={true}
+                // action={true}
               />
             ) : tabs == 3 ? (
               <ReviewsSection />

@@ -11,9 +11,18 @@ import { ResponsiveContainer } from "recharts";
 interface MyComponentProps {
   data: string[];
   legend: boolean;
+  color1: string;
+  color2: string;
+  color3: string;
 }
 
-const Linechart: React.FC<MyComponentProps> = ({ data, legend }) => {
+const Linechart: React.FC<MyComponentProps> = ({
+  data,
+  legend,
+  color1,
+  color2,
+  color3,
+}) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
@@ -46,7 +55,7 @@ const Linechart: React.FC<MyComponentProps> = ({ data, legend }) => {
             formatter={(value, entry) => (
               <span
                 style={{
-                  fontSize: "18px",
+                  fontSize: "12px",
                   color: "#333",
                   display: "flex",
                   alignItems: "center",
@@ -72,21 +81,24 @@ const Linechart: React.FC<MyComponentProps> = ({ data, legend }) => {
 
         <Line
           type="monotone"
-          dataKey="Approved"
-          stroke="#FC5A41"
+          dataKey="Loyal Customers"
+          stroke={color1}
           strokeWidth={3}
+          dot={false}
         />
         <Line
           type="monotone"
-          dataKey="Canceled"
-          stroke="#00D5D2"
+          dataKey="New Customers"
+          stroke={color2}
           strokeWidth={3}
+          dot={false}
         />
         <Line
           type="monotone"
-          dataKey="Pending"
-          stroke="#F9E844"
+          dataKey="Unique Customers"
+          stroke={color3}
           strokeWidth={3}
+          dot={false}
         />
 
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />

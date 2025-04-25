@@ -99,7 +99,7 @@ const FeedSupport: React.FC = () => {
 
     return (
         <MainLayout>
-            <div className=" default_container p-4 overflow-x-auto bg-white">
+            <div className=" default_container p-0 overflow-x-auto bg-white">
                 <div className="flex items-center justify-between mb-7">
                     <h2>Feedback & Support</h2>
                     {/* <CommonInput placeholder="Search" showImg={true} /> */}

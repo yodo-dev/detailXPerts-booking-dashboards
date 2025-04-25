@@ -14,6 +14,7 @@ import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { ReactSVG } from "react-svg";
+import Linechart from "@components/Charts/Linechart";
 
 const ReportsFranchise: React.FC = () => {
   //   const data = [
@@ -37,6 +38,81 @@ const ReportsFranchise: React.FC = () => {
     { name: "Dec", Approved: 420, Pending: 313, Canceled: 200 },
   ];
 
+  const data1 = [
+    {
+      name: "Jan",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Feb",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "Mar",
+      "Loyal Customers": 240,
+      "New Customers": 50,
+      "Unique Customers": 160,
+    },
+    {
+      name: "Apr",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "May",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Jun",
+      "Loyal Customers": 180,
+      "New Customers": 20,
+      "Unique Customers": 70,
+    },
+    {
+      name: "Jul",
+      "Loyal Customers": 160,
+      "New Customers": 10,
+      "Unique Customers": 40,
+    },
+    {
+      name: "Aug",
+      "Loyal Customers": 180,
+      "New Customers": 20,
+      "Unique Customers": 70,
+    },
+    {
+      name: "Sep",
+      "Loyal Customers": 200,
+      "New Customers": 30,
+      "Unique Customers": 100,
+    },
+    {
+      name: "Oct",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+    {
+      name: "Nov",
+      "Loyal Customers": 240,
+      "New Customers": 50,
+      "Unique Customers": 160,
+    },
+    {
+      name: "Dec",
+      "Loyal Customers": 220,
+      "New Customers": 40,
+      "Unique Customers": 130,
+    },
+  ];
+
   const PieChartData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -49,7 +125,7 @@ const ReportsFranchise: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
-        <div className="flex justify-between mb-[50px]">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 lg:mb-11 mb-8">
           <h1 className="!font-normal !text-[32px] !text-black">
             Performance Report
           </h1>
@@ -59,7 +135,7 @@ const ReportsFranchise: React.FC = () => {
               img={downloadBtn}
               showImg={true}
               btnText="Download Report"
-              btnClass="bg-[#003CA6] rounded-xl text-white !px-[14px] !py-[18px] !w-[235px]"
+              btnClass="bg-[#003CA6] rounded-xl text-white !px-[14px] !py-[18px] md:w-[235px]"
               btnTextClass="text-[16px]"
               onClick={() => console.log("Button clicked")}
             />
@@ -73,35 +149,35 @@ const ReportsFranchise: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-[30px] pt-[40px] bg-[#eeeeeed2] rounded-[8px] mb-[30px]">
+        <div className="p-[30px] pt-[40px] bg-white rounded-[8px] mb-[30px]">
           <div className="flex justify-between items-center mb-[40px]">
             <h3 className="!text-[20px] !font-bold ">Overview</h3>
 
             <div className="flex justify-between">
               {/* <h2 className="text-[22px] font-md mb-4 ">Billing Summary</h2> */}
 
-              <div className="flex items-center space-x-6">
+              <div className="flex flex-wrap items-center sm:gap-0 gap-2 space-x-6">
                 {/* Approved */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-cyan-400"></span>
-                  <span className="text-gray-900">Approved</span>
+                  <span className="text-gray-900">$100k+ Sales</span>
                 </div>
 
                 {/* Pending */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-yellow-300"></span>
-                  <span className="text-gray-900">Pending</span>
+                  <span className="text-gray-900">200+ Bookings Completed</span>
                 </div>
 
                 {/* Rejected */}
                 <div className="flex items-center space-x-2">
                   <span className="w-4 h-4 rounded bg-red-500"></span>
-                  <span className="text-gray-900">Rejected</span>
+                  <span className="text-gray-900">5 Canceled Bookings</span>
                 </div>
               </div>
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={300}>
+          {/* <ResponsiveContainer width="100%" height={300}>
             <LineChart
               width={600}
               height={300}
@@ -111,8 +187,8 @@ const ReportsFranchise: React.FC = () => {
               <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="name"
-                axisLine={false} // Removes bottom axis line
-                tickLine={false} // Removes small tick lines/>
+                axisLine={false} 
+                tickLine={false} 
                 tick={{ fontSize: 16, fill: "#252525" }}
               />
               <YAxis
@@ -123,7 +199,6 @@ const ReportsFranchise: React.FC = () => {
 
               <Tooltip />
 
-              {/* <Legend /> */}
 
               <Line
                 type="monotone"
@@ -149,7 +224,15 @@ const ReportsFranchise: React.FC = () => {
               <YAxis />
               <Tooltip />
             </LineChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer> */}
+
+          <Linechart
+            data={data1}
+            legend={false}
+            color1={"#00D5D2"}
+            color2={"#FC5A41"}
+            color3={"#F9E844"}
+          />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 p-6 bg-[#f9fbfd] rounded-lg">

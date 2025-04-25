@@ -50,17 +50,17 @@ const Settings: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="px-[40px]">
+      <div className="default_container ">
         <h2 className="mb-[20px]">Settings</h2>
 
-        <div className=" gap-2 w-[100%]">
+        <div className=" gap-2 w-[100%] bg-white px-[5px]">
           <div className="p-4 rounded-[15px] border-[#afacac56] space-y-6 max-w-full">
             {/* User Management */}
             <div className="">
               <h2 className="!font-semibold !text-[18px] mb-4 !text-[#252525]">
                 Password Policies
               </h2>
-              <div className="grid grid-cols-3 gap-3 ">
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 ">
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
@@ -90,7 +90,7 @@ const Settings: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mt-4 ">
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 mt-4 ">
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
@@ -120,7 +120,7 @@ const Settings: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mt-4 ">
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 mt-4 ">
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
@@ -144,7 +144,7 @@ const Settings: React.FC = () => {
               <h2 className="!font-semibold !text-[18px] mb-4 !text-[#252525]">
                 Access Logs
               </h2>
-              <div className="grid grid-cols-3 gap-3 ">
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-3 ">
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
@@ -174,7 +174,7 @@ const Settings: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mt-4 ">
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-3 mt-4 ">
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
@@ -205,7 +205,7 @@ const Settings: React.FC = () => {
               </div>
             </div>
 
-            <div className="border-t mt-7 mb-[50px] grid grid-cols-3 pt-[50px] border-[#acacac3a]">
+            <div className="border-t mt-7 mb-[50px] grid  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-3 pt-[50px] border-[#acacac3a]">
               <div className="col-span-1">
                 <h2 className="!text-[25px] !font-semibold">
                   2 Factor Authentication (2FA)
@@ -213,13 +213,12 @@ const Settings: React.FC = () => {
               </div>
               <div className="col-span-1">
                 <div className="flex justify-end me-3">
-                <ReactSwitch
-                  checked={viewJobStatus}
-                  onChange={setViewJobStatus}
-                  checkedIcon={false}
-                  uncheckedIcon={false}
-                />
-
+                  <ReactSwitch
+                    checked={viewJobStatus}
+                    onChange={setViewJobStatus}
+                    checkedIcon={false}
+                    uncheckedIcon={false}
+                  />
                 </div>
               </div>
             </div>

@@ -3,6 +3,8 @@ import { ReactSVG } from "react-svg";
 import VehicleCar from "../../assets/svgs/honda civic car.svg";
 import CallIcon from "@assets/svgs/call.svg";
 import MessageIcon from "@assets/svgs/message-text.svg";
+import greenCircle from "../../assets/svgs/Ellipse 45.svg"
+import Location from "../../assets/svgs/location1.svg"
 
 import ReactSwitch from "react-switch";
 type VehicleCardProps = {
@@ -33,7 +35,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
   customer,
 }) => {
   return (
-    <div className="w-full max-w-sm p-6 bg-white rounded-xl border border-[#003CA6] border-[2px] shadow-sm space-y-4">
+    <div className="w-full p-6 ps-[24px] pe-[24px] bg-white rounded-xl border border-[#003CA6] border-[2px] shadow-sm space-y-4">
       <div className="flex justify-between items-start">
         <div>
           <p className="text-gray-400 text-sm">Vehicle Details</p>
@@ -48,7 +50,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
 
       <div className="space-y-4">
         <div className="flex items-start space-x-3">
-          <span className="w-5 h-5 bg-green-300 rounded-full mt-1.5"></span>
+          <div className="bg-[#E8F9EE] relative w-[38px] h-[38px] rounded-full mt-1.5"><img src={greenCircle} alt="" className="absolute top-3 left-3" /></div>
           <div>
             <p className="font-semibold text-gray-800">{fromLocation.title}</p>
             <p className="text-sm text-[#B0B0B0]">{fromLocation.address}</p>
@@ -56,7 +58,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         <div className="flex items-start space-x-3 relative">
-          <span className="w-5 h-5 bg-purple-400 rounded-full mt-1.5"></span>
+          <div className="w-[38px] h-[38px] relative bg-[#E5E5FE] rounded-full mt-1.5"> <img src={Location} alt="" className="absolute top-[9px] left-[11px] w-[17px] h-[20px]" /> </div>
           <div>
             <p className="font-semibold text-gray-800">{toLocation.title}</p>
             <p className="text-sm text-[#B0B0B0]">{toLocation.address}</p>
@@ -78,10 +80,10 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
           </div>
         </div>
         <div className="flex space-x-3">
-          <button className="bg-[#F7F5FF] p-2 rounded-xl text-blue-500 hover:bg-blue-200">
+          <button className="bg-[#F7F5FF] cursor-pointer p-2 rounded-xl  hover:bg-blue-200">
             <ReactSVG src={CallIcon} />
           </button>
-          <button className="bg-[#F7F5FF] p-2 rounded-xl text-purple-500 hover:bg-purple-200 relative">
+          <button className="bg-[#F7F5FF] p-2 rounded-xl cursor-pointer  hover:bg-blue-200 relative">
             <ReactSVG src={MessageIcon} />
             <span className="absolute top-1 right-1 w-2 h-2 rounded-full"></span>
           </button>
