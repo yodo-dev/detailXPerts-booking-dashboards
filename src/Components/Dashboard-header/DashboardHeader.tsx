@@ -6,6 +6,7 @@ import settingIcon from "@assets/svgs/setting-2.svg";
 import notificationIcon from "@assets/svgs/notification.svg";
 import userImg from "@assets/images/user-profile-img.png";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import "./DashboardHeader.css";
 
 const DashboardHeader: React.FC = () => {

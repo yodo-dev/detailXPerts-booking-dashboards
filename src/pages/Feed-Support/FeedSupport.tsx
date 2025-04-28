@@ -120,15 +120,13 @@ const FeedSupport: React.FC = () => {
   const tableData3 = [
     { key: "user", label: "User" },
     { key: "app_helpfull", label: "Is this app helpful for you?" },
-    { key: "recomended_app", label: "Will you recommend this app to your friends?" },
+    {
+      key: "recomended_app",
+      label: "Will you recommend this app to your friends?",
+    },
     { key: "helpfull_app", label: "How helpful this app for you?" },
     { key: "helpfull_app", label: "How helpful this app for you?" },
     { key: "user_suggestions", label: "Users Suggestion?" },
-    
-
-
-
-
   ];
 
   console.log("-----", openModal);
