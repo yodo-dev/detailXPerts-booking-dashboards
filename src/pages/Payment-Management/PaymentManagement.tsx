@@ -13,7 +13,6 @@ const PaymentManagement: React.FC = () => {
     { key: "amount", label: "Amount" },
     { key: "paymentMethod", label: "Payment Method" },
     { key: "bookings", label: "Bookings" },
-
     { key: "invoiceDate", label: "Invoice date" },
     { key: "status", label: "Status" },
     { key: "action", label: "Action" },

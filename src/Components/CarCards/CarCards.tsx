@@ -35,7 +35,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
   customer,
 }) => {
   return (
-    <div className="w-full p-6 ps-[24px] pe-[24px] bg-white rounded-xl border border-[#003CA6] border-[2px] shadow-sm space-y-4">
+    <div className="w-full p-6 bg-white rounded-xl border border-[#003CA6] border-[2px] shadow-sm space-y-4">
       <div className="flex justify-between items-start">
         <div>
           <p className="text-gray-400 text-sm">Vehicle Details</p>

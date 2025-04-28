@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import DetailXpertsLogo from "@assets/svgs/detailXperts-logo.svg";
 import { v4 as uuid } from "uuid";
 import { Link, useLocation } from "react-router-dom";
-import DetailXpertsLogo from "@assets/svgs/detailXperts-logo.svg";
 import settingIcon from "@assets/svgs/setting-2.svg";
 import notificationIcon from "@assets/svgs/notification.svg";
 import userImg from "@assets/images/user-profile-img.png";
@@ -12,6 +11,7 @@ import "./DashboardHeader.css";
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [role, setRole] = useState(1);
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },
@@ -23,14 +23,6 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/feedback-support", name: "Feedback & Support" },
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
-
-  const [role, setRole] = useState();
-
-  useEffect(() => {
-    localStorage.setItem("role", "2");
-    setRole(localStorage.getItem("role"));
-  }, []);
-
   return (
     <div className="bg-[var(--primary-color)] py-5 mb-12 rounded-b-[40px]">
       <div className="default_container flex items-center justify-between">

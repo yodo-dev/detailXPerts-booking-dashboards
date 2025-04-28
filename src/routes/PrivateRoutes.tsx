@@ -16,7 +16,7 @@ import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchi
 
 import Notifications from "@pages/Notification/Notifications";
 import AdminProfile from "@pages/AdminProfile/AdminProfile";
-// import Settings from "@pages/Settings/Settings";
+import Settings from "@pages/Settings/Settings";
 import FrenchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
 
 import ReportsFranchise from "@pages/FranchiseDashboard/ReportsFranchise/ReportsFranchise";
@@ -48,8 +48,8 @@ const PrivateRoutes = [
   // { path: "/profile", element: <AdminProfile /> },
   { path: "/profile", element: <ProfileFranchise /> },
 
-  // { path: "/settings", element: <Settings /> },
-  { path: "/settings", element: <FrenchiseSettings /> },
+  { path: "/settings", element: <Settings /> },
+  // { path: "/settings", element: <FrenchiseSettings /> },
 
   { path: "/reports", element: <ReportsFranchise /> },
 ];

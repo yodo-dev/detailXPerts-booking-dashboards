@@ -106,6 +106,9 @@ const Table: React.FC<TableProps> = ({
                     </div>
                   </td>
                 )}
+                <td className="px-3 py-[12px] font-medium text-gray-700">
+                  {row.id}
+                </td>
 
                 {franchise && (
                   <td className="px-3  py-[12px] text-gray-700">
@@ -120,6 +123,9 @@ const Table: React.FC<TableProps> = ({
                       <div className="flex items-center">
                         <div className="text-sm">{row.franchise}</div>
                         {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                      <div>
+                        <div className="text-sm">{row.franchise}</div>
+                        <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
                             src={LocationIcon}
                             className="w-[14px] h-[14px]"
@@ -128,6 +134,7 @@ const Table: React.FC<TableProps> = ({
                         </div> */}
                       </div>
                     </div>
+                    {/* </div> */}
                   </td>
                 )}
 
@@ -241,6 +248,9 @@ const Table: React.FC<TableProps> = ({
                 {payMethodth && (
                   <td className="px-3 py-2">{row.payMethodth}</td>
                 )}
+                {payMethodth && <td className="px-3 py-2">{row.payMethod}</td>}
+
+                {invoicethv && <td className="px-3 py-2">{row.invoice}</td>}
 
                 {suggestions && (
                   <td className="px-3 py-2">{row.suggestions}</td>
@@ -267,6 +277,8 @@ const Table: React.FC<TableProps> = ({
                     </div>
                   </td>
                 )}
+
+                {locationTh && <td className="px-3 py-2">{row.location}</td>}
 
                 {statusTh && (
                   <td className="px-3 py-2">
