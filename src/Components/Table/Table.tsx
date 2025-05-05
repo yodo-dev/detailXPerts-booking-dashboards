@@ -49,8 +49,11 @@ const Table: React.FC<TableProps> = ({
   incidentTh,
   idNot,
   view,
+  ratingTd,
 }) => {
-  const [openDropdownIndex, setOpenDropdownIndex] = useState(true);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null
+  );
 
   const handleDropdownToggle = (index: number) => {
     setOpenDropdownIndex((prev) => (prev === index ? null : index));
@@ -94,7 +97,9 @@ const Table: React.FC<TableProps> = ({
                         />
                       </div>
                       <div className="">
-                        <div className="text-sm">{row.franchise}</div>
+                        <div className="text-sm cursor-pointer">
+                          {row.franchise}
+                        </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
                             src={LocationIcon}
@@ -106,9 +111,9 @@ const Table: React.FC<TableProps> = ({
                     </div>
                   </td>
                 )}
-                <td className="px-3 py-[12px] font-medium text-gray-700">
+                {/* <td className="px-3 py-[12px] font-medium text-gray-700">
                   {row.id}
-                </td>
+                </td> */}
 
                 {franchise && (
                   <td className="px-3  py-[12px] text-gray-700">
@@ -121,7 +126,9 @@ const Table: React.FC<TableProps> = ({
                         />
                       </div>
                       <div className="flex items-center">
-                        <div className="text-sm">{row.franchise}</div>
+                        <div className="text-sm cursor-pointer">
+                          {row.franchise}
+                        </div>
                         {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
                       <div>
                         <div className="text-sm">{row.franchise}</div>
@@ -149,7 +156,9 @@ const Table: React.FC<TableProps> = ({
                         />
                       </div>
                       <div>
-                        <div className="text-sm">{row.franchise}</div>
+                        <div className="text-sm cursor-pointer">
+                          {row.franchise}
+                        </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
                             src={LocationIcon}
@@ -173,7 +182,9 @@ const Table: React.FC<TableProps> = ({
                         />
                       </div>
                       <div>
-                        <div className="text-sm">{row.franchise}</div>
+                        <div className="text-sm cursor-pointer">
+                          {row.franchise}
+                        </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           hello@wildflower.bio
                         </div>
@@ -217,11 +228,22 @@ const Table: React.FC<TableProps> = ({
                 {userSuggestion && (
                   <td className="px-3 py-2">{row.userSuggestion}</td>
                 )}
+                {locationTh && <td className="px-3 py-2">{row.location}</td>}
+
+                {numberDetailsTh && (
+                  <td className="px-3 py-2">
+                    <div>#{row.numberDetails}</div>
+                  </td>
+                )}
+
+                {earningTh && (
+                  <td className="px-3 py-2">
+                    <div>{row.earning}</div>
+                  </td>
+                )}
 
                 {issueTd && <td className="px-3 py-2">{row.issueTd}</td>}
                 {incidentTh && <td className="px-3 py-2">{row.incidentTh}</td>}
-
-                {locationTh && <td className="px-3 py-2">{row.location}</td>}
 
                 {dateTab && (
                   <td className="px-3 py-2 ">
@@ -234,12 +256,6 @@ const Table: React.FC<TableProps> = ({
                 {serviceTh && <td className="px-3 py-2">{row.service}</td>}
 
                 {vehicleTh && <td className="px-3 py-2">{row.vehicle}</td>}
-
-                {earningTh && (
-                  <td className="px-3 py-2">
-                    <div>{row.earning}</div>
-                  </td>
-                )}
 
                 {joinedTh && <td className="px-3 py-2">{row.joined}</td>}
 
@@ -270,15 +286,13 @@ const Table: React.FC<TableProps> = ({
                   <td className="px-3 py-2">{row.jobComplete}</td>
                 )}
 
-                {numberDetailsTh && (
+                {ratingTd && (
                   <td className="px-3 py-2">
-                    <div className="w-[150px] md:w-[100px]">
-                      {row.numberDetails}
-                    </div>
+                    <div>{row.ratingTd}</div>
                   </td>
                 )}
 
-                {locationTh && <td className="px-3 py-2">{row.location}</td>}
+                {/* {locationTh && <td className="px-3 py-2">{row.location}</td>} */}
 
                 {statusTh && (
                   <td className="px-3 py-2">

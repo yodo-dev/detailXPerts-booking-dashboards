@@ -12,16 +12,16 @@ export const rows = [
     date: "04-05-2025",
     service: "Car Wash",
     vehicle: "Phoenix",
-    earning: "$0.00",
     status: "Completed",
     location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
     numberDetails: 20,
+    earning: "$30.00",
     joined: "10-01-2025",
     jobComplete: 10,
     booking: 20,
     lastBooking: "10-june-2025",
-    spending: "$0.00",
-    amount: "$0.00",
+    spending: "$30.00",
+    amount: "$60.00",
     payMethodth: "Stripe",
     issueTd: "Negligence",
     incidentTh: "Last Weak My Car .....",
@@ -31,6 +31,9 @@ export const rows = [
     recommendapp: "Yes",
     howHelpfullApp: "Yes",
     userSuggestion: "Last week, my car .... ",
+    no_detailer:"9999",
+    ratingTd:10
+
   },
   {
     id: "002",
@@ -62,6 +65,10 @@ export const rows = [
     recommendapp: "Yes",
     howHelpfullApp: "Yes",
     userSuggestion: "Last week, my car .... ",
+    no_detailer:"9999",
+    ratingTd:10
+
+
   },
   {
     id: "003",
@@ -77,7 +84,7 @@ export const rows = [
     earning: "$0.00",
     status: "In Progress",
     location: "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
-    numberDetails: 20,
+    numberDetails: 201,
     joined: "10-01-2025",
     jobComplete: 10,
     booking: 20,
@@ -91,6 +98,10 @@ export const rows = [
     recommendapp: "Yes",
     howHelpfullApp: "Yes",
     userSuggestion: "Last week, my car .... ",
+    no_detailer:"9999",
+    ratingTd:10
+
+
   },
   {
     id: "004",
@@ -120,6 +131,10 @@ export const rows = [
     recommendapp: "Yes",
     howHelpfullApp: "Yes",
     userSuggestion: "Last week, my car .... ",
+    no_detailer:"9999",
+    ratingTd:10
+
+
   },
   {
     id: "005",
@@ -149,5 +164,9 @@ export const rows = [
     recommendapp: "Yes",
     howHelpfullApp: "Yes",
     userSuggestion: "Last week, my car .... ",
+    no_detailer:"9999",
+    ratingTd:10
+
+
   },
 ];

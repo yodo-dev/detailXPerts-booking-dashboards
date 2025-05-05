@@ -32,7 +32,7 @@ const OverviewCard: React.FC<OverviewCardProps> = ({
 
   return (
     <div
-      className="overview_card rounded-2xl  p-4"
+      className="overview_card rounded-2xl  p-4 cursor-pointer"
       style={{ backgroundColor: bgColor }}
     >
       <div

@@ -86,7 +86,7 @@ const CustomersManagement: React.FC = () => {
     { key: "bookings", label: "Bookings" },
     { key: "last_booking", label: "Last Booking" },
     { key: "spending", label: "Spending" },
-    { key: "status", label: "Status" },
+    // { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
   const [showModal, setShowModal] = useState(false);
@@ -110,7 +110,7 @@ const CustomersManagement: React.FC = () => {
           bookingth={true}
           lastBookingth={true}
           spendingth={true}
-          statusTh={true}
+          // statusTh={true}
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}

@@ -87,7 +87,7 @@ const DetailersManagement: React.FC = () => {
     { key: "jobs_completed", label: "Jobs Completed" },
     { key: "joined_date", label: "Joined Date" },
     { key: "earning", label: "Earning" },
-    { key: "status", label: "Status" },
+    // { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
 
@@ -112,7 +112,7 @@ const DetailersManagement: React.FC = () => {
           joinedTh={true}
           jobCompleteTh={true}
           earningTh={true}
-          statusTh={true}
+          statusTh={false}
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}

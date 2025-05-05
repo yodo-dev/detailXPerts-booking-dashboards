@@ -21,6 +21,18 @@ export interface TableProps {
   category?: string;
   issue?: boolean;
   incident?: boolean;
-  suggestions?: boolean;
-  tableData: string[];
+  tableData?: string[];
+  appHelpfull?:boolean;
+  recommendapp?:boolean;
+  howHelpfullApp?:boolean;
+  rate?:boolean;
+  userSuggestion?:boolean;
+  action?:boolean;
+  setShowModal?:boolean;
+  issueTd?:boolean;
+  Bookingfranchise?:boolean;
+  incidentTh?:boolean;
+  idNot?:boolean;
+  view?:boolean;
+  suggestions?:boolean
 }

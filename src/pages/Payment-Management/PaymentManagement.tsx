@@ -14,7 +14,7 @@ const PaymentManagement: React.FC = () => {
     { key: "paymentMethod", label: "Payment Method" },
     { key: "bookings", label: "Bookings" },
     { key: "invoiceDate", label: "Invoice date" },
-    { key: "status", label: "Status" },
+    // { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
   const rows = [
@@ -113,10 +113,10 @@ const PaymentManagement: React.FC = () => {
           lastBookingth={true}
           suggestions={true}
           invoicethv={true}
-          statusTh={true}
+          // statusTh={true}
           tableData={tableData}
           // payMethodth={true}
-          amountth={true}
+          // amountth={true}
           setShowModal={setShowModal}
         />
 

@@ -86,7 +86,7 @@ const CustomerFranchise: React.FC = () => {
     { key: "bookings", label: "Vehicles" },
     { key: "last_booking", label: "Total Bookings" },
     { key: "spending", label: "Cancelled Bookings" },
-    { key: "status", label: "Amount" },
+    { key: "status", label: "Earning" },
     { key: "status", label: "Rating" },
 
     { key: "action", label: "Action" },
@@ -107,14 +107,14 @@ const CustomerFranchise: React.FC = () => {
         </div>
 
         <Table
-          id={true}
+          id={false}
           customer={true}
           bookingth={true}
           lastBookingth={true}
           spendingth={true}
           earningTh={true}
-
-          statusTh={true}
+          ratingTd={true}
+          statusTh={false}
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}

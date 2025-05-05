@@ -22,6 +22,8 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Phoenix",
       earning: "$0.00",
       status: "Completed",
+      no_detailer:"9999"
+
     },
     {
       id: "002",
@@ -36,6 +38,8 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Cobra",
       earning: "$0.00",
       status: "In Progress",
+      no_detailer:"9999"
+
     },
     {
       id: "003",
@@ -50,6 +54,8 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Raptor",
       earning: "$0.00",
       status: "In Progress",
+      no_detailer:"9999"
+
     },
     {
       id: "004",
@@ -64,6 +70,8 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Vortex",
       earning: "$20.00",
       status: "Completed",
+      no_detailer:"9999"
+
     },
     {
       id: "005",
@@ -78,6 +86,7 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Stingray",
       earning: "$0.00",
       status: "Canceled",
+      no_detailer:"9999"
     },
   ];
 
@@ -87,9 +96,8 @@ const FrenchiseManagement: React.FC = () => {
     { key: "id", label: "ID" },
     { key: "franchise", label: "Franchise" },
     { key: "location", label: "Location" },
-    { key: "no_detailer", label: "Number of  Detailers" },
+    { key: "no_detailer", label: "Number of Detailers" },
     { key: "earning", label: "Earning" },
-    { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
 
@@ -97,7 +105,9 @@ const FrenchiseManagement: React.FC = () => {
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
-          <h2 className="text-lg font-semibold md:mb-0 mb-2">Franchise Management</h2>
+          <h2 className="text-lg font-semibold md:mb-0 mb-2">
+            Franchise Management
+          </h2>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 md:w-[600px]">
             <CommonInput
@@ -119,17 +129,22 @@ const FrenchiseManagement: React.FC = () => {
           id={true}
           franchise={true}
           locationTh={true}
-          numberDetailsTh={true}
-          statusTh={true}
-          // locationTh={true}
+          statusTh={false}
+          locationTh={true}
+          // payMethodth={true}
           earningTh={true}
+          numberDetailsTh={true}
+
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}
         />
 
-        {showModal ? <AddFranchise setShowModal={setShowModal} title={"Edit Franchise"} /> : ""}
-
+        {showModal ? (
+          <AddFranchise setShowModal={setShowModal} title={"Edit Franchise"} />
+        ) : (
+          ""
+        )}
       </div>
     </MainLayout>
   );
