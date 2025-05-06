@@ -12,7 +12,7 @@ import "./DashboardHeader.css";
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [role, setRole] = useState(1);
+  const [role, setRole] = useState(0);
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },
@@ -47,7 +47,10 @@ const DashboardHeader: React.FC = () => {
                 return null; // Skip rendering the link if condition is met
               }
 
-              if (link.name === "Franchise" && role == 2) {
+              if (link.name === "Franchise" && role == 0) {
+                return null; // Skip rendering the link if condition is met
+              }
+              if (link.name === "Feedback & Support" && role == 0) {
                 return null; // Skip rendering the link if condition is met
               }
 

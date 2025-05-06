@@ -16,7 +16,7 @@ import userStart from "@assets/svgs/userStart.svg";
 import friendReqs from "@assets/svgs/friendReqs.svg";
 
 const Dashboard: React.FC = () => {
-  const [role, setRole] = useState(1);
+  const [role, setRole] = useState(0);
   const [people, setPeople] = useState(["_", "_", "_", "_", "_"]);
 
   const tableHeaders = [
@@ -250,7 +250,7 @@ const Dashboard: React.FC = () => {
             <div className="ranking_franchise common_section_bg  py-6 px-6 ps-0 overflow-x-auto w-full ">
               <div className="flex justify-between items-center">
                 <p className="text-[20px] px-6 text-[#252525] !font-semibold">
-                  {role==1 ? "Ranking Franchises " : "Ranking Detailer"}
+                  {role==1 ? "Ranking Franchises " : "Ranking of most booked service"}
                 </p>
                 <p className="text-[#003CA6] text-[18px] !font-semibold underline pe-0 lg:pe-7">
                   View all
