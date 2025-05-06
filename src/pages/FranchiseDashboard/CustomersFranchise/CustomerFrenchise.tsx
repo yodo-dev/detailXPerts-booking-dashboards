@@ -99,10 +99,7 @@ const CustomerFranchise: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
           <h2>Customers Profile</h2>
           <div className="md:w-[366px]">
-            <CommonInput
-              placeholder="Search"
-              showImg={true}
-            />
+            <CommonInput placeholder="Search" showImg={true} />
           </div>
         </div>
 

@@ -22,8 +22,7 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Phoenix",
       earning: "$0.00",
       status: "Completed",
-      no_detailer:"9999"
-
+      no_detailer: "9999",
     },
     {
       id: "002",
@@ -38,8 +37,7 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Cobra",
       earning: "$0.00",
       status: "In Progress",
-      no_detailer:"9999"
-
+      no_detailer: "9999",
     },
     {
       id: "003",
@@ -54,8 +52,7 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Raptor",
       earning: "$0.00",
       status: "In Progress",
-      no_detailer:"9999"
-
+      no_detailer: "9999",
     },
     {
       id: "004",
@@ -70,8 +67,7 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Vortex",
       earning: "$20.00",
       status: "Completed",
-      no_detailer:"9999"
-
+      no_detailer: "9999",
     },
     {
       id: "005",
@@ -86,20 +82,55 @@ const FrenchiseManagement: React.FC = () => {
       vehicle: "Stingray",
       earning: "$0.00",
       status: "Canceled",
-      no_detailer:"9999"
+      no_detailer: "9999",
     },
   ];
 
   const [showModal, setShowModal] = useState(false);
 
-  const tableData = [
+  const th = [
     { key: "id", label: "ID" },
     { key: "franchise", label: "Franchise" },
     { key: "location", label: "Location" },
     { key: "no_detailer", label: "Number of Detailers" },
     { key: "earning", label: "Earning" },
+    { key: "permissions", label: "Permissions" },
     { key: "action", label: "Action" },
   ];
+
+  // const APIdata = [
+  //   {
+  //     id: 1,
+  //     name: "John Doe",
+  //     email: "john.doe@example.com",
+  //     message: "I'm interested in your services.",
+  //     Description:
+  //       "<p>This is a <strong>detailed description</strong> of the item, with <em>some HTML formatting</em>.</p>",
+  //     Image: "images/sample1.jpg", // replace with real or public image path
+  //     Price: 99.99,
+  //     Code: "XYZ123",
+  //     Nurse: "nurse joy",
+  //     Status: "COMPLETED",
+  //     Answer: [
+  //       ["Yes", true],
+  //       ["No", false],
+  //     ],
+  //     Others: ["Option 1", "Option 2"],
+  //   },
+  // ];
+
+  // const th = ["Name", "Email", "Message"];
+
+  // const storeData = APIdata
+  //   ? APIdata.map((i) => ({
+  //       // i.id || "-",
+  //       Name: "Johnny Dev" || "-",
+  //       Email: i.email || "-",
+  //       Message: i.message || "-",
+
+  //       id: i.id || "-",
+  //     }))
+  //   : [];
 
   return (
     <MainLayout>
@@ -134,10 +165,11 @@ const FrenchiseManagement: React.FC = () => {
           // payMethodth={true}
           earningTh={true}
           numberDetailsTh={true}
-
-          tableData={tableData}
+          tableData={th}
           action={true}
           setShowModal={setShowModal}
+          // data={storeData}
+          permissions={true}
         />
 
         {showModal ? (

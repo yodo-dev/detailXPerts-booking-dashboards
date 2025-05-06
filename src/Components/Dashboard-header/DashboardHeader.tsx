@@ -12,7 +12,7 @@ import "./DashboardHeader.css";
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [role, setRole] = useState(0);
+  const [role, setRole] = useState(1);
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },
@@ -25,7 +25,7 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
   return (
-    <div className="bg-[var(--primary-color)] py-5 mb-12 rounded-b-[40px]">
+    <div className="bg-[var(--primary-color)] py-5 mb-12 rounded-b-[40px] ">
       <div className="default_container flex items-center justify-between">
         <div className="flex items-center gap-4 lg:gap-[40px] header">
           <Link to="/">

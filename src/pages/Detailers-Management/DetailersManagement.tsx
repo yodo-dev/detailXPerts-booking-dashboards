@@ -87,6 +87,8 @@ const DetailersManagement: React.FC = () => {
     { key: "jobs_completed", label: "Jobs Completed" },
     { key: "joined_date", label: "Joined Date" },
     { key: "earning", label: "Earning" },
+    { key: "permissions", label: "Permissions" },
+
     // { key: "status", label: "Status" },
     { key: "action", label: "Action" },
   ];
@@ -116,6 +118,7 @@ const DetailersManagement: React.FC = () => {
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}
+          permissions={true}
           Bookingfranchise={true}
         />
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}

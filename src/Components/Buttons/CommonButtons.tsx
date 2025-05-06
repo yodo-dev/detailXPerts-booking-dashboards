@@ -11,10 +11,11 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   showImg,
   imgClass,
   onClick,
+  lucideIcon,
   Link: linkTo,
   imgPosition = "left",
 }) => {
-  const imageElement = showImg && <img src={img} className={`${imgClass}`} />;
+  const imageElement =  showImg && <img src={img} className={`${imgClass}`} />;
   const textElement = <span className={`${btnTextClass}`}>{btnText}</span>;
 
   const content = (

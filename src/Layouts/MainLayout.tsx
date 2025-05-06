@@ -4,7 +4,7 @@ import { MainLayoutProps } from "./types";
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="bg-[#f8f9fa]">
       <DashboardHeader />
       <main>{children}</main>
     </div>

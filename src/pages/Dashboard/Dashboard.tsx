@@ -16,7 +16,7 @@ import userStart from "@assets/svgs/userStart.svg";
 import friendReqs from "@assets/svgs/friendReqs.svg";
 
 const Dashboard: React.FC = () => {
-  const [role, setRole] = useState(0);
+  const [role, setRole] = useState(1);
   const [people, setPeople] = useState(["_", "_", "_", "_", "_"]);
 
   const tableHeaders = [

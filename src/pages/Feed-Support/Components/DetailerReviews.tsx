@@ -16,7 +16,6 @@ const CustomerReviews: React.FC = () => {
         </div>
       </div>
 
-      {/* asasdasdasdasd */}
 
       <div className="bg-[#F7F8FC] p-[20px] w-full rounded-[20px]">
         <div className="bg-[#fff] p-[15px] w-full rounded-[20px] grid grid-cols-2 ">

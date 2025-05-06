@@ -7,6 +7,9 @@ import Eye from "@assets/svgs/eye.svg";
 import EditIcon from "@assets/svgs/edit-2.svg";
 import Trash from "@assets/svgs/trash.svg";
 import blockUser from "@assets/svgs/profile-delete.svg";
+import TcikIcon from "@assets/svgs/icon.svg";
+import CrossIcon from "@assets/svgs/cross.svg";
+
 import { TableProps } from "./types";
 import { rows } from "./TableData";
 import "./Table.css";
@@ -50,6 +53,9 @@ const Table: React.FC<TableProps> = ({
   idNot,
   view,
   ratingTd,
+  permissions,
+  // data,
+  // th,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
@@ -57,6 +63,12 @@ const Table: React.FC<TableProps> = ({
 
   const handleDropdownToggle = (index: number) => {
     setOpenDropdownIndex((prev) => (prev === index ? null : index));
+  };
+
+  const [isActive, setIsActive] = useState(false);
+
+  const handleToggle = () => {
+    setIsActive(!isActive);
   };
 
   return (
@@ -73,9 +85,31 @@ const Table: React.FC<TableProps> = ({
                 </th>
               ))}
             </tr>
+
+            {/* <tr>
+              {th &&
+                th.map((item, key) => (
+                  <th
+                    key={key}
+                    className={`ps-4 py-3.5 border-b fs-8 font-bold text-uppercase ${
+                      item === "Image" ? "w-image-20" : ""
+                    } ${item === "Name" ? "w-48" : ""} ${
+                      item === "Price" ? "w-28" : ""
+                    } ${item === "Email" ? "w-60" : ""} ${
+                      item === "Order" ? "w-24" : ""
+                    } ${item === "Total" ? "w-24" : ""} ${
+                      item === "Customer Name" ? "w-56" : ""
+                    }`}
+                  >
+                    {item}
+                  </th>
+                ))}
+            </tr> */}
           </thead>
 
           <tbody>
+            {/* ORIGINAL */}
+
             {rows.map((row, index) => (
               <tr key={row.id} className="bg-gray-50 rounded-md ">
                 {idNot ? (
@@ -98,7 +132,11 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div className="">
                         <div className="text-sm cursor-pointer">
-                          {row.franchise}
+                          {/* {row.franchise} */}
+                          {/* {row.franchise} */}
+                          <Link to={"/customers-franchise"}>
+                            {row.franchise}
+                          </Link>
                         </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
@@ -111,9 +149,6 @@ const Table: React.FC<TableProps> = ({
                     </div>
                   </td>
                 )}
-                {/* <td className="px-3 py-[12px] font-medium text-gray-700">
-                  {row.id}
-                </td> */}
 
                 {franchise && (
                   <td className="px-3  py-[12px] text-gray-700">
@@ -127,21 +162,12 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div className="flex items-center">
                         <div className="text-sm cursor-pointer">
-                          {row.franchise}
+                          <Link to={"/customers-franchise"}>
+                            {row.franchise}
+                          </Link>
                         </div>
-                        {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
-                      <div>
-                        <div className="text-sm">{row.franchise}</div>
-                        <div className="text-xs text-gray-400 flex gap-1 mt-1">
-                          <ReactSVG
-                            src={LocationIcon}
-                            className="w-[14px] h-[14px]"
-                          />{" "}
-                          9272 Westheimer...
-                        </div> */}
                       </div>
                     </div>
-                    {/* </div> */}
                   </td>
                 )}
 
@@ -157,7 +183,9 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div>
                         <div className="text-sm cursor-pointer">
-                          {row.franchise}
+                          <Link to={"/customers-franchise"}>
+                            {row.franchise}
+                          </Link>
                         </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
@@ -183,7 +211,9 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div>
                         <div className="text-sm cursor-pointer">
-                          {row.franchise}
+                          <Link to={"/customers-franchise"}>
+                            {row.franchise}
+                          </Link>
                         </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           hello@wildflower.bio
@@ -292,7 +322,44 @@ const Table: React.FC<TableProps> = ({
                   </td>
                 )}
 
-                {/* {locationTh && <td className="px-3 py-2">{row.location}</td>} */}
+                {permissions && (
+                  <td className="px-3 py-2">
+                    <label className="inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="sr-only peer "
+                        checked={isActive}
+                        onChange={handleToggle}
+                      />
+                      <div className="relative w-20 h-10 bg-[#1D1B201F] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#ffffff00] rounded-full peer peer-checked:after:translate-x-10 after:content-[''] after:absolute after:top-[5px] after:left-[5px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-8 after:w-8 after:transition-all peer-checked:bg-[#0EA363]">
+                        {isActive ? (
+                          <>
+                            <ReactSVG
+                              className="absolute z-9999 right-3 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                              src={TcikIcon}
+                            />
+                            <p className="text-white absolute top-[14px] left-[5px] text-[9px]">
+                              Activate
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <ReactSVG
+                              className="absolute z-9999 left-4 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                              src={CrossIcon}
+                            />
+                            <p className="text-[#ACA7AC] absolute top-[14px] right-[5px] text-[9px]">
+                              Disable
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {isActive ? "" : ""}
+                      </span>
+                    </label>
+                  </td>
+                )}
 
                 {statusTh && (
                   <td className="px-3 py-2">
@@ -325,12 +392,7 @@ const Table: React.FC<TableProps> = ({
 
                       {openDropdownIndex === index && (
                         <div className="absolute right-0 mt-2 pt-2 pb-2 w-40 bg-white border border-gray-200 rounded-[12px] shadow-lg z-[999999]">
-                          <button
-                            // onClick={() => {
-                            //   window.location.href = view;
-                            // }}
-                            className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full"
-                          >
+                          <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
                             <Link to={view} className="flex ">
                               <ReactSVG src={Eye} className="mr-2" /> View
                             </Link>
@@ -357,6 +419,164 @@ const Table: React.FC<TableProps> = ({
                 )}
               </tr>
             ))}
+
+            {/* ORIGINAL */}
+
+            {/* 
+            {data.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="border-b hover:bg-gray-50 transition-all"
+              >
+                {th.map((key, colIndex) => (
+                  // ${key === "Status" && row[key] === "COMPLETED" ? "text-success" : ""}
+                  <td
+                    className={`ps-4 text-sm fs-8  font-medium `}
+                    key={colIndex}
+                    style={{}}
+                  >
+                    {key === "Description" && row[key] && row[key] !== "-" ? (
+                      <div>
+                        {expandedDescriptions[row.id] ? (
+                          // Render full HTML description
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: row[key],
+                            }}
+                          />
+                        ) : (
+                          // Render truncated HTML description
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                row[key].slice(0, 100) +
+                                (row[key].length > 100 ? "..." : ""),
+                            }}
+                          />
+                        )}
+                        {row[key].length > 100 && (
+                          <button
+                            onClick={() => toggleDescription(row.id)}
+                            style={{
+                              color: "blue",
+                              cursor: "pointer",
+                              marginLeft: "5px",
+                            }}
+                          >
+                            {expandedDescriptions[row.id]
+                              ? "Show Less"
+                              : "Show More"}
+                          </button>
+                        )}
+                      </div>
+                    ) : key === "Image" && row[key] && row[key] !== "-" ? (
+                      row[key].length > 0 ? (
+                        // <img
+                        //   src={`https://phpstack-1250693-4992063.cloudwaysapps.com/public/${row[key]}`}
+                        //   alt="Image"
+                        //   style={{
+                        //     width: `100px ${key=="Image" ? "10px" : ""}`,
+                        //     height: "70px",
+                        //     objectFit: "cover",
+                        //     borderRadius: "10px",
+                        //   }}
+                        // />
+
+                        <img
+                          src={`https://phpstack-1250693-4992063.cloudwaysapps.com/public/${row[key]}`}
+                          alt="Image"
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            objectFit: "cover",
+                            borderRadius: "10px",
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={`${API_URL}/public/ `}
+                          style={{
+                            width: `100px  `,
+                            height: "70px",
+                            objectFit: "cover",
+                            borderRadius: "10px",
+                          }}
+                          alt="Default Image"
+                        />
+                      )
+                    ) : key === "Price" && row[key] && row[key] !== "-" ? (
+                      <span className="font-bold fs-8">${row[key]}</span>
+                    ) : key === "Code" && row[key] && row[key] !== "-" ? (
+                      <span className="font-medium fs-8">{row[key]}</span>
+                    ) : key === "Nurse" && row[key] && row[key] !== "-" ? (
+                      <span className="text-capitalize fs-8">{row[key]}</span>
+                    ) : key === "Status" && row[key] && row[key] !== "-" ? (
+                      <span
+                        className={`text-capitalize fs-8 ${
+                          row[key] === "COMPLETED"
+                            ? "badge bg-success"
+                            : row[key] === "PENDING"
+                            ? "badge bg-danger"
+                            : ""
+                        }`}
+                      >
+                        {row[key]}
+                      </span>
+                    ) : key === "Answer" && row[key] && row[key] !== "-" ? (
+                      <span>
+                        {dropdownQuiz === true && (
+                          <select
+                            id={`status-select-${row.id}`}
+                            value={row.Status}
+                            onChange={(e) =>
+                              handleStatusChange(row.id, e.target.value, row)
+                            }
+                            className="select-custom border fs-8 form-select rounded w-32 focus:ring-2 focus:ring-purple-500"
+                            data-selected={row.Status}
+                          >
+                            {row.Answer.map((i) => (
+                              <option
+                                selected={i[1] === true ? "selected" : ""}
+                              >
+                                {i[0]}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      </span>
+                    ) : key === "Others" && row[key] && row[key] !== "-" ? (
+                      <span>
+                        {dropdownQuiz === true && (
+                          <ul>
+                            {row.Answer.map((i) => (
+                              <li>
+                                {" "}
+                                <span className="●"></span> {i}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </span>
+                    ) : (
+                      row[key]
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))} */}
+
+            {/* {data?.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="border-b hover:bg-gray-50 transition-all"
+              >
+                {th?.map((key, colIndex) => (
+                  <td className="ps-4 text-sm fs-8 font-medium" key={colIndex}>
+                    {row[key] || "-"}
+                  </td>
+                ))}
+              </tr>
+            ))} */}
           </tbody>
         </table>
       </div>
