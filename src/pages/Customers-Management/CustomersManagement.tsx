@@ -112,6 +112,7 @@ const CustomersManagement: React.FC = () => {
 
         <Table
           id={true}
+          showCheck
           customer={false}
           AdminBookingfranchise={true}
           bookingth={true}

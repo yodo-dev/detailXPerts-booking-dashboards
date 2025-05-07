@@ -164,6 +164,7 @@ const FrenchiseManagement: React.FC = () => {
         {/* <Table  /> */}
         <Table
           id={true}
+          showCheck
           franchise={false}
           locationTh={true}
           statusTh={false}

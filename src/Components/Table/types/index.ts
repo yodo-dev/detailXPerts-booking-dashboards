@@ -34,5 +34,6 @@ export interface TableProps {
   incidentTh?:boolean;
   idNot?:boolean;
   view?:boolean;
-  suggestions?:boolean
+  suggestions?:boolean,
+  showCheck?:boolean
 }

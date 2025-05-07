@@ -9,6 +9,8 @@
     --t-fast: 0.2s;
     --e-in: ease-in;
     --e-out: cubic-bezier(.11,.29,.18,.98);
+    display: flex;
+    background: '#0000';
   }
 
   .checkbox-wrapper-33 .visuallyhidden {
@@ -38,8 +40,9 @@
     border: var(--border-width) solid var(--c-primary);
     position: relative;
     border-radius: 6px;
-    width: 1.5em;
-    height: 1.5em;
+    width: 20px;
+    height: 20px  ;
+    background-color: white;
     transition: box-shadow var(--t-base) var(--e-out), background-color var(--t-base);
     box-shadow: 0 0 0 0 var(--c-primary-10-percent-opacity);
   }

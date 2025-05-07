@@ -116,6 +116,7 @@ const DetailersManagement: React.FC = () => {
         <Table
           id={true}
           detailer={false}
+          showCheck
           // adminDetailer={true}
           // franchise={true}
           joinedTh={true}
