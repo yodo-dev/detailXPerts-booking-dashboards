@@ -179,7 +179,7 @@ const FeedSupport: React.FC = () => {
                             tabs == 0 ?
                                 <Table id={false} franchise={false} detailer={false} user={true} category={true} issue={true} incident={true} serviceTh={false} />
                                 : tabs == 1 ?
-                                    <Table user={true} category={true} suggestions={true} serviceTh={false} />
+                                    <Table  user={true} category={true} suggestions={true} serviceTh={false} />
                                     : tabs == 2 ?
                                         <Table user={true} appHelpfull={true} recommendapp={true} howHelpfullApp={true} userSuggestion={true} />
                                         : tabs == 3 ?

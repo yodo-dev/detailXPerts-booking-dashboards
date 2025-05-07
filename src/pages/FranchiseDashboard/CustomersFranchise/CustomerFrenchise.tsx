@@ -105,6 +105,7 @@ const CustomerFranchise: React.FC = () => {
 
         <Table
           id={false}
+          showCheck
           customer={true}
           bookingth={true}
           lastBookingth={true}

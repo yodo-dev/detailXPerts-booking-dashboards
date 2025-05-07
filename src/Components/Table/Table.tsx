@@ -9,6 +9,7 @@ import Trash from "@assets/svgs/trash.svg";
 import blockUser from "@assets/svgs/profile-delete.svg";
 import TcikIcon from "@assets/svgs/icon.svg";
 import CrossIcon from "@assets/svgs/cross.svg";
+import CheckIcon from "@assets/svgs/check.svg";
 
 import { TableProps } from "./types";
 import { rows } from "./TableData";
@@ -61,6 +62,7 @@ const Table: React.FC<TableProps> = ({
   AdminBookingfranchise,
   JobBooking,
   AdminDet2,
+  showCheck
   // AdminBookingfranchise,
   // data,
   // th,
@@ -86,10 +88,24 @@ const Table: React.FC<TableProps> = ({
           <thead className="bg-[#F1F3FB] text-xs">
             <tr>
               {tableData?.map(({ key, label }) => (
-                <th key={key} className="px-3 py-4 font-normal">
-                  <span className="flex gap-3 text-[12px] font-normal">
-                    {label} <ReactSVG src={Chevron} />
-                  </span>
+                <th key={key} className="px-3 py-4 font-normal ">
+                  <div className="flex">
+                    {(label == "ID" && showCheck) && <div className="checkbox-wrapper-33">
+                      <label className="checkbox">
+                        <input
+                          className="checkbox__trigger visuallyhidden"
+                          type="checkbox"
+                        />
+                        <span className="checkbox__symbol">
+                          <ReactSVG className="icon-checkbox" src={CheckIcon} />
+                        </span>
+                        {/* <p className="checkbox__textwrapper">Checkbox</p> */}
+                      </label>
+                    </div>}
+                    <span className="flex gap-3 text-[12px] font-normal">
+                      {label} <ReactSVG src={Chevron} />
+                    </span>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -123,9 +139,23 @@ const Table: React.FC<TableProps> = ({
                 {idNot ? (
                   ""
                 ) : (
-                  <td className="px-3 py-[12px] font-medium text-gray-700">
-                    {row.id}
-                  </td>
+                  <div className="flex item-center">
+                    {showCheck && <div className="ml-3  checkbox-wrapper-33">
+                      <label className="checkbox">
+                        <input
+                          className="checkbox__trigger visuallyhidden"
+                          type="checkbox"
+                        />
+                        <span className="checkbox__symbol">
+                          <ReactSVG className="icon-checkbox" src={CheckIcon} />
+                        </span>
+                        {/* <p className="checkbox__textwrapper">Checkbox</p> */}
+                      </label>
+                    </div>}
+                    <td className="py-[12px] font-medium text-gray-700">
+                      {row.id}
+                    </td>
+                  </div>
                 )}
 
                 {/* {Bookingfranchise && (
@@ -519,15 +549,14 @@ const Table: React.FC<TableProps> = ({
                 {statusTh && (
                   <td className="px-3 py-2">
                     <span
-                      className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-                        row.status === "Completed"
-                          ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
-                          : row.status === "In Progress"
+                      className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${row.status === "Completed"
+                        ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
+                        : row.status === "In Progress"
                           ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
                           : row.status === "Canceled"
-                          ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
-                          : "bg-[#F1F3FB] text-gray-600"
-                      }`}
+                            ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
+                            : "bg-[#F1F3FB] text-gray-600"
+                        }`}
                     >
                       {row.status}
                     </span>

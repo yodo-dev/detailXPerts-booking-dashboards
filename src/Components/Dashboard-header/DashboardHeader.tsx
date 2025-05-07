@@ -58,11 +58,10 @@ const DashboardHeader: React.FC = () => {
                 <Link
                   key={link.id}
                   to={link.path}
-                  className={`relative text-white label_link ${
-                    isActive
+                  className={`relative text-white label_link ${isActive
                       ? 'font-bold after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-white pb-[7px]'
                       : "font-normal"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -126,11 +125,10 @@ const DashboardHeader: React.FC = () => {
               key={link.id}
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`mb-4 text-lg ${
-                location.pathname === link.path
+              className={`mb-4 text-lg ${location.pathname === link.path
                   ? "font-semibold text-[var(--primary-color)]"
                   : "text-gray-800"
-              }`}
+                }`}
             >
               {link.name}
             </Link>
