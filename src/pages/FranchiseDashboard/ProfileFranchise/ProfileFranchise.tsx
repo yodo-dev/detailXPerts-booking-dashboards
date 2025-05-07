@@ -234,8 +234,6 @@
 
 // export default ProfileFranchise;
 
-
-
 import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import MainLayout from "@layouts/MainLayout";
@@ -302,7 +300,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      View Users
+                      First letter must be capital
                     </span>
                     <ReactSwitch
                       checked={viewUsers}
@@ -316,7 +314,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      Add/Edit Users
+                      Add “special characters” in password
                     </span>
                     <ReactSwitch
                       checked={addEditUsers}
@@ -332,7 +330,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      View Users
+                      Password must contain 10 characters length
                     </span>
                     <ReactSwitch
                       checked={viewUsers}
@@ -346,7 +344,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      Add/Edit Users
+                      Must add some numbers in password
                     </span>
                     <ReactSwitch
                       checked={addEditUsers}
@@ -386,7 +384,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      View Users
+                      Track user login activity
                     </span>
                     <ReactSwitch
                       checked={viewUsers}
@@ -400,7 +398,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      Add/Edit Users
+                      Restrict login with another IP address
                     </span>
                     <ReactSwitch
                       checked={addEditUsers}
@@ -416,7 +414,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      View Users
+                      Location & Services Manage
                     </span>
                     <ReactSwitch
                       checked={viewUsers}
@@ -430,7 +428,7 @@ const Profile: React.FC = () => {
                 <div className="col-span-1">
                   <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
                     <span className="text-[#546E7F] text-[14px]">
-                      Add/Edit Users
+                      Get alerts of failed login
                     </span>
                     <ReactSwitch
                       checked={addEditUsers}
@@ -475,4 +473,3 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
-

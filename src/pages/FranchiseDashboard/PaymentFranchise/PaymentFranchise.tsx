@@ -308,14 +308,14 @@ const PaymentFranchise: React.FC = () => {
               </Pie>
             </PieChart>
             <p className="text-center absolute bottom-14 text-[12px] font-normal">
-              Revived
+              Remaining
             </p>
           </div>
 
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-10  ">
               <p className="text-[14px] font-normal w-[100%] ">
-                Cancelled Amount
+                Canceled
               </p>
             </div>
             <PieChart width={250} height={300}>
@@ -362,7 +362,7 @@ const PaymentFranchise: React.FC = () => {
               </Pie>
             </PieChart>
             <p className="text-center absolute bottom-14 text-[12px] font-normal">
-              Revived
+              Closes
             </p>
           </div>
 

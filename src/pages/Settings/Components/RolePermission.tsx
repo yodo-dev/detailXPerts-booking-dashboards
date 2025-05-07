@@ -175,11 +175,13 @@ function RolePermission() {
       {/* Franchise Management */}
       <div>
         <h2 className="!font-semibold !text-[18px] !text-[#252525] mb-4">
-          Franchise Manaement
+          Franchise Management
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">View Wallet</span>
+            <span className="text-[#546E7F] text-[14px]">
+              add/edit Franchise
+            </span>
             <ReactSwitch
               checked={viewWallet}
               onChange={setViewWallet}
@@ -188,7 +190,9 @@ function RolePermission() {
             />
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">Manage Payouts</span>
+            <span className="text-[#546E7F] text-[14px]">
+              White Label Settings
+            </span>
             <ReactSwitch
               checked={managePayouts}
               onChange={setManagePayouts}
@@ -198,7 +202,7 @@ function RolePermission() {
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
             <span className="text-[#546E7F] text-[14px]">
-              Refund Management
+              Assign Franchise Owner
             </span>
             <ReactSwitch
               checked={refundManagement}
@@ -217,7 +221,7 @@ function RolePermission() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">View Wallet</span>
+            <span className="text-[#546E7F] text-[14px]">In-app chat</span>
             <ReactSwitch
               checked={viewWallet}
               onChange={setViewWallet}
@@ -226,7 +230,9 @@ function RolePermission() {
             />
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">Manage Payouts</span>
+            <span className="text-[#546E7F] text-[14px]">
+              Push Notifications
+            </span>
             <ReactSwitch
               checked={managePayouts}
               onChange={setManagePayouts}
@@ -236,7 +242,7 @@ function RolePermission() {
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
             <span className="text-[#546E7F] text-[14px]">
-              Refund Management
+              View Rating & Reviews
             </span>
             <ReactSwitch
               checked={refundManagement}
@@ -255,7 +261,9 @@ function RolePermission() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">View Wallet</span>
+            <span className="text-[#546E7F] text-[14px]">
+              View Service Reports
+            </span>
             <ReactSwitch
               checked={viewWallet}
               onChange={setViewWallet}
@@ -264,7 +272,7 @@ function RolePermission() {
             />
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">Manage Payouts</span>
+            <span className="text-[#546E7F] text-[14px]">Revenue Insights</span>
             <ReactSwitch
               checked={managePayouts}
               onChange={setManagePayouts}
@@ -274,7 +282,7 @@ function RolePermission() {
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
             <span className="text-[#546E7F] text-[14px]">
-              Refund Management
+              Detailers Performance
             </span>
             <ReactSwitch
               checked={refundManagement}
