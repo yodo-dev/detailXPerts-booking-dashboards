@@ -5,6 +5,10 @@ import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
+import SubTasks from "@components/SubTasks/SubTasks";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { PrimaryButton } from "@components/Buttons/CommonButtons";
 
 const CustomersManagement: React.FC = () => {
   const rows = [
@@ -79,6 +83,7 @@ const CustomersManagement: React.FC = () => {
       status: "Canceled",
     },
   ];
+  const [showSubTask, setShowSubTask] = useState(false);
 
   const tableData = [
     { key: "id", label: "ID" },
@@ -90,6 +95,7 @@ const CustomersManagement: React.FC = () => {
     { key: "action", label: "Action" },
   ];
   const [showModal, setShowModal] = useState(false);
+  // const [showSubTask, setShowSubTask] = useState(false);
 
   return (
     <MainLayout>
@@ -106,18 +112,49 @@ const CustomersManagement: React.FC = () => {
 
         <Table
           id={true}
-          customer={true}
+          customer={false}
+          AdminBookingfranchise={true}
           bookingth={true}
-          lastBookingth={true}
+          // lastBookingth={true}
           spendingth={true}
           // statusTh={true}
+          rate={true}
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}
           view={"/customers-franchise"}
+          setShowSubTask={setShowSubTask }
         />
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
+
+        {/* <SubTasks /> */}
+
+        <div
+          className={`fixed top-0 right-0 h-full w-full max-w-[800px] rounded-[40px] bg-white z-50 shadow-lg transition-transform duration-500 ${
+            showSubTask ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={1}
+            allowTouchMove={false}
+            initialSlide={0}
+          >
+            <SwiperSlide>
+              <div className="relative  h-full">
+                {/* Close Button */}
+
+                {/* SubTasks Content */}
+                <SubTasks setShowSubTask={setShowSubTask} />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+     
+
+        {/* <SubTasks /> */}
       </div>
     </MainLayout>
   );

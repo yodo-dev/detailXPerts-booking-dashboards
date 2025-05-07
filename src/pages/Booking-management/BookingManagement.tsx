@@ -29,7 +29,10 @@ const BookingManagement: React.FC = () => {
 
         <Table
           Bookingfranchise={true}
+          // AdminBookingfranchise={true}
           detailer={true}
+          AdminDet2={true}
+
           customer={true}
           dateTab={true}
           serviceTh={true}

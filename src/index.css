@@ -172,6 +172,12 @@ h5{
   width: 100%;
 }
 
+.remove-select-icon{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   appearance: none;
+}
+
 /* Input */
 
 .custom-input {
@@ -224,4 +230,36 @@ input[type="time"]::-webkit-inner-spin-button,
 input[type="time"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+/*  */
+
+.without_ampm::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+input[type=time]::-webkit-clear-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance:none;
+  appearance: none;
+  margin: -10px; 
+}
+
+
+
+/* SWIPER  */
+
+/* or Tailwind: fixed inset-0 z-50 bg-white shadow-lg transition-all */
+.subtask-slider {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  z-index: 50;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 }

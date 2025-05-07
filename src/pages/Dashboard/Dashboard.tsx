@@ -171,27 +171,34 @@ const Dashboard: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 sm:grid-cols-1">
+            <div
+              className={`grid ${
+                role == 1 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+              }  gap-4 md:grid-cols-2 sm:grid-cols-1`}
+            >
               <OverviewCard
                 index={0}
                 img={cardImg1}
-                title="Monthly Revenue"
+                // title="Monthly Revenue"
+                title={role == 0 ? "Total Sales" : "Monthly Revenue"}
+
                 averageIncrese="+8%"
                 averageTitle="from last month"
                 monthlyRevenue="$1k"
               />
-              {/* <OverviewCard
+              <OverviewCard
                 index={1}
                 img={orderIcon}
-                title="All Franchises"
+                title={role == 1 ? "Our Franchises" : "Total Booking "}
                 averageIncrese="+3"
                 averageTitle="from last month"
                 monthlyRevenue="300"
-              /> */}
+              />
               <OverviewCard
                 index={2}
                 img={userStart}
-                title="Total Customers"
+                title={role == 1 ? "Total Customers" : "Active Detailers "}
+
                 averageIncrese="+8.2%"
                 averageTitle="from last month"
                 monthlyRevenue="25"
@@ -199,7 +206,7 @@ const Dashboard: React.FC = () => {
               <OverviewCard
                 index={3}
                 img={friendReqs}
-                title="Total Detailers"
+                title={role == 1 ? "Total Detailers" : "New Customers "}
                 averageIncrese="+8"
                 averageTitle="from last month"
                 monthlyRevenue="8"
@@ -250,7 +257,9 @@ const Dashboard: React.FC = () => {
             <div className="ranking_franchise common_section_bg  py-6 px-6 ps-0 overflow-x-auto w-full ">
               <div className="flex justify-between items-center">
                 <p className="text-[20px] px-6 text-[#252525] !font-semibold">
-                  {role==1 ? "Ranking Franchises " : "Ranking of most booked service"}
+                  {role == 1
+                    ? "Ranking Franchises "
+                    : "Ranking of most booked service"}
                 </p>
                 <p className="text-[#003CA6] text-[18px] !font-semibold underline pe-0 lg:pe-7">
                   View all

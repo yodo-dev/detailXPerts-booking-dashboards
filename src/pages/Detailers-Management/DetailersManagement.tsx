@@ -5,6 +5,10 @@ import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
+import SubTasks from "@components/SubTasks/SubTasks";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { PrimaryButton } from "@components/Buttons/CommonButtons";
 
 const DetailersManagement: React.FC = () => {
   const rows = [
@@ -80,13 +84,15 @@ const DetailersManagement: React.FC = () => {
     },
   ];
 
+  const [showSubTask, setShowSubTask] = useState(false);
+
   const tableData = [
     { key: "id", label: "ID" },
     { key: "detailers", label: "Detailers" },
     { key: "franchise", label: "Franchise" },
-    { key: "jobs_completed", label: "Jobs Completed" },
-    { key: "joined_date", label: "Joined Date" },
     { key: "earning", label: "Earning" },
+    { key: "joined_date", label: "Joined Date" },
+    { key: "jobs_completed", label: "Jobs Completed" },
     { key: "permissions", label: "Permissions" },
 
     // { key: "status", label: "Status" },
@@ -109,7 +115,8 @@ const DetailersManagement: React.FC = () => {
         </div>
         <Table
           id={true}
-          detailer={true}
+          detailer={false}
+          // adminDetailer={true}
           // franchise={true}
           joinedTh={true}
           jobCompleteTh={true}
@@ -119,9 +126,39 @@ const DetailersManagement: React.FC = () => {
           action={true}
           setShowModal={setShowModal}
           permissions={true}
-          Bookingfranchise={true}
+          Bookingfranchise={false}
+          AdminBookingfranchise={true}
+          setShowSubTask={setShowSubTask}
         />
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
+
+        {/* <SubTasks /> */}
+
+        <div
+          className={`fixed top-0 right-0 h-full w-full max-w-[800px] rounded-[40px] bg-white z-50 shadow-lg transition-transform duration-500 ${
+            showSubTask ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={1}
+            allowTouchMove={false}
+            initialSlide={0}
+          >
+            <SwiperSlide>
+              <div className="relative  h-full">
+                {/* Close Button */}
+
+                {/* SubTasks Content */}
+                <SubTasks setShowSubTask={setShowSubTask} />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+    
+
+        {/* <SubTasks /> */}
       </div>
     </MainLayout>
   );

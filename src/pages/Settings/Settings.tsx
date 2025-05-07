@@ -24,7 +24,7 @@ import Notification from "./Components/Notification";
 import Roles from "./Components/Roles";
 import Legal from "./Components/Legal";
 import Integrations from "./Components/Integrations";
-import LogoutIcon from "@assets/svgs/logout.svg"
+import LogoutIcon from "@assets/svgs/logout.svg";
 
 const Settings: React.FC = () => {
   const [tabs, setTabs] = useState(0);
@@ -150,7 +150,7 @@ const Settings: React.FC = () => {
                 handleTabChange={handleTabChange}
               />
 
-                <SidebarButton
+              <SidebarButton
                 label="Logout"
                 index={7}
                 tab="logout"
@@ -159,6 +159,7 @@ const Settings: React.FC = () => {
                 activeTab={tabs}
                 handleTabChange={handleTabChange}
                 textColorRed={true}
+                disabled={true}
               />
             </div>
           </div>
@@ -186,7 +187,8 @@ const SidebarButton = ({
   iconInactive,
   activeTab,
   handleTabChange,
-  textColorRed
+  textColorRed,
+  disabled = false,
 }: {
   label: string;
   index: number;
@@ -194,11 +196,12 @@ const SidebarButton = ({
   iconActive: string;
   iconInactive: string;
   activeTab: number;
-  textColoRed: boolean
+  textColoRed: boolean;
   handleTabChange: (index: number, tab: any) => void;
 }) => (
   <button
     onClick={() => handleTabChange(index, tab)}
+    disabled={disabled}
     className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-[16px] px-5 py-[16px] me-2 mb-2 w-full focus:outline-none ${
       activeTab === index ? "bg-[#003CA6] text-white" : "text-black"
     } ${textColorRed ? "text-red-500" : ""} `}

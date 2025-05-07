@@ -244,11 +244,12 @@ const ReportsFranchise: React.FC = () => {
             <h2 className="!text-[30px] !font-bold mb-4">$10K</h2>
 
             {/* Circle Progress — Simulated (use a library for real circle) */}
-            <div className="relative w-[120px] h-[120px] mb-4">
+            <div className="relative w-[160px] h-[160px] mb-4">
               <div className="absolute inset-0 rounded-full border-[10px] border-green-400 border-t-transparent animate-spin-slow"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                 <span className="text-2xl font-bold">80%</span>
-                {/* <span className="text-xs text-gray-500">Increased income</span> */}
+
+                <span className="text-[10px] text-gray-500">Increased income</span>
               </div>
             </div>
           </div>

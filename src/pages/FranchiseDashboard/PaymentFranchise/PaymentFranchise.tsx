@@ -205,7 +205,7 @@ const PaymentFranchise: React.FC = () => {
 
         <div className="grid grid-cols-4 gap-[30px]">
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
-            <div className=" absolute top-20  ">
+            <div className=" absolute top-10  ">
               <p className="text-[14px] font-normal w-[100%] ">
                 Payment Received
               </p>
@@ -259,9 +259,9 @@ const PaymentFranchise: React.FC = () => {
           </div>
 
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
-            <div className=" absolute top-20  ">
+            <div className=" absolute top-10  ">
               <p className="text-[14px] font-normal w-[100%] ">
-                Payment Received
+                Payment Inprocess
               </p>
             </div>
             <PieChart width={250} height={300}>
@@ -313,9 +313,9 @@ const PaymentFranchise: React.FC = () => {
           </div>
 
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
-            <div className=" absolute top-20  ">
+            <div className=" absolute top-10  ">
               <p className="text-[14px] font-normal w-[100%] ">
-                Payment Received
+                Cancelled Amount
               </p>
             </div>
             <PieChart width={250} height={300}>
@@ -367,9 +367,9 @@ const PaymentFranchise: React.FC = () => {
           </div>
 
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
-            <div className=" absolute top-20  ">
+            <div className=" absolute top-10  ">
               <p className="text-[14px] font-normal w-[100%] ">
-                Payment Received
+                Booking Closes
               </p>
             </div>
             <PieChart width={250} height={300}>

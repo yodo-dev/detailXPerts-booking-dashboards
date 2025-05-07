@@ -104,17 +104,17 @@ const DetailerFranchise: React.FC = () => {
         </div>
 
         <Table
-          id={true}
+          id={false}
           customer={true}
           bookingth={true}
           lastBookingth={true}
           spendingth={true}
           earningTh={true}
-          statusTh={true}
+          ratingTd={true}
+          // statusTh={false}
           tableData={tableData}
           action={true}
           setShowModal={setShowModal}
-          view={"/customers-franchise"}
         />
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}

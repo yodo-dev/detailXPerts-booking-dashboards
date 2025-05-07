@@ -1,4 +1,6 @@
 import MainLayout from "@layouts/MainLayout";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import React, { useState } from "react";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
@@ -6,6 +8,7 @@ import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import AddFranchise from "./Components/AddFranchise";
+import SubTasks from "@components/SubTasks/SubTasks";
 
 const FrenchiseManagement: React.FC = () => {
   const rows = [
@@ -87,6 +90,7 @@ const FrenchiseManagement: React.FC = () => {
   ];
 
   const [showModal, setShowModal] = useState(false);
+  const [showSubTask, setShowSubTask] = useState(false);
 
   const th = [
     { key: "id", label: "ID" },
@@ -132,6 +136,8 @@ const FrenchiseManagement: React.FC = () => {
   //     }))
   //   : [];
 
+  console.log("gggggggg", showSubTask);
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
@@ -158,7 +164,7 @@ const FrenchiseManagement: React.FC = () => {
         {/* <Table  /> */}
         <Table
           id={true}
-          franchise={true}
+          franchise={false}
           locationTh={true}
           statusTh={false}
           locationTh={true}
@@ -170,6 +176,8 @@ const FrenchiseManagement: React.FC = () => {
           setShowModal={setShowModal}
           // data={storeData}
           permissions={true}
+          setShowSubTask={setShowSubTask}
+          Adminfranchise={true}
         />
 
         {showModal ? (
@@ -177,6 +185,32 @@ const FrenchiseManagement: React.FC = () => {
         ) : (
           ""
         )}
+
+        {/* <SubTasks /> */}
+
+        <div
+          className={`fixed top-0 right-0 h-full w-full max-w-[800px] rounded-[40px] bg-white z-50 shadow-lg transition-transform duration-500 ${
+            showSubTask ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={1}
+            allowTouchMove={false}
+            initialSlide={0}
+          >
+            <SwiperSlide>
+              <div className="relative  h-full">
+                {/* Close Button */}
+
+                {/* SubTasks Content */}
+                <SubTasks setShowSubTask={setShowSubTask} />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+        {/* <SubTasks /> */}
       </div>
     </MainLayout>
   );

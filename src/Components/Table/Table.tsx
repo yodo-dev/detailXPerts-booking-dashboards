@@ -54,6 +54,14 @@ const Table: React.FC<TableProps> = ({
   view,
   ratingTd,
   permissions,
+  pagination = true,
+  setShowSubTask,
+  Adminfranchise,
+  adminDetailer,
+  AdminBookingfranchise,
+  JobBooking,
+  AdminDet2,
+  // AdminBookingfranchise,
   // data,
   // th,
 }) => {
@@ -120,7 +128,7 @@ const Table: React.FC<TableProps> = ({
                   </td>
                 )}
 
-                {Bookingfranchise && (
+                {/* {Bookingfranchise && (
                   <td className="px-3  py-[12px] text-gray-700">
                     <div className="flex gap-2 w-[190px]">
                       <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
@@ -132,11 +140,40 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div className="">
                         <div className="text-sm cursor-pointer">
-                          {/* {row.franchise} */}
-                          {/* {row.franchise} */}
                           <Link to={"/customers-franchise"}>
                             {row.franchise}
                           </Link>
+                        </div>
+                        <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                          <ReactSVG
+                            src={LocationIcon}
+                            className="w-[14px] h-[14px]"
+                          />{" "}
+                          9272 Westheimer...
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                )} */}
+
+                {AdminBookingfranchise && (
+                  <td className="px-3  py-[12px] text-gray-700">
+                    <div
+                      onClick={() => setShowSubTask(true)}
+                      className="flex gap-2 w-[190px]"
+                    >
+                      <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+                        <img
+                          src={row.detailer.avatar}
+                          alt={row.detailer.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      </div>
+                      <div className="">
+                        <div className="text-sm cursor-pointer">
+                          {/* {row.franchise} */}
+                          {/* {row.franchise} */}
+                          {row.franchise}
                         </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
@@ -153,6 +190,97 @@ const Table: React.FC<TableProps> = ({
                 {franchise && (
                   <td className="px-3  py-[12px] text-gray-700">
                     <div className="flex gap-2 w-[190px]">
+                      <div
+                        onClick={() => setShowSubTask(true)}
+                        className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full"
+                      >
+                        <img
+                          src={row.detailer.avatar}
+                          alt={row.detailer.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      </div>
+                      <div className="flex items-center">
+                        <div className="text-sm cursor-pointer">
+                          <Link
+                            to={"/customers-franchise"}
+                            onClick={() => setShowSubTask(true)}
+                          >
+                            {row.franchise}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                )}
+
+                {AdminDet2 && (
+                  <td className="px-3  py-[12px] text-gray-700">
+                    <div className="flex gap-2 w-[190px]">
+                      <div
+                        onClick={() => setShowSubTask(true)}
+                        className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full"
+                      >
+                        <img
+                          src={row.detailer.avatar}
+                          alt={row.detailer.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      </div>
+                      <div className="flex items-center">
+                        <div className="text-sm cursor-pointer">
+                          <Link
+                            to={"/detailers-profile"}
+                            onClick={() => setShowSubTask(true)}
+                          >
+                            {row.franchise}
+                            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                              <ReactSVG
+                                src={LocationIcon}
+                                className="w-[14px] h-[14px]"
+                              />{" "}
+                              9272 Westheimer...
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                )}
+
+                {AdminBookingfranchise && (
+                  <td className="px-3  py-[12px] text-gray-700">
+                    <div className="flex gap-2 w-[190px]">
+                      <div
+                        onClick={() => setShowSubTask(true)}
+                        className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full"
+                      >
+                        <img
+                          src={row.detailer.avatar}
+                          alt={row.detailer.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      </div>
+                      <div className="flex items-center">
+                        <div className="text-sm cursor-pointer">
+                          <Link
+                            to={"/customers-franchise"}
+                            onClick={() => setShowSubTask(true)}
+                          >
+                            {row.franchise}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                )}
+
+                {Adminfranchise && (
+                  <td className="px-3  py-[12px] text-gray-700">
+                    <div
+                      className="flex gap-2 w-[190px]"
+                      onClick={() => setShowSubTask(true)}
+                    >
                       <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
                         <img
                           src={row.detailer.avatar}
@@ -162,9 +290,7 @@ const Table: React.FC<TableProps> = ({
                       </div>
                       <div className="flex items-center">
                         <div className="text-sm cursor-pointer">
-                          <Link to={"/customers-franchise"}>
-                            {row.franchise}
-                          </Link>
+                          {row.franchise}
                         </div>
                       </div>
                     </div>
@@ -186,6 +312,35 @@ const Table: React.FC<TableProps> = ({
                           <Link to={"/customers-franchise"}>
                             {row.franchise}
                           </Link>
+                        </div>
+                        <div className="text-xs text-gray-400 flex gap-1 mt-1">
+                          <ReactSVG
+                            src={LocationIcon}
+                            className="w-[14px] h-[14px]"
+                          />{" "}
+                          9272 Westheimer...
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                )}
+
+                {adminDetailer && (
+                  <td className="px-3 py-[12px] text-gray-700">
+                    <div
+                      className="flex gap-2 w-[190px]"
+                      onClick={() => setShowSubTask(true)}
+                    >
+                      <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+                        <img
+                          src={row.detailer.avatar}
+                          alt={row.detailer.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      </div>
+                      <div>
+                        <div className="text-sm cursor-pointer">
+                          {row.franchise}
                         </div>
                         <div className="text-xs text-gray-400 flex gap-1 mt-1">
                           <ReactSVG
@@ -335,7 +490,7 @@ const Table: React.FC<TableProps> = ({
                         {isActive ? (
                           <>
                             <ReactSVG
-                              className="absolute z-9999 right-3 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                              className="absolute z-9 right-3 top-4 w-[11px] h-[8px] text-black pointer-events-none"
                               src={TcikIcon}
                             />
                             <p className="text-white absolute top-[14px] left-[5px] text-[9px]">
@@ -345,7 +500,7 @@ const Table: React.FC<TableProps> = ({
                         ) : (
                           <>
                             <ReactSVG
-                              className="absolute z-9999 left-4 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                              className="absolute z-9 left-4 top-4 w-[11px] h-[8px] text-black pointer-events-none"
                               src={CrossIcon}
                             />
                             <p className="text-[#ACA7AC] absolute top-[14px] right-[5px] text-[9px]">
@@ -580,22 +735,27 @@ const Table: React.FC<TableProps> = ({
           </tbody>
         </table>
       </div>
-
-      <div className="flex md:flex-row flex-col justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
-        <p className="md:mb-0 mb-5">Showing 5 of 20 entries</p>
-        <div className="space-x-2">
-          <button className="px-3 py-1 rounded-md cursor-pointer">Prev</button>
-          <button className="px-3 py-1 bg-[#003CA6] cursor-pointer text-white rounded-md">
-            1
-          </button>
-          <button className="px-3 py-1 cursor-pointer rounded-md">2</button>
-          <button className="px-3 py-1 cursor-pointer rounded-md">3</button>
-          <button className="px-3 py-1 cursor-pointer rounded-md">4</button>
-          <button className="px-3 py-1 cursor-pointer text-[#003CA6] rounded-md">
-            Next
-          </button>
+      {pagination ? (
+        <div className="flex md:flex-row flex-col justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
+          <p className="md:mb-0 mb-5">Showing 5 of 20 entries</p>
+          <div className="space-x-2">
+            <button className="px-3 py-1 rounded-md cursor-pointer">
+              Prev
+            </button>
+            <button className="px-3 py-1 bg-[#003CA6] cursor-pointer text-white rounded-md">
+              1
+            </button>
+            <button className="px-3 py-1 cursor-pointer rounded-md">2</button>
+            <button className="px-3 py-1 cursor-pointer rounded-md">3</button>
+            <button className="px-3 py-1 cursor-pointer rounded-md">4</button>
+            <button className="px-3 py-1 cursor-pointer text-[#003CA6] rounded-md">
+              Next
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

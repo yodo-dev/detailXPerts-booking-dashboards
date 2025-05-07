@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import MainLayout from "@layouts/MainLayout";
 import arrowDown from "../../../assets/svgs/arrow-down.svg";
 import { ReactSVG } from "react-svg";
+import AvatarPic from "../../../assets/svgs/Avatars.svg";
+import ArrowDown from "../../../assets/svgs/arrow-down.svg";
 import VehicleCard from "@components/CarCards/CarCards";
 import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
@@ -11,9 +13,10 @@ import userImg from "../../../assets/images/user-profile-img.png";
 import LocationIcon from "../../../assets/svgs/location.svg";
 import StartIcon from "../../../assets/svgs/Star 3.svg";
 import editIcon from "../../../assets/svgs/edit-2.svg";
-import { FiClock, FiEdit2 } from "react-icons/fi";
-import { PencilLine } from "lucide-react";
-import { PrimaryButton } from "@components/Buttons/CommonButtons";
+import mapImg from "../../../assets/images/map.png";
+
+import { AvailabilityCard } from "./Components/AvailabilityCard";
+import SelectField from "@components/SelectField/SelectField";
 
 const AddCustomerFranchise: React.FC = () => {
   const [fromTime, setFromTime] = useState("10:59:30");
@@ -52,6 +55,12 @@ const AddCustomerFranchise: React.FC = () => {
     timeRef2.current.showPicker();
   };
 
+  const dataArr = [
+    {
+      label: "Willington block",
+    },
+  ];
+
   return (
     <MainLayout>
       <div className="default_container px-[40px]">
@@ -79,10 +88,14 @@ const AddCustomerFranchise: React.FC = () => {
 
             <div>
               <div className="flex mb-[5px]">
-                <ReactSVG src={StartIcon} />
-                <span>4.5 (237)</span>
+                <div className="flex flex-col justify-start items-start">
+                  <div className="flex">
+                    <ReactSVG src={StartIcon} />
+                    <span>4.5 (237)</span>
+                  </div>
+                  <ReactSVG src={AvatarPic} />
+                </div>
               </div>
-              <p>Detailer</p>
             </div>
 
             <div>
@@ -132,71 +145,27 @@ const AddCustomerFranchise: React.FC = () => {
           {/* Top Person Card */}
 
           {/* Availability Card */}
-          <div className=" bg-white border-[1px] border-[#e6e6e6] p-[26px] rounded-2xl mb-5">
-            <div className=" flex justify-between items-center mb-[20px]">
-              <h4 className="text-black">Availability</h4>
-              {/* <ReactSVG
-                onClick={() => setUpdateTimer(!updateTimer)}
-                className="cursor-pointer text-white"
-                src={editIcon}
-              /> */}
-              <span
-                className={`${
-                  updateTimer
-                    ? "p-2"
-                    : "text-white bg-blue-500 p-2 rounded-full"
-                }`}
-              >
-                <PencilLine
-                  onClick={() => setUpdateTimer(!updateTimer)}
-                  className="cursor-pointer"
-                />
-              </span>
+          <AvailabilityCard />
+          {/* Availability Card */}
+
+          {/* Last------------- Card */}
+          <div className="  border-[1px] border-[#e6e6e6] p-[26px] rounded-2xl mb-5">
+            <div className=" flex  justify-between items-center mb-[20px]">
+              <h4 className="text-black">Service Area</h4>
+            </div>
+            <div className="w-full  ">
+              <SelectField
+                label="Select Service Area"
+                options={dataArr}
+                styleSelect="select-style w-full bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-3"
+                imageSrc={ArrowDown}
+              />
+
+              <img src={mapImg} alt="" className="mt-5 w-full" />
             </div>
             <div>
               {/* Time inputs */}
-              <div className="flex gap-4">
-                {/* From Time */}
 
-                <div className="w-full">
-                  <p>From</p>
-                  <div className="flex items-center gap-2 bg-gray-100 rounded-md px-4 py-2 w-full">
-                    <FiClock
-                      onClick={openTimePicker1}
-                      className="text-gray-500"
-                    />
-                    <input
-                      type="time"
-                      disabled={updateTimer ? true : false}
-                      value={fromTime}
-                      onChange={(e) => setFromTime(e.target.value)}
-                      className="bg-transparent outline-none w-full"
-                      ref={timeRef1}
-                    />
-                  </div>
-                </div>
-
-                {/* To Time */}
-                <div className="w-full">
-                  <p>To</p>
-                  <div className="flex items-center gap-2 bg-gray-100 rounded-md w-full">
-                    <div className="flex  items-center gap-2 bg-gray-100 rounded-md px-4 py-2 w-full">
-                      <FiClock
-                        onClick={openTimePicker2}
-                        className="text-gray-500"
-                      />
-                      <input
-                        type="time"
-                        value={toTime}
-                        disabled={updateTimer ? true : false}
-                        onChange={(e) => setToTime(e.target.value)}
-                        className="bg-transparent outline-none w-full"
-                        ref={timeRef2}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className=" flex justify-end">
                 {/* <PrimaryButton  !w-fit" btnText="Update" /> */}
               </div>
