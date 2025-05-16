@@ -152,7 +152,7 @@ const Table: React.FC<TableProps> = ({
                         {/* <p className="checkbox__textwrapper">Checkbox</p> */}
                       </label>
                     </div>}
-                    <td className="py-[12px] font-medium text-gray-700">
+                    <td className="py-[12px] px-2 font-medium text-gray-700">
                       {row.id}
                     </td>
                   </div>

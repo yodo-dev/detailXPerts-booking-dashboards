@@ -431,7 +431,7 @@ const DetailerProfile: React.FC = () => {
                 </div>
 
                 {/* Franchise Management */}
-                <div>
+                <div className="mt-4">
                   <h2 className="!font-semibold !text-[18px] !text-[#252525] mb-4">
                     Franchise Manaement
                   </h2>
@@ -473,7 +473,7 @@ const DetailerProfile: React.FC = () => {
                 </div>
 
                 {/* Communication Tools */}
-                <div>
+                <div className="mt-4">
                   <h2 className="!font-semibold !text-[18px] !text-[#252525] mb-4">
                     Communication Tools
                   </h2>

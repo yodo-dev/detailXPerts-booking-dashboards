@@ -12,7 +12,7 @@ import "./DashboardHeader.css";
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [role, setRole] = useState(1);
+  const [role, setRole] = useState(2);
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },

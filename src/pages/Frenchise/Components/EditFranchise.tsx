@@ -7,25 +7,33 @@ import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import uploadServer from "../../../assets/svgs/uploadServer.svg";
 import userIcon from "../../../assets/svgs/userIcon.svg";
 import CommonInput from "../../Login/Components/CommonInput";
-import { apiPost } from "../../../Auth/Auth";
+import { apiGet, apiPost } from "../../../Auth/Auth";
 
-const AddFranchise = ({ setShowModal, title, getFranchise }) => {
+const EditFranchise = ({
+  setShowModal,
+  title,
+  getFranchise,
+  setShowEditModal,
+  showEditId,
+}) => {
   const [loading, setLoading] = useState(true);
+  const [singleFranchises, setSingleFranchises] = useState({});
 
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const token = localStorage.getItem("token");
 
-  const createFranchise = async (data) => {
+  const EditFranchise = async (data) => {
     console.log("Data", data);
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
 
       // const formData = new FormData();
 
@@ -63,7 +71,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
         setLoading(false);
         getFranchise();
         // getUsers();
-        setShowModal(false);
+        setShowEditModal(false);
         // toast.success("User Create Successfully!");
       }
     } catch (error) {
@@ -71,26 +79,50 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
     }
   };
 
+  const getSingleFranchise = async () => {
+    setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setLoading(false);
+        setSingleFranchises(response.payload);
+        setValue("first_name", response.payload.first_name);
+        setValue("last_name", response.payload.last_name);
+        setValue("email", response.payload.email);
+        setValue("business_name", response.payload.first_name);
+        setValue("business_address", response.payload.country);
+        setValue("business_phone", response.payload.number);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
   useEffect(() => {
     // createFranchise()
-  }, []);
+    getSingleFranchise();
+  }, [showEditId]);
 
   return (
     <div className="fixed  inset-0 bg-[#363636CC] flex items-center justify-center z-50">
       <div className="bg-white overflow-y-scroll rounded-xl w-[500px] h-[95vh] p-6 shadow-lg">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="!text-[18px] !font-bold ">Add Franchise</h2>
+          <h2 className="!text-[18px] !font-bold ">Edit Franchise</h2>
           <button
             //   onClick={() => setIsModalOpen(false)}
             className="text-gray-500 hover:text-black text-4xl cursor-pointer"
-            onClick={() => setShowModal(false)}
+            onClick={() => setShowEditModal(false)}
           >
             &times;
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(createFranchise)} className="space-y-4">
+        <form onSubmit={handleSubmit(EditFranchise)} className="space-y-4">
           {/* <div className="flex justify-between">
             <ReactSVG src={userIcon} />
             <div className="flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]">
@@ -257,4 +289,4 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
   );
 };
 
-export default AddFranchise;
+export default EditFranchise;

@@ -10,8 +10,8 @@ import AddDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/Ad
 
 import FeedSupport from "@pages/Feed-Support/FeedSupport";
 import FrenchiseManagement from "@pages/Frenchise/Frenchise";
-// import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
-import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
+import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
+// import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
 
 import Notifications from "@pages/Notification/Notifications";
 import AdminProfile from "@pages/AdminProfile/AdminProfile";
@@ -38,16 +38,16 @@ const PrivateRoutes = [
   // { path: "/customers-management", element: <CustomerFranchise /> },
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
 
-  // { path: "/payment-management", element: <PaymentManagement /> },
-  { path: "/payment-management", element: <PaymentManagementFranchise /> },
+  { path: "/payment-management", element: <PaymentManagement /> },
+  // { path: "/payment-management", element: <PaymentManagementFranchise /> },
 
   { path: "/feedback-support", element: <FeedSupport /> },
   { path: "/notifications", element: <Notifications /> },
-  // { path: "/profile", element: <AdminProfile /> },
-  { path: "/profile", element: <ProfileFranchise /> },
+  { path: "/profile", element: <AdminProfile /> },
+  // { path: "/profile", element: <ProfileFranchise /> },
 
-  { path: "/settings", element: <Settings /> },
-  // { path: "/settings", element: <FrenchiseSettings /> },
+  // { path: "/settings", element: <Settings /> },
+  { path: "/settings", element: <FrenchiseSettings /> },
 
   { path: "/reports", element: <ReportsFranchise /> },
   { path: "/detailers-profile", element: <DetailersProfile /> },

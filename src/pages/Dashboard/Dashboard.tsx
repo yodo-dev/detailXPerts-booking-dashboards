@@ -2,7 +2,7 @@ import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import CommonInput from "@components/inputs/CommonInput";
 import MainLayout from "@layouts/MainLayout";
 import exportIcon from "@assets/svgs/export-icon.svg";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import OverviewCard from "@components/Cards/Quick-overview-cards/OverviewCard";
 import cardImg1 from "@assets/svgs/coverview-card1-img.svg";
 import Linechart from "@components/Charts/Linechart";
@@ -140,12 +140,15 @@ const Dashboard: React.FC = () => {
     },
   ];
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+  const username = userInfo?.user?.first_name || "";
+
   return (
     <MainLayout>
       <div className="default_container">
         <div className="w-full md:flex-row flex-col flex md:items-center  justify-between mb-7 md:w-full">
           <h2 className="mb-4 !text-[20px] md:!text-[32px]">
-            Welcome back. Jane! 👋
+            Welcome back. {username}! 👋
           </h2>
 
           <div className="md:w-[366px]">
@@ -173,7 +176,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div
               className={`grid ${
-                role == 1 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+                role == 1 ? "lg:grid-cols-4" : "lg:grid-cols-4"
               }  gap-4 md:grid-cols-2 sm:grid-cols-1`}
             >
               <OverviewCard
@@ -181,7 +184,6 @@ const Dashboard: React.FC = () => {
                 img={cardImg1}
                 // title="Monthly Revenue"
                 title={role == 0 ? "Total Sales" : "Monthly Revenue"}
-
                 averageIncrese="+8%"
                 averageTitle="from last month"
                 monthlyRevenue="$1k"
@@ -198,7 +200,6 @@ const Dashboard: React.FC = () => {
                 index={2}
                 img={userStart}
                 title={role == 1 ? "Total Customers" : "Active Detailers "}
-
                 averageIncrese="+8.2%"
                 averageTitle="from last month"
                 monthlyRevenue="25"

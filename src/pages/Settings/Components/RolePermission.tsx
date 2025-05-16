@@ -301,7 +301,7 @@ function RolePermission() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">View Wallet</span>
+            <span className="text-[#546E7F] text-[14px]">Manage App Branding</span>
             <ReactSwitch
               checked={viewWallet}
               onChange={setViewWallet}
@@ -310,7 +310,7 @@ function RolePermission() {
             />
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
-            <span className="text-[#546E7F] text-[14px]">Manage Payouts</span>
+            <span className="text-[#546E7F] text-[14px]">Update Policies</span>
             <ReactSwitch
               checked={managePayouts}
               onChange={setManagePayouts}
@@ -320,7 +320,7 @@ function RolePermission() {
           </div>
           <div className="flex justify-between items-center bg-[#F7F8FC] p-3 rounded-[5px] ">
             <span className="text-[#546E7F] text-[14px]">
-              Refund Management
+              Configure Notifications
             </span>
             <ReactSwitch
               checked={refundManagement}

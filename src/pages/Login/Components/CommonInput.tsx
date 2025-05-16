@@ -6,6 +6,11 @@ const CommonInput: React.FC<CommonInputsProps> = ({
   showImg,
   inputClass,
   placeholder,
+  register,
+  registerName,
+  requiredText,
+  validation,
+  defaultValidation = "Required",
 }) => {
   return (
     // max-w-[366px]
@@ -20,10 +25,21 @@ const CommonInput: React.FC<CommonInputsProps> = ({
       <input
         type="text"
         placeholder={placeholder}
+        // {...register("password")}
+        // {...(register && registerName ? register(registerName) : {})}
+        {...(register && registerName
+          ? register(registerName, validation || defaultValidation)
+          : {})}
         className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${
           showImg ? "pl-10" : "pl-3"
         } pr-3 ${inputClass} text-[14px]`}
       />
+
+      {/* {errors?.[registerName] && (
+        <p className="text-sm text-red-500 mt-1">
+          {error[registerName]?.message as string}
+        </p>
+      )} */}
     </div>
   );
 };
