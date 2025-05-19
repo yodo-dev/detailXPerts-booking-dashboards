@@ -245,7 +245,7 @@ const BookingManagement: React.FC = () => {
   ];
 
   const getBookings = async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/booking`;
 
@@ -261,7 +261,6 @@ const BookingManagement: React.FC = () => {
     }
   };
 
-  console.log("boooking", bookings);
 
   useEffect(() => {
     getBookings();

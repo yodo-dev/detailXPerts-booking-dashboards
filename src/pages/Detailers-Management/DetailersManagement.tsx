@@ -1,105 +1,261 @@
 import MainLayout from "@layouts/MainLayout";
-import React, { useState } from "react";
-import Chevron from "../../assets/svgs/chevron.svg";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactSVG } from "react-svg";
+import dayjs from "dayjs";
+
 import CommonInput from "@components/inputs/CommonInput";
-import Table from "@components/Table/Table";
 import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
 import SubTasks from "@components/SubTasks/SubTasks";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
+import DataTable from "react-data-table-component";
+import { apiDelete, apiGet } from "../../Auth/Auth";
+import { customStyles } from "@components/CustomStylesTable";
+import Logo from "@assets/svgs/logo1.svg";
+import ActionDropdown from "@components/ActionDropdown";
+import DotsIcon from "@assets/svgs/dots-vertical.svg";
+import { useForm } from "react-hook-form";
+import SkeltonLoader from "@components/SkeltonLoader";
+import EditDetailers from "./Components/EditDetailers";
+import { ModalDelete } from "@components/Modal";
 
 const DetailersManagement: React.FC = () => {
-  const rows = [
-    {
-      id: "001",
-      franchise: "Vaclucia Motors",
-      detailer: {
-        name: "Ahmad Septiwan",
-        avatar: "https://i.pravatar.cc/40?img=1",
-      },
-      customer: "Kaiya Botar",
-      date: "04-05-2025",
-      service: "Car Wash",
-      vehicle: "Phoenix",
-      earning: "$0.00",
-      status: "Completed",
-    },
-    {
-      id: "002",
-      franchise: "DreamDrive Automobiles",
-      detailer: {
-        name: "Erin Vetrov",
-        avatar: "https://i.pravatar.cc/40?img=2",
-      },
-      customer: "Alfredo Soris",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Cobra",
-      earning: "$0.00",
-      status: "In Progress",
-    },
-    {
-      id: "003",
-      franchise: "Healthride Vehicles",
-      detailer: {
-        name: "Giancu Batrom Bachman",
-        avatar: "https://i.pravatar.cc/40?img=3",
-      },
-      customer: "Lincoln Gusae",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Raptor",
-      earning: "$0.00",
-      status: "In Progress",
-    },
-    {
-      id: "004",
-      franchise: "Biwered Motors",
-      detailer: {
-        name: "Alfredo Rihidl Madsson",
-        avatar: "https://i.pravatar.cc/40?img=4",
-      },
-      customer: "Aspen Schieffer",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Vortex",
-      earning: "$20.00",
-      status: "Completed",
-    },
-    {
-      id: "005",
-      franchise: "Fantasy Auto Group",
-      detailer: {
-        name: "Tachiona Curtis",
-        avatar: "https://i.pravatar.cc/40?img=5",
-      },
-      customer: "Alfredo Philips",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Stingray",
-      earning: "$0.00",
-      status: "Canceled",
-    },
-  ];
-
   const [showSubTask, setShowSubTask] = useState(false);
+  const [franchises, setFranchises] = useState([]);
+  const [openDropdown, setOpenDropdown] = React.useState(null);
+  const dropdownRef = useRef(null);
+  const [singleFranchises, setSingleFranchises] = useState({});
+  const { setValue } = useForm();
+  const [showModal, setShowModal] = useState(false);
+  const [showEditId, setShowEditId] = useState();
+  const [loading, setLoading] = useState(true);
+  const [showEditModal, setShowEditModal] = useState(false);
 
-  const tableData = [
-    { key: "id", label: "ID" },
-    { key: "detailers", label: "Detailers" },
-    { key: "franchise", label: "Franchise" },
-    { key: "earning", label: "Earning" },
-    { key: "joined_date", label: "Joined Date" },
-    { key: "jobs_completed", label: "Jobs Completed" },
-    { key: "permissions", label: "Permissions" },
+  const columns = [
+    {
+      name: "ID",
+      maxWidth: "100px !important",
+      selector: (row) => row.id,
+      cell: (row) => <span>{row.id}</span>,
+    },
 
-    // { key: "status", label: "Status" },
-    { key: "action", label: "Action" },
+    {
+      name: "Detailers",
+      selector: (row) => row.first_name,
+      minWidth: "230px",
+      cell: (row) => (
+        <div className="flex gap-2 w-[190px]">
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div
+              className="text-sm cursor-pointer"
+              // onClick={() => setShowSubTask({ setShowSubTask })}
+              onClick={() => {
+                setShowSubTask(true);
+                setShowEditId(row?.id);
+              }}
+            >
+              {/* {row.franchise} */}
+              {row.first_name} {row.last_name}
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
+              <span>user@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Franchise",
+      selector: (row) => row.first_name,
+      minWidth: "230px",
+      cell: (row) => (
+        <div
+          // onClick={() => setShowSubTask(true)}
+          className="flex gap-2 w-[190px]"
+        >
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="flex justify-center items-center">
+            <div className="text-sm cursor-pointer">
+              {/* {row.franchise} */}
+              {row.first_name} {row.last_name}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Joined Date",
+      minWidth: "150px",
+      selector: (row) => row.created_at,
+      cell: (row) => (
+        <span className="flex justify-center items-center gap-[12px] text-[12px]">
+          {/* {dayjs} */}
+          {dayjs(row.created_at).format("DD-MMMM-YYYY")}
+        </span>
+      ),
+    },
+
+    {
+      name: "Jobs Completed",
+      minWidth: "50px",
+      selector: (row) => row.service,
+      cell: (row) => <span>12</span>,
+    },
+
+    {
+      name: "Earning",
+      minWidth: "100px",
+      selector: (row) => row.service,
+      cell: (row) => <span>$0.0</span>,
+    },
+
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      minWidth: "130px",
+      cell: (row) => (
+        <span
+          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
+            row.status === "ACTIVE"
+              ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
+              : row.status === "INACTIVE"
+              ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
+              : row.status === "Canceled"
+              ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
+              : "bg-[#F1F3FB] text-gray-600"
+          }`}
+        >
+          {row.status}
+        </span>
+      ),
+    },
+
+    {
+      name: "Action",
+      selector: (row) => row.action,
+      minWidth: "10px",
+      cell: (row) => (
+        <div>
+          <span
+            onClick={() => {
+              setOpenDropdown(openDropdown === row.id ? null : row.id);
+            }}
+            className="cursor-pointer bg-red-500"
+          >
+            <ReactSVG src={DotsIcon} />
+          </span>
+          <div ref={dropdownRef}>
+            <ActionDropdown
+              setOpenDropdown={setOpenDropdown}
+              openDropdown={openDropdown}
+              rowId={row.id}
+              setShowEditModal={setShowEditModal}
+              setShowEditId={setShowEditId}
+              showEditId={showEditId}
+              handleDelete={deleteFrenchise}
+            />
+          </div>
+        </div>
+      ),
+    },
   ];
 
-  const [showModal, setShowModal] = useState(false);
+  const token = localStorage.getItem("token");
+
+  const getDetailers = async () => {
+    setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/?role_id=3`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setFranchises(response.payload.records);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
+  const getSingleDetailer = async () => {
+    setSingleFranchises(null);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setSingleFranchises(response.payload);
+        setValue("first_name", response.payload.first_name);
+        setValue("last_name", response.payload.last_name);
+        setValue("email", response.payload.email);
+        setValue("business_name", response.payload.first_name);
+        setValue("business_address", response.payload.country);
+        setValue("business_phone", response.payload.number);
+      }
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  };
+
+  useEffect(() => {
+    getDetailers();
+  }, []);
+
+  useEffect(() => {
+    getSingleDetailer();
+  }, [showEditId]);
+
+  const customLoader = (
+    <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
+      {[...Array(1)].map((_, i) => (
+        <div key={i} className="mb-3 ">
+          <SkeltonLoader columns={[100, 100, 100, 100, 100, 100, 100]} />
+        </div>
+      ))}
+    </div>
+  );
+
+  const deleteFrenchise = async (id) => {
+    const isDeleteModal = await ModalDelete();
+    if (!isDeleteModal) {
+      return;
+    }
+    {
+      try {
+        const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${id}`;
+
+        const params = {};
+        const response = await apiDelete(url, params, token);
+        if (response.success) {
+          setLoading(false);
+          getDetailers();
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log("Error :", error);
+      }
+    }
+  };
 
   return (
     <MainLayout>
@@ -113,25 +269,32 @@ const DetailersManagement: React.FC = () => {
             />
           </div>
         </div>
-        <Table
-          id={true}
-          detailer={false}
-          showCheck
-          // adminDetailer={true}
-          // franchise={true}
-          joinedTh={true}
-          jobCompleteTh={true}
-          earningTh={true}
-          statusTh={false}
-          tableData={tableData}
-          action={true}
-          setShowModal={setShowModal}
-          permissions={true}
-          Bookingfranchise={false}
-          AdminBookingfranchise={true}
-          setShowSubTask={setShowSubTask}
+
+        <DataTable
+          columns={columns}
+          customStyles={customStyles}
+          data={franchises}
+          // sortIcon={<ReactSVG src={Chevron}/>}
+          // sortIcon={<ChevronDown className="ml-1 text-gray-500" />}
+          // defaultSortFieldId={1}
+          // defaultSortAsc={true}
+          progressPending={loading}
+          progressComponent={customLoader}
         />
+
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
+
+        {showEditModal ? (
+          <EditDetailers
+            setShowModal={setShowModal}
+            title={"Edit Franchise"}
+            getDetailers={getDetailers}
+            setShowEditModal={setShowEditModal}
+            showEditId={showEditId}
+          />
+        ) : (
+          ""
+        )}
 
         {/* <SubTasks /> */}
 
@@ -140,24 +303,11 @@ const DetailersManagement: React.FC = () => {
             showSubTask ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <Swiper
-            spaceBetween={0}
-            slidesPerView={1}
-            allowTouchMove={false}
-            initialSlide={0}
-          >
-            <SwiperSlide>
-              <div className="relative  h-full">
-                {/* Close Button */}
-
-                {/* SubTasks Content */}
-                <SubTasks setShowSubTask={setShowSubTask} />
-              </div>
-            </SwiperSlide>
-          </Swiper>
+          <SubTasks
+            singleData={singleFranchises}
+            setShowSubTask={setShowSubTask}
+          />
         </div>
-
-    
 
         {/* <SubTasks /> */}
       </div>

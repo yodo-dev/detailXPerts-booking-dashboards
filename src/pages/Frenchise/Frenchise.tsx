@@ -1,16 +1,12 @@
 import MainLayout from "@layouts/MainLayout";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import React, { useEffect, useRef, useState } from "react";
-import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
-import Table from "@components/Table/Table";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import AddFranchise from "./Components/AddFranchise";
 import SubTasks from "@components/SubTasks/SubTasks";
 import DataTable from "react-data-table-component";
-import { apiGet } from "../../Auth/Auth";
+import { apiDelete, apiGet } from "../../Auth/Auth";
 import SkeltonLoader from "@components/SkeltonLoader";
 import { customStyles } from "@components/CustomStylesTable";
 import Logo from "../../assets/svgs/logo1.svg";
@@ -18,85 +14,9 @@ import LocationIcon from "../../assets/svgs/location.svg";
 import DotsIcon from "@assets/svgs/dots-vertical.svg";
 import ActionDropdown from "@components/ActionDropdown";
 import EditFranchise from "./Components/EditFranchise";
+import { useForm } from "react-hook-form";
+import { ModalDelete } from "@components/Modal";
 const FrenchiseManagement: React.FC = () => {
-  const rows = [
-    {
-      id: "001",
-      franchise: "Vaclucia Motors",
-      detailer: {
-        name: "Ahmad Septiwan",
-        avatar: "https://i.pravatar.cc/40?img=1",
-      },
-      customer: "Kaiya Botar",
-      date: "04-05-2025",
-      service: "Car Wash",
-      vehicle: "Phoenix",
-      earning: "$0.00",
-      status: "Completed",
-      no_detailer: "9999",
-    },
-    {
-      id: "002",
-      franchise: "DreamDrive Automobiles",
-      detailer: {
-        name: "Erin Vetrov",
-        avatar: "https://i.pravatar.cc/40?img=2",
-      },
-      customer: "Alfredo Soris",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Cobra",
-      earning: "$0.00",
-      status: "In Progress",
-      no_detailer: "9999",
-    },
-    {
-      id: "003",
-      franchise: "Healthride Vehicles",
-      detailer: {
-        name: "Giancu Batrom Bachman",
-        avatar: "https://i.pravatar.cc/40?img=3",
-      },
-      customer: "Lincoln Gusae",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Raptor",
-      earning: "$0.00",
-      status: "In Progress",
-      no_detailer: "9999",
-    },
-    {
-      id: "004",
-      franchise: "Biwered Motors",
-      detailer: {
-        name: "Alfredo Rihidl Madsson",
-        avatar: "https://i.pravatar.cc/40?img=4",
-      },
-      customer: "Aspen Schieffer",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Vortex",
-      earning: "$20.00",
-      status: "Completed",
-      no_detailer: "9999",
-    },
-    {
-      id: "005",
-      franchise: "Fantasy Auto Group",
-      detailer: {
-        name: "Tachiona Curtis",
-        avatar: "https://i.pravatar.cc/40?img=5",
-      },
-      customer: "Alfredo Philips",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Stingray",
-      earning: "$0.00",
-      status: "Canceled",
-      no_detailer: "9999",
-    },
-  ];
-
   const columns = [
     {
       name: "ID",
@@ -122,7 +42,13 @@ const FrenchiseManagement: React.FC = () => {
             />
           </div>
           <div className="">
-            <div className="text-sm cursor-pointer">
+            <div
+              onClick={() => {
+                setShowSubTask(true);
+                setShowEditId(row.id);
+              }}
+              className="text-sm cursor-pointer"
+            >
               {/* {row.franchise} */}
               {row.first_name} {row.last_name}
             </div>
@@ -204,6 +130,7 @@ const FrenchiseManagement: React.FC = () => {
               setShowEditModal={setShowEditModal}
               setShowEditId={setShowEditId}
               showEditId={showEditId}
+              handleDelete={deleteFrenchise}
             />
           </div>
         </div>
@@ -218,17 +145,9 @@ const FrenchiseManagement: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [franchises, setFranchises] = useState([]);
   const [openDropdown, setOpenDropdown] = React.useState(null);
+  const [singleFranchises, setSingleFranchises] = useState({});
   const dropdownRef = useRef(null);
-
-  const th = [
-    { key: "id", label: "ID" },
-    { key: "franchise", label: "Franchise" },
-    { key: "location", label: "Location" },
-    { key: "no_detailer", label: "Number of Detailers" },
-    { key: "earning", label: "Earning" },
-    { key: "permissions", label: "Permissions" },
-    { key: "action", label: "Action" },
-  ];
+  const { setValue } = useForm();
 
   const token = localStorage.getItem("token");
 
@@ -277,6 +196,56 @@ const FrenchiseManagement: React.FC = () => {
     </div>
   );
 
+  const deleteFrenchise = async (id) => {
+    const isDeleteModal = await ModalDelete();
+    if (!isDeleteModal) {
+      return;
+    }
+    {
+      try {
+        const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${id}`;
+
+        const params = {};
+        const response = await apiDelete(url, params, token);
+        if (response.success) {
+          setLoading(false);
+          getFranchise();
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log("Error :", error);
+      }
+    }
+  };
+
+  const getSingleFranchise = async () => {
+    setSingleFranchises(null);
+    // setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        // setLoading(false);
+        setSingleFranchises(response.payload);
+        setValue("first_name", response.payload.first_name);
+        setValue("last_name", response.payload.last_name);
+        setValue("email", response.payload.email);
+        setValue("business_name", response.payload.first_name);
+        setValue("business_address", response.payload.country);
+        setValue("business_phone", response.payload.number);
+      }
+    } catch (error) {
+      // setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
+  useEffect(() => {
+    getSingleFranchise();
+  }, [showEditId]);
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
@@ -313,26 +282,6 @@ const FrenchiseManagement: React.FC = () => {
           progressComponent={customLoader}
         />
 
-        {/* <Table  /> */}
-        {/* <Table
-          id={true}
-          showCheck
-          franchise={false}
-          locationTh={true}
-          statusTh={false}
-          locationTh={true}
-          // payMethodth={true}
-          earningTh={true}
-          numberDetailsTh={true}
-          tableData={th}
-          action={true}
-          setShowModal={setShowModal}
-          // data={storeData}
-          permissions={true}
-          setShowSubTask={setShowSubTask}
-          Adminfranchise={true}
-        /> */}
-
         {showModal ? (
           <AddFranchise
             setShowModal={setShowModal}
@@ -362,21 +311,10 @@ const FrenchiseManagement: React.FC = () => {
             showSubTask ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <Swiper
-            spaceBetween={0}
-            slidesPerView={1}
-            allowTouchMove={false}
-            initialSlide={0}
-          >
-            <SwiperSlide>
-              <div className="relative  h-full">
-                {/* Close Button */}
-
-                {/* SubTasks Content */}
-                <SubTasks setShowSubTask={setShowSubTask} />
-              </div>
-            </SwiperSlide>
-          </Swiper>
+          <SubTasks
+            singleData={singleFranchises}
+            setShowSubTask={setShowSubTask}
+          />
         </div>
 
         {/* <SubTasks /> */}

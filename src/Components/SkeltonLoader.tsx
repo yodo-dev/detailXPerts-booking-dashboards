@@ -6,9 +6,11 @@ function SkeltonLoader({
   rows = 5,
   columns = [200, 150, 100, 200],
   showHeader = true,
+  skeltonHeaderHeight = 15,
+  marginTop,
 }) {
   return (
-    <div className="" style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", marginTop: `${marginTop}px` }}>
       {/* Header skeleton */}
       {showHeader && (
         <div
@@ -23,7 +25,7 @@ function SkeltonLoader({
             <Skeleton
               key={index}
               width="110px"
-              height={15}
+              height={skeltonHeaderHeight}
               style={{ color: "#E5E7EB" }}
               highlightColor="#E1EBEE"
             />
@@ -45,7 +47,7 @@ function SkeltonLoader({
             <Skeleton
               key={colIndex}
               width="110px"
-              height={15}
+              height={skeltonHeaderHeight}
               highlightColor="#F1F3FB"
             />
           ))}
