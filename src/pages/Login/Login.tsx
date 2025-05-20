@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiPost } from "../../Auth/Auth";
 // import Slider from "./Components/Slider"
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm();
@@ -19,20 +20,19 @@ const Login: React.FC = () => {
       const response = await apiPost(url, data1);
       console.log("rrr", response);
       if (response.success) {
-        // toast.success("Login Success!");
+        toast.success("Login Successfully!");
+
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
 
         localStorage.setItem("token", response.payload.accessToken);
         localStorage.setItem("userInfo", JSON.stringify(response.payload));
-        // setStorage("userInfo", response.payload);
-
-        // handleUpdateUser(response.payload.role, response.payload);
       }
     } catch (error) {
+      toast.error("Login Failed");
+
       // setIsLoading(false);
-      // toast.error("Login Failed");
     } finally {
       // setIsLoading(false);
     }
@@ -98,7 +98,12 @@ const Login: React.FC = () => {
                 btnClass="bg-[#003CA6] text-white pt-[16px] pb-[16px] mb-3"
                 type="submit"
               />
-              <span className="text-[14px] ">Don't have an account? <Link to={"/register"} className="text-[#003CA6] underline">Sign Up</Link></span>
+              <span className="text-[14px] ">
+                Don't have an account?{" "}
+                <Link to={"/register"} className="text-[#003CA6] underline">
+                  Sign Up
+                </Link>
+              </span>
             </div>
           </form>
         </div>

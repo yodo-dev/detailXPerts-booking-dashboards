@@ -13,6 +13,9 @@ const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [role, setRole] = useState(2);
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("userInfo")).user
+  );
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },
@@ -58,10 +61,11 @@ const DashboardHeader: React.FC = () => {
                 <Link
                   key={link.id}
                   to={link.path}
-                  className={`relative text-white label_link ${isActive
+                  className={`relative text-white label_link ${
+                    isActive
                       ? 'font-bold after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-white pb-[7px]'
                       : "font-normal"
-                    }`}
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -92,10 +96,16 @@ const DashboardHeader: React.FC = () => {
           </Link>
 
           <Link to="/profile">
-            <img
+            {/* <img
               src={userImg}
               alt="User"
               className="w-[60px] h-[60px] rounded-full"
+            /> */}
+            <img
+              src={`${import.meta.env.VITE_APP_API_IMG_URL}${userInfo?.image}`}
+              alt="Profile"
+              className="w-[60px] h-[60px] rounded-full object-cover"
+              style={{ border: "1px solid rgba(0,0,0,10%)" }}
             />
           </Link>
           <button
@@ -125,10 +135,11 @@ const DashboardHeader: React.FC = () => {
               key={link.id}
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`mb-4 text-lg ${location.pathname === link.path
+              className={`mb-4 text-lg ${
+                location.pathname === link.path
                   ? "font-semibold text-[var(--primary-color)]"
                   : "text-gray-800"
-                }`}
+              }`}
             >
               {link.name}
             </Link>

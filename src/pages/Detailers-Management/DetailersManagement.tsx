@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import SkeltonLoader from "@components/SkeltonLoader";
 import EditDetailers from "./Components/EditDetailers";
 import { ModalDelete } from "@components/Modal";
+import Pagination from "@components/Pagination";
 
 const DetailersManagement: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -31,6 +32,8 @@ const DetailersManagement: React.FC = () => {
   const [showEditId, setShowEditId] = useState();
   const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [totalRows, setTotalRows] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const columns = [
     {
@@ -182,18 +185,25 @@ const DetailersManagement: React.FC = () => {
   const getDetailers = async () => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/?role_id=3`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/user/?page=${currentPage}&limit=${5}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
         setFranchises(response.payload.records);
+        setTotalRows(response.payload.totalRecords);
         setLoading(false);
       }
     } catch (error) {
       setLoading(false);
       console.log("Error :", error);
     }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   const getSingleDetailer = async () => {
@@ -219,7 +229,7 @@ const DetailersManagement: React.FC = () => {
 
   useEffect(() => {
     getDetailers();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     getSingleDetailer();
@@ -274,11 +284,16 @@ const DetailersManagement: React.FC = () => {
           columns={columns}
           customStyles={customStyles}
           data={franchises}
-          // sortIcon={<ReactSVG src={Chevron}/>}
-          // sortIcon={<ChevronDown className="ml-1 text-gray-500" />}
-          // defaultSortFieldId={1}
-          // defaultSortAsc={true}
           progressPending={loading}
+          pagination
+          paginationComponent={() => (
+            <Pagination
+              currentPage={currentPage}
+              totalRows={totalRows}
+              rowsPerPage={5}
+              onPageChange={handlePageChange}
+            />
+          )}
           progressComponent={customLoader}
         />
 

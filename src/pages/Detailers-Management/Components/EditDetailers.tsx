@@ -7,7 +7,8 @@ import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import uploadServer from "../../../assets/svgs/uploadServer.svg";
 import userIcon from "../../../assets/svgs/userIcon.svg";
 import CommonInput from "../../Login/Components/CommonInput";
-import { apiGet, apiPost } from "../../../Auth/Auth";
+import { apiGet, apiPost, apiPut } from "../../../Auth/Auth";
+import toast from "react-hot-toast";
 
 const EditDetailers = ({
   setShowModal,
@@ -37,8 +38,6 @@ const EditDetailers = ({
 
       // const formData = new FormData();
 
-     
-
       const params = {
         role_id: 5,
         name: data.name,
@@ -52,8 +51,10 @@ const EditDetailers = ({
         business_website: data.business_website,
       };
 
-      const response = await apiPost(url, params, token);
+      const response = await apiPut(url, params, token);
       if (response.success) {
+        toast.success("Detailer Updated Successfully!");
+
         setLoading(false);
         getFranchise();
         // getUsers();
@@ -61,6 +62,7 @@ const EditDetailers = ({
         // toast.success("User Create Successfully!");
       }
     } catch (error) {
+
       setLoading(false);
     }
   };
@@ -265,8 +267,8 @@ const EditDetailers = ({
               btnClass="cursor-pointer px-4 py-2 mt-[16px] rounded-md !font-medium !w-[97px] border border-gray-300 text-[#5B5B5B] hover:bg-gray-100"
             />
             <PrimaryButton
-              btnText="Add"
-              btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-[77px] text-white rounded-md hover:bg-blue-700"
+              btnText="Update"
+              btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-fit text-white rounded-md hover:bg-blue-700"
             />
           </div>
         </form>

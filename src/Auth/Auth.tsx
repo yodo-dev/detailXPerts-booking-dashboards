@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const apiGet = async (url, data, token) => {
   try {
@@ -34,7 +35,9 @@ export const apiPost = async (url, data, token) => {
       headers: headers,
     });
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    toast.error("Something went wrong!");
+  }
 };
 
 export const apiPut = async (url, data, token) => {
@@ -47,6 +50,7 @@ export const apiPut = async (url, data, token) => {
     });
     return response.data;
   } catch (error) {
+    toast.error("Something went wrong!");
     console.log(error);
   }
 };

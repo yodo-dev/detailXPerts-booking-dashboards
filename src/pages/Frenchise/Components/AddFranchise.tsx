@@ -8,6 +8,7 @@ import uploadServer from "../../../assets/svgs/uploadServer.svg";
 import userIcon from "../../../assets/svgs/userIcon.svg";
 import CommonInput from "../../Login/Components/CommonInput";
 import { apiPost } from "../../../Auth/Auth";
+import toast from "react-hot-toast";
 
 const AddFranchise = ({ setShowModal, title, getFranchise }) => {
   const [loading, setLoading] = useState(true);
@@ -27,24 +28,6 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
 
-      // const formData = new FormData();
-
-      // formData.append("name", data.name);
-      // formData.append("firstName", data.name);
-      // formData.append("lastName", data.name);
-      // formData.append("number", data.phone);
-      // formData.append("email", data.email);
-      // formData.append("files", file);
-      // formData.append("password", "password1");
-      // formData.append("birth_date", "1990-01-01");
-      // formData.append("gender", "M");
-      // formData.append("role_id", 2);
-      // formData.append("address", "123 Street");
-      // formData.append("city", "City");
-      // formData.append("state", "State");
-      // formData.append("country", "Country");
-      // formData.append("about", data.about);
-
       const params = {
         role_id: 5,
         name: data.name,
@@ -60,6 +43,8 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
 
       const response = await apiPost(url, params, token);
       if (response.success) {
+        toast.success("Franchise Created Successfully!");
+
         setLoading(false);
         getFranchise();
         // getUsers();
@@ -67,6 +52,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
         // toast.success("User Create Successfully!");
       }
     } catch (error) {
+      toast.error("Something went wrong!!");
       setLoading(false);
     }
   };

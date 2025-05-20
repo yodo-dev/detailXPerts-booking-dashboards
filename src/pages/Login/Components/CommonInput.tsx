@@ -11,6 +11,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({
   requiredText,
   validation,
   defaultValidation = "Required",
+  type="text"
 }) => {
   return (
     // max-w-[366px]
@@ -23,7 +24,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({
         />
       )}
       <input
-        type="text"
+        type={type}
         placeholder={placeholder}
         // {...register("password")}
         // {...(register && registerName ? register(registerName) : {})}

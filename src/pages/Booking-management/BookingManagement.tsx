@@ -261,7 +261,6 @@ const BookingManagement: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     getBookings();
   }, []);

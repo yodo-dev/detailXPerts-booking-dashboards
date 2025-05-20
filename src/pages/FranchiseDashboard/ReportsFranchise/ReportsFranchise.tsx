@@ -1,43 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "@layouts/MainLayout";
 import downloadBtn from "../../../assets/svgs/downloadBtn.svg";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
-import { Legend } from "recharts";
-import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
-import { Label } from "recharts";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { ReactSVG } from "react-svg";
 import Linechart from "@components/Charts/Linechart";
 
 const ReportsFranchise: React.FC = () => {
-  //   const data = [
-  //     { name: "Page A", uv: 1000, pv: 400, amt: 2400 },
-  //     { name: "Page B", uv: 400, pv: 2400, amt: 2400 },
-  //     { name: "Page C", uv: 400, pv: 2400, amt: 2400 },
-  //   ];
-
-  const data = [
-    { name: "Jan", Approved: 200, Pending: 10, Canceled: 200 },
-    { name: "Feb", Approved: 200, Pending: 200, Canceled: 400 },
-    { name: "Mar", Approved: 200, Pending: 200, Canceled: 200 },
-    { name: "Apr", Approved: 304, Pending: 200, Canceled: 250 },
-    { name: "May", Approved: 200, Pending: 125, Canceled: 400 },
-    { name: "Jun", Approved: 200, Pending: 243, Canceled: 200 },
-    { name: "Jul", Approved: 242, Pending: 114, Canceled: 400 },
-    { name: "Aug", Approved: 329, Pending: 128, Canceled: 200 },
-    { name: "Sep", Approved: 134, Pending: 249, Canceled: 400 },
-    { name: "Oct", Approved: 249, Pending: 215, Canceled: 200 },
-    { name: "Nov", Approved: 245, Pending: 213, Canceled: 400 },
-    { name: "Dec", Approved: 420, Pending: 313, Canceled: 200 },
-  ];
-
   const data1 = [
     {
       name: "Jan",
@@ -112,15 +84,31 @@ const ReportsFranchise: React.FC = () => {
       "Unique Customers": 130,
     },
   ];
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: "selection",
+    },
+  ]);
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
 
-  const PieChartData = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-  ];
+  const handleDateChange = (e) => {
+    // console.log("change in date",e.selection)
+    setState([e.selection]);
+    // getData(e.selection.startDate, e.selection.endDate);
+  };
 
-  const COLORS = ["#0088FE", "#0088FE", "#0088FE", "#0088FE"];
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short", // 'Nov'
+      day: "numeric", // '23'
+    });
+  };
+
+  const handleFieldClick = () => {
+    setIsCalendarVisible(!isCalendarVisible);
+  };
 
   return (
     <MainLayout>
@@ -139,13 +127,49 @@ const ReportsFranchise: React.FC = () => {
               btnTextClass="text-[16px]"
               onClick={() => console.log("Button clicked")}
             />
-
-            <input
+            {/* <input
               type="date"
               name=""
               id=""
               className="border px-[15px] py-[10px] rounded-[7px] text-[13px] font-medium text-[#082042]"
+            /> */}
+            {/* <DatePicker value={value} onChange={setValue} multiple /> */}
+            <input
+              type="text"
+              value={`${formatDate(state[0].startDate)} - ${
+                state[0].endDate ? formatDate(state[0].endDate) : ""
+              }`}
+              onClick={handleFieldClick}
+              className="bg-white border border-black rounded-[8px] p-[15px]"
+              readOnly
             />
+            <button
+              style={{ backgroundColor: "#405089" }}
+              className=""
+              onClick={handleFieldClick}
+            >
+              {/* <FaCalendar className="text-light" /> */}
+            </button>
+            {isCalendarVisible && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "40%", // Position the calendar below the input field
+                  right: "3%",
+                  zIndex: 9999999, // Ensure it's above other elements
+                }}
+              >
+                <DateRange
+                  editableDateInputs={true}
+                  onChange={(item) => {
+                    setState([item.selection]);
+                    handleDateChange(item);
+                  }}
+                  moveRangeOnFirstSelection={false}
+                  ranges={state}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -249,7 +273,9 @@ const ReportsFranchise: React.FC = () => {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                 <span className="text-2xl font-bold">80%</span>
 
-                <span className="text-[10px] text-gray-500">Increased income</span>
+                <span className="text-[10px] text-gray-500">
+                  Increased income
+                </span>
               </div>
             </div>
           </div>
