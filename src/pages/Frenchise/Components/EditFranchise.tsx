@@ -34,7 +34,7 @@ const EditFranchise = ({
     console.log("Data", data);
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${showEditId}`;
 
       // const formData = new FormData();
 
@@ -55,21 +55,18 @@ const EditFranchise = ({
       // formData.append("about", data.about);
 
       const params = {
-        role_id: 5,
-        name: data.name,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        password: data.password,
-        business_name: data.business_name,
-        business_address: data.business_address,
-        business_phone: data.business_phone,
-        business_website: data.business_website,
+        region: data.city,
+        // name: data.name,
+        // email: data.email,
+        phone: data.phone,
+        // address: data.address,
+        city: data.city,
+        state: data.state,
       };
 
       const response = await apiPut(url, params, token);
       if (response.success) {
-        toast.success("Franchise Updated Successfully!")
+        toast.success("Franchise Updated Successfully!");
         setLoading(false);
         getFranchise();
         // getUsers();
@@ -84,19 +81,22 @@ const EditFranchise = ({
   const getSingleFranchise = async () => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/franchise/${showEditId}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
         setLoading(false);
         setSingleFranchises(response.payload);
-        setValue("first_name", response.payload.first_name);
+        setValue("name", response.payload.name);
         setValue("last_name", response.payload.last_name);
         setValue("email", response.payload.email);
-        setValue("business_name", response.payload.first_name);
-        setValue("business_address", response.payload.country);
-        setValue("business_phone", response.payload.number);
+        setValue("phone", response.payload.phone);
+        setValue("address", response.payload.address);
+        setValue("city", response.payload.city);
+        setValue("state", response.payload.state);
       }
     } catch (error) {
       setLoading(false);
@@ -125,67 +125,26 @@ const EditFranchise = ({
 
         {/* Form */}
         <form onSubmit={handleSubmit(EditFranchise)} className="space-y-4">
-          {/* <div className="flex justify-between">
-            <ReactSVG src={userIcon} />
-            <div className="flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
-                <span className="text-2xl text-gray-500">
-                  <ReactSVG src={uploadServer} />
-                </span>
-              </div>
-              <p className="text-sm text-[#5B5B5B]">
-                <strong className="text-black">Click to upload</strong> or drag
-                and drop
-              </p>
-              <p className="text-[12px] text-[#5B5B5B] mt-1">
-                SVG, PNG, JPG or GIF (max. 800x400px)
-              </p>
+          {/* <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
+            <div className="col-span-2">
+              <label className="text-[14px] font-medium text-[#5B5B5B]">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <CommonInput
+                inputClass="custom-input"
+                placeholder="Name"
+                register={register}
+                registerName="name"
+                validation={{ required: "Name is required" }}
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              )}
             </div>
           </div> */}
-          {/* <input id="img" type="file" hidden /> */}
-
-          <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
-            {/* First Name */}
-            <div>
-              <label className="text-[14px] font-medium text-[#5B5B5B]">
-                First name <span className="text-red-500">*</span>
-              </label>
-              <CommonInput
-                inputClass="custom-input"
-                placeholder="First Name"
-                register={register}
-                registerName="first_name"
-                validation={{ required: "First name is required" }}
-              />
-              {errors.first_name && (
-                <p className="text-red-500 text-sm">
-                  {errors.first_name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Last Name */}
-            <div>
-              <label className="text-[14px] font-medium text-[#5B5B5B]">
-                Last name <span className="text-red-500">*</span>
-              </label>
-              <CommonInput
-                inputClass="custom-input"
-                placeholder="Last Name"
-                register={register}
-                registerName="last_name"
-                validation={{ required: "Last name is required" }}
-              />
-              {errors.last_name && (
-                <p className="text-red-500 text-sm">
-                  {errors.last_name.message}
-                </p>
-              )}
-            </div>
-          </div>
 
           {/* Email */}
-          <div>
+          {/* <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
               Email address <span className="text-red-500">*</span>
             </label>
@@ -199,79 +158,70 @@ const EditFranchise = ({
             {errors.email && (
               <p className="text-red-500 text-sm">{errors.email.message}</p>
             )}
-          </div>
+          </div> */}
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Password <span className="text-red-500">*</span>
+              Phone <span className="text-red-500">*</span>
             </label>
             <CommonInput
               inputClass="custom-input w-full"
-              placeholder="Enter Your Password"
+              placeholder="Enter Your Number"
               register={register}
-              registerName="password"
+              registerName="phone"
               validation={{ required: "Password is required" }}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone.message}</p>
             )}
           </div>
 
-          {/* Business Fields - only required if role_id === 3 */}
-          <div>
+          {/* <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Name{" "}
-              {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
+              Address <span className="text-red-500">*</span>
             </label>
             <CommonInput
-              inputClass="custom-input"
-              placeholder="Business Name"
-              registerName="business_name"
+              inputClass="custom-input w-full"
+              placeholder="Enter Your Address"
               register={register}
-              validation={{ required: "Bussiness Name is required" }}
-            />
-          </div>
-
-          <div>
-            <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Address{" "}
-              {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
-            </label>
-            <CommonInput
-              inputClass="custom-input"
-              placeholder="Business Address"
-              registerName="business_address"
-              register={register}
+              registerName="address"
               validation={{ required: "Address is required" }}
             />
+            {errors.address && (
+              <p className="text-red-500 text-sm">{errors.address.message}</p>
+            )}
+          </div> */}
+
+          <div>
+            <label className="text-[14px] font-medium text-[#5B5B5B]">
+              City <span className="text-red-500">*</span>
+            </label>
+            <CommonInput
+              inputClass="custom-input w-full"
+              placeholder="Enter Your Address"
+              register={register}
+              registerName="city"
+              validation={{ required: "City is required" }}
+            />
+            {errors.city && (
+              <p className="text-red-500 text-sm">{errors.city.message}</p>
+            )}
           </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Phone{" "}
-              {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
+              State <span className="text-red-500">*</span>
             </label>
             <CommonInput
-              inputClass="custom-input"
-              placeholder="Business Phone"
-              registerName="business_phone"
+              inputClass="custom-input w-full"
+              placeholder="Enter Your State"
               register={register}
-              validation={{ required: "Phone is required" }}
+              registerName="state"
+              validation={{ required: "State is required" }}
             />
-          </div>
-
-          <div>
-            <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Website{" "}
-              {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
-            </label>
-            <CommonInput
-              inputClass="custom-input"
-              registerName="business_website"
-              register={register}
-              validation={{ required: "Website is required" }}
-              placeholder="Business Website"
-            />
+            {errors.state && (
+              <p className="text-red-500 text-sm">{errors.state.message}</p>
+            )}
           </div>
 
           {/* Buttons */}
@@ -282,7 +232,7 @@ const EditFranchise = ({
             />
             <PrimaryButton
               btnText="Update"
-              btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-[77px] text-white rounded-md hover:bg-blue-700"
+              btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-fit text-white rounded-md hover:bg-blue-700"
             />
           </div>
         </form>

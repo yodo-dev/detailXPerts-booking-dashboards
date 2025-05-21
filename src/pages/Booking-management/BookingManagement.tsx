@@ -13,11 +13,13 @@ import LocationIcon from "../../assets/svgs/location.svg";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ChevronDown } from "lucide-react";
 import SkeltonLoader from "@components/SkeltonLoader";
+import Pagination from "@components/Pagination";
 const BookingManagement: React.FC = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(null);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState();
   const token = localStorage.getItem("token");
 
   const columns = [
@@ -247,11 +249,15 @@ const BookingManagement: React.FC = () => {
   const getBookings = async () => {
     // setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/booking`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/booking?page=${currentPage}&limit=${5}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
+        setTotalRecords(response.payload.totalRecords);
+
         setLoading(false);
         setBookings(response.payload.records);
       }
@@ -263,7 +269,7 @@ const BookingManagement: React.FC = () => {
 
   useEffect(() => {
     getBookings();
-  }, []);
+  }, [currentPage]);
 
   const tableData = [
     { key: "id", label: "ID" },
@@ -287,6 +293,10 @@ const BookingManagement: React.FC = () => {
     </div>
   );
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <MainLayout>
       <div className="default_container p-4 pt-0 overflow-x-auto">
@@ -301,6 +311,15 @@ const BookingManagement: React.FC = () => {
           columns={columns}
           customStyles={customStyles}
           data={bookings}
+          pagination
+          paginationComponent={() => (
+            <Pagination
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              totalRows={totalRecords}
+              rowsPerPage={5}
+            />
+          )}
           // sortIcon={<ReactSVG src={Chevron}/>}
           // sortIcon={<ChevronDown className="ml-1 text-gray-500" />}
           // defaultSortFieldId={1}

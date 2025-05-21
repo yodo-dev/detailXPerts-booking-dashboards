@@ -1,5 +1,5 @@
 import MainLayout from "@layouts/MainLayout";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
@@ -15,83 +15,168 @@ import BlackStar from "../../assets/svgs/BlackStart.svg";
 import ReviewsSection from "./Components/ReviewsSection";
 import MenuIcon from "@assets/svgs/menu.svg";
 import { Menu, X } from "lucide-react";
-
+import DataTable from "react-data-table-component";
+import { customStyles } from "@components/CustomStylesTable";
+import { apiGet } from "../../Auth/Auth";
+import dayjs from "dayjs";
+import { useUsers } from "../../Hooks/useBugs";
+import Logo from "@assets/svgs/logo1.svg";
+import DotsIcon from "../../assets/svgs/dots.svg";
+import ActionDropdown from "@components/ActionDropdown";
+import BugsModal from "./Components/BugsModal";
 // import White
+import BugsData from "./Components/BugsData";
+import { bugsSupport } from "../../Api/bugsSupport";
+// import { SuggestionSupport } from "Api/SuggestionSupport";
 
 const FeedSupport: React.FC = () => {
-  const rows = [
-    {
-      id: "001",
-      franchise: "Vaclucia Motors",
-      detailer: {
-        name: "Ahmad Septiwan",
-        avatar: "https://i.pravatar.cc/40?img=1",
-      },
-      customer: "Kaiya Botar",
-      date: "04-05-2025",
-      service: "Car Wash",
-      vehicle: "Phoenix",
-      earning: "$0.00",
-      status: "Completed",
-      issue: "issue",
-    },
-    {
-      id: "002",
-      franchise: "DreamDrive Automobiles",
-      detailer: {
-        name: "Erin Vetrov",
-        avatar: "https://i.pravatar.cc/40?img=2",
-      },
-      customer: "Alfredo Soris",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Cobra",
-      earning: "$0.00",
-      status: "In Progress",
-    },
-    {
-      id: "003",
-      franchise: "Healthride Vehicles",
-      detailer: {
-        name: "Giancu Batrom Bachman",
-        avatar: "https://i.pravatar.cc/40?img=3",
-      },
-      customer: "Lincoln Gusae",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Raptor",
-      earning: "$0.00",
-      status: "In Progress",
-    },
-    {
-      id: "004",
-      franchise: "Biwered Motors",
-      detailer: {
-        name: "Alfredo Rihidl Madsson",
-        avatar: "https://i.pravatar.cc/40?img=4",
-      },
-      customer: "Aspen Schieffer",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Vortex",
-      earning: "$20.00",
-      status: "Completed",
-    },
-    {
-      id: "005",
-      franchise: "Fantasy Auto Group",
-      detailer: {
-        name: "Tachiona Curtis",
-        avatar: "https://i.pravatar.cc/40?img=5",
-      },
-      customer: "Alfredo Philips",
-      date: "04-05-2025",
-      service: "Detailing",
-      vehicle: "Stingray",
-      earning: "$0.00",
-      status: "Canceled",
-    },
-  ];
+  const [franchises, setFranchises] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const dropdownRef = useRef();
+  // const { data: bugsSupport, isLoading, isError, error } = useUsers();
+  // const {
+  //   data: bugsSupport,
+  //   isLoading,
+  //   isError,
+  //   error,
+  // } = useUsers({ type: "BUG" });
+
+  // const {
+  //   data: suggestionsSupport,
+  //   isLoading,
+  //   isError,
+  //   error,
+  // } = useUsers({ type: "BUG" });
+
+  // const {
+  //   data: SurveySupport,
+  //   // isLoading,
+  //   // isError,
+  //   // error,
+  // } = useUsers({ type: "BUG" });
+
+  const {
+    data: suggestionsSupport,
+    isLoading: isLoadingSuggestions,
+    isError: isErrorSuggestions,
+    error: errorSuggestions,
+  } = useUsers({ type: "SUGGESTION" });
+
+  const {
+    data: bugsSupport,
+    isLoading: isLoadingBug,
+    isError: isErrorBug,
+    error: errorBug,
+  } = useUsers({ type: "BUG" });
+
+  // const {
+  //   data: surveySupport,
+  //   isLoading: isLoadingSurvey,
+  //   isError: isErrorSurvey,
+  //   error: errorSurvey,
+  // } = useUsers({ type: "SURVEY" });
+
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  // console.log("bugsxxxxxxxxx", users);
+
+  // const rows = [
+  //   {
+  //     id: "001",
+  //     franchise: "Vaclucia Motors",
+  //     detailer: {
+  //       name: "Ahmad Septiwan",
+  //       avatar: "https://i.pravatar.cc/40?img=1",
+  //     },
+  //     customer: "Kaiya Botar",
+  //     date: "04-05-2025",
+  //     service: "Car Wash",
+  //     vehicle: "Phoenix",
+  //     earning: "$0.00",
+  //     status: "Completed",
+  //     issue: "issue",
+  //   },
+  //   {
+  //     id: "002",
+  //     franchise: "DreamDrive Automobiles",
+  //     detailer: {
+  //       name: "Erin Vetrov",
+  //       avatar: "https://i.pravatar.cc/40?img=2",
+  //     },
+  //     customer: "Alfredo Soris",
+  //     date: "04-05-2025",
+  //     service: "Detailing",
+  //     vehicle: "Cobra",
+  //     earning: "$0.00",
+  //     status: "In Progress",
+  //   },
+  //   {
+  //     id: "003",
+  //     franchise: "Healthride Vehicles",
+  //     detailer: {
+  //       name: "Giancu Batrom Bachman",
+  //       avatar: "https://i.pravatar.cc/40?img=3",
+  //     },
+  //     customer: "Lincoln Gusae",
+  //     date: "04-05-2025",
+  //     service: "Detailing",
+  //     vehicle: "Raptor",
+  //     earning: "$0.00",
+  //     status: "In Progress",
+  //   },
+  //   {
+  //     id: "004",
+  //     franchise: "Biwered Motors",
+  //     detailer: {
+  //       name: "Alfredo Rihidl Madsson",
+  //       avatar: "https://i.pravatar.cc/40?img=4",
+  //     },
+  //     customer: "Aspen Schieffer",
+  //     date: "04-05-2025",
+  //     service: "Detailing",
+  //     vehicle: "Vortex",
+  //     earning: "$20.00",
+  //     status: "Completed",
+  //   },
+  //   {
+  //     id: "005",
+  //     franchise: "Fantasy Auto Group",
+  //     detailer: {
+  //       name: "Tachiona Curtis",
+  //       avatar: "https://i.pravatar.cc/40?img=5",
+  //     },
+  //     customer: "Alfredo Philips",
+  //     date: "04-05-2025",
+  //     service: "Detailing",
+  //     vehicle: "Stingray",
+  //     earning: "$0.00",
+  //     status: "Canceled",
+  //   },
+  // ];
+
+  const token = localStorage.getItem("token");
+
+  const getBugs = async () => {
+    setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setFranchises(response.payload.records);
+        // setTotalRows(response.payload.totalRecords);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
+  useEffect(() => {
+    getBugs();
+  }, []);
 
   const [openModal, setModalOpen] = useState(false);
   const [tabs, setTabs] = useState(0);
@@ -99,6 +184,7 @@ const FeedSupport: React.FC = () => {
   const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
   const [hoveredSurvey, setHoveredSurvey] = useState(false);
   const [hoveredStar, setHoveredStar] = useState(false);
+  const [viewModal, setViewModal] = useState(true);
 
   const tableData = [
     { key: "user", label: "User" },
@@ -128,6 +214,244 @@ const FeedSupport: React.FC = () => {
     { key: "helpfull_app", label: "How helpful this app for you?" },
     { key: "user_suggestions", label: "Users Suggestion?" },
   ];
+
+  const columns1 = [
+    {
+      name: "User",
+      selector: (row) => row.first_name,
+      minWidth: "230px",
+      cell: (row) => (
+        <div className="flex gap-2 w-[190px]">
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div
+              className="text-sm cursor-pointer"
+              // onClick={() => setShowSubTask({ setShowSubTask })}
+              // onClick={() => {
+              //   setShowSubTask(true);
+              //   setShowEditId(row?.id);
+              // }}
+            >
+              {/* {row.franchise} */}
+              Santa Clause
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
+              <span>user@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Category",
+      minWidth: "150px",
+      selector: (row) => row.category,
+    },
+
+    {
+      name: "Issue",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+    },
+
+    {
+      name: "Incident",
+      minWidth: "100px",
+      selector: (row) => row.service,
+      cell: (row) => <span>Car Accident</span>,
+    },
+
+    {
+      name: "Action",
+      selector: (row) => row.action,
+      minWidth: "10px",
+      cell: (row) => (
+        <div>
+          <span
+            onClick={() => {
+              setOpenDropdown(openDropdown === row.id ? null : row.id);
+            }}
+            className="cursor-pointer bg-red-500"
+          >
+            <ReactSVG src={DotsIcon} />
+          </span>
+          <div ref={dropdownRef}>
+            <ActionDropdown
+              setOpenDropdown={setOpenDropdown}
+              openDropdown={openDropdown}
+              rowId={row.id}
+              viewOnly={true}
+              // setShowEditModal={setShowEditModal}
+              // setShowEditId={setShowEditId}
+              // showEditId={showEditId}
+              // handleDelete={deleteFrenchise}
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const columns2 = [
+    {
+      name: "User",
+      selector: (row) => row.first_name,
+      minWidth: "230px",
+      cell: (row) => (
+        <div className="flex gap-2 w-[190px]">
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div
+              className="text-sm cursor-pointer"
+              // onClick={() => setShowSubTask({ setShowSubTask })}
+              // onClick={() => {
+              //   setShowSubTask(true);
+              //   setShowEditId(row?.id);
+              // }}
+            >
+              {/* {row.franchise} */}
+              Santa Clause
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
+              <span>user@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Category",
+      minWidth: "150px",
+      selector: (row) => row.category,
+    },
+
+    {
+      name: "Suggestion",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+    },
+
+    {
+      name: "Action",
+      selector: (row) => row.action,
+      minWidth: "10px",
+      cell: (row) => (
+        <div>
+          <span
+            onClick={() => {
+              setOpenDropdown(openDropdown === row.id ? null : row.id);
+            }}
+            className="cursor-pointer bg-red-500"
+          >
+            <ReactSVG src={DotsIcon} />
+          </span>
+          <div ref={dropdownRef}>
+            <ActionDropdown
+              setOpenDropdown={setOpenDropdown}
+              openDropdown={openDropdown}
+              rowId={row.id}
+              viewOnly={true}
+              // setShowEditModal={setShowEditModal}
+              // setShowEditId={setShowEditId}
+              // showEditId={showEditId}
+              // handleDelete={deleteFrenchise}
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const columns3 = [
+    {
+      name: "User",
+      selector: (row) => row.first_name,
+      minWidth: "230px",
+      cell: (row) => (
+        <div className="flex gap-2 w-[190px]">
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div
+              className="text-sm cursor-pointer"
+              // onClick={() => setShowSubTask({ setShowSubTask })}
+              // onClick={() => {
+              //   setShowSubTask(true);
+              //   setShowEditId(row?.id);
+              // }}
+            >
+              {/* {row.franchise} */}
+              Santa Clause
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
+              <span>user@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Is this app helpful for you?",
+      minWidth: "50px",
+      selector: (row) => row.category,
+      cell: () => <span>Yes</span>,
+    },
+
+    {
+      name: "Will you recommend this ap to your friends?",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+      cell: () => <span>Yes</span>,
+    },
+
+    {
+      name: "How helpful this app for you?",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+      cell: () => <span>Yes</span>,
+    },
+
+    {
+      name: "How helpful this app for you?",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+      cell: () => <span>Yes</span>,
+    },
+
+    {
+      name: "Users Suggestion?",
+      minWidth: "50px",
+      selector: (row) => row.issue,
+      cell: () => <span>Yes</span>,
+    },
+  ];
+
+  const handleViewModal = () => {
+    setViewModal(true);
+  };
 
   console.log("-----", openModal);
   return (
@@ -249,32 +573,62 @@ const FeedSupport: React.FC = () => {
 
           <div className="w-[100%]">
             {tabs == 0 ? (
-              <Table
-                user={true}
-                issueTd={true}
-                tableData={tableData}
-                incidentTh={true}
-                action={true}
-              />
+              <>
+                {/* <div className="absolute">
+                <BugsModal />
+              </div> */}
+
+                <DataTable
+                  columns={columns1}
+                  customStyles={customStyles}
+                  data={bugsSupport}
+                  progressPending={loading}
+                  // pagination
+                  // paginationComponent={() => (
+                  //   <Pagination
+                  //     currentPage={currentPage}
+                  //     totalRows={totalRows}
+                  //     rowsPerPage={5}
+                  //     onPageChange={handlePageChange}
+                  //   />
+                  // )}
+                  // progressComponent={customL}
+                />
+                {/* {viewModal ? <BugsModal /> : ""} */}
+              </>
             ) : tabs == 1 ? (
-              <Table
-                user={true}
-                category={true}
-                suggestions={true}
-                tableData={tableData2}
-                action={true}
+              <DataTable
+                columns={columns2}
+                customStyles={customStyles}
+                data={suggestionsSupport}
+                progressPending={loading}
+                // pagination
+                // paginationComponent={() => (
+                //   <Pagination
+                //     currentPage={currentPage}
+                //     totalRows={totalRows}
+                //     rowsPerPage={5}
+                //     onPageChange={handlePageChange}
+                //   />
+                // )}
+                // progressComponent={customL}
               />
             ) : tabs == 2 ? (
-              <Table
-                user={true}
-                appHelpfull={true}
-                recommendapp={true}
-                howHelpfullApp={true}
-                userSuggestion={true}
-                tableData={tableData3}
-                action={false}
-                idNot={true}
-                // action={true}
+              <DataTable
+                columns={columns3}
+                customStyles={customStyles}
+                data={bugsSupport}
+                progressPending={loading}
+                // pagination
+                // paginationComponent={() => (
+                //   <Pagination
+                //     currentPage={currentPage}
+                //     totalRows={totalRows}
+                //     rowsPerPage={5}
+                //     onPageChange={handlePageChange}
+                //   />
+                // )}
+                // progressComponent={customL}
               />
             ) : tabs == 3 ? (
               <ReviewsSection />

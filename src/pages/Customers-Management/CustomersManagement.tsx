@@ -21,6 +21,7 @@ import { useForm } from "react-hook-form";
 import SkeltonLoader from "@components/SkeltonLoader";
 import EditCustomers from "./Components/EditCustomers";
 import { ModalDelete } from "@components/Modal";
+import Pagination from "@components/Pagination";
 
 const CustomersManagement: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -34,6 +35,8 @@ const CustomersManagement: React.FC = () => {
   const { setValue } = useForm();
   const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState();
 
   const columns = [
     {
@@ -165,12 +168,15 @@ const CustomersManagement: React.FC = () => {
   const getCustomers = async () => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user?role_id=5`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/user?role_id=5&page=${currentPage}&limit=5`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
         //
+        setTotalRecords(response.payload.totalRecords);
         console.log("state of cy", response);
 
         setCustomers(response?.payload?.records);
@@ -208,7 +214,7 @@ const CustomersManagement: React.FC = () => {
 
   useEffect(() => {
     getCustomers();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     getSingleCustomer();
@@ -246,6 +252,10 @@ const CustomersManagement: React.FC = () => {
     }
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
@@ -269,6 +279,15 @@ const CustomersManagement: React.FC = () => {
           // defaultSortAsc={true}
           progressPending={loading}
           progressComponent={customLoader}
+          pagination
+          paginationComponent={() => (
+            <Pagination
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              rowsPerPage={5}
+              totalRows={totalRecords}
+            />
+          )}
         />
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}

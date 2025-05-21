@@ -28,6 +28,7 @@ export const customStyles = {
       padding: "15px",
       fontSize: "14px",
       maxWidth: "10px",
+      
     },
   },
   headRow: {

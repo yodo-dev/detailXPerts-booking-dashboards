@@ -26,19 +26,22 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
     console.log("Data", data);
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise`;
 
       const params = {
-        role_id: 5,
+        region: data.city, // Assuming city is the region
+        owner: {
+          first_name: data.admin_f_name, // Taking first word as first name
+          last_name: data.admin_l_name, // Taking second word as last name
+          email: data.admin_email,
+          phone: data.admin_phone,
+        },
         name: data.name,
-        first_name: data.first_name,
-        last_name: data.last_name,
         email: data.email,
-        password: data.password,
-        business_name: data.business_name,
-        business_address: data.business_address,
-        business_phone: data.business_phone,
-        business_website: data.business_website,
+        phone: data.phone,
+        address: data.address,
+        city: data.city,
+        state: data.state,
       };
 
       const response = await apiPost(url, params, token);
@@ -77,61 +80,21 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
 
         {/* Form */}
         <form onSubmit={handleSubmit(createFranchise)} className="space-y-4">
-          {/* <div className="flex justify-between">
-            <ReactSVG src={userIcon} />
-            <div className="flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
-                <span className="text-2xl text-gray-500">
-                  <ReactSVG src={uploadServer} />
-                </span>
-              </div>
-              <p className="text-sm text-[#5B5B5B]">
-                <strong className="text-black">Click to upload</strong> or drag
-                and drop
-              </p>
-              <p className="text-[12px] text-[#5B5B5B] mt-1">
-                SVG, PNG, JPG or GIF (max. 800x400px)
-              </p>
-            </div>
-          </div> */}
-          {/* <input id="img" type="file" hidden /> */}
-
           <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
             {/* First Name */}
-            <div>
+            <div className="col-span-2">
               <label className="text-[14px] font-medium text-[#5B5B5B]">
-                First name <span className="text-red-500">*</span>
+                Name <span className="text-red-500">*</span>
               </label>
               <CommonInput
                 inputClass="custom-input"
-                placeholder="First Name"
+                placeholder="Name"
                 register={register}
-                registerName="first_name"
-                validation={{ required: "First name is required" }}
+                registerName="name"
+                validation={{ required: "Name is required" }}
               />
-              {errors.first_name && (
-                <p className="text-red-500 text-sm">
-                  {errors.first_name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Last Name */}
-            <div>
-              <label className="text-[14px] font-medium text-[#5B5B5B]">
-                Last name <span className="text-red-500">*</span>
-              </label>
-              <CommonInput
-                inputClass="custom-input"
-                placeholder="Last Name"
-                register={register}
-                registerName="last_name"
-                validation={{ required: "Last name is required" }}
-              />
-              {errors.last_name && (
-                <p className="text-red-500 text-sm">
-                  {errors.last_name.message}
-                </p>
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
               )}
             </div>
           </div>
@@ -155,74 +118,122 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Password <span className="text-red-500">*</span>
+              Phone <span className="text-red-500">*</span>
             </label>
             <CommonInput
               inputClass="custom-input w-full"
-              placeholder="Enter Your Password"
+              placeholder="Enter Your Number"
               register={register}
-              registerName="password"
+              registerName="phone"
               validation={{ required: "Password is required" }}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="text-[14px] font-medium text-[#5B5B5B]">
+              Address <span className="text-red-500">*</span>
+            </label>
+            <CommonInput
+              inputClass="custom-input w-full"
+              placeholder="Enter Your Address"
+              register={register}
+              registerName="address"
+              validation={{ required: "Address is required" }}
+            />
+            {errors.address && (
+              <p className="text-red-500 text-sm">{errors.address.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="text-[14px] font-medium text-[#5B5B5B]">
+              City <span className="text-red-500">*</span>
+            </label>
+            <CommonInput
+              inputClass="custom-input w-full"
+              placeholder="Enter Your Address"
+              register={register}
+              registerName="city"
+              validation={{ required: "City is required" }}
+            />
+            {errors.city && (
+              <p className="text-red-500 text-sm">{errors.city.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="text-[14px] font-medium text-[#5B5B5B]">
+              State <span className="text-red-500">*</span>
+            </label>
+            <CommonInput
+              inputClass="custom-input w-full"
+              placeholder="Enter Your State"
+              register={register}
+              registerName="state"
+              validation={{ required: "State is required" }}
+            />
+            {errors.state && (
+              <p className="text-red-500 text-sm">{errors.state.message}</p>
             )}
           </div>
 
           {/* Business Fields - only required if role_id === 3 */}
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Name{" "}
+              Admin First Name{" "}
               {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
             </label>
             <CommonInput
               inputClass="custom-input"
-              placeholder="Business Name"
-              registerName="business_name"
+              placeholder="Enter Admin Name"
+              registerName="admin_f_name"
               register={register}
-              validation={{ required: "Bussiness Name is required" }}
+              validation={{ required: "Admin First Name is required" }}
             />
           </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Address{" "}
+              Admin Last Name{" "}
               {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
             </label>
             <CommonInput
               inputClass="custom-input"
-              placeholder="Business Address"
-              registerName="business_address"
+              placeholder="Enter Admin Name"
+              registerName="admin_l_name"
               register={register}
-              validation={{ required: "Address is required" }}
+              validation={{ required: "Admin Last Name is required" }}
             />
           </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Phone{" "}
+              Admin Email{" "}
               {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
             </label>
             <CommonInput
               inputClass="custom-input"
-              placeholder="Business Phone"
-              registerName="business_phone"
+              placeholder="Enter Admin Email"
+              registerName="admin_email"
               register={register}
-              validation={{ required: "Phone is required" }}
+              validation={{ required: "Admin Email is required" }}
             />
           </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
-              Business Website{" "}
+              Admin Phone{" "}
               {/* {role_id === 3 && <span className="text-red-500">*</span>} */}
             </label>
             <CommonInput
               inputClass="custom-input"
-              registerName="business_website"
+              placeholder="Enter Admin Number"
+              registerName="admin_phone"
               register={register}
-              validation={{ required: "Website is required" }}
-              placeholder="Business Website"
+              validation={{ required: "Admin Number is required" }}
             />
           </div>
 

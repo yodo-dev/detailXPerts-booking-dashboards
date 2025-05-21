@@ -16,6 +16,7 @@ import ActionDropdown from "@components/ActionDropdown";
 import EditFranchise from "./Components/EditFranchise";
 import { useForm } from "react-hook-form";
 import { ModalDelete } from "@components/Modal";
+import Pagination from "@components/Pagination";
 const FrenchiseManagement: React.FC = () => {
   const columns = [
     {
@@ -27,7 +28,7 @@ const FrenchiseManagement: React.FC = () => {
 
     {
       name: "Franchise",
-      selector: (row) => row.first_name,
+      selector: (row) => row.name,
       minWidth: "230px",
       cell: (row) => (
         <div
@@ -50,7 +51,7 @@ const FrenchiseManagement: React.FC = () => {
               className="text-sm cursor-pointer"
             >
               {/* {row.franchise} */}
-              {row.first_name} {row.last_name}
+              {row.name}
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
               <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
@@ -148,17 +149,22 @@ const FrenchiseManagement: React.FC = () => {
   const [singleFranchises, setSingleFranchises] = useState({});
   const dropdownRef = useRef(null);
   const { setValue } = useForm();
-
+  const [totalRecords, setTotalRecords] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
   const token = localStorage.getItem("token");
 
   const getFranchise = async () => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/?role_id=5`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/franchise/?page=${currentPage}&limit=${5}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
+        // console.log("reeeeee1",response.payload.totalRecords)
+        setTotalRecords(response.payload.totalRecords);
         setLoading(false);
         setFranchises(response.payload.records);
       }
@@ -184,7 +190,7 @@ const FrenchiseManagement: React.FC = () => {
     // return () => {
     //   document.removeEventListener("mousedown", handleClickOutside);
     // };
-  }, []);
+  }, [currentPage]);
 
   const customLoader = (
     <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
@@ -203,7 +209,7 @@ const FrenchiseManagement: React.FC = () => {
     }
     {
       try {
-        const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${id}`;
+        const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${id}`;
 
         const params = {};
         const response = await apiDelete(url, params, token);
@@ -242,6 +248,10 @@ const FrenchiseManagement: React.FC = () => {
     }
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
     getSingleFranchise();
   }, [showEditId]);
@@ -274,6 +284,15 @@ const FrenchiseManagement: React.FC = () => {
           columns={columns}
           customStyles={customStyles}
           data={franchises}
+          pagination
+          paginationComponent={() => (
+            <Pagination
+              currentPage={currentPage}
+              totalRows={totalRecords}
+              rowsPerPage={5}
+              onPageChange={handlePageChange}
+            />
+          )}
           // sortIcon={<ReactSVG src={Chevron}/>}
           // sortIcon={<ChevronDown className="ml-1 text-gray-500" />}
           // defaultSortFieldId={1}

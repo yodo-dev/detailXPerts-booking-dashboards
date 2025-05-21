@@ -16,6 +16,8 @@ function ActionDropdown({
   showEditId,
   setShowEditId,
   handleDelete,
+  viewOnly,
+  handleViewModal,
 }) {
   return (
     <div className="relative ">
@@ -25,39 +27,49 @@ function ActionDropdown({
           className="absolute top-2 right-3 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
         >
           <div className="flex flex-col justify-between p-2 ps-0 gap-[5px]">
-            <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+            <button
+              onClick={handleViewModal}
+              className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full"
+            >
               {" "}
               {/* <Link  className="flex "> */}
               <ReactSVG src={Eye} className="mr-2" /> View {/* </Link>{" "} */}
             </button>
-            <button
-              onClick={(e) => {
-                setShowEditModal(true);
-                setShowEditId(rowId);
-                setOpenDropdown(false);
-                // e.stopPropagation(); // Prevents the outside click handler from firing
-              }}
-              className={`cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full`}
-            >
-              {/* <FileEdit /> */}
-              <ReactSVG src={EditIcon} className="mr-2" /> Edit
-            </button>
 
-            <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
-              <ReactSVG src={blockUser} className="mr-2" /> Block{" "}
-            </button>
+            {viewOnly ? (
+              ""
+            ) : (
+              <>
+                <button
+                  onClick={(e) => {
+                    setShowEditModal(true);
+                    setShowEditId(rowId);
+                    setOpenDropdown(false);
+                    // e.stopPropagation(); // Prevents the outside click handler from firing
+                  }}
+                  className={`cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full`}
+                >
+                  {/* <FileEdit /> */}
+                  <ReactSVG src={EditIcon} className="mr-2" /> Edit
+                </button>
 
-            <button
-              //   onClick={() => handleDelete(row.id)}
-              onClick={() => handleDelete(rowId)}
-              className=" group cursor-pointer text-sm px-3 py-2  flex items-center gap-2 rounded-md hover:bg-[#e0e0e063]"
-            >
-              <div className="relative ">
-                <ReactSVG src={TrashIcon} className="block " />
-                {/* <ReactSVG src={WhiteBin} className="hidden group-hover:block" /> */}
-              </div>
-              Delete
-            </button>
+                <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                  <ReactSVG src={blockUser} className="mr-2" /> Block{" "}
+                </button>
+
+                <button
+                  //   onClick={() => handleDelete(row.id)}
+                  onClick={() => handleDelete(rowId)}
+                  className=" group cursor-pointer text-sm px-3 py-2  flex items-center gap-2 rounded-md hover:bg-[#e0e0e063]"
+                >
+                  <div className="relative ">
+                    <ReactSVG src={TrashIcon} className="block " />
+                    {/* <ReactSVG src={WhiteBin} className="hidden group-hover:block" /> */}
+                  </div>
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
