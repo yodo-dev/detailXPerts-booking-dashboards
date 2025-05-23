@@ -6,10 +6,14 @@ import { apiPost } from "../../Auth/Auth";
 // import Slider from "./Components/Slider"
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import useUserInfoStore from "../../Store/Store";
 
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const { setUserInfo } = useUserInfoStore();
+
+  // console.log("rooooppppee",userRole)
 
   const onLogin = async (data) => {
     try {
@@ -20,6 +24,8 @@ const Login: React.FC = () => {
       const response = await apiPost(url, data1);
       console.log("rrr", response);
       if (response.success) {
+        // console.log("kiiiit",response.payload.user.role_id)
+        setUserInfo(response?.payload?.user);
         toast.success("Login Successfully!");
 
         setTimeout(() => {
@@ -90,6 +96,14 @@ const Login: React.FC = () => {
                 register={register}
                 registerName={"password"}
               />
+              <div className="flex justify-between">
+                <p></p>
+                <Link to={"/forgot-password"}>
+                  <p className="font-normal cursor-pointer text-[14px]">
+                    Forget Password
+                  </p>
+                </Link>
+              </div>
             </div>
 
             <div className=" w-full">

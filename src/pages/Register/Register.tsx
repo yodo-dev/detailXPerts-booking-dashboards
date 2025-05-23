@@ -36,11 +36,6 @@ const Register: React.FC = () => {
           navigate("/login");
         }, 1000);
 
-        localStorage.setItem("token", response.payload.accessToken);
-        localStorage.setItem("userInfo", JSON.stringify(response.payload));
-        // setStorage("userInfo", response.payload);
-
-        // handleUpdateUser(response.payload.role, response.payload);
       }
     } catch (error) {
       // setIsLoading(false);

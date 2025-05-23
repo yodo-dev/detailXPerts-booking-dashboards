@@ -78,12 +78,11 @@ const BookingManagement: React.FC = () => {
           </div>
           <div className="">
             <div className="text-sm cursor-pointer">
-              {/* {row.franchise} */}
-              Ben Ten
+              {row.detailer.first_name} {row.detailer.last_name}
+              
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
-              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
-              Westheimer...
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> {row.detailer.address}
             </div>
           </div>
         </div>
@@ -108,11 +107,11 @@ const BookingManagement: React.FC = () => {
           </div>
           <div className="">
             <div className="text-sm cursor-pointer">
-              {/* {row.franchise} */}
-              Ben Ten
+              {row.customer.first_name} {row.customer.last_name}
+              {/* Ben Ten */}
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-0">
-              <span>hello@abc.com</span>
+              <span>{row.customer.email}</span>
             </div>
           </div>
         </div>
@@ -128,9 +127,9 @@ const BookingManagement: React.FC = () => {
 
     {
       name: "Service",
-      minWidth: "100px",
+      minWidth: "170px",
       selector: (row) => row.service,
-      cell: (row) => <span>Car Wash</span>,
+      cell: (row) => <span>{row?.services[0].service.name}</span>,
     },
 
     {
@@ -151,6 +150,7 @@ const BookingManagement: React.FC = () => {
       name: "Status",
       selector: (row) => row.status,
       minWidth: "130px",
+      
       cell: (row) => (
         // <span
         //   className={`px-2 py-1 rounded-[36px] text-[12px] font-bold ${
@@ -163,7 +163,7 @@ const BookingManagement: React.FC = () => {
         // </span>
         <span
           className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-            row.status === "Completed"
+            row.status === "COMPLETED"
               ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
               : row.status === "PENDING"
               ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
@@ -177,73 +177,7 @@ const BookingManagement: React.FC = () => {
       ),
     },
 
-    // {
-    //   name: "Action",
-    //   selector: (row) => row.action,
-    //   minWidth: "120px",
-    //   cell: (row) => (
-    //     <div className="relative">
-    //       <span
-    //         onClick={() => {
-    //           setOpenDropdown(openDropdown === row.id ? null : row.id);
-    //           setIsDropdownOpen(!isDropdownOpen);
-    //         }}
-    //         className="cursor-pointer"
-    //       >
-    //         <ReactSVG src={Dots} />
-    //       </span>
-
-    //       {openDropdown === row.id && (
-    //         <div
-    //           ref={dropdownRef}
-    //           className="absolute top-8 right-0 z-100 w-80 rounded-md bg-white shadow-lg border border-gray-200"
-    //         >
-    //           <div className="p-3">
-    //             <h3 className="text-left font-medium text-[12px] text-black">
-    //               Actions
-    //             </h3>
-    //           </div>
-    //           <div className="flex flex-col justify-between p-2 gap-[5px]">
-    //             <button
-    //               onClick={() => {
-    //                 setEditModal(true);
-    //                 setEditId(row.id);
-    //               }}
-    //               className={`group cursor-pointer text-sm px-3 py-2 flex items-center gap-2 rounded-md hover:bg-gray-100 hover:text-white hover:bg-[linear-gradient(259.13deg,_#1D61E7_0%,_#002D85_100%)]`}
-    //             >
-    //               <ReactSVG
-    //                 src={BlackEdit}
-    //                 className="block group-hover:hidden"
-    //               />
-    //               <ReactSVG
-    //                 src={whiteEdit}
-    //                 className="hidden group-hover:block"
-    //               />
-    //               Edit
-    //             </button>
-
-    //             <button
-    //               onClick={() => handleDelete(row.id)}
-    //               className=" group cursor-pointer text-sm px-3 py-2  flex items-center gap-2 rounded-md hover:text-white hover:bg-[linear-gradient(259.13deg,_#1D61E7_0%,_#002D85_100%)]"
-    //             >
-    //               <div className="relative ">
-    //                 <ReactSVG
-    //                   src={TrashIcon}
-    //                   className="block group-hover:hidden"
-    //                 />
-    //                 <ReactSVG
-    //                   src={WhiteBin}
-    //                   className="hidden group-hover:block"
-    //                 />
-    //               </div>
-    //               Delete
-    //             </button>
-    //           </div>
-    //         </div>
-    //       )}
-    //     </div>
-    //   ),
-    // },
+  
   ];
 
   const getBookings = async () => {

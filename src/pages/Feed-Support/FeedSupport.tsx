@@ -14,7 +14,7 @@ import WhiteStart from "../../assets/svgs/WhiteStar.svg";
 import BlackStar from "../../assets/svgs/BlackStart.svg";
 import ReviewsSection from "./Components/ReviewsSection";
 import MenuIcon from "@assets/svgs/menu.svg";
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import DataTable from "react-data-table-component";
 import { customStyles } from "@components/CustomStylesTable";
 import { apiGet } from "../../Auth/Auth";
@@ -27,6 +27,7 @@ import BugsModal from "./Components/BugsModal";
 // import White
 import BugsData from "./Components/BugsData";
 import { bugsSupport } from "../../Api/bugsSupport";
+import Chat from "./Components/Chat/Chat";
 // import { SuggestionSupport } from "Api/SuggestionSupport";
 
 const FeedSupport: React.FC = () => {
@@ -54,6 +55,8 @@ const FeedSupport: React.FC = () => {
   //   // isError,
   //   // error,
   // } = useUsers({ type: "BUG" });
+
+
 
   const {
     data: suggestionsSupport,
@@ -179,7 +182,7 @@ const FeedSupport: React.FC = () => {
   }, []);
 
   const [openModal, setModalOpen] = useState(false);
-  const [tabs, setTabs] = useState(0);
+  const [tabs, setTabs] = useState(4);
   const [hoveredBug, setHoveredBug] = useState(false);
   const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
   const [hoveredSurvey, setHoveredSurvey] = useState(false);
@@ -415,35 +418,35 @@ const FeedSupport: React.FC = () => {
 
     {
       name: "Is this app helpful for you?",
-      minWidth: "50px",
+      minWidth: "150px",
       selector: (row) => row.category,
       cell: () => <span>Yes</span>,
     },
 
     {
       name: "Will you recommend this ap to your friends?",
-      minWidth: "50px",
+      minWidth: "250px",
       selector: (row) => row.issue,
       cell: () => <span>Yes</span>,
     },
 
     {
       name: "How helpful this app for you?",
-      minWidth: "50px",
+      minWidth: "250px",
       selector: (row) => row.issue,
       cell: () => <span>Yes</span>,
     },
 
     {
       name: "How helpful this app for you?",
-      minWidth: "50px",
+      minWidth: "150px",
       selector: (row) => row.issue,
       cell: () => <span>Yes</span>,
     },
 
     {
       name: "Users Suggestion?",
-      minWidth: "50px",
+      minWidth: "250px",
       selector: (row) => row.issue,
       cell: () => <span>Yes</span>,
     },
@@ -453,7 +456,6 @@ const FeedSupport: React.FC = () => {
     setViewModal(true);
   };
 
-  console.log("-----", openModal);
   return (
     <MainLayout>
       <div className=" default_container p-0 overflow-x-auto bg-white ">
@@ -489,6 +491,22 @@ const FeedSupport: React.FC = () => {
             </div>
 
             <div className="!mt-[100px] lg:!mt-[0]">
+              <button
+                onClick={() => setTabs(4)}
+                onMouseEnter={() => setHoveredBug(true)}
+                onMouseLeave={() => setHoveredBug(false)}
+                type="button"
+                className={`text-start cursor-pointer flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-[16px] me-2 mb-2 w-[100%] focus:outline-none
+                                ${
+                                  tabs === 4
+                                    ? "bg-[#003CA6] text-white"
+                                    : "bg-white text-black"
+                                }`}
+              >
+                <MessageCircle/>
+                Chat
+              </button>
+
               <button
                 onClick={() => setTabs(0)}
                 onMouseEnter={() => setHoveredBug(true)}
@@ -574,25 +592,11 @@ const FeedSupport: React.FC = () => {
           <div className="w-[100%]">
             {tabs == 0 ? (
               <>
-                {/* <div className="absolute">
-                <BugsModal />
-              </div> */}
-
                 <DataTable
                   columns={columns1}
                   customStyles={customStyles}
                   data={bugsSupport}
                   progressPending={loading}
-                  // pagination
-                  // paginationComponent={() => (
-                  //   <Pagination
-                  //     currentPage={currentPage}
-                  //     totalRows={totalRows}
-                  //     rowsPerPage={5}
-                  //     onPageChange={handlePageChange}
-                  //   />
-                  // )}
-                  // progressComponent={customL}
                 />
                 {/* {viewModal ? <BugsModal /> : ""} */}
               </>
@@ -602,56 +606,23 @@ const FeedSupport: React.FC = () => {
                 customStyles={customStyles}
                 data={suggestionsSupport}
                 progressPending={loading}
-                // pagination
-                // paginationComponent={() => (
-                //   <Pagination
-                //     currentPage={currentPage}
-                //     totalRows={totalRows}
-                //     rowsPerPage={5}
-                //     onPageChange={handlePageChange}
-                //   />
-                // )}
-                // progressComponent={customL}
               />
             ) : tabs == 2 ? (
-              <DataTable
-                columns={columns3}
-                customStyles={customStyles}
-                data={bugsSupport}
-                progressPending={loading}
-                // pagination
-                // paginationComponent={() => (
-                //   <Pagination
-                //     currentPage={currentPage}
-                //     totalRows={totalRows}
-                //     rowsPerPage={5}
-                //     onPageChange={handlePageChange}
-                //   />
-                // )}
-                // progressComponent={customL}
-              />
+              <div className=" p-5 w-[1000px] overflow-auto">
+                <DataTable
+                  columns={columns3}
+                  customStyles={customStyles}
+                  data={bugsSupport}
+                  progressPending={loading}
+                />
+              </div>
             ) : tabs == 3 ? (
               <ReviewsSection />
-            ) : (
-              ""
-            )}
+            ) : tabs == 4 ? (
+              <Chat/>
+            ) : ""}
           </div>
         </div>
-
-        {/* Pagination */}
-        {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">
-                    <p>Showing 1 to 10 of 200 entries</p>
-                    <div className="space-x-2">
-                        <button className="px-3 py-1  rounded-md">Prev</button>
-                        <button className="px-3 py-1  bg-[#003CA6] text-white rounded-md">
-                            1
-                        </button>
-                        <button className="px-3 py-1  rounded-md">2</button>
-                        <button className="px-3 py-1  rounded-md">3</button>
-                        <button className="px-3 py-1  rounded-md">4</button>
-                        <button className="px-3 py-1 text-[#003CA6] rounded-md">Next</button>
-                    </div>
-                </div> */}
       </div>
     </MainLayout>
   );

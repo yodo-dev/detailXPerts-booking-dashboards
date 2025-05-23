@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DetailXpertsLogo from "@assets/svgs/detailXperts-logo.svg";
 import { v4 as uuid } from "uuid";
 import { Link, useLocation } from "react-router-dom";
@@ -8,14 +8,28 @@ import userImg from "@assets/images/user-profile-img.png";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import "./DashboardHeader.css";
+import useUserInfoStore from "../../Store/Store";
+import ProfileDropdown from "@components/ProfileDropdown/ProfileDropdown";
+import userDummy from "@assets/images/user-dummy-img.jpg";
 
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [role, setRole] = useState(1);
+  const { User, logout, isAuthenticated } = useUserInfoStore();
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
+  // console.log("sssssssss",user_role)
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("userInfo")).user
   );
+
+  const dropdownRef = useRef(null);
+
+  const role = User?.role_id;
+
+  if (isAuthenticated == false) {
+    localStorage.clear();
+  }
 
   const headerLinks = [
     { id: uuid(), path: "/", name: "Dashboard" },
@@ -47,7 +61,7 @@ const DashboardHeader: React.FC = () => {
               }
 
               if (link.name === "Feedback & Support" && role == 2) {
-                return null; // Skip rendering the link if condition is met
+                // return null; // Skip rendering the link if condition is met
               }
 
               if (link.name === "Franchise" && role == 0) {
@@ -95,19 +109,49 @@ const DashboardHeader: React.FC = () => {
             </div>
           </Link>
 
-          <Link to="/profile">
+          <button
+            className="cursor-pointer"
+            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+          >
             {/* <img
-              src={userImg}
-              alt="User"
-              className="w-[60px] h-[60px] rounded-full"
+              src={`${import.meta.env.VITE_APP_API_IMG_URL}${userInfo?.image}`}
+              alt="Profile"
+              className="w-[60px] h-[60px] rounded-full object-cover"
+              style={{ border: "1px solid rgba(0,0,0,10%)" }}
             /> */}
+
+            <img
+              src={
+                userInfo?.image
+                  ? `${import.meta.env.VITE_APP_API_IMG_URL}${userInfo.image}`
+                  : userDummy // fallback if no image in data
+              }
+              alt="Profile"
+              className="w-[60px] h-[60px] rounded-full object-cover"
+              style={{ border: "1px solid rgba(0,0,0,10%)" }}
+              onError={(e) => {
+                e.currentTarget.src = "/path-to-dummy-image/userDummy.png"; // fallback if image fails to load
+              }}
+            />
+          </button>
+
+          {/* <Link to="/profile">
+           
             <img
               src={`${import.meta.env.VITE_APP_API_IMG_URL}${userInfo?.image}`}
               alt="Profile"
               className="w-[60px] h-[60px] rounded-full object-cover"
               style={{ border: "1px solid rgba(0,0,0,10%)" }}
             />
-          </Link>
+          </Link> */}
+
+          {showProfileDropdown && (
+            <div ref={dropdownRef} className="absolute right-5 top-13">
+              {" "}
+              <ProfileDropdown />{" "}
+            </div>
+          )}
+
           <button
             className="lg:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
