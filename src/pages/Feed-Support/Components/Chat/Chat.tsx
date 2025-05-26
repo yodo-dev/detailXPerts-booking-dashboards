@@ -16,7 +16,7 @@ const Chat = () => {
   return (
     <>
       <h3 className="mb-5">Messages</h3>
-      <div className="flex h-[calc(100vh-100px)] border-2 border-[var(--primary-text-color)] overflow-hidden rounded-[10px]">
+      <div className="flex h-[calc(100vh-100px)] overflow-hidden rounded-[10px]">
         <ChatSidebar label="Inbox" className="bg-white" />
         <ChatWindow className="bg-[#EFFAFD]" />
       </div>

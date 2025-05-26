@@ -73,6 +73,8 @@ import AddDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/Ad
 
 import FeedSupport from "@pages/Feed-Support/FeedSupport";
 import FrenchiseManagement from "@pages/Frenchise/Frenchise";
+import FrenchiseFrenchiseManagement from "@pages/FranchiseDashboard/Frenchise/Frenchise";
+
 
 import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
 import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
@@ -110,7 +112,9 @@ export const adminRoutes = [
 export const franchiseRoutes = [
   { path: "/", element: <Dashboard /> },
   { path: "/dashboard", element: <Dashboard /> },
-  { path: "/frenchise-management", element: <FrenchiseManagement /> },
+  // { path: "/frenchise-management", element: <FrenchiseManagement /> },
+  { path: "/frenchise-management", element: <FrenchiseFrenchiseManagement /> },
+
   { path: "/booking-management", element: <BookingManagementFranchise /> },
   { path: "/detailers-management", element: <DetailerFranchise /> },
   { path: "/customers-management", element: <CustomerFranchise /> },

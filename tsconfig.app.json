@@ -43,7 +43,9 @@
       "@layouts/*": ["Layouts/*"],
       "@pages/*": ["pages/*"],
       "@types/*": ["types/*"],
-      "@routes/*": ["routes/*"]
+      "@routes/*": ["routes/*"],
+      "@socket/*": ["socket/*"],
+
     }
   },
   "include": ["src"]

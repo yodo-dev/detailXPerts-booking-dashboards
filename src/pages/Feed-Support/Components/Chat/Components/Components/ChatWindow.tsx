@@ -1,47 +1,113 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Picker from "@emoji-mart/react";
+import socket from "@socket/socket";
 // import emojiIcon from "../../../../assets/svgs/dashboard-svgs/face-smile.svg";
 import { Ellipsis, Smile } from "lucide-react";
 import emojiIcon from "@assets/svgs/face-smile.svg";
 import { useChatAllMessages } from "../../../../../../Hooks/useChatSupport";
+import { useMutation } from "react-query";
+import { sendMessages } from "../../../../../../Api/ChatSupport";
+import useUserInfoStore from "../../../../../../Store/Store";
+import chatStore from "../../../../../../Store/ChatStore";
 
 function ChatWindow({ className }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const [value, setValue] = useState("");
+  const { currentChatId, setCurrentChatId } = chatStore();
+
+  const { User } = useUserInfoStore();
 
   const {
     data: chatAllMsgs,
     // isLoading: isLoadingSuggestions,
     // isError: isErrorSuggestions,
     // error: errorSuggestions,
-  } = useChatAllMessages(12);
+  } = useChatAllMessages(currentChatId);
 
-  const dummyMessages = [
-    { id: 1, content: "Hello! 👋", sentAt: new Date().toISOString() },
-    { id: 2, content: "How's it going?", sentAt: new Date().toISOString() },
-    { id: 3, content: "Are You Fine", sentAt: new Date().toISOString() },
-  ];
-
+  console.log(chatAllMsgs, "all message");
   const bottomRef = React.useRef(null);
 
+  // const handleSendMessage = () => {
+  //   if (!value.trim()) return;
+  //   console.log("Sending message:", value);
+  //   setValue(""); // Simulate message sent
+  // };
+
+  // emitNewMessage
+
+  const [messagees, setMessages] = useState([]);
+
+  useEffect(() => {
+    setMessages(chatAllMsgs);
+  }, [chatAllMsgs]);
+  const mutation = useMutation({
+    mutationFn: sendMessages, // 👈 this is your POST API
+    onSuccess: (data) => {
+      console.log("✅ Message sent successfully:", data);
+      // Optionally update UI or refetch chat messages
+    },
+    onError: (error) => {
+      console.error("❌ Error sending message:", error);
+    },
+  });
+
   const handleSendMessage = () => {
-    if (!value.trim()) return;
-    console.log("Sending message:", value);
-    setValue(""); // Simulate message sent
+    const formData = new FormData();
+    // formData.append("content", "123456");
+    formData.append("content", value);
+    formData.append("userIds[]", [2]);
+
+    mutation.mutate(formData);
+
+    const message = {
+      content: value,
+      sentAt: new Date(),
+      deleted: false,
+      created_at: new Date(),
+      updated_at: new Date(),
+      sender_id: User?.id,
+      sender: {
+        first_name: User?.first_name,
+        last_name: User?.last_name,
+        email: User?.email,
+      },
+      attachments: [],
+    };
+
+    setMessages((prev) => [...prev, message]);
+    setValue("");
   };
 
-  const handleEmojiClick = (emoji) => {
-    setValue((prev) => prev + emoji.native);
-    setShowEmojiPicker(false);
-  };
+  // useEffect(() => {
+  //   socket.on("emitNewMessage", (message) => {
+  //     setMessages((prev) => [...prev, message]);
+  //     console.log("333333333")
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    socket.on("emitNewMessage", (message) => {
+      console.log("New message received via socket:", message);
+      setMessages((prev) => [...prev, message]);
+    });
+  }, []);
+
+  console.log("aaaaaa/aazxxxxxxx", messagees);
 
   return (
     <main className={`flex-1 flex flex-col ${className}`}>
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
-        {chatAllMsgs?.map((msg) => (
-          <div key={msg.id}>
-            <div className="flex items-center gap-2">
+        {messagees?.map((msg) => (
+          <div
+            className={`${
+              User?.id == msg?.sender_id
+                ? "flex items-end justify-end flex-col "
+                : ""
+            }`}
+            key={msg.id}
+          >
+            <div className="flex items-center gap-2 ">
               <p className="font-normal text-[12px] text-[#535862] leading-[18px] tracking-normal font-segoe">
                 {new Date(msg.sentAt).toLocaleDateString([], {
                   weekday: "long",
@@ -51,7 +117,11 @@ function ChatWindow({ className }) {
               </p>
             </div>
             {/* Display Message */}
-            <div className="max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black">
+            <div
+              className={` ${
+                User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
+              } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
+            >
               <p className="text-sm">{msg.content}</p>
             </div>
           </div>
@@ -66,13 +136,14 @@ function ChatWindow({ className }) {
             placeholder="Send a message..."
             value={value}
             onChange={(e) => setValue(e.target.value)}
+            onResize={false}
           />
 
           <div className="flex items-center gap-4 mt-2">
             <button
               onClick={handleSendMessage}
               disabled={!value.trim()}
-              className="text-sm text-white font-semibold bg-[var(--primary-color)] px-7 py-3 rounded-sm disabled:opacity-50"
+              className="text-sm cursor-pointer text-white font-semibold bg-[var(--primary-color)] px-7 py-3 rounded-sm disabled:opacity-50"
             >
               Send Message
             </button>

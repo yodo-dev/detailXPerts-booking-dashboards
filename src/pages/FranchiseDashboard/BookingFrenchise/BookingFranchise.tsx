@@ -3,8 +3,45 @@ import React from "react";
 import arrowDown from "../../../assets/svgs/arrow-down.svg";
 import { ReactSVG } from "react-svg";
 import VehicleCard from "@components/CarCards/CarCards";
-
+import { apiGet } from "Auth/Auth";
+import { useBookingFranchise } from "../../../Hooks/useBookingFranchise";
 const BookingFranchise: React.FC = () => {
+  // const getSingleFranchise = async () => {
+  //   // setLoading(true);
+  //   try {
+  //     const url = `${
+  //       import.meta.env.VITE_APP_API_URL
+  //     }v1/franchise/${showEditId}`;
+
+  //     const params = {};
+  //     const response = await apiGet(url, params, token);
+  //     if (response.success) {
+  //       // setLoading(false);
+  //       // setSingleFranchises(response.payload);
+  //       // setValue("name", response.payload.name);
+  //       // setValue("last_name", response.payload.last_name);
+  //       // setValue("email", response.payload.email);
+  //       // setValue("phone", response.payload.phone);
+  //       // setValue("address", response.payload.address);
+  //       // setValue("city", response.payload.city);
+  //       // setValue("state", response.payload.state);
+  //     }
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log("Error :", error);
+  //   }
+  // };
+
+  // useBookingFranchise
+  const {
+    data: FranchiseBooking,
+    isLoading: isLoadingSuggestions,
+    isError: isErrorSuggestions,
+    error: errorSuggestions,
+  } = useBookingFranchise(21);
+
+  console.log("f11sssss11", FranchiseBooking);
+
   return (
     <MainLayout>
       <div className="default_container p-4 pt-0  overflow-x-auto ">
@@ -38,50 +75,7 @@ const BookingFranchise: React.FC = () => {
 
         <div className="bg-white ">
           <div className="grid grid-cols-3 gap-[54px]">
-            <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
-              <VehicleCard
-                vehicleName="Honda Civic"
-                vehicleYear={2025}
-                //   vehicleImage={carImage}
-                fromLocation={{
-                  title: "2972 Westheimer",
-                  address: "Rd. Santa Ana, Illinois 85486",
-                }}
-                toLocation={{
-                  title: "8502 Preston",
-                  address: "Rd. Inglewood, Maine 98380",
-                }}
-                customer={{
-                  name: "Darrell Steward",
-                  company: "Mariene, LTD",
-                  avatar:
-                    "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
-                }}
-              />
-            </div>
-
-            <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
-              <VehicleCard
-                vehicleName="Honda Civic"
-                vehicleYear={2025}
-                //   vehicleImage={carImage}
-                fromLocation={{
-                  title: "2972 Westheimer",
-                  address: "Rd. Santa Ana, Illinois 85486",
-                }}
-                toLocation={{
-                  title: "8502 Preston",
-                  address: "Rd. Inglewood, Maine 98380",
-                }}
-                customer={{
-                  name: "Darrell Steward",
-                  company: "Mariene, LTD",
-                  avatar:
-                    "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
-                }}
-              />
-            </div>
-
+           
             <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
               <VehicleCard
                 vehicleName="Honda Civic"
@@ -105,12 +99,11 @@ const BookingFranchise: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-[54px] mt-[54px]">
+          {/* <div className="grid grid-cols-3 gap-[54px] mt-[54px]">
             <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
               <VehicleCard
                 vehicleName="Honda Civic"
                 vehicleYear={2025}
-                //   vehicleImage={carImage}
                 fromLocation={{
                   title: "2972 Westheimer",
                   address: "Rd. Santa Ana, Illinois 85486",
@@ -132,7 +125,6 @@ const BookingFranchise: React.FC = () => {
               <VehicleCard
                 vehicleName="Honda Civic"
                 vehicleYear={2025}
-                //   vehicleImage={carImage}
                 fromLocation={{
                   title: "2972 Westheimer",
                   address: "Rd. Santa Ana, Illinois 85486",
@@ -154,7 +146,6 @@ const BookingFranchise: React.FC = () => {
               <VehicleCard
                 vehicleName="Honda Civic"
                 vehicleYear={2025}
-                //   vehicleImage={carImage}
                 fromLocation={{
                   title: "2972 Westheimer",
                   address: "Rd. Santa Ana, Illinois 85486",
@@ -171,7 +162,7 @@ const BookingFranchise: React.FC = () => {
                 }}
               />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Pagination */}
