@@ -34,6 +34,14 @@ const FeedSupport: React.FC = () => {
   const [franchises, setFranchises] = useState([]);
   const [loading, setLoading] = useState(true);
   const dropdownRef = useRef();
+  const [tabs, setTabs] = useState(4);
+  const [openModal, setModalOpen] = useState(false);
+  const [hoveredBug, setHoveredBug] = useState(false);
+  const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
+  const [hoveredSurvey, setHoveredSurvey] = useState(false);
+  const [hoveredStar, setHoveredStar] = useState(false);
+  const [viewModal, setViewModal] = useState(true);
+
   // const { data: bugsSupport, isLoading, isError, error } = useUsers();
   // const {
   //   data: bugsSupport,
@@ -55,8 +63,6 @@ const FeedSupport: React.FC = () => {
   //   // isError,
   //   // error,
   // } = useUsers({ type: "BUG" });
-
-
 
   const {
     data: suggestionsSupport,
@@ -162,8 +168,10 @@ const FeedSupport: React.FC = () => {
   const getBugs = async () => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
+      let url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
 
+      if (tabs == 0) {
+      }
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
@@ -178,16 +186,29 @@ const FeedSupport: React.FC = () => {
   };
 
   useEffect(() => {
-    getBugs();
+    getBugs(tabs);
+    getSurvey();
   }, []);
 
-  const [openModal, setModalOpen] = useState(false);
-  const [tabs, setTabs] = useState(4);
-  const [hoveredBug, setHoveredBug] = useState(false);
-  const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
-  const [hoveredSurvey, setHoveredSurvey] = useState(false);
-  const [hoveredStar, setHoveredStar] = useState(false);
-  const [viewModal, setViewModal] = useState(true);
+  const getSurvey = async () => {
+    setLoading(true);
+    try {
+      let url = `${import.meta.env.VITE_APP_API_URL}v1/survey`;
+
+      if (tabs == 0) {
+      }
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setFranchises(response.payload.records);
+        // setTotalRows(response.payload.totalRecords);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error :", error);
+    }
+  };
 
   const tableData = [
     { key: "user", label: "User" },
@@ -503,7 +524,7 @@ const FeedSupport: React.FC = () => {
                                     : "bg-white text-black"
                                 }`}
               >
-                <MessageCircle/>
+                <MessageCircle />
                 Chat
               </button>
 
@@ -619,8 +640,10 @@ const FeedSupport: React.FC = () => {
             ) : tabs == 3 ? (
               <ReviewsSection />
             ) : tabs == 4 ? (
-              <Chat/>
-            ) : ""}
+              <Chat />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

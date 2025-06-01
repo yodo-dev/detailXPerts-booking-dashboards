@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CommonInput from "./Components/CommonInput";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,26 +7,35 @@ import { apiPost } from "../../Auth/Auth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useUserInfoStore from "../../Store/Store";
+import Spinner from "@components/Spinner";
 
 const Login: React.FC = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
   const { setUserInfo } = useUserInfoStore();
+  const [isLoading, setIsLoading] = useState();
+  // const [passwordShow, setPasswordShow] = useState(false);
+
 
   // console.log("rooooppppee",userRole)
 
   const onLogin = async (data) => {
     try {
       // setIsLoading(true);
+      setIsLoading(true);
       const url = `${import.meta.env.VITE_APP_API_URL}v1/auth/login`;
 
       const data1 = { email: data.email, password: data.password };
       const response = await apiPost(url, data1);
       console.log("rrr", response);
       if (response.success) {
-        // console.log("kiiiit",response.payload.user.role_id)
+        setIsLoading(false);
         setUserInfo(response?.payload?.user);
-        toast.success("Login Successfully!");
+        toast.success("Login Successfully! 😊");
 
         setTimeout(() => {
           navigate("/dashboard");
@@ -36,17 +45,14 @@ const Login: React.FC = () => {
         localStorage.setItem("userInfo", JSON.stringify(response.payload));
       }
     } catch (error) {
+      setIsLoading(false);
       toast.error("Login Failed");
-
-      // setIsLoading(false);
-    } finally {
-      // setIsLoading(false);
     }
   };
 
   return (
-    <div className="grid grid-cols-10 min-h-screen">
-      <div className="col-span-4 bg-[#003CA6] p-[35px]">
+    <div className="grid grid-cols-10 gap-4 min-h-screen">
+      <div className="hidden lg:block col-span-4 bg-[#003CA6] p-[35px]">
         <h3 className="!text-black text-[21px] font-extrabold mb-[80px] bg-white pt-[15px] pb-[15px] ps-[30px] pe-[30px] rounded-full w-fit">
           DetailXperts
         </h3>
@@ -62,8 +68,8 @@ const Login: React.FC = () => {
         {/* <Slider/> */}
       </div>
 
-      <div className="col-span-6 bg-white flex items-center justify-center">
-        <div className="flex justify-center w-[520px] flex-col items-center">
+      <div className="lg:col-span-6  col-span-10 lg:px-0 px-2 px-10 bg-white flex items-center justify-center">
+        <div className="flex justify-center lg:w-[520px] w-full flex-col items-center">
           <h2 className="text-[32px] text-center font-extrabold mb-[14px]">
             Sign In
           </h2>
@@ -78,10 +84,11 @@ const Login: React.FC = () => {
               <div className="">
                 <CommonInput
                   placeholder="Enter Email"
-                  inputClass=" p-10 bg-red-400 !w-full "
+                  inputClass=" p-10 bg-red-400 !w-full focus "
                   register={register}
                   registerName={"email"}
-                  validation={{ required: "Email is required" }}
+                  // validation={"asdasdasdasdasd"}
+                  // errors={errors}
                 />
               </div>
             </div>
@@ -92,9 +99,11 @@ const Login: React.FC = () => {
               </label>
               <CommonInput
                 placeholder="Enter Password"
-                inputClass="w-full"
+                inputClass="w-full focus"
                 register={register}
                 registerName={"password"}
+                type= "password"
+                eyeIcon={true}
               />
               <div className="flex justify-between">
                 <p></p>
@@ -111,6 +120,7 @@ const Login: React.FC = () => {
                 btnText="Sign In"
                 btnClass="bg-[#003CA6] text-white pt-[16px] pb-[16px] mb-3"
                 type="submit"
+                isLoading={isLoading}
               />
               <span className="text-[14px] ">
                 Don't have an account?{" "}

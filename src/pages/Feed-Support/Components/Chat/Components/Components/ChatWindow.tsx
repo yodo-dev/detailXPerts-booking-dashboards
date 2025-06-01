@@ -93,8 +93,6 @@ function ChatWindow({ className }) {
     });
   }, []);
 
-  console.log("aaaaaa/aazxxxxxxx", messagees);
-
   return (
     <main className={`flex-1 flex flex-col ${className}`}>
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">

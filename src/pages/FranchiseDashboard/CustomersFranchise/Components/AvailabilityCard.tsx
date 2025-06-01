@@ -105,7 +105,7 @@ export const AvailabilityCard: React.FC = () => {
   );
 };
 
-export const AvailabilityTime = ({ dayName }) => {
+export const AvailabilityTime = ({ dayName, notArrowImg }) => {
   const handleTimeManager = () => {
     console.log("handleTimeManager");
   };
@@ -129,7 +129,7 @@ export const AvailabilityTime = ({ dayName }) => {
         <span className="w-20">{dayName}</span>
       </div>
 
-      <div className="flex">
+      <div className="flex ">
         <input
           type="text"
           id="first_name"
@@ -151,10 +151,14 @@ focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-[#F5F5F5] 
           value={"PM"}
         />
 
-        <ReactSVG
-          className="relative top-[10px] right-[30px] h-[16px] w-[16px]"
-          src={ArrowDown}
-        />
+        {notArrowImg ? (
+          ""
+        ) : (
+          <ReactSVG
+            className="relative top-[10px] right-[30px] h-[16px] w-[16px]"
+            src={ArrowDown}
+          />
+        )}
       </div>
 
       <span>to</span>
@@ -179,11 +183,14 @@ focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-[#F5F5F5] 
           readOnly
           value={"PM"}
         />
-
-        <ReactSVG
-          className="relative top-[10px] right-[30px] h-[16px] w-[16px]"
-          src={ArrowDown}
-        />
+        {notArrowImg ? (
+          ""
+        ) : (
+          <ReactSVG
+            className="relative top-[10px] right-[30px] h-[16px] w-[16px]"
+            src={ArrowDown}
+          />
+        )}
       </div>
 
       <div>

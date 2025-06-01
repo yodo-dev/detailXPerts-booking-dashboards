@@ -53,7 +53,7 @@ const EditCustomers = ({
 
       const response = await apiPut(url, params, token);
       if (response.success) {
-        toast.success("Customer Updated Successfully!");
+        toast.success("Customer Updated Successfully! 😊");
 
         setLoading(false);
         // getUsers();

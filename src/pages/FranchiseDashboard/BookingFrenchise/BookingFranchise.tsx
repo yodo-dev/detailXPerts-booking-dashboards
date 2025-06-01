@@ -73,14 +73,15 @@ const BookingFranchise: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white ">
-          <div className="grid grid-cols-3 gap-[54px]">
-           
+        {/* <div className="bg-red-500 "> */}
+        <div className="grid grid-cols-3 gap-[54px] ">
+          {FranchiseBooking?.map((cardetails) => (
             <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
               <VehicleCard
-                vehicleName="Honda Civic"
-                vehicleYear={2025}
-                //   vehicleImage={carImage}
+                vehicleName={`${cardetails?.vehicle?.make} ${cardetails?.vehicle?.model}`}
+                vehicleYear={cardetails?.vehicle?.year}
+                // vehicleImage={carImage}
+
                 fromLocation={{
                   title: "2972 Westheimer",
                   address: "Rd. Santa Ana, Illinois 85486",
@@ -90,16 +91,16 @@ const BookingFranchise: React.FC = () => {
                   address: "Rd. Inglewood, Maine 98380",
                 }}
                 customer={{
-                  name: "Darrell Steward",
+                  name: `${cardetails?.customer?.first_name} ${cardetails?.customer?.last_name}`,
                   company: "Mariene, LTD",
-                  avatar:
-                    "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
+                  avatar:"https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww",
                 }}
               />
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* <div className="grid grid-cols-3 gap-[54px] mt-[54px]">
+        {/* <div className="grid grid-cols-3 gap-[54px] mt-[54px]">
             <div className="col-span-3 lg:col-span-1 flex justify-center items-center">
               <VehicleCard
                 vehicleName="Honda Civic"
@@ -163,7 +164,7 @@ const BookingFranchise: React.FC = () => {
               />
             </div>
           </div> */}
-        </div>
+        {/* </div> */}
 
         {/* Pagination */}
         {/* <div className="flex justify-between items-center mt-4 !text-[14px] !font-medium text-[#414651]">

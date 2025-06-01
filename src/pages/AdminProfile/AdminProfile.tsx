@@ -73,7 +73,7 @@ export default function AdminProfile() {
 
       const response = await apiPut(url, formData, token);
       if (response.success) {
-        toast.success("Admin Profile Updated Successfully");
+        toast.success("Admin Profile Updated Successfully! 😊");
         setLoading(false);
         if (userInfo) {
           const updatedUserInfo = {

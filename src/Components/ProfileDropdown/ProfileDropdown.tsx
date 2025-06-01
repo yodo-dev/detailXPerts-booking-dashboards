@@ -8,6 +8,10 @@ import useUserInfoStore from "../../Store/Store";
 const ProfileDropdown = ({ handleLogout }) => {
   const { User, logout } = useUserInfoStore();
 
+  const LogoutUser=()=>{
+    logout()
+  }
+
   return (
     <div
       className="bg-white rounded-xl absolute right-8 top-6 mt-2 z-10 w-[370px] py-7 px-5 pb-3"
@@ -35,7 +39,7 @@ const ProfileDropdown = ({ handleLogout }) => {
         </Link>
 
         <button
-          onClick={logout}
+          onClick={LogoutUser}
           className="flex items-center gap-2 hover:text-black mb-3 cursor-pointer"
         >
           {/* <img src={logoutImg} alt="Logout" className="w-5 h-5" /> */}

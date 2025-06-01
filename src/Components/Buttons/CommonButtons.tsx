@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { PrimaryBtnProps } from "./types";
-import downloadBtn from "../../assets/svgs/downloadBtn.svg"
+import downloadBtn from "../../assets/svgs/downloadBtn.svg";
+import Spinner from "@components/Spinner";
 
 export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   btnText,
@@ -13,9 +14,10 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   onClick,
   Link: linkTo,
   imgPosition = "left",
-  type
+  isLoading = false,
+  type,
 }) => {
-  const imageElement =  showImg && <img src={img} className={`${imgClass}`} />;
+  const imageElement = showImg && <img src={img} className={`${imgClass}`} />;
   const textElement = <span className={`${btnTextClass}`}>{btnText}</span>;
 
   // const content = (
@@ -34,15 +36,13 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   //   </div>
   // );
 
-
-  return  (
+  return (
     <button
-      className={`rounded-lg cursor-pointer w-full ${btnClass}`}
+      className={`rounded-lg flex items-center justify-center cursor-pointer w-full ${btnClass}`}
       onClick={onClick}
       type={type}
     >
-      {btnText}
+      {isLoading ? <Spinner /> : btnText}
     </button>
   );
-
 };

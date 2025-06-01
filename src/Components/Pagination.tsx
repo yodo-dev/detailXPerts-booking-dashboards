@@ -13,6 +13,8 @@ const Pagination: React.FC<PaginationProps> = ({
   rowsPerPage,
   onPageChange,
 }) => {
+
+
   const totalPages = Math.ceil(totalRows / rowsPerPage);
 
   const getPageNumbers = () => {

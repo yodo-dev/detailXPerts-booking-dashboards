@@ -6,7 +6,7 @@ import VehicleCard from "@components/CarCards/CarCards";
 import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
 import Linechart from "@components/Charts/Linechart";
-import DownloadButton from "./Components/ButtonComponent";
+// import DownloadButton from "../src/pages/FranchiseDashboard/DetailerFranchise/Components/ButtonComponent";
 
 const DetailerFranchise: React.FC = () => {
   const data = [
@@ -77,7 +77,7 @@ const DetailerFranchise: React.FC = () => {
                   vehicleYear={2025}
                   //   vehicleImage={carImage}
                   fromLocation={{
-                    title: "2972 Westheimer",
+                    title: "Westheimer",
                     address: "Rd. Santa Ana, Illinois 85486",
                   }}
                   toLocation={{
@@ -147,7 +147,7 @@ const DetailerFranchise: React.FC = () => {
                   </h1>
                 </div>
                 <div className="flex gap-[10px] flex-wrap">
-                  <DownloadButton text="Download Report" />
+                  {/* <DownloadButton text="Download Report" /> */}
                   <input
                     type="date"
                     name=""

@@ -75,7 +75,6 @@ import FeedSupport from "@pages/Feed-Support/FeedSupport";
 import FrenchiseManagement from "@pages/Frenchise/Frenchise";
 import FrenchiseFrenchiseManagement from "@pages/FranchiseDashboard/Frenchise/Frenchise";
 
-
 import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
 import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
 
@@ -120,11 +119,13 @@ export const franchiseRoutes = [
   { path: "/customers-management", element: <CustomerFranchise /> },
   { path: "/payment-management", element: <PaymentManagementFranchise /> },
   { path: "/profile", element: <ProfileFranchise /> },
+  { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
+  { path: "/customers-franchise", element: <AddCustomerFranchise /> },
+
   { path: "/settings", element: <Settings /> },
   { path: "/reports", element: <ReportsFranchise /> },
   { path: "/notifications", element: <Notifications /> },
   { path: "/feedback-support", element: <FeedSupport /> },
-
 ];
 
 // Get role (e.g., from localStorage or context)
@@ -138,8 +139,6 @@ export const franchiseRoutes = [
 // const PrivateRoutes = userInfo === "franchise" ? franchiseRoutes : adminRoutes;
 
 // Determine routes based on user role
-
-
 
 // const getPrivateRoutes = () => {
 //   try {

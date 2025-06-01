@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import CommonInput from "../../Components/inputs/CommonInput";
 import CommonInput from "../Login/Components/CommonInput";
 
@@ -7,15 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiPost } from "../../Auth/Auth";
 // import Slider from "./Components/Slider"
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Register: React.FC = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState();
 
   const onRegister = async (data) => {
     console.log("RRRRR", data);
     try {
-      // setIsLoading(true);
+      setIsLoading(true);
       const url = `${import.meta.env.VITE_APP_API_URL}v1/auth/register`;
 
       //   const data1 = { email: data.email, password: data.password };
@@ -31,14 +33,15 @@ const Register: React.FC = () => {
       const response = await apiPost(url, data1);
       console.log("rrr", response);
       if (response.success) {
-        // toast.success("Login Success!");
+        toast.success("User Create Successfully! 😊");
+        setIsLoading(false);
+
         setTimeout(() => {
           navigate("/login");
         }, 1000);
-
       }
     } catch (error) {
-      // setIsLoading(false);
+      setIsLoading(false);
       // toast.error("Login Failed");
     } finally {
       // setIsLoading(false);
@@ -47,12 +50,12 @@ const Register: React.FC = () => {
 
   return (
     <div className="grid grid-cols-10 min-h-screen">
-      <div className="col-span-12 bg-white flex items-center justify-center">
-        <div className="flex justify-center w-[520px] flex-col items-center">
-          <h2 className="text-[32px] text-center font-extrabold mb-[14px]">
+      <div className="col-span-12 px-10 bg-white flex items-center justify-center">
+        <div className="flex justify-center w-[520px]  flex-col items-center">
+          <h2 className=" md:p-0 p-5 text-[32px] text-center font-extrabold md:mb-[14px] mb-0">
             Register
           </h2>
-          <p className="text-[#414143] text-center font-normal text-[16px] mb-[50px]">
+          <p className="text-[#414143] text-center font-normal text-[16px] md:mb-[50px] mb-[10px]">
             {/* Log in to your franchise control panel */}
           </p>
           <form className="w-full" onSubmit={handleSubmit(onRegister)}>
@@ -110,6 +113,7 @@ const Register: React.FC = () => {
                 inputClass="custom-input"
                 placeholder="Enter Password"
                 validation={{ required: "Password is required" }}
+                eyeIcon={true}
               />
             </div>
 
@@ -124,6 +128,7 @@ const Register: React.FC = () => {
                 inputClass="custom-input"
                 placeholder="Enter Contact Number"
                 validation={{ required: "Contact number is required" }}
+                type="number"
               />
             </div>
 
@@ -132,6 +137,7 @@ const Register: React.FC = () => {
                 btnText="Sign Up"
                 btnClass="bg-[#003CA6] text-white pt-[13px] pb-[13px] mb-3"
                 type="submit"
+                isLoading={isLoading}
               />
               <span className="text-[14px] ">
                 Already have an account?{" "}

@@ -66,7 +66,7 @@ const EditFranchise = ({
 
       const response = await apiPut(url, params, token);
       if (response.success) {
-        toast.success("Franchise Updated Successfully!");
+        toast.success("Franchise Updated Successfully! 😊");
         setLoading(false);
         getFranchise();
         // getUsers();

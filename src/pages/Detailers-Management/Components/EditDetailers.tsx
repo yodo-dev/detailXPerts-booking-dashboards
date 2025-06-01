@@ -53,7 +53,7 @@ const EditDetailers = ({
 
       const response = await apiPut(url, params, token);
       if (response.success) {
-        toast.success("Detailer Updated Successfully!");
+        toast.success("Detailer Updated Successfully! 😊");
 
         setLoading(false);
         getFranchise();

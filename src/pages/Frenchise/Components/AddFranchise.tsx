@@ -46,7 +46,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
 
       const response = await apiPost(url, params, token);
       if (response.success) {
-        toast.success("Franchise Created Successfully!");
+        toast.success("Franchise Created Successfully! 😊");
 
         setLoading(false);
         getFranchise();
