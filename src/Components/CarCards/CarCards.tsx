@@ -3,8 +3,8 @@ import { ReactSVG } from "react-svg";
 import VehicleCar from "../../assets/svgs/honda civic car.svg";
 import CallIcon from "@assets/svgs/call.svg";
 import MessageIcon from "@assets/svgs/message-text.svg";
-import greenCircle from "../../assets/svgs/Ellipse 45.svg"
-import Location from "../../assets/svgs/location1.svg"
+import greenCircle from "../../assets/svgs/Ellipse 45.svg";
+import Location from "../../assets/svgs/location1.svg";
 
 import ReactSwitch from "react-switch";
 type VehicleCardProps = {
@@ -50,7 +50,9 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
 
       <div className="space-y-4">
         <div className="flex items-start space-x-3">
-          <div className="bg-[#E8F9EE] relative w-[38px] h-[38px] rounded-full mt-1.5"><img src={greenCircle} alt="" className="absolute top-3 left-3" /></div>
+          <div className="bg-[#E8F9EE] relative w-[38px] h-[38px] rounded-full mt-1.5">
+            <img src={greenCircle} alt="" className="absolute top-3 left-3" />
+          </div>
           <div>
             <p className="font-semibold text-gray-800">{fromLocation.title}</p>
             <p className="text-sm text-[#B0B0B0]">{fromLocation.address}</p>
@@ -58,7 +60,14 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         <div className="flex items-start space-x-3 relative">
-          <div className="w-[38px] h-[38px] relative bg-[#E5E5FE] rounded-full mt-1.5"> <img src={Location} alt="" className="absolute top-[9px] left-[11px] w-[17px] h-[20px]" /> </div>
+          <div className="w-[38px] h-[38px] relative bg-[#E5E5FE] rounded-full mt-1.5">
+            {" "}
+            <img
+              src={Location}
+              alt=""
+              className="absolute top-[9px] left-[11px] w-[17px] h-[20px]"
+            />{" "}
+          </div>
           <div>
             <p className="font-semibold text-gray-800">{toLocation.title}</p>
             <p className="text-sm text-[#B0B0B0]">{toLocation.address}</p>

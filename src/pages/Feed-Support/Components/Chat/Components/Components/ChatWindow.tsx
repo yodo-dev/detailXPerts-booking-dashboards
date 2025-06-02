@@ -9,7 +9,7 @@ import { useMutation } from "react-query";
 import { sendMessages } from "../../../../../../Api/ChatSupport";
 import useUserInfoStore from "../../../../../../Store/Store";
 import chatStore from "../../../../../../Store/ChatStore";
-
+import noMsgs from "@assets/images/noMsgs.png";
 function ChatWindow({ className }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -25,7 +25,6 @@ function ChatWindow({ className }) {
     // error: errorSuggestions,
   } = useChatAllMessages(currentChatId);
 
-  console.log(chatAllMsgs, "all message");
   const bottomRef = React.useRef(null);
 
   // const handleSendMessage = () => {
@@ -37,6 +36,14 @@ function ChatWindow({ className }) {
   // emitNewMessage
 
   const [messagees, setMessages] = useState([]);
+  const {
+    chatSingleId,
+    setChatSingleId,
+    setCurrentChatUserId,
+    currentChatUserId,
+  } = chatStore();
+
+  console.log(currentChatId, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
   useEffect(() => {
     setMessages(chatAllMsgs);
@@ -56,7 +63,7 @@ function ChatWindow({ className }) {
     const formData = new FormData();
     // formData.append("content", "123456");
     formData.append("content", value);
-    formData.append("userIds[]", [2]);
+    formData.append("userIds[]", currentChatUserId);
 
     mutation.mutate(formData);
 
@@ -93,37 +100,54 @@ function ChatWindow({ className }) {
     });
   }, []);
 
+  useEffect(() => {
+    if (!chatSingleId) return;
+
+    // Optional: Add a condition if you want to send something specific
+    const formData = new FormData();
+    formData.append("content", "");
+    formData.append("userIds[]", currentChatId);
+
+    mutation.mutate(formData);
+  }, [chatSingleId]);
+
   return (
     <main className={`flex-1 flex flex-col ${className}`}>
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
-        {messagees?.map((msg) => (
-          <div
-            className={`${
-              User?.id == msg?.sender_id
-                ? "flex items-end justify-end flex-col "
-                : ""
-            }`}
-            key={msg.id}
-          >
-            <div className="flex items-center gap-2 ">
-              <p className="font-normal text-[12px] text-[#535862] leading-[18px] tracking-normal font-segoe">
-                {new Date(msg.sentAt).toLocaleDateString([], {
-                  weekday: "long",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </p>
-            </div>
-            {/* Display Message */}
+      <div className="flex-1 overflow-y-auto  px-6 py-4 space-y-6">
+        {messagees?.length > 0 ? (
+          messagees?.map((msg) => (
             <div
-              className={` ${
-                User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
-              } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
+              className={`${
+                User?.id == msg?.sender_id
+                  ? "flex items-end justify-end flex-col "
+                  : ""
+              }`}
+              key={msg.id}
             >
-              <p className="text-sm">{msg.content}</p>
+              <div className="flex items-center gap-2 ">
+                <p className="font-normal text-[12px] text-[#535862] leading-[18px] tracking-normal font-segoe">
+                  {new Date(msg.sentAt).toLocaleDateString([], {
+                    weekday: "long",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              </div>
+              {/* Display Message */}
+              <div
+                className={` ${
+                  User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
+                } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
+              >
+                <p className="text-sm">{msg.content}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="w-full h-full flex items-center justify-center">
+            <img src={noMsgs} className="w-20 h-20" />
+          </p>
+        )}
         <div ref={bottomRef} />
       </div>
 

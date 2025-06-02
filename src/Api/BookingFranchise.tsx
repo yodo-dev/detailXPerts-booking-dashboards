@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const bookingFranchise = async (id) => {
   const BASE_URL = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${id}`;
   const token = localStorage.getItem("token");

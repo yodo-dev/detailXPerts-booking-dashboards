@@ -14,11 +14,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import dayjs from "dayjs";
 import SkeltonLoader from "@components/SkeltonLoader";
+import MessageIcon from "@assets/svgs/message-text.svg";
+import chatStore from "../../Store/ChatStore";
+import { useNavigate } from "react-router-dom";
+
 const SubTasks = ({ setShowSubTask, singleData }) => {
   const th = ["Detailers", "Jobs", "Status"];
   const th1 = ["Booking ID", "Date", "Status"];
+  const { chatSingleId, setChatSingleId } = chatStore();
 
-  console.log("ssiiiiiiiinnnn", singleData);
+  // console.log("68888888888",chatSingleId)
+  const navigate = useNavigate("");
 
   const customLoader = (
     <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
@@ -81,7 +87,17 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
                       </div>
                     </div>
 
-                    <div>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          setChatSingleId(singleData?.id);
+                          navigate("/feedback-support");
+                        }}
+                        className="bg-[#F7F5FF] flex p-2 rounded-xl cursor-pointer  hover:bg-blue-200 relative"
+                      >
+                        <ReactSVG src={MessageIcon} />
+                        <span className="absolute top-1 right-1 w-2 h-2 rounded-full"></span>
+                      </button>
                       <PrimaryButton
                         btnText="Export"
                         btnClass="text-sm w-[100px] px-4 py-2 border !rounded-[8px] text-gray-600 hover:bg-gray-100"

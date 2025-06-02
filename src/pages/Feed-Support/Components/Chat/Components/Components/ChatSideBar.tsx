@@ -15,10 +15,14 @@ function ChatSidebar({ label, className }) {
 
   const [chatId, setChatId] = useState();
 
-  const { currentChatId, setCurrentChatId } = chatStore();
-
-  console.log("69 chatting", data);
-
+  const {
+    currentChatId,
+    setCurrentChatId,
+    setCurrentChatUserId,
+    currentChatUserId,
+  } = chatStore();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  // console.log("oooooppppppp",currentChatUserId)
   useEffect(() => {
     if (data && data.length > 0) {
       setCurrentChatId(data[0].id);
@@ -41,6 +45,11 @@ function ChatSidebar({ label, className }) {
               className="flex cursor-pointer items-start gap-3 cursor-pointer hover:bg-gray-200 p-2 rounded-lg"
               onClick={() => {
                 setCurrentChatId(_?.id);
+                // setCurrentChatUserId(_?.participants?.filter((participant)=>(userInfo?.user?.id !== participant?.id)))
+                const otherParticipant = _?.participants?.find(
+                  (participant) => userInfo?.user?.id !== participant?.id
+                );
+                setCurrentChatUserId(otherParticipant?.id);
               }}
             >
               <img
@@ -79,7 +88,9 @@ function ChatSidebar({ label, className }) {
           ))
         ) : (
           <div className="">
-            <h3 className="text-center !text-[18px] mt-50">No Conversation Found</h3>
+            <h3 className="text-center font-thin !text-[18px] mt-50">
+              No Conversation Found
+            </h3>
           </div>
         )}
       </div>
