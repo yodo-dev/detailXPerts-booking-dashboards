@@ -144,7 +144,6 @@ export const franchiseRoutes = [
 //   try {
 //     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 //     const roleId = userInfo?.user?.role_id;
-//     // console.log("rpoooo",userInfo)
 //     if (roleId === 1) {
 //       return adminRoutes;
 //     }

@@ -16,7 +16,6 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
     const file = e.target.files[0];
     setImage(file);
     if (file) {
-      console.log("koopen code", file);
     }
   };
 
@@ -27,7 +26,7 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
         <div
           // htmlFor="upload"
           // onClick={() => handleDivClick()}
-          className="cursor-pointer flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]"
+          className="cursor-pointer flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[100%]"
         >
           <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
             <span className="text-2xl text-gray-500">

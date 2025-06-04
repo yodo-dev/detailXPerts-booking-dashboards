@@ -61,7 +61,6 @@ const Notifications: React.FC = () => {
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
 
   const handleDateChange = (e) => {
-    // console.log("change in date",e.selection)
     setState([e.selection]);
     // getData(e.selection.startDate, e.selection.endDate);
   };

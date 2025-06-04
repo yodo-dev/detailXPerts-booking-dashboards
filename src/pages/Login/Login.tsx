@@ -21,7 +21,6 @@ const Login: React.FC = () => {
   // const [passwordShow, setPasswordShow] = useState(false);
 
 
-  // console.log("rooooppppee",userRole)
 
   const onLogin = async (data) => {
     try {
@@ -31,7 +30,6 @@ const Login: React.FC = () => {
 
       const data1 = { email: data.email, password: data.password };
       const response = await apiPost(url, data1);
-      console.log("rrr", response);
       if (response.success) {
         setIsLoading(false);
         setUserInfo(response?.payload?.user);

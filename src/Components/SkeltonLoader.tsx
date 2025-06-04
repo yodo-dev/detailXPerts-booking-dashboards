@@ -8,6 +8,7 @@ function SkeltonLoader({
   showHeader = true,
   skeltonHeaderHeight = 15,
   marginTop,
+  skeltonPosition
 }) {
   return (
     <div style={{ padding: "20px", marginTop: `${marginTop}px` }}>

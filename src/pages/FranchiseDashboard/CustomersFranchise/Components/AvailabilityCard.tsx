@@ -107,7 +107,6 @@ export const AvailabilityCard: React.FC = () => {
 
 export const AvailabilityTime = ({ dayName, notArrowImg }) => {
   const handleTimeManager = () => {
-    console.log("handleTimeManager");
   };
 
   return (

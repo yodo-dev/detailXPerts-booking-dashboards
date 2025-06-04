@@ -39,7 +39,6 @@ const DetailersFranchise: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data } = useDetailerFranchise(currentPage);
   
-  // console.log("4444444444",data)
   const navigate=useNavigate()
   
   const columns = [
@@ -180,7 +179,6 @@ const DetailersFranchise: React.FC = () => {
   //     }
   //   } catch (error) {
   //     setLoading(false);
-  //     console.log("Error :", error);
   //   }
   // };
 

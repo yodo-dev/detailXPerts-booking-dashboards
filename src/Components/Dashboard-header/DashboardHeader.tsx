@@ -18,7 +18,6 @@ const DashboardHeader: React.FC = () => {
   const { User, logout, isAuthenticated } = useUserInfoStore();
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
-  // console.log("sssssssss",user_role)
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("userInfo")).user
   );

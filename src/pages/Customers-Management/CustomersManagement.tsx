@@ -177,7 +177,6 @@ const CustomersManagement: React.FC = () => {
       if (response.success) {
         //
         setTotalRecords(response.payload.totalRecords);
-        console.log("state of cy", response);
 
         setCustomers(response?.payload?.records);
         setLoading(false);
@@ -188,7 +187,6 @@ const CustomersManagement: React.FC = () => {
     }
   };
 
-  // console.log("lsolaaaa",customers)
 
   const getSingleCustomer = async () => {
     setSingleCustomers(null);

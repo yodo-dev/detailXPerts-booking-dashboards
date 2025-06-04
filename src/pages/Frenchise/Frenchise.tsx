@@ -17,6 +17,7 @@ import EditFranchise from "./Components/EditFranchise";
 import { useForm } from "react-hook-form";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
+import ReactSwitch from "react-switch";
 const FrenchiseManagement: React.FC = () => {
   const columns = [
     {
@@ -42,21 +43,21 @@ const FrenchiseManagement: React.FC = () => {
               className="w-5 h-5 rounded-full"
             />
           </div>
-          <div className="">
+          <div className="flex items-center">
             <div
               onClick={() => {
                 setShowSubTask(true);
                 setShowEditId(row.id);
               }}
-              className="text-sm cursor-pointer"
+              className="text-sm cursor-pointer "
             >
               {/* {row.franchise} */}
               {row.name}
             </div>
-            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+            {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
               <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
               Westheimer...
-            </div>
+            </div> */}
           </div>
         </div>
       ),
@@ -109,6 +110,20 @@ const FrenchiseManagement: React.FC = () => {
     },
 
     {
+      name: "Permissions",
+      selector: (row) => row.status,
+      minWidth: "130px",
+      cell: (row) => (
+        <ReactSwitch
+          checked={addEditUsers }
+          onChange={setAddEditUsers}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+      ),
+    },
+
+    {
       name: "Action",
       selector: (row) => row.action,
       minWidth: "10px",
@@ -151,6 +166,8 @@ const FrenchiseManagement: React.FC = () => {
   const { setValue } = useForm();
   const [totalRecords, setTotalRecords] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const [addEditUsers, setAddEditUsers] = useState(true);
+
   const token = localStorage.getItem("token");
 
   const getFranchise = async () => {
@@ -163,7 +180,6 @@ const FrenchiseManagement: React.FC = () => {
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
-        // console.log("reeeeee1",response.payload.totalRecords)
         setTotalRecords(response.payload.totalRecords);
         setLoading(false);
         setFranchises(response.payload.records);
@@ -173,8 +189,6 @@ const FrenchiseManagement: React.FC = () => {
       console.log("Error :", error);
     }
   };
-
-  // console.log("boooking", bookings);
 
   useEffect(() => {
     getFranchise();

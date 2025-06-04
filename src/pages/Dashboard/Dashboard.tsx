@@ -253,9 +253,9 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-3">
-          <div>
-            <div className="ranking_franchise common_section_bg  py-6 px-6 ps-0 overflow-x-auto w-full ">
+        <div className="grid lg:grid-cols-2 grid-cols-2 gap-3">
+          <div className={`col-span-${role==1 ? "2" : "1"}`}>
+            <div className="ranking_franchise  common_section_bg  py-6 px-6 ps-0 overflow-x-auto w-full ">
               <div className="flex justify-between items-center">
                 <p className="text-[20px] px-6 text-[#252525] !font-semibold">
                   {role == 1
@@ -270,18 +270,22 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="insights common_section_bg py-4 px-3 sm:px-4 md:px-6 md:py-7">
-            <h2 className="!text-[20px] text-[#252525] !font-semibold mb-10">
-              Insights
-            </h2>
-            <Linechart
-              data={data}
-              legend={true}
-              color1={"#3CD856"}
-              color2={"#A700FF"}
-              color3={"#EF4444"}
-            />
-          </div>
+          {role !== 1 ? (
+            <div className="insights common_section_bg py-4 px-3 sm:px-4 md:px-6 md:py-7">
+              <h2 className="!text-[20px] text-[#252525] !font-semibold mb-10">
+                Insights
+              </h2>
+              <Linechart
+                data={data}
+                legend={true}
+                color1={"#3CD856"}
+                color2={"#A700FF"}
+                color3={"#EF4444"}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </MainLayout>

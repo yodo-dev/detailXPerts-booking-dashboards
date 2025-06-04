@@ -10,17 +10,22 @@ import { sendMessages } from "../../../../../../Api/ChatSupport";
 import useUserInfoStore from "../../../../../../Store/Store";
 import chatStore from "../../../../../../Store/ChatStore";
 import noMsgs from "@assets/images/noMsgs.png";
+import SkeltonLoader from "@components/SkeltonLoader";
+import { rows } from "@components/Table/TableData";
 function ChatWindow({ className }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const [value, setValue] = useState("");
   const { currentChatId, setCurrentChatId } = chatStore();
+  const messagesEndRef = useRef("");
+
+  console.log("currrrrrrrrr90", currentChatId);
 
   const { User } = useUserInfoStore();
 
   const {
     data: chatAllMsgs,
-    // isLoading: isLoadingSuggestions,
+    isLoading,
     // isError: isErrorSuggestions,
     // error: errorSuggestions,
   } = useChatAllMessages(currentChatId);
@@ -29,7 +34,6 @@ function ChatWindow({ className }) {
 
   // const handleSendMessage = () => {
   //   if (!value.trim()) return;
-  //   console.log("Sending message:", value);
   //   setValue(""); // Simulate message sent
   // };
 
@@ -43,7 +47,7 @@ function ChatWindow({ className }) {
     currentChatUserId,
   } = chatStore();
 
-  console.log(currentChatId, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  console.log("699999999BBBBBB",currentChatUserId)
 
   useEffect(() => {
     setMessages(chatAllMsgs);
@@ -86,10 +90,13 @@ function ChatWindow({ className }) {
     setValue("");
   };
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   // useEffect(() => {
   //   socket.on("emitNewMessage", (message) => {
   //     setMessages((prev) => [...prev, message]);
-  //     console.log("333333333")
   //   });
   // }, []);
 
@@ -106,20 +113,45 @@ function ChatWindow({ className }) {
     // Optional: Add a condition if you want to send something specific
     const formData = new FormData();
     formData.append("content", "");
-    formData.append("userIds[]", currentChatId);
+    formData.append("userIds[]", chatSingleId);
 
     mutation.mutate(formData);
   }, [chatSingleId]);
 
+  useEffect(() => {
+    if (messagees && messagees.length > 0) {
+      scrollToBottom();
+    }
+  }, [messagees]); // Or [messages] if you're tracking messages separately
+
+  const customLoader = (
+    <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
+      {[...Array(1)].map((_, i) => (
+        <div key={i} className="mb-3 ">
+          <SkeltonLoader
+            columns={[100, 100, 100]}
+            rows={5}
+            skeltonHeaderHeight={10}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <main className={`flex-1 flex flex-col ${className}`}>
-      <div className="flex-1 overflow-y-auto  px-6 py-4 space-y-6">
+      {/* <div
+        className="flex-1 overflow-y-auto  px-6 py-4 space-y-6"
+      >
+        {isLoading ? customLoader : "aaaa"}
         {messagees?.length > 0 ? (
           messagees?.map((msg) => (
             <div
               className={`${
                 User?.id == msg?.sender_id
-                  ? "flex items-end justify-end flex-col "
+                  ? `flex items-end justify-end flex-col ${
+                      msg?.sender?.id == User?.id ? "" : ""
+                    } `
                   : ""
               }`}
               key={msg.id}
@@ -133,7 +165,6 @@ function ChatWindow({ className }) {
                   })}
                 </p>
               </div>
-              {/* Display Message */}
               <div
                 className={` ${
                   User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
@@ -148,7 +179,50 @@ function ChatWindow({ className }) {
             <img src={noMsgs} className="w-20 h-20" />
           </p>
         )}
+        <div ref={messagesEndRef} />
+
         <div ref={bottomRef} />
+      </div> */}
+
+      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+        {isLoading ? (
+          customLoader
+        ) : messagees?.length > 0 ? (
+          messagees.map((msg) => (
+            <div
+              key={msg.id}
+              className={`${
+                User?.id == msg?.sender_id
+                  ? "flex items-end justify-end flex-col"
+                  : ""
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <p className="font-normal text-[12px] text-[#535862] leading-[18px] tracking-normal font-segoe">
+                  {new Date(msg.sentAt).toLocaleDateString([], {
+                    weekday: "long",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              </div>
+              <div
+                className={`${
+                  User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
+                } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
+              >
+                <p className="text-sm">{msg.content}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="w-full h-full flex items-center justify-center">
+            <img src={noMsgs} className="w-20 h-20" />
+          </p>
+        )}
+
+        {/* Auto-scroll target */}
+        <div ref={messagesEndRef} />
       </div>
 
       <footer className="px-8 py-5">

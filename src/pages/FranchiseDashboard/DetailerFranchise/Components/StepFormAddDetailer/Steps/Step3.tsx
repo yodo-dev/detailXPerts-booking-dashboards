@@ -17,7 +17,6 @@ const Step3 = () => {
   const [licenseImage, setLicenseImage] = useState();
   const [previewLicenseImage, setPreviewLicenceImage] = useState();
 
-  console.log("fuccccclll", passportImage);
 
   const handlePassportImage = () => {
     passportImageRef.current.click();

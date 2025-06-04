@@ -23,7 +23,6 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
   const th1 = ["Booking ID", "Date", "Status"];
   const { chatSingleId, setChatSingleId } = chatStore();
 
-  // console.log("68888888888",chatSingleId)
   const navigate = useNavigate("");
 
   const customLoader = (

@@ -163,7 +163,6 @@ const FrenchiseManagement: React.FC = () => {
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
-        // console.log("reeeeee1",response.payload.totalRecords)
         setTotalRecords(response.payload.totalRecords);
         setLoading(false);
         setFranchises(response.payload.records);
@@ -174,7 +173,6 @@ const FrenchiseManagement: React.FC = () => {
     }
   };
 
-  // console.log("boooking", bookings);
 
   useEffect(() => {
     getFranchise();

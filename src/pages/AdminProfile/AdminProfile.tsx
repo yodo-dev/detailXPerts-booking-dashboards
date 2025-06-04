@@ -23,7 +23,6 @@ export default function AdminProfile() {
   };
 
   // const userInfo = JSON.parse(localStorage.getItem("userInfo")).user;
-  // console.log("uuuu", userInfo);
 
   const token = localStorage.getItem("token");
 
@@ -50,12 +49,10 @@ export default function AdminProfile() {
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error :", error);
     }
   };
 
   const EditCustomer = async (data) => {
-    console.log("Data", data);
     setLoading(true);
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${userInfo?.id}`;
@@ -73,7 +70,7 @@ export default function AdminProfile() {
 
       const response = await apiPut(url, formData, token);
       if (response.success) {
-        toast.success("Admin Profile Updated Successfully! 😊");
+        toast.success("Profile Updated Successfully! 😊");
         setLoading(false);
         if (userInfo) {
           const updatedUserInfo = {
@@ -95,7 +92,6 @@ export default function AdminProfile() {
     getSingleUser(userInfo?.id);
   }, [userInfo]);
 
-  // console.log("iiiiiiiiiiiii",userInfo)
 
   return (
     <MainLayout>

@@ -20,6 +20,7 @@ import SkeltonLoader from "@components/SkeltonLoader";
 import EditDetailers from "./Components/EditDetailers";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
+import ReactSwitch from "react-switch";
 
 const DetailersManagement: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -34,6 +35,8 @@ const DetailersManagement: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [totalRows, setTotalRows] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const [tab, setTab] = useState(1);
+  const [addEditUsers, setAddEditUsers] = useState(true);
 
   const columns = [
     {
@@ -151,6 +154,20 @@ const DetailersManagement: React.FC = () => {
     },
 
     {
+      name: "Permissions",
+      selector: (row) => row.status,
+      minWidth: "130px",
+      cell: (row) => (
+        <ReactSwitch
+          checked={addEditUsers}
+          onChange={setAddEditUsers}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+      ),
+    },
+
+    {
       name: "Action",
       selector: (row) => row.action,
       minWidth: "10px",
@@ -262,9 +279,12 @@ const DetailersManagement: React.FC = () => {
         }
       } catch (error) {
         setLoading(false);
-        console.log("Error :", error);
       }
     }
+  };
+
+  const handleTabs = (tabId) => {
+    setTab(tabId);
   };
 
   return (
@@ -272,6 +292,7 @@ const DetailersManagement: React.FC = () => {
       <div className="default_container p-4 overflow-x-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
           <h2 className="md:mb-0 mb-2">Detailers Management</h2>
+
           <div className="md:w-[366px]">
             <CommonInput
               placeholder="filter by franchise, rating, location"
@@ -279,7 +300,23 @@ const DetailersManagement: React.FC = () => {
             />
           </div>
         </div>
-
+        <div className="flex gap-[10px] mb-[20px]">
+          <PrimaryButton
+            btnText="Detailers"
+            // btnClass="bg-[#003CA6] rounded-xl text-[16px] text-white px-[18px] py-[12px] w-full sm:max-w-[210px]"
+            btnClass={` ${
+              tab == 1 ? "bg-[#003CA6] text-white" : "bg-[#ffffff] text-black"
+            }  rounded-xl text-[16px] px-[18px] py-[12px] w-full sm:max-w-[210px]`}
+            onClick={() => handleTabs(1)}
+          />
+          <PrimaryButton
+            btnText="Freelancers"
+            btnClass={` ${
+              tab == 1 ? "bg-[#fffff] text-black" : "bg-[#003CA6] text-white"
+            }  rounded-xl text-[16px] px-[18px] py-[12px] w-full sm:max-w-[210px]`}
+            onClick={() => handleTabs(2)}
+          />
+        </div>
         <DataTable
           columns={columns}
           customStyles={customStyles}

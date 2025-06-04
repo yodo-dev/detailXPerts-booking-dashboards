@@ -23,7 +23,6 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
   const token = localStorage.getItem("token");
 
   const createFranchise = async (data) => {
-    console.log("Data", data);
     setLoading(true);
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise`;

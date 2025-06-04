@@ -87,7 +87,6 @@ const FeedSupport: React.FC = () => {
 
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  // console.log("bugsxxxxxxxxx", users);
 
   // const rows = [
   //   {
@@ -181,7 +180,6 @@ const FeedSupport: React.FC = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error :", error);
     }
   };
 

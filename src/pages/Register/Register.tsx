@@ -15,7 +15,6 @@ const Register: React.FC = () => {
   const [isLoading, setIsLoading] = useState();
 
   const onRegister = async (data) => {
-    console.log("RRRRR", data);
     try {
       setIsLoading(true);
       const url = `${import.meta.env.VITE_APP_API_URL}v1/auth/register`;
@@ -31,7 +30,6 @@ const Register: React.FC = () => {
       };
 
       const response = await apiPost(url, data1);
-      console.log("rrr", response);
       if (response.success) {
         toast.success("User Create Successfully! 😊");
         setIsLoading(false);

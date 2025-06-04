@@ -13,7 +13,6 @@ const BookingFranchise: React.FC = () => {
     error: errorSuggestions,
   } = useBookingFranchise(21);
 
-  console.log("f11sssss11", FranchiseBooking);
 
   return (
     <MainLayout>

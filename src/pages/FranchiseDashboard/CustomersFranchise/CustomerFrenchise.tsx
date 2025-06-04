@@ -41,7 +41,6 @@ const CustomerFranchise: React.FC = () => {
 
   const { data } = useCustomerFranchise(currentPage);
 
-  // console.log("ggggoooo", data);
 
   const columns = [
     {
@@ -183,18 +182,15 @@ const CustomerFranchise: React.FC = () => {
   //     if (response.success) {
   //       //
   //       setTotalRecords(response.payload.totalRecords);
-  //       console.log("state of cy", response);
 
   //       setCustomers(response?.payload?.records);
   //       setLoading(false);
   //     }
   //   } catch (error) {
   //     // setLoading(false);
-  //     console.log("Error :", error);
   //   }
   // };
 
-  // console.log("lsolaaaa",customers)
 
   const getSingleCustomer = async () => {
     setSingleCustomers(null);
@@ -271,11 +267,9 @@ useEffect(() => {
   };
 
   const handlePageChange = (page) => {
-    console.log("click...", page);
     setCurrentPage(page);
   };
 
-  console.log("current++", currentPage);
 
   return (
     <MainLayout>
@@ -312,7 +306,6 @@ useEffect(() => {
           )}
         />
 
-        {/* {console.log("fuuuuu",totalRecords)} */}
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 

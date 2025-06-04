@@ -19,7 +19,6 @@ export const PublicProtectRoutes:React.FC<{children:JSX.Element}> = ({children})
     if(isAuthenticated){
         return <Navigate to={"/"} />
     }
-    // console.log("loooooooo",children)
     return children;
 }
 
