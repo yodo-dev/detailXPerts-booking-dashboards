@@ -66,10 +66,10 @@ const FrenchiseManagement: React.FC = () => {
     {
       name: "Location",
       minWidth: "250px",
-      selector: (row) => row.location,
+      selector: (row) => row.address,
       cell: (row) => (
         <span className="flex justify-center items-center gap-[12px] text-[12px]">
-          <ReactSVG src={LocationIcon} /> 2972 Westheimer Rd. Santa
+          <ReactSVG src={LocationIcon} /> {row?.address}
         </span>
       ),
     },

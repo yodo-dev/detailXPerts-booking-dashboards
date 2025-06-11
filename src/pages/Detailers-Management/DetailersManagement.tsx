@@ -204,7 +204,7 @@ const DetailersManagement: React.FC = () => {
     try {
       const url = `${
         import.meta.env.VITE_APP_API_URL
-      }v1/user/?page=${currentPage}&limit=${5}`;
+      }v1/user?role_id=4&page=${currentPage}&limit=${5}`;
 
       const params = {};
       const response = await apiGet(url, params, token);

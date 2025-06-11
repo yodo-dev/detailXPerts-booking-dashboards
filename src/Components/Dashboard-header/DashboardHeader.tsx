@@ -24,7 +24,8 @@ const DashboardHeader: React.FC = () => {
 
   const dropdownRef = useRef(null);
 
-  const role = User?.role_id;
+  // const role = User?.role_id;
+  const role = 2;
 
   if (isAuthenticated == false) {
     localStorage.clear();
@@ -66,7 +67,7 @@ const DashboardHeader: React.FC = () => {
               if (link.name === "Franchise" && role !== 1) {
                 return null; // Skip rendering the link if condition is met
               }
-              if (link.name === "Feedback & Support" && role == 0) {
+              if (link.name === "Feedback & Support" && role == 2) {
                 return null; // Skip rendering the link if condition is met
               }
 

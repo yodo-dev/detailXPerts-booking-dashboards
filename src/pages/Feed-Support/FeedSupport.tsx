@@ -28,6 +28,8 @@ import BugsModal from "./Components/BugsModal";
 import BugsData from "./Components/BugsData";
 import { bugsSupport } from "../../Api/bugsSupport";
 import Chat from "./Components/Chat/Chat";
+import { useSurvey } from "../../Hooks/useSurvey";
+import { rows } from "@components/Table/TableData";
 // import { SuggestionSupport } from "Api/SuggestionSupport";
 
 const FeedSupport: React.FC = () => {
@@ -78,6 +80,15 @@ const FeedSupport: React.FC = () => {
     error: errorBug,
   } = useUsers({ type: "BUG" });
 
+  const {
+    data: surveyFeedData,
+    isLoading: isLoadingSurver,
+    isError: isErrorSurvey,
+    error: errorSurvey,
+  } = useSurvey();
+
+  console.log("surveyFeedData", surveyFeedData);
+
   // const {
   //   data: surveySupport,
   //   isLoading: isLoadingSurvey,
@@ -86,7 +97,6 @@ const FeedSupport: React.FC = () => {
   // } = useUsers({ type: "SURVEY" });
 
   const [openDropdown, setOpenDropdown] = useState(null);
-
 
   // const rows = [
   //   {
@@ -438,36 +448,31 @@ const FeedSupport: React.FC = () => {
     {
       name: "Is this app helpful for you?",
       minWidth: "150px",
-      selector: (row) => row.category,
-      cell: () => <span>Yes</span>,
+      selector: (row) => row?.is_app_helpful,
+      cell: (row) => <span>{row?.is_app_helpful ? "Yes" : "No"}</span>,
     },
 
     {
       name: "Will you recommend this ap to your friends?",
       minWidth: "250px",
-      selector: (row) => row.issue,
-      cell: () => <span>Yes</span>,
+      selector: (row) => row?.will_recommend,
+      cell: (row) => <span>{row?.will_recommend ? "Yes" : "No"}</span>,
     },
 
     {
       name: "How helpful this app for you?",
       minWidth: "250px",
-      selector: (row) => row.issue,
-      cell: () => <span>Yes</span>,
-    },
-
-    {
-      name: "How helpful this app for you?",
-      minWidth: "150px",
-      selector: (row) => row.issue,
-      cell: () => <span>Yes</span>,
+      selector: (row) => row.helpful_rating,
+      cell: (row) => (
+        <span>{row?.helpful_rating ? row?.helpful_rating : ""}</span>
+      ),
     },
 
     {
       name: "Users Suggestion?",
       minWidth: "250px",
-      selector: (row) => row.issue,
-      cell: () => <span>Yes</span>,
+      selector: (row) => row?.suggestion,
+      cell: (row) => <span>{row?.suggestion}</span>,
     },
   ];
 
@@ -627,11 +632,11 @@ const FeedSupport: React.FC = () => {
                 progressPending={loading}
               />
             ) : tabs == 2 ? (
-              <div className=" p-5 w-[1000px] overflow-auto">
+              <div className=" p-5 w-[1000px] overflow-auto p-5">
                 <DataTable
                   columns={columns3}
                   customStyles={customStyles}
-                  data={bugsSupport}
+                  data={surveyFeedData}
                   progressPending={loading}
                 />
               </div>

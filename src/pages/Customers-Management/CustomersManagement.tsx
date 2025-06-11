@@ -170,7 +170,7 @@ const CustomersManagement: React.FC = () => {
     try {
       const url = `${
         import.meta.env.VITE_APP_API_URL
-      }v1/user?role_id=5&page=${currentPage}&limit=5`;
+      }v1/user?role_id=3&page=${currentPage}&limit=5`;
 
       const params = {};
       const response = await apiGet(url, params, token);
@@ -186,7 +186,6 @@ const CustomersManagement: React.FC = () => {
       console.log("Error :", error);
     }
   };
-
 
   const getSingleCustomer = async () => {
     setSingleCustomers(null);

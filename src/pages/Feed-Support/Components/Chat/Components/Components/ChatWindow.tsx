@@ -2,24 +2,28 @@ import React, { useState, useRef, useEffect } from "react";
 import Picker from "@emoji-mart/react";
 import socket from "@socket/socket";
 // import emojiIcon from "../../../../assets/svgs/dashboard-svgs/face-smile.svg";
-import { Ellipsis, Smile } from "lucide-react";
+import { Cross, Ellipsis, Smile, Upload, X } from "lucide-react";
 import emojiIcon from "@assets/svgs/face-smile.svg";
 import { useChatAllMessages } from "../../../../../../Hooks/useChatSupport";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { sendMessages } from "../../../../../../Api/ChatSupport";
 import useUserInfoStore from "../../../../../../Store/Store";
 import chatStore from "../../../../../../Store/ChatStore";
 import noMsgs from "@assets/images/noMsgs.png";
 import SkeltonLoader from "@components/SkeltonLoader";
+import chatStart from "@assets/images/chatStart.png";
 import { rows } from "@components/Table/TableData";
+import { ReactSVG } from "react-svg";
 function ChatWindow({ className }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const [value, setValue] = useState("");
   const { currentChatId, setCurrentChatId } = chatStore();
   const messagesEndRef = useRef("");
+  const imgUploaderRef = useRef(null);
+  const [file, setFile] = useState();
 
-  console.log("currrrrrrrrr90", currentChatId);
+  console.log("ffffififiif", file);
 
   const { User } = useUserInfoStore();
 
@@ -47,7 +51,7 @@ function ChatWindow({ className }) {
     currentChatUserId,
   } = chatStore();
 
-  console.log("699999999BBBBBB",currentChatUserId)
+  const queryClient=useQueryClient()
 
   useEffect(() => {
     setMessages(chatAllMsgs);
@@ -56,6 +60,9 @@ function ChatWindow({ className }) {
     mutationFn: sendMessages, // 👈 this is your POST API
     onSuccess: (data) => {
       console.log("✅ Message sent successfully:", data);
+      queryClient.invalidateQueries(["chatMessages"]);
+
+      setFile(null);
       // Optionally update UI or refetch chat messages
     },
     onError: (error) => {
@@ -63,11 +70,16 @@ function ChatWindow({ className }) {
     },
   });
 
+  const handleImageUpload = () => {
+    imgUploaderRef.current.click();
+  };
+
   const handleSendMessage = () => {
     const formData = new FormData();
     // formData.append("content", "123456");
     formData.append("content", value);
     formData.append("userIds[]", currentChatUserId);
+    formData.append("attachments", file);
 
     mutation.mutate(formData);
 
@@ -197,7 +209,27 @@ function ChatWindow({ className }) {
                   : ""
               }`}
             >
-              <div className="flex items-center gap-2">
+              <div
+                className={`${
+                  User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
+                } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
+              >
+                <p className="text-sm ">{msg.content}</p>
+              </div>
+
+              {msg?.attachments?.map((file) => (
+                <>
+                  {console.log("9999999999", file)}
+                  <img
+                    src={`${import.meta.env.VITE_APP_API_IMG_URL}${
+                      file?.file_name
+                    }`}
+                    className="w-20 rounded mt-3"
+                  />
+                </>
+              ))}
+
+              <div className="flex mt-1 items-center gap-2 ">
                 <p className="font-normal text-[12px] text-[#535862] leading-[18px] tracking-normal font-segoe">
                   {new Date(msg.sentAt).toLocaleDateString([], {
                     weekday: "long",
@@ -206,26 +238,38 @@ function ChatWindow({ className }) {
                   })}
                 </p>
               </div>
-              <div
-                className={`${
-                  User?.id == msg?.sender_id ? "!bg-[#003CA6] text-white" : ""
-                } max-w-xs px-4 py-2 rounded-lg bg-gray-100 text-black`}
-              >
-                <p className="text-sm">{msg.content}</p>
-              </div>
             </div>
           ))
         ) : (
-          <p className="w-full h-full flex items-center justify-center">
-            <img src={noMsgs} className="w-20 h-20" />
-          </p>
+          <div className="w-full h-full flex flex-col items-center justify-center">
+            <img src={chatStart} className="w-20 h-20 mb-3" />
+            <p>Start a conversation to see messages here</p>
+          </div>
         )}
 
-        {/* Auto-scroll target */}
         <div ref={messagesEndRef} />
       </div>
 
       <footer className="px-8 py-5">
+        {file ? (
+          <div className=" ">
+            <div className="relative w-fit">
+              <img
+                className="w-20 h-20 object-cover mb-5 rounded-[2px]"
+                src={file ? URL.createObjectURL(file) : ""}
+                alt=""
+              />
+              <X
+                className="absolute top-[-10px] right-[-10px] cursor-pointer bg-white rounded-full"
+                color="red"
+                size={18}
+                onClick={() => setFile(null)}
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="relative">
           <textarea
             className="w-full border border-[#D5D7DA] bg-white rounded-lg p-2 shadow-xs"
@@ -249,10 +293,24 @@ function ChatWindow({ className }) {
               onClick={() => setShowEmojiPicker((prev) => !prev)}
             >
               <img src={emojiIcon} alt="Emoji" />
-              {/* <Smile/> */}
             </button>
-            <div>
-              <Ellipsis />
+            <div onClick={handleImageUpload} className="cursor-pointer">
+              {/* <input type="text" ref={imgUploaderRef} /> */}
+              <label htmlFor="upload" className="cursor-pointer">
+                <Upload className="text-gray-500 w-5" />
+              </label>
+              <input
+                type="file"
+                id="upload"
+                className="hidden"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    setFile(file);
+                  }
+                }}
+              />
             </div>
           </div>
 

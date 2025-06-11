@@ -62,7 +62,7 @@ const BookingManagement: React.FC = () => {
 
     {
       name: "Detailer",
-      selector: (row) => row.franchise,
+      selector: (row) => row.detailer,
       minWidth: "230px",
       cell: (row) => (
         <div
@@ -78,11 +78,11 @@ const BookingManagement: React.FC = () => {
           </div>
           <div className="">
             <div className="text-sm cursor-pointer">
-              {row.detailer.first_name} {row.detailer.last_name}
-              
+              {row?.detailer?.first_name} {row?.detailer?.last_name}
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
-              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> {row.detailer.address}
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" />{" "}
+              {row?.detailer?.address}
             </div>
           </div>
         </div>
@@ -107,11 +107,11 @@ const BookingManagement: React.FC = () => {
           </div>
           <div className="">
             <div className="text-sm cursor-pointer">
-              {row.customer.first_name} {row.customer.last_name}
+              {row?.customer?.first_name} {row?.customer?.last_name}
               {/* Ben Ten */}
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-0">
-              <span>{row.customer.email}</span>
+              <span>{row?.customer?.email}</span>
             </div>
           </div>
         </div>
@@ -135,8 +135,8 @@ const BookingManagement: React.FC = () => {
     {
       name: "Vehicle",
       minWidth: "100px",
-      selector: (row) => row.service,
-      cell: (row) => <span>BMW I8</span>,
+      selector: (row) => row.vehicle,
+      cell: (row) => <span>{row?.vehicle?.model}</span>,
     },
 
     {
@@ -150,7 +150,7 @@ const BookingManagement: React.FC = () => {
       name: "Status",
       selector: (row) => row.status,
       minWidth: "130px",
-      
+
       cell: (row) => (
         // <span
         //   className={`px-2 py-1 rounded-[36px] text-[12px] font-bold ${
@@ -176,8 +176,6 @@ const BookingManagement: React.FC = () => {
         </span>
       ),
     },
-
-  
   ];
 
   const getBookings = async () => {

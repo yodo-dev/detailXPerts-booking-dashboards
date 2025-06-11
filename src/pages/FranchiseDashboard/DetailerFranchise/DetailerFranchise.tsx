@@ -73,11 +73,11 @@ const DetailersFranchise: React.FC = () => {
               }}
             >
               {/* {row.franchise} */}
-              {row.first_name} {row.last_name}
+              {row?.first_name} {row?.last_name}
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
               {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
-              <span>user@gmail.com</span>
+              <span>{row?.email}</span>
             </div>
           </div>
         </div>
