@@ -69,7 +69,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="!text-[18px] !font-bold ">Add Franchise</h2>
           <button
-            //   onClick={() => setIsModalOpen(false)}
+            // onClick={() => setIsModalOpen(false)}
             className="text-gray-500 hover:text-black text-4xl cursor-pointer"
             onClick={() => setShowModal(false)}
           >

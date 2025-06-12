@@ -7,6 +7,8 @@ import { PrimaryButton } from "@components/Buttons/CommonButtons";
 const Step1: React.FC = ({ register, errors, setShowModal }) => {
   const [image, setImage] = useState();
   const fileInputRef = useRef(null);
+  const [file, setFile] = useState([]);
+  console.log("89898989",file);
 
   const handleDivClick = (e) => {
     fileInputRef.current.click();
@@ -21,11 +23,11 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full">
         {/* <img src={file ? URL.createObjectURL(file) : ""} /> */}
-        <div
+        {/* <div
           // htmlFor="upload"
-          // onClick={() => handleDivClick()}
+          onClick={handleDivClick}
           className="cursor-pointer flex flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[100%]"
         >
           <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
@@ -40,8 +42,37 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
           <p className="text-[12px] text-[#5B5B5B] mt-1">
             SVG, PNG, JPG or GIF (max. 800x400px)
           </p>
+        </div> */}
+
+        <div className="flex w-full  gap-5 justify-between">
+          <ReactSVG src={userIcon} />
+          <div
+            onClick={handleDivClick}
+            className="flex w-full cursor-pointer flex-col items-center border border-gray-300 rounded-2xl p-6 text-center mb-6 w-[80%]"
+          >
+            <div className="w-14 h-14 rounded-full flex items-center justify-center mb-2">
+              <span className="text-2xl text-gray-500">
+                <ReactSVG src={uploadServer} />
+              </span>
+            </div>
+            <p className="text-sm text-[#5B5B5B]">
+              <strong className="text-black">Click to upload</strong> or drag
+              and drop
+            </p>
+            <p className="text-[12px] text-[#5B5B5B] mt-1">
+              SVG, PNG, JPG or GIF (max. 800x400px)
+            </p>
+          </div>
         </div>
         <input
+          ref={fileInputRef}
+          onChange={(e) => setFile(e.target.files[0])}
+          id="upload"
+          type="file"
+          hidden
+        />
+
+        {/* <input
           type="file"
           id="upload"
           className="hidden"
@@ -53,8 +84,8 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
           //     setSelectedImage(file);
           //   }
           // }}
-          onClick={handleFileChange}
-        />
+          onClick={handleFileChange} */}
+        {/* /> */}
       </div>
       <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
         {/* First Name */}
@@ -66,7 +97,7 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
             inputClass="custom-input"
             placeholder="Enter First Name"
             register={register}
-            registerName="name"
+            registerName="first_name"
             validation={{ required: "Name is required" }}
           />
           {/* {errors?.name && (
@@ -82,7 +113,7 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
             inputClass="custom-input"
             placeholder="Enter Last Name"
             register={register}
-            registerName="name"
+            registerName="last_name"
             validation={{ required: "Name is required" }}
           />
           {/* {errors.name && (
@@ -102,6 +133,23 @@ const Step1: React.FC = ({ register, errors, setShowModal }) => {
           register={register}
           registerName="email"
           validation={{ required: "Email is required" }}
+        />
+        {/* {errors.email && (
+          <p className="text-red-500 text-sm">{errors.email.message}</p>
+        )} */}
+      </div>
+
+      {/* Email */}
+      <div>
+        <label className="text-[14px] font-medium text-[#5B5B5B]">
+          Password <span className="text-red-500">*</span>
+        </label>
+        <CommonInput
+          inputClass="custom-input w-full"
+          placeholder="Enter Your Password"
+          register={register}
+          registerName="password"
+          validation={{ required: "Password is required" }}
         />
         {/* {errors.email && (
           <p className="text-red-500 text-sm">{errors.email.message}</p>

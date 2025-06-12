@@ -27,29 +27,28 @@ const AddDetailerFranchise = ({ setShowModal, title, getFranchise }) => {
   const token = localStorage.getItem("token");
 
   const createFranchise = async (data) => {
+    console.log("IOI", data);
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user`;
 
-      const params = {
-        region: data.city, // Assuming city is the region
-        owner: {
-          first_name: data.admin_f_name, // Taking first word as first name
-          last_name: data.admin_l_name, // Taking second word as last name
-          email: data.admin_email,
-          phone: data.admin_phone,
-        },
-        name: data.name,
+      const payload = {
+        first_name: data.first_name,
+        last_name: data.first_name,
+
         email: data.email,
-        phone: data.phone,
-        address: data.address,
-        city: data.city,
-        state: data.state,
+        role_id: 4,
+        password: data.password,
+        business_name: "Yodo", // included because role_id is 3
+        business_address: "test address",
+        business_phone: "65316355",
+        business_website: "www.salamsdd.com",
       };
 
-      const response = await apiPost(url, params, token);
+      const response = await apiPost(url, payload, token);
       if (response.success) {
-        toast.success("Franchise Created Successfully! 😊");
+        toast.success("Detailer Created Successfully! 😊");
+        setTab(tab+1)
 
         setLoading(false);
         getFranchise();
@@ -58,7 +57,6 @@ const AddDetailerFranchise = ({ setShowModal, title, getFranchise }) => {
         // toast.success("User Create Successfully!");
       }
     } catch (error) {
-      toast.error("Something went wrong!!");
       setLoading(false);
     }
   };
@@ -185,9 +183,9 @@ const AddDetailerFranchise = ({ setShowModal, title, getFranchise }) => {
               errors={errors}
             />
           ) : tab == 2 ? (
-            <Step2 />
-          ) : (
             <Step3 />
+          ) : (
+            <Step2 />
           )}
 
           {/* Buttons */}
@@ -202,7 +200,7 @@ const AddDetailerFranchise = ({ setShowModal, title, getFranchise }) => {
             <PrimaryButton
               btnText="Next"
               btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-fit text-white rounded-md hover:bg-blue-700"
-              onClick={() => setTab(tab + 1)}
+              // onClick={() => setTab(tab + 1)}
             />
           </div>
         </form>
