@@ -38,9 +38,9 @@ const DetailersFranchise: React.FC = () => {
   const [totalRows, setTotalRows] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const { data } = useDetailerFranchise(currentPage);
-  
-  const navigate=useNavigate()
-  
+
+  const navigate = useNavigate();
+
   const columns = [
     {
       name: "ID",
@@ -54,7 +54,7 @@ const DetailersFranchise: React.FC = () => {
       selector: (row) => row.first_name,
       minWidth: "230px",
       cell: (row) => (
-        <div className="flex gap-2 w-[190px]" >
+        <div className="flex gap-2 w-[190px]">
           <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
             <img
               src={Logo}
@@ -69,7 +69,7 @@ const DetailersFranchise: React.FC = () => {
               onClick={() => {
                 // setShowSubTask(true);
                 // setShowEditId(row?.id);
-                navigate("/customers-franchise")
+                navigate("/customers-franchise");
               }}
             >
               {/* {row.franchise} */}
@@ -219,14 +219,13 @@ const DetailersFranchise: React.FC = () => {
     setTotalRows(data?.totalRecords);
   }, [data]);
 
-  
-useEffect(() => {
-  if (!data) {
-    setLoading(true);
-  } else {
-    setLoading(false);
-  }
-}, [data]);
+  useEffect(() => {
+    if (!data) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [data]);
 
   const customLoader = (
     <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
@@ -273,10 +272,11 @@ useEffect(() => {
               
             /> */}
             <PrimaryButton
-              btnText="Add a detailer"
+              btnText="Add User"
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] w-full sm:max-w-[210px]"
               btnTextClass="text-[16px]"
-              onClick={() => setShowModal(true)}
+              // onClick={() => setShowModal(true)}
+              onClick={()=>(navigate("/add-detailer-franchise"))}
             />
           </div>
         </div>

@@ -120,7 +120,9 @@ export const franchiseRoutes = [
   { path: "/payment-management", element: <PaymentManagementFranchise /> },
   { path: "/profile", element: <ProfileFranchise /> },
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
+  { path: "/add-detailer-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
+
 
   { path: "/settings", element: <Settings /> },
   { path: "/reports", element: <ReportsFranchise /> },
