@@ -2,7 +2,6 @@ import MainLayout from "@layouts/MainLayout";
 import React, { useEffect, useRef, useState } from "react";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
-import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import Chevron from "@assets/svgs/selector-vertical.svg";
 import { CustomCheckbox } from "@components/Checkbox/CustomCheckbox.js";
 
