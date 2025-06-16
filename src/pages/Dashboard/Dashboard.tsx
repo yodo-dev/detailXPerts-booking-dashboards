@@ -6,7 +6,7 @@ import React, { useRef, useState } from "react";
 import OverviewCard from "@components/Cards/Quick-overview-cards/OverviewCard";
 import cardImg1 from "@assets/svgs/coverview-card1-img.svg";
 import Linechart from "@components/Charts/Linechart";
-
+import Dollar from "@assets/svgs/Frame 2147225855.svg";
 import { ReactSVG } from "react-svg";
 import girlPic from "../../assets/svgs/girlPic.svg";
 import messageIcon from "../../assets/svgs/message-text.svg";
@@ -18,127 +18,75 @@ import friendReqs from "@assets/svgs/friendReqs.svg";
 const Dashboard: React.FC = () => {
   const [role, setRole] = useState(1);
   const [people, setPeople] = useState(["_", "_", "_", "_", "_"]);
+  const [cards, setCards] = useState(["_", "_", "_", "_"]);
 
-  const tableHeaders = [
+  const bookings = [
     {
-      key: "index",
-      label: "#",
-      align: "start",
-      customClass: "font-medium flex items-center gap-2",
+      name: "Jacob Jones",
+      date: "10-01-2025",
+      price: "$90",
+      status: "Ongoing",
+      img: "https://i.pravatar.cc/32?img=1",
+      role: "Customer",
     },
     {
-      key: "name",
-      label: "Name",
-      align: "start",
-      customClass:
-        "text-[16px] font-semibold text-[#252525] flex items-center gap-2",
+      name: "Jerome Bell",
+      date: "10-01-2025",
+      price: "$90",
+      status: "Completed",
+      img: "https://i.pravatar.cc/32?img=2",
     },
     {
-      key: "progress",
-      label: "Progress",
-      align: "start",
-      customClass:
-        "text-[16px] font-semibold text-[#252525] flex items-center gap-2",
+      name: "Theresa Webb",
+      date: "10-01-2025",
+      price: "$90",
+      status: "Ongoing",
+      img: "https://i.pravatar.cc/32?img=3",
     },
     {
-      key: "booking",
-      label: "Booking",
-      align: "center",
-      customClass:
-        "text-[16px] font-semibold text-[#252525] justify-center flex items-center gap-2",
+      name: "Kristin Watson",
+      date: "10-01-2025",
+      price: "$90",
+      status: "Completed",
+      img: "https://i.pravatar.cc/32?img=4",
     },
   ];
 
-  const tableHeaders2 = [
+  const reviews = [
     {
-      key: "time",
-      label: "Time",
-      align: "start",
-      customClass:
-        "text-[16px] font-semibold text-[#252525] flex items-center gap-2",
+      name: "Jacob Jones",
+      status: "Excellent",
+      rating: "4.5",
+      img: "https://i.pravatar.cc/32?img=1",
+      role: "Customer",
     },
     {
-      key: "activity",
-      label: "Activity",
-      align: "start",
-      customClass:
-        "text-[16px] font-semibold text-[#252525] flex items-center gap-2",
-    },
-  ];
-  const data = [
-    {
-      name: "Jan",
-      "Loyal Customers": 200,
-      "New Customers": 30,
-      "Unique Customers": 100,
+      name: "Jerome Bell",
+      status: "Good",
+      rating: "4.9",
+      img: "https://i.pravatar.cc/32?img=2",
     },
     {
-      name: "Feb",
-      "Loyal Customers": 220,
-      "New Customers": 40,
-      "Unique Customers": 130,
+      name: "Theresa Webb",
+      status: "Poor",
+      rating: "2.6",
+      img: "https://i.pravatar.cc/32?img=3",
     },
     {
-      name: "Mar",
-      "Loyal Customers": 240,
-      "New Customers": 50,
-      "Unique Customers": 160,
-    },
-    {
-      name: "Apr",
-      "Loyal Customers": 220,
-      "New Customers": 40,
-      "Unique Customers": 130,
-    },
-    {
-      name: "May",
-      "Loyal Customers": 200,
-      "New Customers": 30,
-      "Unique Customers": 100,
-    },
-    {
-      name: "Jun",
-      "Loyal Customers": 180,
-      "New Customers": 20,
-      "Unique Customers": 70,
-    },
-    {
-      name: "Jul",
-      "Loyal Customers": 160,
-      "New Customers": 10,
-      "Unique Customers": 40,
-    },
-    {
-      name: "Aug",
-      "Loyal Customers": 180,
-      "New Customers": 20,
-      "Unique Customers": 70,
-    },
-    {
-      name: "Sep",
-      "Loyal Customers": 200,
-      "New Customers": 30,
-      "Unique Customers": 100,
-    },
-    {
-      name: "Oct",
-      "Loyal Customers": 220,
-      "New Customers": 40,
-      "Unique Customers": 130,
-    },
-    {
-      name: "Nov",
-      "Loyal Customers": 240,
-      "New Customers": 50,
-      "Unique Customers": 160,
-    },
-    {
-      name: "Dec",
-      "Loyal Customers": 220,
-      "New Customers": 40,
-      "Unique Customers": 130,
+      name: "Kristin Watson",
+      status: "Excellent",
+      rating: "4.1",
+      img: "https://i.pravatar.cc/32?img=4",
     },
   ];
+
+  const statusColor = {
+    Ongoing: "bg-green-100 text-green-600",
+    Completed: "bg-blue-100 text-blue-600",
+    Excellent: "bg-green-100 text-green-600",
+    Good: "bg-yellow-100 text-yellow-600",
+    Poor: "bg-red-100 text-red-600",
+  };
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
   const username = userInfo?.user?.first_name || "";
@@ -146,146 +94,151 @@ const Dashboard: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container">
-        <div className="w-full md:flex-row flex-col flex md:items-center  justify-between mb-7 md:w-full">
-          <h2 className="mb-4 !text-[20px] md:!text-[32px]">
-            Welcome back. {username}! 👋
-          </h2>
-
-          <div className="md:w-[366px]">
-            <CommonInput placeholder="Search" showImg={true} />
-          </div>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-6">
-          <div className="overview_section col-span-1 lg:col-span-2 sm:col-span-1 common_section_bg py-[18px] ps-[25px] pe-[25px] pb-8 p-0">
-            <div className="flex items-start justify-between">
-              <div className="mb-[43px]">
-                <h3 className="mb-2 !text-[25px]">Quick Overview</h3>
-                <p className="default_para !text-[16px] !font-normal">
-                  Summary
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-6">
+          <div className="overview_section col-span-1 lg:col-span-2 sm:col-span-1  py-[18px] ps-[25px] pe-[25px] p-0">
+            <div className="w-full md:flex-row flex-col mb-[20px] rounded-[10px] flex md:items-center bg-white py-[23px] px-[20px] justify-between md:w-full">
+              <div>
+                <h2 className="mb-4 !text-[20px] !font-medium md:!text-[32px]">
+                  Welcome back. {username}! 👋
+                </h2>
+                <p className="text-[18px] leading-3 font-normal">
+                  Your AI insights of expense tracking and reports
                 </p>
               </div>
-              <div>
-                <PrimaryButton
-                  btnText="Export"
-                  img={exportIcon}
+
+              <div className="md:w-[366px]">
+                <CommonInput
+                  placeholder="Search"
+                  inputClass="border-[#E1E3F6] border-[1px]"
                   showImg={true}
-                  imgClass="size-4"
-                  btnClass="border !font-medium border-[var(--border-cyan)] px-4 py-2"
                 />
               </div>
             </div>
+            <div className="flex items-start  justify-between">
+              <div className="mb-[20px]">
+                <h3 className="!text-[25px]">Summary Overview</h3>
+              </div>
+            </div>
+
             <div
               className={`grid ${
                 role == 1 ? "lg:grid-cols-4" : "lg:grid-cols-4"
-              }  gap-4 md:grid-cols-2 sm:grid-cols-1`}
+              }  gap-4 md:grid-cols-1 sm:grid-cols-1`}
             >
-              <OverviewCard
-                index={0}
-                img={cardImg1}
-                // title="Monthly Revenue"
-                title={role == 0 ? "Total Sales" : "Monthly Revenue"}
-                averageIncrese="+8%"
-                averageTitle="from last month"
-                monthlyRevenue="$1k"
-              />
-              <OverviewCard
-                index={1}
-                img={orderIcon}
-                title={role == 1 ? "Our Franchises" : "Total Booking "}
-                averageIncrese="+3"
-                averageTitle="from last month"
-                monthlyRevenue="300"
-              />
-              <OverviewCard
-                index={2}
-                img={userStart}
-                title={role == 1 ? "Total Customers" : "Active Detailers "}
-                averageIncrese="+8.2%"
-                averageTitle="from last month"
-                monthlyRevenue="25"
-              />
-              <OverviewCard
-                index={3}
-                img={friendReqs}
-                title={role == 1 ? "Total Detailers" : "New Customers "}
-                averageIncrese="+8"
-                averageTitle="from last month"
-                monthlyRevenue="8"
-              />
+              {cards?.map(() => (
+                <OverviewCard
+                  index={0}
+                  img={Dollar}
+                  // title="Monthly Revenue"
+                  title="Today Revenue"
+                  averageIncrese="Currently live on the app"
+                  monthlyRevenue="$1k"
+                  renderMainValueNumber="+0.3%"
+                />
+              ))}
             </div>
-          </div>
-
-          <div className="recent_activites col-span-1 lg:col-span-1 common_section_bg  p-[20px]">
-            <p className="!text-[20px] font-semibold mt-[13px]">
-              {role == 1 ? "Recent activites" : "Active Detailers"}{" "}
-            </p>
-
-            {role == 1 ? (
-              <div className="overflow-x-auto w-full ">
-                <DashboardTable tableHeaders={tableHeaders2} />
-              </div>
-            ) : (
-              <div>
-                {people.map(() => (
-                  <div className=" flex justify-between items-center">
-                    <div className="w-[100%] mt-5 flex justify-start gap-3">
-                      <img
-                        className="object-fit w-[40px] h-[40px]"
-                        src={girlPic}
-                        alt=""
-                      />
-                      <div>
-                        <p className="text-[16px] text-medium">
-                          Justin Baptista
-                        </p>
-                        <p className="text-[#25252580] text-[14px] font-normal">
-                          hello@hourglassinc.com
-                        </p>
-                      </div>
-                    </div>
-                    <ReactSVG src={messageIcon} className="cursor-pointer" />
-
-                    {/* 2nd msg */}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 grid-cols-2 gap-3">
-          <div className={`col-span-${role==1 ? "2" : "1"}`}>
-            <div className="ranking_franchise  common_section_bg  py-6 px-6 ps-0 overflow-x-auto w-full ">
-              <div className="flex justify-between items-center">
-                <p className="text-[20px] px-6 text-[#252525] !font-semibold">
-                  {role == 1
-                    ? "Ranking Franchises "
-                    : "Ranking of most booked service"}
-                </p>
-                <p className="text-[#003CA6] text-[18px] !font-semibold underline pe-0 lg:pe-7">
+        <div className="p-6 bg-gray-100 min-h-screen">
+          <div className="grid grid-cols-3  gap-6">
+            <div className="bg-white rounded-xl col-span-2 shadow p-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="!text-[20px] !font-bold">Booking</h2>
+                <a
+                  href="#"
+                  className="text-[18px] font-semibold text-[#252525] cursor-pointer"
+                >
                   View all
-                </p>
+                </a>
               </div>
-              <DashboardTable topTable={true} tableHeaders={tableHeaders} />
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm text-gray-700">
+                  <thead className="bg-gray-100 text-left">
+                    <tr>
+                      <th className="py-[18px] px-[10px]">Service Details</th>
+                      <th className="py-2 px-3">Customer</th>
+                      <th className="py-2 px-3">Service Date</th>
+                      <th className="py-2 px-3">Price</th>
+                      <th className="py-2 px-3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((item, i) => (
+                      <tr key={i} className="">
+                        <td className="py-2 px-3">Organic Detailing Package</td>
+                        <td className="py-[17px] px-[10px] flex items-center gap-2">
+                          <img
+                            src={item.img}
+                            className="w-6 h-6 rounded-full"
+                            alt=""
+                          />
+                          <div>
+                            {item.name}
+                            {item.role}
+                          </div>
+                        </td>
+                        <td className="py-2 px-3">{item.date}</td>
+                        <td className="py-2 px-3">{item.price}</td>
+                        <td className="py-2 px-3">
+                          <span
+                            className={`text-xs px-2 py-1 rounded-full ${
+                              statusColor[item.status]
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl col-span-1 shadow p-4">
+              <h2 className="!text-[20px] !font-extrabold mb-4">
+                Customer Reviews
+              </h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm text-gray-700">
+                  <thead className="bg-gray-100 text-left">
+                    <tr>
+                      <th className="py-2 px-3">Offer Name</th>
+                      <th className="py-2 px-3">Status</th>
+                      <th className="py-2 px-3">Rating</th>
+                      <th className="py-2 px-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {reviews.map((item, i) => (
+                      <tr key={i} className="border-b">
+                        <td className="py-2 px-3 flex items-center gap-2">
+                          <img
+                            src={item.img}
+                            className="w-6 h-6 rounded-full"
+                            alt=""
+                          />
+                          {item.name}
+                        </td>
+                        <td className="py-2 px-3">
+                          <span
+                            className={`text-xs px-2 py-1 rounded-full ${
+                              statusColor[item.status]
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </td>
+                        <td className="py-2 px-3">{item.rating}</td>
+                        <td className="py-2 px-3">...</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-
-          {role !== 1 ? (
-            <div className="insights common_section_bg py-4 px-3 sm:px-4 md:px-6 md:py-7">
-              <h2 className="!text-[20px] text-[#252525] !font-semibold mb-10">
-                Insights
-              </h2>
-              <Linechart
-                data={data}
-                legend={true}
-                color1={"#3CD856"}
-                color2={"#A700FF"}
-                color3={"#EF4444"}
-              />
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
     </MainLayout>

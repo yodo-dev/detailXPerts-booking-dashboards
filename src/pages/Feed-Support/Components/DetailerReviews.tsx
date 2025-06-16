@@ -1,5 +1,5 @@
 import React from "react";
-import customerPic from "../../../assets/images/A smiling young woman with shoulder-length brown hair wearing a casual blue shirt standing in a well-lit room..png";
+import customerPic from "../../../assets/images/youngWomen.png";
 import DetailerPic from "../../../assets/images/Avatar.png"
 import StartPic from "../../../assets/svgs/starsRating.svg";
 import Dollar from "../../../assets/svgs/dollar-circle.svg";

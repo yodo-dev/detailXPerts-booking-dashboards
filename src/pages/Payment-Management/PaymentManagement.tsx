@@ -1,5 +1,6 @@
 import MainLayout from "@layouts/MainLayout";
 import React, { useState, useRef, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Chevron from "../../assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
@@ -9,6 +10,7 @@ import DataTable from "react-data-table-component";
 import Logo from "@assets/svgs/logo1.svg";
 import DayJS from "react-dayjs";
 import dayjs from "dayjs";
+import dummyImage from "@assets/images/user-profile-img.png"
 import DotsIcon from "@assets/svgs/dots-vertical.svg";
 import ActionDropdown from "@components/ActionDropdown";
 import { customStyles } from "@components/CustomStylesTable";
@@ -32,6 +34,227 @@ const PaymentManagement: React.FC = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const columns2 = [
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Customer
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      selector: (row) => row.name,
+      minWidth: "280px",
+      cell: (row) => (
+        <div
+          // onClick={() => setShowSubTask(true)}
+          className="flex gap-2 "
+        >
+          <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full">
+            <img
+              src={dummyImage}
+              // alt={row.detailer.name}
+              className="w-[40px] h-[40px] object-cover rounded-full"
+            />
+          </div>
+          <div className="flex items-center">
+            <div
+              onClick={() => {
+                setShowSubTask(true);
+                setShowEditId(row.id);
+              }}
+              className="text-sm cursor-pointer "
+            >
+              {/* {row.franchise} */}
+              {row.name}
+              <p className="text-[12px] !text-[#4D5361]">{row?.email}</p>
+            </div>
+            {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
+              Westheimer...
+            </div> */}
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Issue
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      minWidth: "210px",
+      selector: (row) => row.service,
+      cell: (row) => <span>Some Services Missing</span>,
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Service Details
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      minWidth: "230px",
+      selector: (row) => row.service,
+      cell: (row) => <span>Organic Detailing Package</span>,
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Service Date
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      minWidth: "110px",
+      selector: (row) => row.booking,
+      cell: (row) => <span>10-01-2025</span>,
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Request Date
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      minWidth: "120px",
+      selector: (row) => row.booking,
+      cell: (row) => <span>10-01-2025</span>,
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Price
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      minWidth: "100px",
+      selector: (row) => row.service,
+      cell: (row) => <span>$90</span>,
+    },
+
+    {
+      name: (
+        <span className="flex items-center gap-1">
+          Assigned Detailer
+          <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
+        </span>
+      ),
+      selector: (row) => row.name,
+      minWidth: "280px",
+      cell: (row) => (
+        <div
+          // onClick={() => setShowSubTask(true)}
+          className="flex gap-2 "
+        >
+          <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full">
+            <img
+              src={dummyImage}
+              // alt={row.detailer.name}
+              className="w-[40px] h-[40px] object-cover rounded-full"
+            />
+          </div>
+          <div className="flex items-center">
+            <div
+              onClick={() => {
+                setShowSubTask(true);
+                setShowEditId(row.id);
+              }}
+              className="text-sm cursor-pointer "
+            >
+              {/* {row.franchise} */}
+              {row.name}
+              <p className="text-[12px] !text-[#4D5361]">{row?.email}</p>
+            </div>
+            {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
+              Westheimer...
+            </div> */}
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Action",
+      selector: (row) => row.action,
+      minWidth: "10px",
+      cell: (row) => (
+        <div>
+          <span
+            onClick={() => {
+              setOpenDropdown(openDropdown === row.id ? null : row.id);
+              // setIsDropdownOpen(!isDropdownOpen);
+            }}
+            className="cursor-pointer bg-red-500"
+          >
+            <ReactSVG src={DotsIcon} />
+          </span>
+          <div ref={dropdownRef}>
+            <ActionDropdown
+              setOpenDropdown={setOpenDropdown}
+              openDropdown={openDropdown}
+              rowId={row.id}
+              setShowEditModal={setShowEditModal}
+              setShowEditId={setShowEditId}
+              showEditId={showEditId}
+              handleDelete={deleteFrenchise}
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [franchises, setFranchises] = useState([]);
+  const [singleFranchises, setSingleFranchises] = useState({});
+  const dropdownRef = useRef(null);
+  const { setValue } = useForm();
+  const [totalRecords, setTotalRecords] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const getFranchise = async () => {
+    setLoading(true);
+    try {
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/franchise/?page=${currentPage}&limit=${2}`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        setTotalRecords(response.payload.totalRecords);
+        setLoading(false);
+        setFranchises(response.payload.records);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
+  useEffect(() => {
+    getFranchise();
+
+    // function handleClickOutside(event) {
+    //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    //     setOpenDropdown(null);
+    //     // setTimeout(() => setOpenDropdown(null), 100); // small delay
+    //   }
+    // }
+
+    // document.addEventListener("mousedown", handleClickOutside);
+    // return () => {
+    //   document.removeEventListener("mousedown", handleClickOutside);
+    // };
+  }, [currentPage]);
+
   const customLoader = (
     <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
       {[...Array(1)].map((_, i) => (
@@ -41,6 +264,60 @@ const PaymentManagement: React.FC = () => {
       ))}
     </div>
   );
+
+  const deleteFrenchise = async (id) => {
+    const isDeleteModal = await ModalDelete();
+    if (!isDeleteModal) {
+      return;
+    }
+    {
+      try {
+        const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${id}`;
+
+        const params = {};
+        const response = await apiDelete(url, params, token);
+        if (response.success) {
+          setLoading(false);
+          getFranchise();
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log("Error :", error);
+      }
+    }
+  };
+
+  const getSingleFranchise = async () => {
+    setSingleFranchises(null);
+    // setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+
+      const params = {};
+      const response = await apiGet(url, params, token);
+      if (response.success) {
+        // setLoading(false);
+        setSingleFranchises(response.payload);
+        setValue("first_name", response.payload.first_name);
+        setValue("last_name", response.payload.last_name);
+        setValue("email", response.payload.email);
+        setValue("business_name", response.payload.first_name);
+        setValue("business_address", response.payload.country);
+        setValue("business_phone", response.payload.number);
+      }
+    } catch (error) {
+      // setLoading(false);
+      console.log("Error :", error);
+    }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    getSingleFranchise();
+  }, [showEditId]);
 
   const columns = [
     {
@@ -178,9 +455,6 @@ const PaymentManagement: React.FC = () => {
       ),
     },
   ];
-  const dropdownRef = useRef(null);
-
-  const [showModal, setShowModal] = useState(false);
 
   const token = localStorage.getItem("token");
 
@@ -210,6 +484,29 @@ const PaymentManagement: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
+        <div className="mb-[32px]">
+          <div className="flex mb-[20px] justify-between  ">
+            <h2>Refunds</h2>
+            <p className="text-[20px] font-medium text-[#252525] cursor-pointer">View All</p>
+          </div>
+          <div className="bg-white border border-[#0000001A] p-[10px] rounded-[12px]">
+          <div>
+            <DataTable
+              columns={columns2}
+              customStyles={customStyles}
+              data={franchises}
+              progressPending={loading}
+              progressComponent={customLoader}
+              />
+          </div>
+              </div>
+
+
+
+        </div>
+
+
+
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
           <h2>Payments & Invoicing</h2>
           <div className="md:w-[366px]">

@@ -24,8 +24,8 @@ const DashboardHeader: React.FC = () => {
 
   const dropdownRef = useRef(null);
 
-  // const role = User?.role_id;
-  const role = 2;
+  const role = User?.role_id;
+  // const role = 2;
 
   if (isAuthenticated == false) {
     localStorage.clear();
@@ -35,14 +35,18 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/", name: "Dashboard" },
     { id: uuid(), path: "/booking-management", name: "Booking" },
     { id: uuid(), path: "/frenchise-management", name: "Franchise" },
+    { id: uuid(), path: "/freelancer-management", name: "Freelancer" },
+
     { id: uuid(), path: "/detailers-management", name: "Detailers" },
     { id: uuid(), path: "/customers-management", name: "Customers" },
     { id: uuid(), path: "/payment-management", name: "Payments" },
-    { id: uuid(), path: "/feedback-support", name: "Feedback & Support" },
+    { id: uuid(), path: "/services-management", name: "Services" },
+
+    { id: uuid(), path: "/feedback-support", name: "Feedback" },
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
   return (
-    <div className="bg-[var(--primary-color)] py-5 mb-12 rounded-b-[40px] ">
+    <div className="bg-[var(--primary-color)] py-5 mb-12 mb-[40px] rounded-b-[40px] ">
       <div className="default_container flex items-center justify-between">
         <div className="flex items-center gap-4 lg:gap-[40px] header">
           <Link to="/">
@@ -75,7 +79,7 @@ const DashboardHeader: React.FC = () => {
                 <Link
                   key={link.id}
                   to={link.path}
-                  className={`relative text-white label_link ${
+                  className={`relative text-white !font-normal label_link ${
                     isActive
                       ? 'font-bold after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-white pb-[7px]'
                       : "font-normal"

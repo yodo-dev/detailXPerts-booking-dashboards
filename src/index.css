@@ -1,10 +1,48 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/uber-move-text');
 @import "tailwindcss";
 
+/* @font-face {
+  font-family: 'UberMove';
+  src: url('./assets/fonts/UberMoveBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+} */
+
+/* @font-face { */
+  /* font-family: 'UberMove';
+  src: url('./assets/fonts/UberMove-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UberMove';
+  src: url('./assets/fonts/UberMoveMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'UberMove';
+  src: url('./assets/fonts/UberMoveBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: 'UberMove';
+  src: url('./assets/fonts/UberMoveMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+} 
 
 :root {
   --font-primary: "poppins", serif;
   --font-secondary: "inter", serif;
+  --font-uber-move: "UberMove", serif;
+
 
   --primary-color: #003CA6;
   --primary-color-hover: #;
@@ -44,7 +82,9 @@
 }
 
 body {
+  /* font-family: var(--font-primary); */
   font-family: var(--font-primary);
+
   box-sizing: border-box;
   background-color: #F8F9FA;
   color: var(--primary-text);
@@ -54,13 +94,27 @@ body {
   box-sizing: border-box;
 }
 
+
+
+
 .default_container {
-  @apply mx-auto w-full max-w-[var(--container-width)] px-6 lg:px-3
+  @apply mx-auto w-full max-w-[var(--container-width)] px-6 lg:px-[40px]
 }
 
 .font-primary {
   font-family: var(--font-primary);
 }
+
+.font-uber-move-bold {
+  font-family: var(--font-uber-move);
+  font-weight: 700;
+}
+
+.font-uber-move-medium{
+  font-family: var(--font-uber-move);
+  font-weight: 500;
+}
+
 .shadow_bg{
   box-shadow: 0px 4px 30px 0px #3629B712;
 }

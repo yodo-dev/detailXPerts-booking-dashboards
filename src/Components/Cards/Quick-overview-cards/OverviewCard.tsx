@@ -1,22 +1,25 @@
 import React from "react";
 import { OverviewCardProps } from "../types";
+import graphUp from "@assets/svgs/trend-up-01.svg";
 
 const cardBgColors = ["#FFE2E5", "#FFF4DE", "#DCFCE7", "#F3E8FF"];
 const imgBgColors = ["#FA5A7D", "#FF947A", "#3CD856", "#BF83FF"];
 
 const OverviewCard: React.FC<OverviewCardProps> = ({
   img,
+  revenue,
   title,
   averageIncrese,
-  averageTitle,
   monthlyRevenue,
   totalFranchises,
   totalCustomers,
   totalDetailers,
+  renderMainValueNumber,
   index,
 }) => {
   const bgColor = cardBgColors[index % cardBgColors.length];
   const imgBgColor = imgBgColors[index % imgBgColors.length];
+  
 
   const renderMainValue = () => {
     if (monthlyRevenue)
@@ -31,23 +34,21 @@ const OverviewCard: React.FC<OverviewCardProps> = ({
   };
 
   return (
-    <div
-      className="overview_card rounded-2xl  p-4 cursor-pointer"
-      style={{ backgroundColor: bgColor }}
-    >
-      <div
-        className="w-10 h-10 flex items-center justify-center rounded-full mb-4"
-        style={{ backgroundColor: imgBgColor }}
-      >
-        <img src={img} alt="icon" className="w-5 h-5" />
+    <div className="overview_card rounded-2xl border border-[#2525250D] p-[20px] cursor-pointer">
+      <div className="w-10 h-10 flex items-center justify-center rounded-full mb-4">
+        <img src={img} alt="icon" className="w-[44px] h-[44px]" />
       </div>
 
-      {renderMainValue()}
-      <p className="text-gray-800  mb-3 mt-3 !text-[18px] !font-medium">
-        {title}
-      </p>
-      <p className="!text-sm !font-medium mb-2 !text-blue-700">
-        <span>{averageIncrese}</span> <span>{averageTitle}</span>
+      <p className="text-gray-800  mt-3 !text-[18px] !font-semibold">{title}</p>
+      <div className="flex mb-1 gap-2">
+        {renderMainValue()}
+        <p className="text-[#067647] mt-3 flex gap-1 text-[12px] font-medium ">
+          <img src={graphUp} alt="" className="w-[16px] h-[16px] " />{" "}
+          {renderMainValueNumber}
+        </p>
+      </div>
+      <p className="!text-sm !font-normal !text-[#252525]">
+        <span>{averageIncrese}</span>
       </p>
     </div>
   );

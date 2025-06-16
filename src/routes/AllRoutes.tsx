@@ -9,8 +9,8 @@ import useUserInfoStore from "../Store/Store";
 const AllRoutes: React.FC = () => {
   const { User } = useUserInfoStore();
 
-  // const routes=User?.role_id == 1 ? adminRoutes : franchiseRoutes
-  const routes = User?.role_id == 1 ? franchiseRoutes : franchiseRoutes;
+  const routes = User?.role_id == 1 ? adminRoutes : franchiseRoutes;
+  // const routes = User?.role_id == 1 ? franchiseRoutes : franchiseRoutes;
 
   return (
     <div>

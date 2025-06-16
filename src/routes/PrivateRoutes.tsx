@@ -88,6 +88,11 @@ import AddCustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/A
 import ProfileFranchise from "@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise";
 import DetailersProfile from "@pages/DetailerProfile/DetailerProfile";
 import Dashboard from "@pages/Dashboard/Dashboard";
+import Freelancer from "@pages/Freelancers/Freelancers";
+import ServicesManagement from "@pages/ServicesManagement/ServicesManagement";
+import OngoingBooking from "@pages/Booking-management/Components/ongoingBooking/OngoingBooking";
+import CreateService from "@pages/ServicesManagement/Components/CreateService";
+import FreelancerProfile from "@pages/Freelancers/Components/FreelancersProfile";
 
 // Admin Routes
 export const adminRoutes = [
@@ -95,9 +100,16 @@ export const adminRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/booking-management", element: <BookingManagement /> },
   { path: "/frenchise-management", element: <FrenchiseManagement /> },
+  { path: "/freelancer-management", element: <Freelancer /> },
+  { path: "/freelancer-profile", element: <FreelancerProfile /> },
+
   { path: "/detailers-management", element: <DetailersManagement /> },
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-management", element: <CustomersManagement /> },
+  { path: "/services-management", element: <ServicesManagement /> },
+  { path: "/ongoing-bookings", element: <OngoingBooking /> },
+  { path: "/create-service", element: <CreateService /> },
+
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
   { path: "/payment-management", element: <PaymentManagement /> },
   { path: "/feedback-support", element: <FeedSupport /> },
@@ -122,7 +134,6 @@ export const franchiseRoutes = [
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/add-detailer-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
-
 
   { path: "/settings", element: <Settings /> },
   { path: "/reports", element: <ReportsFranchise /> },

@@ -38,6 +38,7 @@ const FeedSupport: React.FC = () => {
   const dropdownRef = useRef();
   const [tabs, setTabs] = useState(4);
   const [openModal, setModalOpen] = useState(false);
+  
   const [hoveredBug, setHoveredBug] = useState(false);
   const [hoveredSuggestion, setHoveredSuggestion] = useState(false);
   const [hoveredSurvey, setHoveredSurvey] = useState(false);
@@ -495,6 +496,7 @@ const FeedSupport: React.FC = () => {
           </h2>
           {/* <CommonInput placeholder="Search" showImg={true} /> */}
         </div>
+        
         <div className=" flex justify-start items-start gap-10  ">
           <div
             className={`

@@ -4,7 +4,7 @@ import searchIcon from "@assets/svgs/search-normal.svg"
 import Edit from "@assets/svgs/edit.svg"
 
 
-const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeholder, showEdit }) => {
+const CommonInput: React.FC<CommonInputsProps> = ({ showImg, type, inputClass, placeholder, showEdit }) => {
   return (
     <div className="relative w-full  " >
       {showImg && (
@@ -15,7 +15,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({ showImg, inputClass, placeho
         />
       )}
       <input
-        type="text"
+        type={type}
         placeholder={placeholder}
         className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${showImg ? 'pl-10' : 'pl-3'} ${showEdit ? 'pl-10' : 'pl-3'} pr-3 ${inputClass}`}
       />

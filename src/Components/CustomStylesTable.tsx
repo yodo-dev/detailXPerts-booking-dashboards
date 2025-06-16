@@ -1,17 +1,21 @@
+import { table } from "console";
+
 export const customStyles = {
   rows: {
     style: {
-      backgroundColor: "#F1F3FB",
+      // backgroundColor: "#F1F3FB",
       color: "#333",
       fontSize: "16px",
       minHeight: "50px",
       // maxWidth:"10px",
       margin: "0px 0",
       "&:nth-child(even)": {
-        backgroundColor: "#F1F3FB80",
+        // backgroundColor: "#F1F3FB80",
+        borderBottom: "none"
       },
       "&:nth-child(odd)": {
-        backgroundColor: "white",
+        // backgroundColor: "white",
+        borderBottom: "none"
       },
     },
   },
@@ -28,6 +32,7 @@ export const customStyles = {
       padding: "15px",
       fontSize: "14px",
       maxWidth: "10px",
+
       
     },
   },
@@ -35,6 +40,9 @@ export const customStyles = {
     style: {
       overflow: "hidden",
       backgroundColor: "#f1f1f1", // optional: add background color
+      borderBottom: "none"
+
     },
   },
+
 };
