@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
-// import AddFranchise from "./Components/AddFranchise";
 import Chevron from "@assets/svgs/selector-vertical.svg";
 import { CustomCheckbox } from "@components/Checkbox/CustomCheckbox.js";
 
@@ -21,7 +20,7 @@ import dummyImage from "@assets/images/user-profile-img.png";
 import { useForm } from "react-hook-form";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
-import ReactSwitch from "react-switch";
+
 import { useNavigate, useParams } from "react-router-dom";
 const Freelancer: React.FC = () => {
 
