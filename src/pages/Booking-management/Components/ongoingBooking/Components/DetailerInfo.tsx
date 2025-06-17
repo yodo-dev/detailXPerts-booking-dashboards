@@ -1,6 +1,7 @@
 import React from "react";
 // import arrowLeft from "@assets/svgs/ArrowLeft.svg";
-import "../../../BookingManagement.css"
+import "../onGoingBooking.css";
+import "../../../BookingManagement.css";
 import { ReactSVG } from "react-svg";
 import youngWomen from "@assets/images/youngWomen.png";
 import callIcon from "@assets/svgs/call.svg";
@@ -9,6 +10,7 @@ import civic1 from "@assets/svgs/civic1.svg";
 import civic2 from "@assets/svgs/civic2.svg";
 import civic3 from "@assets/svgs/civic3.svg";
 import civic4 from "@assets/svgs/civic4.svg";
+import tick from "@assets/svgs/tick.svg";
 const DetailerInfo: React.FC = () => {
   return (
     <div className="col-span-1">
@@ -44,14 +46,22 @@ const DetailerInfo: React.FC = () => {
           Service Progress
         </h3>
         <div className="flex flex-col gap-[20px]">
-          <div className="ps-[20px] ">
-            <p className="font-uber-move-bold text-[18px]">Detailer Reached</p>
-            <p className="text-[16px] text-[#7D7878]">
-              Detailer Reached at your selected address.
-            </p>
+          <div className="ps-[20px] box relative">
+            {/* <div className="absolute top-0 left-0">
+              <ReactSVG className="absolute top-0 left-0" src={tick} />
+              <div className="bg-[#47B643] min-h-6 h-fit w-[2px] absolute left-2.5 top-6"></div>
+            </div> */}
+            <div className="ps-[16px]">
+              <p className="font-uber-move-bold text-[18px]">
+                Detailer Reached
+              </p>
+              <p className="text-[16px] text-[#7D7878]">
+                Detailer Reached at your selected address.
+              </p>
+            </div>
           </div>
 
-          <div className="ps-[20px]">
+          <div className="ps-[36px]  box relative">
             <p className="font-uber-move-bold text-[18px] mb-[15px]">
               Photos Before Service
             </p>
@@ -63,21 +73,21 @@ const DetailerInfo: React.FC = () => {
             </div>
           </div>
 
-          <div className="ps-[20px]">
+          <div className="ps-[36px] box relative">
             <p className="font-uber-move-bold text-[18px]">Service Start</p>
             <p className="text-[16px] text-[#7D7878]">
               Detailer Reached at your selected address.
             </p>
           </div>
 
-          <div className="ps-[20px]">
+          <div className="ps-[36px] box relative">
             <p className="font-uber-move-bold text-[18px]">Service End</p>
             <p className="text-[16px] text-[#7D7878]">
               Detailer Reached at your selected address.
             </p>
           </div>
 
-          <div className="ps-[20px] mb-[12px]">
+          <div className="ps-[36px] mb-[12px] box relative">
             <p className="font-uber-move-bold text-[18px] mb-[15px]">
               Photos After Service
             </p>
@@ -89,12 +99,12 @@ const DetailerInfo: React.FC = () => {
             </div>
           </div>
 
-          <div className="ps-[20px]">
+          <div className="ps-[36px]">
             <p className="font-uber-move-bold text-[18px]">Payment</p>
             <p className="text-[16px] text-[#7D7878]">Payment is on held</p>
           </div>
 
-          <div className="ps-[20px]">
+          <div className="ps-[36px]">
             <p className="font-uber-move-bold text-[#7D7878] text-[18px]">
               Service Review
             </p>

@@ -43,6 +43,7 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/services-management", name: "Services" },
 
     { id: uuid(), path: "/feedback-support", name: "Feedback" },
+    { id: uuid(), path: "/user-management", name: "User Management" },
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
   return (
@@ -71,7 +72,19 @@ const DashboardHeader: React.FC = () => {
               if (link.name === "Franchise" && role !== 1) {
                 return null; // Skip rendering the link if condition is met
               }
-              if (link.name === "Feedback & Support" && role == 2) {
+              if (link.name === "Feedback" && role !== 1) {
+                return null; // Skip rendering the link if condition is met
+              }
+
+              if (link.name === "Freelancer" && role !== 1) {
+                return null; // Skip rendering the link if condition is met
+              }
+
+              if (link.name === "User Management" && role !== 5) {
+                return null; // Skip rendering the link if condition is met
+              }
+
+              if (link.name === "Services" && role !== 1) {
                 return null; // Skip rendering the link if condition is met
               }
 

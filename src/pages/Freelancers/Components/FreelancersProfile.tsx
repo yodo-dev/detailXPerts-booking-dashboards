@@ -211,11 +211,13 @@ const FreelancerProfile: React.FC = () => {
     <MainLayout>
       <div className="default_container min-h-screen">
         <div className="bg-[#F8F9FA] mb-[10px]">
-          <div className="flex items-center gap-4">
+          <div className="sm:flex items-center  gap-4">
+            <div className="flex gap-2 sm:mb-0 mb-4">
             <Link to={"/booking-management"}>
               <ChevronLeft />
             </Link>
             <span>Back</span>
+            </div>
             <h2 className="!text-black">Freelancer Profile:</h2>
           </div>
 
@@ -248,14 +250,14 @@ const FreelancerProfile: React.FC = () => {
                   {/* Top Person Card */}
                   <div
                     style={{ backgroundColor: "rgba(27, 61, 150, 0.05)" }}
-                    className="  border-[1px] border-[#e6e6e6] flex flex-wrap justify-between items-center p-[26px] pe-[120px] rounded-2xl mb-5"
+                    className="  border-[1px] border-[#e6e6e6] lg:flex-row flex-wrap  flex justify-between items-center p-[26px] pe-[30px] rounded-2xl mb-5"
                   >
-                    <div className="flex gap-2 ">
-                      <div className="w-[95px] h-[95px] flex items-center justify-center border border-[#25252526] rounded-full">
+                    <div className="flex gap-2 lg:mb-0 mb-8">
+                      <div className="sm:w-[95px] w-[80px] h-[80px] sm:h-[95px] flex items-center justify-center border border-[#25252526] rounded-full">
                         <img
                           src={userImg}
                           alt=""
-                          className="w-[95px] h-[95px] rounded-full"
+                          className="sm:w-[95px] w-[80px] h-[80px] sm:h-[95px] rounded-full"
                         />
                       </div>
 
@@ -268,97 +270,98 @@ const FreelancerProfile: React.FC = () => {
                         </div>
                       </div>
                     </div>
-
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <div className="flex flex-col justify-start items-start">
-                          <div className="flex">
-                            <ReactSVG src={StartIcon} />
-                            <span>4.5 (237)</span>
+                    <div className=" flex justify-between gap-9 items-center flex-wrap">
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <div className="flex flex-col justify-start items-start">
+                            <div className="flex">
+                              <ReactSVG src={StartIcon} />
+                              <span>4.5 (237)</span>
+                            </div>
+                            <ReactSVG src={AvatarPic} />
                           </div>
-                          <ReactSVG src={AvatarPic} />
                         </div>
                       </div>
-                    </div>
 
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <span className="text-[#2929297c] font-medium">
-                          Position
-                        </span>
-                      </div>
-                      <p className="font-medium">Detailer</p>
-                    </div>
-
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <span className="text-[#2929297c] font-medium">
-                          Joining Date
-                        </span>
-                      </div>
-                      <p className="font-medium">21-08-2025</p>
-                    </div>
-
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <span className="text-[#2929297c] font-medium">
-                          Total Bookigns
-                        </span>
-                      </div>
-                      <p className="font-medium">400+</p>
-                    </div>
-
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <span className="text-[#2929297c] font-medium">
-                          Service
-                        </span>
-                      </div>
-                      <p className="font-medium">Car Radiator</p>
-                      <p className="font-medium">Specialist</p>
-                    </div>
-
-                    <div>
-                      <div className="flex mb-[5px]">
-                        <span className="text-[#2929297c] font-medium">
-                          Profile Status
-                        </span>
-                      </div>
-
-                      <label className="inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="sr-only peer "
-                          checked={isActive}
-                          onChange={handleToggle}
-                        />
-                        <div className="relative w-20 h-10 bg-[#1D1B201F] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#ffffff00] rounded-full peer peer-checked:after:translate-x-10 after:content-[''] after:absolute after:top-[5px] after:left-[5px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-8 after:w-8 after:transition-all peer-checked:bg-[#0EA363]">
-                          {isActive ? (
-                            <>
-                              <ReactSVG
-                                className="absolute z-9 right-3 top-4 w-[11px] h-[8px] text-black pointer-events-none"
-                                src={TcikIcon}
-                              />
-                              <p className="text-white absolute top-[14px] left-[5px] text-[9px]">
-                                Activate
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <ReactSVG
-                                className="absolute z-9 left-4 top-4 w-[11px] h-[8px] text-black pointer-events-none"
-                                src={CrossIcon}
-                              />
-                              <p className="text-[#ACA7AC] absolute top-[14px] right-[5px] text-[9px]">
-                                Disable
-                              </p>
-                            </>
-                          )}
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <span className="text-[#2929297c] font-medium">
+                            Position
+                          </span>
                         </div>
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          {isActive ? "" : ""}
-                        </span>
-                      </label>
+                        <p className="font-medium">Detailer</p>
+                      </div>
+
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <span className="text-[#2929297c] font-medium">
+                            Joining Date
+                          </span>
+                        </div>
+                        <p className="font-medium">21-08-2025</p>
+                      </div>
+
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <span className="text-[#2929297c] font-medium">
+                            Total Bookigns
+                          </span>
+                        </div>
+                        <p className="font-medium">400+</p>
+                      </div>
+
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <span className="text-[#2929297c] font-medium">
+                            Service
+                          </span>
+                        </div>
+                        <p className="font-medium">Car Radiator</p>
+                        <p className="font-medium">Specialist</p>
+                      </div>
+
+                      <div>
+                        <div className="flex mb-[5px]">
+                          <span className="text-[#2929297c] font-medium">
+                            Profile Status
+                          </span>
+                        </div>
+
+                        <label className="inline-flex items-center cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="sr-only peer "
+                            checked={isActive}
+                            onChange={handleToggle}
+                          />
+                          <div className="relative w-20 h-10 bg-[#1D1B201F] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#ffffff00] rounded-full peer peer-checked:after:translate-x-10 after:content-[''] after:absolute after:top-[5px] after:left-[5px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-8 after:w-8 after:transition-all peer-checked:bg-[#0EA363]">
+                            {isActive ? (
+                              <>
+                                <ReactSVG
+                                  className="absolute z-9 right-3 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                                  src={TcikIcon}
+                                />
+                                <p className="text-white absolute top-[14px] left-[5px] text-[9px]">
+                                  Activate
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <ReactSVG
+                                  className="absolute z-9 left-4 top-4 w-[11px] h-[8px] text-black pointer-events-none"
+                                  src={CrossIcon}
+                                />
+                                <p className="text-[#ACA7AC] absolute top-[14px] right-[5px] text-[9px]">
+                                  Disable
+                                </p>
+                              </>
+                            )}
+                          </div>
+                          <span className="ml-3 text-base font-medium text-gray-900">
+                            {isActive ? "" : ""}
+                          </span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                   {/* Top Person Card */}
@@ -745,14 +748,14 @@ const FreelancerProfile: React.FC = () => {
           <div className="p-6 space-y-10 bg-gray-50 min-h-screen">
             {/* Working Hours */}
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold">Working Hours</h2>
-                <div className="flex items-center gap-4">
-                  <PrimaryButton
+              <div className="sm:items-center sm:flex-row flex-col flex justify-between mb-6">
+                <h2 className="!sm:text-[32px] !text-[20px] font-semibold sm:mb-0 mb-6">Working Hours</h2>
+                <div className="flex sm:items-center items-start sm:flex-row flex-col gap-4">
+                  {/* <PrimaryButton
                     btnClass="bg-blue-600 text-white text-sm px-4 py-2"
-                    // img={DownloadButton}
+                    img={DownloadButton}
                     btnText="Download report"
-                  />
+                  /> */}
 
                   <span className="text-sm text-gray-600">Nov 23 - Nov 29</span>
                 </div>
@@ -768,7 +771,7 @@ const FreelancerProfile: React.FC = () => {
                       <div
                         className="w-full bg-blue-700 rounded-t-md"
                         style={{
-                          height: `${[80, 10, 30, 80, 70, 0, 0][idx]}%`,
+                          height: `${[80, 10, 30, 80, 70, 20, 10][idx]}%`,
                         }}
                       ></div>
                       <span className="mt-2">{day}</span>
@@ -783,12 +786,14 @@ const FreelancerProfile: React.FC = () => {
 
             {/* Analytics */}
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold">Analytics</h2>
-                <div className="flex items-center gap-4">
-                  <button className="flex items-center gap-2 bg-blue-600 text-white text-sm px-4 py-2 rounded-md">
-                    <FaDownload /> Download Report
-                  </button>
+              <div className="flex sm:items-center sm:flex-row flex-col  justify-between mb-6">
+                <h2 className="!sm:text-[32px] !text-[20px] font-semibold sm:mb-0 mb-6">Analytics</h2>
+                <div className="flex sm:flex-row flex-col items-start sm:items-center gap-4">
+                  {/* <PrimaryButton
+                    btnClass="bg-blue-600 text-white text-sm px-4 py-2"
+                    img={DownloadButton}
+                    btnText="Download report"
+                  /> */}
                   <span className="text-sm text-gray-600">Nov 23 - Nov 29</span>
                 </div>
               </div>

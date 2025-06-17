@@ -12,6 +12,8 @@ import { Legend } from "recharts";
 import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
 import Linechart from "@components/Charts/Linechart";
+import DataTable from "react-data-table-component";
+import { customStyles } from "@components/CustomStylesTable";
 
 const PaymentFranchise: React.FC = () => {
   //   const data = [
@@ -26,7 +28,6 @@ const PaymentFranchise: React.FC = () => {
     { name: "Group C", value: 300 },
     { name: "Group D", value: 200 },
   ];
-
 
   const data = [
     {
@@ -103,9 +104,150 @@ const PaymentFranchise: React.FC = () => {
     },
   ];
 
+  const columns2 = [
+    {
+      name: "Customer",
+      selector: (row) => row.franchise,
+      minWidth: "230px",
+      cell: (row) => (
+        <div
+          // onClick={() => setShowSubTask(true)}
+          className="flex gap-2 w-[190px]"
+        >
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div className="text-sm cursor-pointer">
+              {/* {row.franchise} */}
+              Ben Ten
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
+              Westheimer...
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Service Details",
+      minWidth: "200px",
+      selector: (row) => row.service,
+      cell: (row) => <span>{row?.services[0].service.name}</span>,
+    },
+
+    {
+      name: "Service Date",
+      minWidth: "115px",
+      selector: (row) => row.date,
+      cell: (row) => <span>04-05-2025</span>,
+    },
+
+    {
+      name: "Price",
+      minWidth: "80px",
+      selector: (row) => row.service,
+      cell: (row) => <span>$19.22</span>,
+    },
+
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      minWidth: "115px",
+
+      cell: (row) => (
+        <span
+          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
+            row.status === "NEW"
+              ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
+              : row.status === "PENDING"
+              ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
+              : row.status === "Canceled"
+              ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
+              : "bg-[#F1F3FB] text-gray-600"
+          }`}
+        >
+          {row.status}
+        </span>
+      ),
+    },
+    {
+      name: "Assigned Detailer",
+      selector: (row) => row.franchise,
+      minWidth: "230px",
+      cell: (row) => (
+        <div
+          // onClick={() => setShowSubTask(true)}
+          className="flex gap-2 w-[190px]"
+        >
+          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+            <img
+              src={Logo}
+              // alt={row.detailer.name}
+              className="w-5 h-5 rounded-full"
+            />
+          </div>
+          <div className="">
+            <div className="text-sm cursor-pointer">
+              {/* {row.franchise} */}
+              Ben Ten
+            </div>
+            <div className="text-xs text-gray-400 flex gap-1 mt-1">
+              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
+              Westheimer...
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      name: "Action",
+      minWidth: "150px",
+      selector: (row) => row.action,
+      cell: (row) => (
+        <span>
+          <div>
+            <PrimaryButton
+              btnText="Track"
+              btnClass="bg-[#003CA6] text-white text-[16px] !w-[98px] py-[10px] "
+              onClick={() => navigate("/ongoing-bookings")}
+            />
+          </div>
+        </span>
+      ),
+    },
+  ];
+
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
+        <div className="mb-[32px]">
+          <div className="flex mb-[20px] justify-between  ">
+            <h2>Refunds</h2>
+            <p className="text-[20px] font-medium text-[#252525] cursor-pointer">
+              View All
+            </p>
+          </div>
+          <div className="bg-white border border-[#0000001A] p-[10px] rounded-[12px]">
+            <div>
+              <DataTable
+                columns={columns2}
+                customStyles={customStyles}
+                // data={franchises}
+                // progressPending={loading}
+                // progressComponent={customLoader}
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-wrap gap-1.5 justify-between mb-[40px]">
           <h1 className="!font-normal sm:mb-0 mb-[15px] !text-[32px] !text-black">
             Payments Overview
@@ -314,9 +456,7 @@ const PaymentFranchise: React.FC = () => {
 
           <div className="lg:col-span-1 col-span-4 rounded-[12px] md:col-span-2 sm:col-span-4 bg-[#fff] relative flex flex-col justify-start items-center">
             <div className=" absolute top-10  ">
-              <p className="text-[14px] font-normal w-[100%] ">
-                Canceled
-              </p>
+              <p className="text-[14px] font-normal w-[100%] ">Canceled</p>
             </div>
             <PieChart width={250} height={300}>
               {/* Full 360° background ring */}
