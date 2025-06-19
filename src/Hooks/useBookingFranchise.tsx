@@ -1,10 +1,18 @@
 // src/hooks/useUsers.js
-import { useQuery } from 'react-query';
-import { bookingFranchise } from '../Api/BookingFranchise';
+import { useQuery } from "react-query";
+import { bookingFranchise } from "../Api/BookingFranchise";
+import { getBookings } from "../Api/apiBookingsFranchise";
 
 export const useBookingFranchise = (id) => {
   return useQuery({
-    queryKey: ['useBookingFranchise', id], // this enables caching per set of params
+    queryKey: ["useBookingFranchise", id], // this enables caching per set of params
     queryFn: () => bookingFranchise(id),
+  });
+};
+
+export const useBookingApiFranchise = (id) => {
+  return useQuery({
+    queryKey: ["getBookings", id], // this enables caching per set of params
+    queryFn: () => getBookings(id),
   });
 };

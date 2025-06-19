@@ -94,6 +94,7 @@ import OngoingBooking from "@pages/Booking-management/Components/ongoingBooking/
 import CreateService from "@pages/ServicesManagement/Components/CreateService";
 import FreelancerProfile from "@pages/Freelancers/Components/FreelancersProfile";
 import UserManagement from "@pages/FranchiseDashboard/UserManagement/UserManagement";
+import EditDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/EditDetailerFranchise";
 
 // Admin Routes
 export const adminRoutes = [
@@ -142,6 +143,7 @@ export const franchiseRoutes = [
   { path: "/notifications", element: <Notifications /> },
   { path: "/feedback-support", element: <FeedSupport /> },
   { path: "/user-management", element: <UserManagement /> },
+  { path: "/edit-detailer-franchise/:id", element: <EditDetailerFranchise /> },
 ];
 
 // Get role (e.g., from localStorage or context)

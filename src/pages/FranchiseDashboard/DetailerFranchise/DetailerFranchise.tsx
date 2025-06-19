@@ -22,7 +22,9 @@ import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import { useDetailerFranchise } from "../../../Hooks/useDetailerFranchise";
 import AddDetailerFranchise from "./Components/StepFormAddDetailer/AddDetailerFranchise";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { detailerFranchiseDelete } from "../../../Api/apiDetailersFranchise";
+import { useMutation, useQueryClient } from "react-query";
 
 const DetailersFranchise: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -39,8 +41,18 @@ const DetailersFranchise: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data } = useDetailerFranchise(currentPage);
 
-  const navigate = useNavigate();
+  // console.log("showidedit",showEditId)
 
+  const navigate = useNavigate();
+  const handleEdit = (rowId) => {
+    navigate(`/edit-detailer-franchise/${rowId}`);
+  };
+
+  const location = useLocation();
+  const id = location.state?.id;
+  console.log("id2222", id);
+
+  const queryClient = useQueryClient();
   const columns = [
     {
       name: "ID",
@@ -153,7 +165,8 @@ const DetailersFranchise: React.FC = () => {
               setShowEditModal={setShowEditModal}
               setShowEditId={setShowEditId}
               showEditId={showEditId}
-              handleDelete={deleteFrenchise}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           </div>
         </div>
@@ -162,25 +175,6 @@ const DetailersFranchise: React.FC = () => {
   ];
 
   const token = localStorage.getItem("token");
-
-  // const getDetailers = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const url = `${
-  //       import.meta.env.VITE_APP_API_URL
-  //     }v1/user/?page=${currentPage}&limit=${5}`;
-
-  //     const params = {};
-  //     const response = await apiGet(url, params, token);
-  //     if (response.success) {
-  //       setFranchises(response.payload.records);
-  //       setTotalRows(response.payload.totalRecords);
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     setLoading(false);
-  //   }
-  // };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -237,25 +231,29 @@ const DetailersFranchise: React.FC = () => {
     </div>
   );
 
-  const deleteFrenchise = async (id) => {
-    const isDeleteModal = await ModalDelete();
-    if (!isDeleteModal) {
-      return;
-    }
-    {
-      try {
-        const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${id}`;
+  const deleteMutation = useMutation({
+    mutationFn: (id) => detailerFranchiseDelete(id),
+    onSuccess: async () => {
+      // const isDeleteModal = await ModalDelete();
+      queryClient.invalidateQueries(["detailersFranchise"]); // refetch list
 
-        const params = {};
-        const response = await apiDelete(url, params, token);
-        if (response.success) {
-          setLoading(false);
-          getDetailers();
-        }
-      } catch (error) {
-        setLoading(false);
-        console.log("Error :", error);
+      if (!isDeleteModal) {
+        return;
       }
+
+      // queryClient.invalidateQueries(["detailersFranchise"]);
+      console.log("User deleted successfully");
+    },
+    onError: (error) => {
+      console.error("Error deleting user:", error);
+    },
+  });
+
+  const handleDelete = async (id) => {
+    const isConfirmed = await ModalDelete(); // Show modal first
+
+    if (isConfirmed) {
+      deleteMutation.mutate(id); // Only delete if user confirms
     }
   };
 
@@ -276,7 +274,7 @@ const DetailersFranchise: React.FC = () => {
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] w-full sm:max-w-[210px]"
               btnTextClass="text-[16px]"
               // onClick={() => setShowModal(true)}
-              onClick={()=>(navigate("/add-detailer-franchise"))}
+              onClick={() => navigate("/add-detailer-franchise")}
             />
           </div>
         </div>

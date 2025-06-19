@@ -18,44 +18,54 @@ function ActionDropdown({
   handleDelete,
   viewOnly,
   handleViewModal,
+  handleEdit
 }) {
+  // const handleEdit = () => {
+  //   setShowEditModal(true);
+  //   setShowEditId(rowId);
+  //   setOpenDropdown(false);
+  //   // e.stopPropagation(); // Prevents the outside click handler from firing
+
+  // };
   return (
     <div className="relative ">
       {openDropdown === rowId && (
         <div
           //   ref={dropdownRef}
-          className="absolute top-2 right-3 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
+          className="absolute top-[-20px] right-5 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
         >
           <div className="flex flex-col justify-between p-2 ps-0 gap-[5px]">
-            <button
+            {/* <button
               onClick={handleViewModal}
               className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full"
             >
               {" "}
-              {/* <Link  className="flex "> */}
-              <ReactSVG src={Eye} className="mr-2" /> View {/* </Link>{" "} */}
-            </button>
+              <ReactSVG src={Eye} className="mr-2" /> View 
+            </button> */}
 
             {viewOnly ? (
               ""
             ) : (
               <>
                 <button
-                  onClick={(e) => {
-                    setShowEditModal(true);
-                    setShowEditId(rowId);
-                    setOpenDropdown(false);
-                    // e.stopPropagation(); // Prevents the outside click handler from firing
+                  // onClick={(e) => {
+                  //   setShowEditModal(true);
+                  //   setShowEditId(rowId);
+                  //   setOpenDropdown(false);
+                  //   // e.stopPropagation(); // Prevents the outside click handler from firing
+                  // }}
+                  onClick={(e)=>{
+                    // setShowEditId(rowId);
+                    handleEdit(rowId)
                   }}
                   className={`cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full`}
                 >
-                  {/* <FileEdit /> */}
                   <ReactSVG src={EditIcon} className="mr-2" /> Edit
                 </button>
 
-                <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                {/* <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
                   <ReactSVG src={blockUser} className="mr-2" /> Block{" "}
-                </button>
+                </button> */}
 
                 <button
                   //   onClick={() => handleDelete(row.id)}

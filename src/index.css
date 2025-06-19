@@ -328,3 +328,9 @@ input[type=time]::-webkit-clear-button {
 textarea {
   resize: none;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+}

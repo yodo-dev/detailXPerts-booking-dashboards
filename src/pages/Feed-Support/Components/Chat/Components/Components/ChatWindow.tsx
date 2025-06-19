@@ -56,6 +56,7 @@ function ChatWindow({ className }) {
   useEffect(() => {
     setMessages(chatAllMsgs);
   }, [chatAllMsgs]);
+  
   const mutation = useMutation({
     mutationFn: sendMessages, // 👈 this is your POST API
     onSuccess: (data) => {

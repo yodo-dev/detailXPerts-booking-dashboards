@@ -102,6 +102,7 @@ import CalendarIcon from "@assets/svgs/calendar.svg";
 import SkeltonLoader from "@components/SkeltonLoader";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import Pagination from "@components/Pagination";
+import BookingRequest from "./Components/BookingRequest";
 const BookingManagement: React.FC = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
@@ -958,13 +959,14 @@ const BookingManagement: React.FC = () => {
             <div className="w-[100%]">
               {tabs == 0 ? (
                 <>
-                  <DataTable
+                  {/* <DataTable
                     columns={columns0}
                     customStyles={customStyles}
                     data={bookings}
                     progressPending={loading}
                     progressComponent={customLoader}
-                  />
+                  /> */}
+                  <BookingRequest/>
                 </>
               ) : tabs == 1 ? (
                 <DataTable
