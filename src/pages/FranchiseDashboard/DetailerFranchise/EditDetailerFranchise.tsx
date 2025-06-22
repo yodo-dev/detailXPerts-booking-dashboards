@@ -275,19 +275,17 @@ const EditDetailerFranchise: React.FC = () => {
                 />
 
                 <div className=" py-8 space-y-8">
-                  {["License", "ID Card", "VISA"].map(
-                    (label, index) => (
-                      <FileUploadBox
-                        key={index}
-                        label={label}
-                        file={uploadedFiles[index]}
-                        onChange={(file) => handleFileChange(index, file)}
-                        singleImage={
-                          getSingleDetailerData?.documents[index]?.file_name
-                        }
-                      />
-                    )
-                  )}
+                  {["License", "ID Card", "VISA"].map((label, index) => (
+                    <FileUploadBox
+                      key={index}
+                      label={label}
+                      file={uploadedFiles[index]}
+                      onChange={(file) => handleFileChange(index, file)}
+                      singleImage={
+                        getSingleDetailerData?.documents[index]?.file_name
+                      }
+                    />
+                  ))}
 
                   {/* Permissions */}
                   <div>

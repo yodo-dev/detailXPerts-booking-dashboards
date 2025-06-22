@@ -103,6 +103,9 @@ import SkeltonLoader from "@components/SkeltonLoader";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import Pagination from "@components/Pagination";
 import BookingRequest from "./Components/BookingRequest";
+import BookingOngoing from "./Components/BookingOngoing";
+import BookingCompleted from "./Components/BookingCompleted";
+import BookingCancelled from "./Components/BookingCancelled";
 const BookingManagement: React.FC = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
@@ -871,7 +874,7 @@ const BookingManagement: React.FC = () => {
 
         <div className="flex justify-start items-start gap-[20px]">
           <div
-            className={`flex flex-col z-40 bg-white rounded-[12px] shadow-lg w-[200px] 
+            className={`flex flex-col z-40 bg-white rounded-[12px] shadow-lg 
               lg:relative lg:translate-x-0 lg:transition-none
               fixed top-0 h-full left-0 transition-transform duration-300  ease-in-out
                ${openModal ? "translate-x-0" : "-translate-x-full"}
@@ -955,7 +958,7 @@ const BookingManagement: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white  overflow-x-auto  p-[10px]  rounded-[12px] border-[#0000001A] border-[1px]">
+          <div className="bg-white w-full overflow-x-auto  p-[10px]  rounded-[12px] border-[#0000001A] border-[1px]">
             <div className="w-[100%]">
               {tabs == 0 ? (
                 <>
@@ -966,16 +969,10 @@ const BookingManagement: React.FC = () => {
                     progressPending={loading}
                     progressComponent={customLoader}
                   /> */}
-                  <BookingRequest/>
+                  <BookingRequest />
                 </>
               ) : tabs == 1 ? (
-                <DataTable
-                  columns={columns1}
-                  customStyles={customStyles}
-                  data={bookings}
-                  progressPending={loading}
-                  progressComponent={customLoader}
-                />
+                <BookingOngoing />
               ) : tabs == 2 ? (
                 <DataTable
                   columns={columns2}
@@ -985,21 +982,23 @@ const BookingManagement: React.FC = () => {
                   progressComponent={customLoader}
                 />
               ) : tabs == 3 ? (
-                <DataTable
-                  columns={columns3}
-                  customStyles={customStyles}
-                  data={bookings}
-                  progressPending={loading}
-                  progressComponent={customLoader}
-                />
+                // <DataTable
+                //   columns={columns3}
+                //   customStyles={customStyles}
+                //   data={bookings}
+                //   progressPending={loading}
+                //   progressComponent={customLoader}
+                // />
+                <BookingCompleted/>
               ) : tabs == 4 ? (
-                <DataTable
-                  columns={columns4}
-                  customStyles={customStyles}
-                  data={bookings}
-                  progressPending={loading}
-                  progressComponent={customLoader}
-                />
+                // <DataTable
+                //   columns={columns4}
+                //   customStyles={customStyles}
+                //   data={bookings}
+                //   progressPending={loading}
+                //   progressComponent={customLoader}
+                // />
+                <BookingCancelled/>
               ) : (
                 ""
               )}

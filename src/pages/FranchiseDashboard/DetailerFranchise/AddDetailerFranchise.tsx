@@ -372,8 +372,6 @@ const AddDetailerFranchise: React.FC = () => {
   const [selectedPermissionIds, setSelectedPermissionIds] = useState<number[]>(
     []
   );
-  
-
 
   const roles = data
     ?.filter(
@@ -575,16 +573,14 @@ const AddDetailerFranchise: React.FC = () => {
                 />
 
                 <div className=" py-8 space-y-8">
-                  {["License", "Other Document", "Other Document"].map(
-                    (label, index) => (
-                      <FileUploadBox
-                        key={index}
-                        label={label}
-                        file={uploadedFiles[index]}
-                        onChange={(file) => handleFileChange(index, file)}
-                      />
-                    )
-                  )}
+                  {["License", "ID Card", "VISA"].map((label, index) => (
+                    <FileUploadBox
+                      key={index}
+                      label={label}
+                      file={uploadedFiles[index]}
+                      onChange={(file) => handleFileChange(index, file)}
+                    />
+                  ))}
 
                   {/* Permissions */}
                   <div>

@@ -2,6 +2,7 @@ import React from "react";
 import UploadIcon from "@assets/svgs/uploadFile.svg";
 
 const FileUploadBox = ({ label, file, onChange, singleImage }) => {
+
   return (
     <div>
       <label className="block mb-2 font-medium">{label}</label>

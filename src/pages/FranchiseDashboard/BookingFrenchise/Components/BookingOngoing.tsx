@@ -8,19 +8,22 @@ import LocationIcon from "@assets/svgs/location.svg";
 import DummyImage from "@assets/images/user-dummy-img.jpg";
 import { useMutation, useQueryClient } from "react-query";
 import { BookingChangeStatus } from "../../../../Api/apiBookingsFranchise";
+import SelectField from "@components/SelectField/SelectField";
+import ArrowDown from "@assets/svgs/arrow-down.svg";
+import { useDetailerFranchise } from "../../../../Hooks/useDetailerFranchise";
 
-const BookingRequest = () => {
+const BookingOngoing = () => {
   const [currentId, setCurrentId] = useState();
   const [currentStatus, setCurrentStatus] = useState();
   const [loadingId, setLoadingId] = useState(null);
-  const columns0 = [
-    // {
-    //   name: "ID",
-    //   maxWidth: "100px !important",
-    //   selector: (row) => row.id,
-    //   cell: (row) => <span>101</span>,
-    // },
+  const [detailerId,setDetailerId]=useState()
+  const { data: DetailerData } = useDetailerFranchise(1);
 
+  const handleChange=(e)=>{
+    console.log("e",e.target.value)
+  }
+
+  const columns0 = [
     {
       name: "Customer",
       selector: (row) => row.franchise,
@@ -60,8 +63,8 @@ const BookingRequest = () => {
     {
       name: "Service Details",
       minWidth: "200px",
-      selector: (row) => row.service,
-      cell: (row) => <span>{row?.services[0].service.name}</span>,
+      selector: (row) => row?.service,
+      cell: (row) => <span>{row?.services[0]?.service?.name}</span>,
     },
 
     {
@@ -88,7 +91,7 @@ const BookingRequest = () => {
     {
       name: "Status",
       selector: (row) => row.status,
-      minWidth: "115px",
+      minWidth: "130px",
 
       cell: (row) => (
         <span
@@ -108,25 +111,36 @@ const BookingRequest = () => {
     },
 
     {
+      name: "Assigned Detailer",
+      minWidth: "230px",
+      selector: (row) => row.service,
+      cell: (row) => (
+        <span>
+          <SelectField
+            defaultValue="Select detailer"
+            // options={dataArr}
+            styleSelect="select-style !w-[196px] bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-3"
+            imageSrc={ArrowDown}
+            // options={[{label:DetailerData?.records.first_name,value:DetailerData?.records?.id}]}
+            options={DetailerData?.records?.map((item) => ({
+              label: item.first_name,
+              value: item.id,
+            }))}
+            onChange={handleChange}
+          />
+        </span>
+      ),
+    },
+
+    {
       name: "Action",
       minWidth: "230px",
       selector: (row) => row.action,
       cell: (row) => (
         <span className="flex gap-[10px]">
-          <div></div>
-          {/* <PrimaryButton
-            btnText="Decline"
-            btnClass="bg-[#FF3134] text-white text-[16px] !w-[88px] py-[8px] "
-            onClick={() => {
-              setCurrentStatus("DECLINE");
-              setCurrentId(row?.id);
-            }}
-            isLoading={row?.id === loadingId && currentStatus == "DECLINE"}
-          /> */}
-
           <div>
             <PrimaryButton
-              btnText="Accept"
+              btnText="Assign"
               btnClass="bg-[#003CA6] text-white text-[16px] !w-[88px] py-[8px] "
               onClick={() => {
                 setCurrentStatus("ACCEPTED");
@@ -143,8 +157,11 @@ const BookingRequest = () => {
 
   const queryClient = useQueryClient();
 
-  const { data } = useBookingApiFranchise();
+  const { data } = useBookingApiFranchise("ACCEPTED");
 
+  // const {data:DetailersData} = useDetailerFranchise(1)
+  // console.log("asdasdasdasdasdasd",DetailersData?.records)
+  // console.log("oppoppo00000----",DetailersData)
   const updateMutation = useMutation({
     mutationFn: ({ currentId, formData }) =>
       BookingChangeStatus(currentId, formData),
@@ -189,4 +206,4 @@ const BookingRequest = () => {
   );
 };
 
-export default BookingRequest;
+export default BookingOngoing;

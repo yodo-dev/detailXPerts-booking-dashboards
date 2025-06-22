@@ -10,9 +10,9 @@ export const useBookingFranchise = (id) => {
   });
 };
 
-export const useBookingApiFranchise = (id) => {
+export const useBookingApiFranchise = (status) => {
   return useQuery({
-    queryKey: ["getBookings", id], // this enables caching per set of params
-    queryFn: () => getBookings(id),
+    queryKey: ["getBookings", status], // this enables caching per set of params
+    queryFn: () => getBookings(status),
   });
 };

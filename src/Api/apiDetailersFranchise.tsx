@@ -7,9 +7,9 @@ console.log("33333333333", userInfo.user);
 
 export const detailersFranchise = async (page) => {
   //   const BASE_URL = `${import.meta.env.VITE_APP_API_URL}v1/user/customers?page=${page}&limit=${5}`;
-  const BASE_URL = `${
-    import.meta.env.VITE_APP_API_URL
-  }v1/user?role_id=4&page=${page}&limit=5`;
+  const BASE_URL = `${import.meta.env.VITE_APP_API_URL}v1/user?role_id=4&page=${
+    page ? page : ""
+  }&limit=5`;
 
   const token = localStorage.getItem("token");
 
