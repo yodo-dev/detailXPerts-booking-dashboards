@@ -21,9 +21,12 @@ import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetFreelancers } from "../../Hooks/useFreelancers";
+import { checkDomainOfScale } from "recharts/types/util/ChartUtils";
+import { useMutation, useQueryClient } from "react-query";
+import { apiDeleteFreelancer } from "../../Api/apiFreelancers";
 const Freelancer: React.FC = () => {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const columns = [
     {
       name: (
@@ -69,13 +72,13 @@ const Freelancer: React.FC = () => {
             <div
               onClick={() => {
                 // setShowSubTask(true);
-                navigate("/freelancer-profile")
+                navigate("/freelancer-profile");
                 setShowEditId(row.id);
               }}
               className="text-sm cursor-pointer "
             >
               {/* {row.franchise} */}
-              {row.name}
+              {row?.first_name} {row?.last_name}
               <p className="text-[12px] !text-[#4D5361]">{row?.email}</p>
             </div>
             {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
@@ -172,7 +175,7 @@ const Freelancer: React.FC = () => {
               setShowEditModal={setShowEditModal}
               setShowEditId={setShowEditId}
               showEditId={showEditId}
-              handleDelete={deleteFrenchise}
+              handleDelete={handleDelete}
             />
           </div>
         </div>
@@ -196,6 +199,8 @@ const Freelancer: React.FC = () => {
 
   const token = localStorage.getItem("token");
 
+  const { data } = useGetFreelancers(currentPage);
+
   const getFranchise = async () => {
     setLoading(true);
     try {
@@ -218,18 +223,6 @@ const Freelancer: React.FC = () => {
 
   useEffect(() => {
     getFranchise();
-
-    // function handleClickOutside(event) {
-    //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-    //     setOpenDropdown(null);
-    //     // setTimeout(() => setOpenDropdown(null), 100); // small delay
-    //   }
-    // }
-
-    // document.addEventListener("mousedown", handleClickOutside);
-    // return () => {
-    //   document.removeEventListener("mousedown", handleClickOutside);
-    // };
   }, [currentPage]);
 
   const customLoader = (
@@ -292,6 +285,29 @@ const Freelancer: React.FC = () => {
     setCurrentPage(page);
   };
 
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: (id) => apiDeleteFreelancer(id),
+    onSuccess: async () => {
+      queryClient.invalidateQueries(["apiGetFreelancers"]); // refetch list
+
+      // queryClient.invalidateQueries(["detailersFranchise"]);
+      console.log("User deleted successfully");
+    },
+    onError: (error) => {
+      console.error("Error deleting user:", error);
+    },
+  });
+
+  const handleDelete = async (id) => {
+    const isConfirmed = await ModalDelete(); // Show modal first
+
+    if (isConfirmed) {
+      deleteMutation.mutate(id); // Only delete if user confirms
+    }
+  };
+
   useEffect(() => {
     getSingleFranchise();
   }, [showEditId]);
@@ -316,7 +332,7 @@ const Freelancer: React.FC = () => {
         <DataTable
           columns={columns}
           customStyles={customStyles}
-          data={franchises}
+          data={data?.records}
           pagination
           paginationComponent={() => (
             <Pagination

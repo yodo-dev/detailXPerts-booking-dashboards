@@ -1,10 +1,19 @@
 import React from "react";
 import UploadIcon from "@assets/svgs/uploadFile.svg";
 
-const FileUploadBox = ({ label, file, onChange, singleImage }) => {
+const FileUploaderSingle = ({ label, file, onChange, singleImage }) => {
+  // Safely generate preview URL
+  const previewUrl = file
+    ? URL.createObjectURL(file)
+    : singleImage
+    ? `${import.meta.env.VITE_APP_API_IMG_URL}${singleImage}`
+    : null;
+
+    console.log("++++++++++++++++++++++++",singleImage)
   return (
     <div>
-      <label className="block mb-2 font-medium">{label}</label>
+      {label && <label className="block mb-2 font-medium">{label}</label>}
+
       <div className="w-full min-h-[140px] border border-gray-200 rounded-xl flex items-center justify-center flex-col text-center bg-white">
         <label className="cursor-pointer">
           <input
@@ -13,21 +22,18 @@ const FileUploadBox = ({ label, file, onChange, singleImage }) => {
             onChange={(e) => onChange(e.target.files?.[0] || null)}
             className="hidden"
           />
+
           <div className="flex flex-col items-center gap-2">
-            {file || singleImage ? (
+            {previewUrl ? (
               <img
-                src={
-                  file
-                    ? URL.createObjectURL(file)
-                    : `${import.meta.env.VITE_APP_API_IMG_URL}${singleImage}`
-                }
+                src={previewUrl}
                 alt="uploaded"
                 className="w-32 h-32 object-cover rounded-md shadow"
               />
             ) : (
               <>
                 <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-                  <img src={UploadIcon} alt="" />
+                  <img src={UploadIcon} alt="Upload Icon" />
                 </div>
                 <p className="text-sm text-gray-700">
                   <strong>Click to upload</strong> or drag and drop
@@ -45,4 +51,4 @@ const FileUploadBox = ({ label, file, onChange, singleImage }) => {
   );
 };
 
-export default FileUploadBox;
+export default FileUploaderSingle;

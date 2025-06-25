@@ -3,7 +3,7 @@ import axios from "axios";
 const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 const franchiseId = userInfo?.user?.franchise_id;
 
-console.log("33333333333", userInfo.user);
+// console.log("33333333333", userInfo?.user);
 
 export const detailersFranchise = async (page) => {
   //   const BASE_URL = `${import.meta.env.VITE_APP_API_URL}v1/user/customers?page=${page}&limit=${5}`;

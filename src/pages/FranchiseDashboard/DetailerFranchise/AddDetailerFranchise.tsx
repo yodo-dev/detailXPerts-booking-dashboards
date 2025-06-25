@@ -389,11 +389,7 @@ const AddDetailerFranchise: React.FC = () => {
 
   const queryClient = useQueryClient();
 
-  const [uploadedFiles, setUploadedFiles] = useState<(File | null)[]>([
-    null,
-    null,
-    null,
-  ]);
+  const [uploadedFiles, setUploadedFiles] = useState<(File | null)[]>([]);
 
   const [uploadedFilesDocs, setUploadedFilesDocs] = useState<String[]>([
     "license",
@@ -490,11 +486,12 @@ const AddDetailerFranchise: React.FC = () => {
   return (
     <MainLayout>
       <div className="px-[40px] ">
-        <h2 className="!text-[32px] mb-[47px] font-medium">Add User</h2>
+        <h2 className="!text-[32px] mb-[47px] font-medium">Add Detailer</h2>
         <div className="bg-white p-[20px] rounded-[20px]">
           <form onSubmit={handleSubmit(handleSubmitDetailer)}>
             <div className="space-y-6 ">
               {/* Select Role */}
+
               <div>
                 <label className="block mb-2 text-[16px] font-medium">
                   Select Role
@@ -586,35 +583,6 @@ const AddDetailerFranchise: React.FC = () => {
                   <div>
                     <h3 className="font-medium text-lg mb-4">Permissions</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[14px] text-[#546E7F]">
-                      {/* {getPermissions?.map((permission) => (
-                        <div
-                          key={permission.key}
-                          className="bg-[#F7F8FC] px-[15px] py-[20px] rounded-xl flex justify-between items-center"
-                        >
-                          <span className="text-sm font-medium">
-                            {permission?.name}
-                          </span>
-                          <ReactSwitch
-                            // onChange={() =>
-                            //   handlePermissionToggle(
-                            //     permission.key as keyof typeof permissions
-                            //   )
-                            // }
-                            onChange={() => handlePermissionToggle(permission)}
-                            checked={
-                              permissions[
-                                permission.key as keyof typeof permissions
-                              ]
-                            }
-                            offColor="#ccc"
-                            onColor="#34D399"
-                            checkedIcon={false}
-                            uncheckedIcon={false}
-                            height={20}
-                            width={40}
-                          />
-                        </div>
-                      ))} */}
                       {getPermissions?.map((permission) => {
                         // Generate a fallback key from the name
                         const key =
@@ -653,7 +621,7 @@ const AddDetailerFranchise: React.FC = () => {
 
                   <div className="pt-8">
                     <button className="w-full bg-[#1B3D96] cursor-pointer text-white py-[12px] rounded-xl font-bold ">
-                      Add User
+                      Add Detailer
                     </button>
                   </div>
                 </div>

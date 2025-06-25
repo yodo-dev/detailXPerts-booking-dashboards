@@ -1,12 +1,25 @@
-import React from 'react'
-import { CommonInputsProps } from './types'
-import searchIcon from "@assets/svgs/search-normal.svg"
-import Edit from "@assets/svgs/edit.svg"
+import React from "react";
+import { CommonInputsProps } from "./types";
+import searchIcon from "@assets/svgs/search-normal.svg";
+import Edit from "@assets/svgs/edit.svg";
 
-
-const CommonInput: React.FC<CommonInputsProps> = ({ showImg, type, inputClass, placeholder, showEdit }) => {
+const CommonInput: React.FC<CommonInputsProps> = ({
+  showImg,
+  type,
+  inputClass,
+  placeholder,
+  showEdit,
+  label,
+}) => {
   return (
-    <div className="relative w-full  " >
+    <div className="relative w-full  ">
+      {label ? (
+        <label className="block text-[12px] font-bold mb-[6px] text-[#252525]">
+          {label}
+        </label>
+      ) : (
+        ""
+      )}
       {showImg && (
         <img
           src={searchIcon}
@@ -17,15 +30,19 @@ const CommonInput: React.FC<CommonInputsProps> = ({ showImg, type, inputClass, p
       <input
         type={type}
         placeholder={placeholder}
-        className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${showImg ? 'pl-10' : 'pl-3'} ${showEdit ? 'pl-10' : 'pl-3'} pr-3 ${inputClass}`}
+        className={`w-full rounded-xl bg-white placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${
+          showImg ? "pl-10" : "pl-3"
+        } ${showEdit ? "pl-10" : "pl-3"} pr-3 ${inputClass}`}
       />
-      {
-        showEdit && (
-          <img src={Edit} alt="" className='absolute right-3 top-1/2 -translate-y-1/2 size-4 cursor-pointer' />
-        )
-      }
+      {showEdit && (
+        <img
+          src={Edit}
+          alt=""
+          className="absolute right-3 top-1/2 -translate-y-1/2 size-4 cursor-pointer"
+        />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default CommonInput;   
+export default CommonInput;

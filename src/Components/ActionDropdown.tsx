@@ -18,7 +18,8 @@ function ActionDropdown({
   handleDelete,
   viewOnly,
   handleViewModal,
-  handleEdit
+  handleEdit,
+  removeEdit,
 }) {
   // const handleEdit = () => {
   //   setShowEditModal(true);
@@ -32,7 +33,7 @@ function ActionDropdown({
       {openDropdown === rowId && (
         <div
           //   ref={dropdownRef}
-          className="absolute top-[-20px] right-5 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
+          className="absolute top-[-70px] right-5 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
         >
           <div className="flex flex-col justify-between p-2 ps-0 gap-[5px]">
             {/* <button
@@ -47,21 +48,17 @@ function ActionDropdown({
               ""
             ) : (
               <>
-                <button
-                  // onClick={(e) => {
-                  //   setShowEditModal(true);
-                  //   setShowEditId(rowId);
-                  //   setOpenDropdown(false);
-                  //   // e.stopPropagation(); // Prevents the outside click handler from firing
-                  // }}
-                  onClick={(e)=>{
-                    // setShowEditId(rowId);
-                    handleEdit(rowId)
-                  }}
-                  className={`cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full`}
-                >
-                  <ReactSVG src={EditIcon} className="mr-2" /> Edit
-                </button>
+                {removeEdit && (
+                  <button
+                    onClick={(e) => {
+                      setOpenDropdown(false);
+                      handleEdit(rowId);
+                    }}
+                    className={`cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full`}
+                  >
+                    <ReactSVG src={EditIcon} className="mr-2" /> Edit
+                  </button>
+                )}
 
                 {/* <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
                   <ReactSVG src={blockUser} className="mr-2" /> Block{" "}
@@ -69,7 +66,10 @@ function ActionDropdown({
 
                 <button
                   //   onClick={() => handleDelete(row.id)}
-                  onClick={() => handleDelete(rowId)}
+                  onClick={() => {
+                    handleDelete(rowId);
+                    setOpenDropdown(false);
+                  }}
                   className=" group cursor-pointer text-sm px-3 py-2  flex items-center gap-2 rounded-md hover:bg-[#e0e0e063]"
                 >
                   <div className="relative ">

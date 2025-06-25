@@ -167,6 +167,7 @@ const DetailersFranchise: React.FC = () => {
               showEditId={showEditId}
               handleDelete={handleDelete}
               handleEdit={handleEdit}
+              removeEdit={true}
             />
           </div>
         </div>

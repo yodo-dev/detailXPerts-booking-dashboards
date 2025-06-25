@@ -19,6 +19,27 @@ import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import ReactSwitch from "react-switch";
 const FrenchiseManagement: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditId, setShowEditId] = useState();
+  const [showSubTask, setShowSubTask] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [franchises, setFranchises] = useState([]);
+  const [openDropdown, setOpenDropdown] = React.useState(null);
+  const [singleFranchises, setSingleFranchises] = useState({});
+  const dropdownRef = useRef(null);
+  const { setValue } = useForm();
+  const [totalRecords, setTotalRecords] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [addEditUsers, setAddEditUsers] = useState(true);
+  const [editId,setEditId]=useState()
+
+  console.log("$$$$$$$$$444",editId)
+
+  const handleEdit = (editId) => {
+    setEditId(editId)
+    setShowEditModal(true);
+  };
   const columns = [
     {
       name: "ID",
@@ -36,13 +57,13 @@ const FrenchiseManagement: React.FC = () => {
           // onClick={() => setShowSubTask(true)}
           className="flex gap-2 w-[190px]"
         >
-          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
+          {/* <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
             <img
               src={Logo}
               // alt={row.detailer.name}
               className="w-5 h-5 rounded-full"
             />
-          </div>
+          </div> */}
           <div className="flex items-center">
             <div
               onClick={() => {
@@ -115,7 +136,7 @@ const FrenchiseManagement: React.FC = () => {
       minWidth: "130px",
       cell: (row) => (
         <ReactSwitch
-          checked={addEditUsers }
+          checked={addEditUsers}
           onChange={setAddEditUsers}
           checkedIcon={false}
           uncheckedIcon={false}
@@ -147,26 +168,14 @@ const FrenchiseManagement: React.FC = () => {
               setShowEditId={setShowEditId}
               showEditId={showEditId}
               handleDelete={deleteFrenchise}
+              removeEdit={true}
+              handleEdit={handleEdit}
             />
           </div>
         </div>
       ),
     },
   ];
-
-  const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showEditId, setShowEditId] = useState();
-  const [showSubTask, setShowSubTask] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [franchises, setFranchises] = useState([]);
-  const [openDropdown, setOpenDropdown] = React.useState(null);
-  const [singleFranchises, setSingleFranchises] = useState({});
-  const dropdownRef = useRef(null);
-  const { setValue } = useForm();
-  const [totalRecords, setTotalRecords] = useState();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [addEditUsers, setAddEditUsers] = useState(true);
 
   const token = localStorage.getItem("token");
 
@@ -242,13 +251,13 @@ const FrenchiseManagement: React.FC = () => {
     setSingleFranchises(null);
     // setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${showEditId}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
-      if (response.success) {
+      if (response?.success) {
         // setLoading(false);
-        setSingleFranchises(response.payload);
+        setSingleFranchises(response?.payload);
         setValue("first_name", response.payload.first_name);
         setValue("last_name", response.payload.last_name);
         setValue("email", response.payload.email);
@@ -332,6 +341,8 @@ const FrenchiseManagement: React.FC = () => {
             getFranchise={getFranchise}
             setShowEditModal={setShowEditModal}
             showEditId={showEditId}
+            editId={editId}
+            
           />
         ) : (
           ""

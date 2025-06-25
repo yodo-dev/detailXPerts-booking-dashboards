@@ -16,12 +16,12 @@ const BookingOngoing = () => {
   const [currentId, setCurrentId] = useState();
   const [currentStatus, setCurrentStatus] = useState();
   const [loadingId, setLoadingId] = useState(null);
-  const [detailerId,setDetailerId]=useState()
+  const [detailerId, setDetailerId] = useState();
   const { data: DetailerData } = useDetailerFranchise(1);
 
-  const handleChange=(e)=>{
-    console.log("e",e.target.value)
-  }
+  const handleChange = (e) => {
+    console.log("e", e.target.value);
+  };
 
   const columns0 = [
     {

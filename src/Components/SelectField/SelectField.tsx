@@ -55,6 +55,7 @@
 
 import React from "react";
 import { UseFormRegister } from "react-hook-form";
+import ArrowDown from "@assets/svgs/arrow-down.svg";
 
 interface Option {
   value: string;
@@ -83,15 +84,15 @@ const SelectField: React.FC<SelectFieldProps> = ({
   register,
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <label htmlFor={name} className="block text-sm text-gray-700 mb-1">
         {label}
       </label>
-      <div className="relative">
+      <div className="relative ">
         <select
           id={name}
           {...(register && register(name))}
-          className={styleSelect}
+          className={` select-style w-full cursor-pointer bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-3 ${styleSelect}`}
           defaultValue=""
           onChange={onChange}
         >
@@ -106,13 +107,13 @@ const SelectField: React.FC<SelectFieldProps> = ({
           ))}
         </select>
 
-        {imageSrc && (
-          <img
-            src={imageSrc}
-            alt="icon"
-            className="w-[20px] h-[20px] absolute top-[13px] right-[15px]"
-          />
-        )}
+        {/* {imageSrc && ( */}
+        <img
+          src={ArrowDown}
+          alt="icon"
+          className="w-[20px] h-[20px] absolute top-[13px] right-[15px]"
+        />
+        {/* )} */}
       </div>
     </div>
   );

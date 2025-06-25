@@ -12,13 +12,24 @@
 // export default CreateService;
 
 import MainLayout from "@layouts/MainLayout";
-import React from "react";
+import React, { useState } from "react";
 import LeftArrow from "@assets/svgs/arrow-left.svg";
 import CommonInput from "@components/inputs/CommonInput";
 import { CustomCheckbox } from "@components/Checkbox/CustomCheckbox";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
+import SelectField from "@components/SelectField/SelectField";
+import {
+  useGetVehicleTypes,
+  useVehicleTypes,
+} from "../../../Hooks/useVehicleType";
+import { useGetServiceName } from "../../../Hooks/useServiceName";
+import { PlusCircle } from "lucide-react";
 
 const CreateService: React.FC = () => {
+  const { data } = useGetVehicleTypes();
+  const { data: getServiceName } = useGetServiceName();
+  const [fields, setFields] = useState(["_"]);
+
   return (
     <MainLayout>
       <div className="px-[20px] sm:px-[40px]">
@@ -41,7 +52,7 @@ const CreateService: React.FC = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-[20px]">
-              <div>
+              <div className="col-span-2">
                 <label className="block text-[12px] font-bold mb-[6px] text-[#252525]">
                   Package Title
                 </label>
@@ -51,18 +62,49 @@ const CreateService: React.FC = () => {
                   placeholder="Title"
                 />
               </div>
-              <div>
-                <label className="block text-[12px] font-bold mb-[6px] text-[#252525]">
-                  Package Price
-                </label>
-                <CommonInput
-                  // inputClass="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none"
-                  inputClass="w-full border border-gray-300 rounded-[10px] !px-[10px] !py-[10px] !sm:px-[16px] !sm:py-[15px] focus:outline-none"
-
-                  placeholder="Price"
-                />
-              </div>
             </div>
+            <div className="rounded-[20px] hover:bg-[#d1d1d16b] w-fit p-1 mb-5">
+              <PlusCircle
+                className=" cursor-pointer "
+                onClick={() => setFields((prev) => [...prev, "_"])}
+                
+              />
+            </div>
+            {fields?.map(() => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-[20px]">
+                <div className="col-span-1">
+                  <SelectField
+                    options={data?.map((dt) => ({
+                      label: dt?.name,
+                      value: dt?.id,
+                    }))}
+                    type="text"
+                    placeholder="Title"
+                    label="Title"
+                  />
+                </div>
+                <div className="col-span-1">
+                  <label className="block text-[12px] font-bold mb-[6px] text-[#252525]">
+                    Package Price
+                  </label>
+                  <CommonInput
+                    // inputClass="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none"
+                    inputClass="w-full border border-gray-300 rounded-[10px] !px-[10px] !py-[10px] !sm:px-[16px] !sm:py-[15px] focus:outline-none"
+                    placeholder="Price"
+                    type="number"
+                  />
+                </div>
+                <div className="col-span-1">
+                  <CommonInput
+                    placeholder="Duration Mins"
+                    type="number"
+                    inputClass="w-full border border-gray-300 rounded-[10px] !px-[10px] !py-[10px] !sm:px-[16px] !sm:py-[15px] focus:outline-none"
+                    label="Duration Mins"
+                  />
+                </div>
+              </div>
+            ))}
+
             <div className="mb-[20px]">
               <h3 className="!text-[#252525] !text-[20px] !font-medium">
                 Services

@@ -9,6 +9,7 @@ import userIcon from "../../../assets/svgs/userIcon.svg";
 import CommonInput from "../../Login/Components/CommonInput";
 import { apiGet, apiPost, apiPut } from "../../../Auth/Auth";
 import toast from "react-hot-toast";
+import FileUploaderSingle from "@components/FileUploaderSingle";
 
 const EditFranchise = ({
   setShowModal,
@@ -16,9 +17,13 @@ const EditFranchise = ({
   getFranchise,
   setShowEditModal,
   showEditId,
+  editId,
 }) => {
   const [loading, setLoading] = useState(true);
   const [singleFranchises, setSingleFranchises] = useState({});
+  const [uploadedFiles, setUploadedFiles] = useState();
+
+  
 
   const {
     register,
@@ -30,40 +35,27 @@ const EditFranchise = ({
 
   const token = localStorage.getItem("token");
 
+  const handleFileChange = (file) => {
+    setUploadedFiles(file);
+  };
+
   const EditFranchise = async (data) => {
     setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${showEditId}`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${editId}`;
 
-      // const formData = new FormData();
+      const formData = new FormData();
+      formData.append("region", data.city);
 
-      // formData.append("name", data.name);
-      // formData.append("firstName", data.name);
-      // formData.append("lastName", data.name);
-      // formData.append("number", data.phone);
-      // formData.append("email", data.email);
-      // formData.append("files", file);
-      // formData.append("password", "password1");
-      // formData.append("birth_date", "1990-01-01");
-      // formData.append("gender", "M");
-      // formData.append("role_id", 2);
-      // formData.append("address", "123 Street");
-      // formData.append("city", "City");
-      // formData.append("state", "State");
-      // formData.append("country", "Country");
-      // formData.append("about", data.about);
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("phone", data.phone);
+      formData.append("address", data.address);
+      formData.append("city", data.city);
+      formData.append("state", data.state);
+      formData.append("logo", uploadedFiles);
 
-      const params = {
-        region: data.city,
-        // name: data.name,
-        // email: data.email,
-        phone: data.phone,
-        // address: data.address,
-        city: data.city,
-        state: data.state,
-      };
-
-      const response = await apiPut(url, params, token);
+      const response = await apiPut(url, formData, token);
       if (response.success) {
         toast.success("Franchise Updated Successfully! 😊");
         setLoading(false);
@@ -80,14 +72,13 @@ const EditFranchise = ({
   const getSingleFranchise = async () => {
     setLoading(true);
     try {
-      const url = `${
-        import.meta.env.VITE_APP_API_URL
-      }v1/franchise/${showEditId}`;
+      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${editId}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
       if (response.success) {
         setLoading(false);
+        
         setSingleFranchises(response.payload);
         setValue("name", response.payload.name);
         setValue("last_name", response.payload.last_name);
@@ -106,7 +97,9 @@ const EditFranchise = ({
   useEffect(() => {
     // createFranchise()
     getSingleFranchise();
-  }, [showEditId]);
+  }, [editId]);
+
+
 
   return (
     <div className="fixed  inset-0 bg-[#363636CC] flex items-center justify-center z-50">
@@ -124,7 +117,18 @@ const EditFranchise = ({
 
         {/* Form */}
         <form onSubmit={handleSubmit(EditFranchise)} className="space-y-4">
-          {/* <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
+          <div className="grid md:grid-cols-3 gap-4 grid-cols-1">
+            <div className="col-span-3">
+              <FileUploaderSingle
+                // key={index}
+                // label={""}
+                singleImage={singleFranchises?.logo}
+                file={uploadedFiles}
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
             <div className="col-span-2">
               <label className="text-[14px] font-medium text-[#5B5B5B]">
                 Name <span className="text-red-500">*</span>
@@ -140,10 +144,10 @@ const EditFranchise = ({
                 <p className="text-red-500 text-sm">{errors.name.message}</p>
               )}
             </div>
-          </div> */}
+          </div>
 
           {/* Email */}
-          {/* <div>
+          <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
               Email address <span className="text-red-500">*</span>
             </label>
@@ -157,7 +161,7 @@ const EditFranchise = ({
             {errors.email && (
               <p className="text-red-500 text-sm">{errors.email.message}</p>
             )}
-          </div> */}
+          </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
@@ -175,7 +179,7 @@ const EditFranchise = ({
             )}
           </div>
 
-          {/* <div>
+          <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">
               Address <span className="text-red-500">*</span>
             </label>
@@ -189,7 +193,7 @@ const EditFranchise = ({
             {errors.address && (
               <p className="text-red-500 text-sm">{errors.address.message}</p>
             )}
-          </div> */}
+          </div>
 
           <div>
             <label className="text-[14px] font-medium text-[#5B5B5B]">

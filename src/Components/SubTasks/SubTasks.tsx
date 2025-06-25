@@ -19,6 +19,7 @@ import chatStore from "../../Store/ChatStore";
 import { useNavigate } from "react-router-dom";
 
 const SubTasks = ({ setShowSubTask, singleData }) => {
+  console.log("(((((((((((((", singleData);
   const th = ["Detailers", "Jobs", "Status"];
   const th1 = ["Booking ID", "Date", "Status"];
   const { chatSingleId, setChatSingleId } = chatStore();
@@ -74,7 +75,7 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
                         </div>
                         <div className="flex flex-col">
                           <h2 className="!text-[18px] !font-semibold">
-                            {singleData?.first_name} {singleData?.last_name}
+                            {singleData?.name}
                           </h2>
                           <p className="text-[12px] font-medium flex gap-2 mt-2">
                             <ReactSVG src={LocationIcon} />{" "}
@@ -142,7 +143,7 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
                             <p className="font-semibold text-[#929292] !font-normal">
                               Owner:
                             </p>
-                            <p>{singleData?.first_name}</p>
+                            <p>{singleData?.name}</p>
                           </div>
 
                           <div className="flex gap-4 mb-[20px]">
@@ -158,7 +159,7 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
                             <p className="font-semibold text-[#929292] !font-medium mb-[6px]">
                               Phone Number:
                             </p>
-                            <p className="font-medium">{singleData?.number}</p>
+                            <p className="font-medium">{singleData?.phone}</p>
                           </div>
                         </div>
 
@@ -196,7 +197,7 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
                             <p className="font-semibold text-[#929292] !font-medium mb-[6px]">
                               Assigned Region::
                             </p>
-                            <p className="font-medium">New York</p>
+                            <p className="font-medium">{singleData?.region}</p>
                           </div>
                         </div>
                       </div>
@@ -205,10 +206,19 @@ const SubTasks = ({ setShowSubTask, singleData }) => {
 
                   {/* Stats */}
                   <div className="mt-6 grid grid-cols-4 gap-4 text-center text-sm">
-                    <Stats />
-                    <Stats />
-                    <Stats />
-                    <Stats imgSrc={Star} />
+                    {singleData?.bookings?.length === 0 ? (
+                      <div className="col-span-4">
+                        <p className="text-[15px] font-bold p-10">No bookings found</p>
+                      </div>
+                    ) : (
+                      singleData?.bookings?.map((booking) => (
+                        <Stats key={booking.id} booking={booking} />
+                      ))
+                    )}
+
+                    {/* <Stats singleData={singleData} />
+                    <Stats singleData={singleData} />
+                    <Stats imgSrc={Star} /> */}
                   </div>
 
                   {/* Assigned Detailers & Booking Activity */}
