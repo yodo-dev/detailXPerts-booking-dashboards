@@ -47,7 +47,7 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
   return (
-    <div className="bg-[var(--primary-color)] py-5 mb-12 mb-[40px] rounded-b-[40px] ">
+    <div className="bg-[var(--primary-color)]  py-5 mb-12 mb-[40px] rounded-b-[40px] ">
       <div className="default_container flex items-center justify-between">
         <div className="flex items-center gap-4 lg:gap-[40px] header">
           <Link to="/">
@@ -92,10 +92,10 @@ const DashboardHeader: React.FC = () => {
                 <Link
                   key={link.id}
                   to={link.path}
-                  className={`relative text-white !font-normal label_link ${
+                  className={`relative text-white font-normal label_link ${
                     isActive
-                      ? 'font-bold after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-white pb-[7px]'
-                      : "font-normal"
+                      ? '!font-bold after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-white pb-[7px]'
+                      : "!font-normal"
                   }`}
                 >
                   {link.name}
@@ -196,7 +196,7 @@ const DashboardHeader: React.FC = () => {
               key={link.id}
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`mb-4 text-lg ${
+              className={` mb-4 text-lg ${
                 location.pathname === link.path
                   ? "font-semibold text-[var(--primary-color)]"
                   : "text-gray-800"

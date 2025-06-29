@@ -1,104 +1,103 @@
-// import BookingManagement from "@pages/Booking-management/BookingManagement";
-// import BookingManagementFranchise from "@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise";
+import DashboardLoader from "@components/Loaders/DashboardLoader";
+import { lazy, Suspense } from "react";
 
-// import CustomersManagement from "@pages/Customers-Management/CustomersManagement";
-// // import CustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/CustomersFranchise";
+export const delayedLazy = (importFunc: () => Promise<any>, delay = 1000) => {
+  return lazy(() =>
+    Promise.all([
+      importFunc(),
+      new Promise((resolve) => setTimeout(resolve, delay)),
+    ]).then(([moduleExports]) => moduleExports)
+  );
+};
 
-// import DetailersManagement from "@pages/Detailers-Management/DetailersManagement";
-// import DetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/DetailerFranchise";
-// import AddDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/AddDetailerFranchise";
+const BookingManagement = lazy(
+  () => import("@pages/Booking-management/BookingManagement")
+);
+const BookingManagementFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise")
+);
+const CustomersManagement = lazy(
+  () => import("@pages/Customers-Management/CustomersManagement")
+);
+const CustomerFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/CustomersFranchise/CustomerFrenchise")
+);
+const DetailersManagement = lazy(
+  () => import("@pages/Detailers-Management/DetailersManagement")
+);
+const DetailerFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/DetailerFranchise/DetailerFranchise")
+);
+const AddDetailerFranchise = lazy(
+  () =>
+    import("@pages/FranchiseDashboard/DetailerFranchise/AddDetailerFranchise")
+);
+const FeedSupport = lazy(() => import("@pages/Feed-Support/FeedSupport"));
+const FrenchiseManagement = lazy(() => import("@pages/Frenchise/Frenchise"));
+const FrenchiseFrenchiseManagement = lazy(
+  () => import("@pages/FranchiseDashboard/Frenchise/Frenchise")
+);
+const PaymentManagement = lazy(
+  () => import("@pages/Payment-Management/PaymentManagement")
+);
+const PaymentManagementFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise")
+);
+const Notifications = lazy(() => import("@pages/Notification/Notifications"));
+const AdminProfile = lazy(() => import("@pages/AdminProfile/AdminProfile"));
+const Settings = lazy(() => import("@pages/Settings/Settings"));
 
-// import FeedSupport from "@pages/Feed-Support/FeedSupport";
-// import FrenchiseManagement from "@pages/Frenchise/Frenchise";
-// // import FrenchiseManagementFranchise from "@pages/FranchiseDashboard";
-
-// import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
-// import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
-
-// import Notifications from "@pages/Notification/Notifications";
-// import AdminProfile from "@pages/AdminProfile/AdminProfile";
-// import Settings from "@pages/Settings/Settings";
-// import FrenchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
-
-// import ReportsFranchise from "@pages/FranchiseDashboard/ReportsFranchise/ReportsFranchise";
-// import CustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/CustomerFrenchise";
-// import AddCustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/AddCustomersFranchise";
-// import FranchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
-// import ProfileFranchise from "@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise";
-// import DetailersProfile from "@pages/DetailerProfile/DetailerProfile";
-// import Dashboard from "@pages/Dashboard/Dashboard";
-
-// const PrivateRoutes = [
-//   { path: "/", element: <Dashboard /> },
-//   { path: "/dashboard", element: <Dashboard /> },
-
-//   // Franchise Routes
-
-//   { path: "/frenchise-management", element: <FrenchiseManagement /> },
-//   { path: "/booking-management", element: <BookingManagementFranchise /> },
-//   { path: "/detailers-management", element: <DetailerFranchise /> },
-//   { path: "/customers-management", element: <CustomerFranchise /> },
-//   { path: "/payment-management", element: <PaymentManagementFranchise /> },
-//   { path: "/profile", element: <ProfileFranchise /> },
-//   { path: "/settings", element: <Settings /> },
-//   { path: "/reports", element: <ReportsFranchise /> },
-
-//   // Admin Routes
-
-//   // { path: "/booking-management", element: <BookingManagement /> },
-//   // { path: "/frenchise-management", element: <FrenchiseManagement /> },
-//   // { path: "/detailers-management", element: <DetailersManagement /> },
-//   // { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
-//   // { path: "/customers-management", element: <CustomersManagement /> },
-//   // { path: "/customers-franchise", element: <AddCustomerFranchise /> },
-//   // { path: "/payment-management", element: <PaymentManagement /> },
-//   // { path: "/feedback-support", element: <FeedSupport /> },
-//   // { path: "/notifications", element: <Notifications /> },
-//   // { path: "/profile", element: <AdminProfile /> },
-//   // { path: "/settings", element: <FrenchiseSettings /> },
-//   // { path: "/detailers-profile", element: <DetailersProfile /> },
-// ];
-
-// export default PrivateRoutes;
-
-import BookingManagement from "@pages/Booking-management/BookingManagement";
-import BookingManagementFranchise from "@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise";
-
-import CustomersManagement from "@pages/Customers-Management/CustomersManagement";
-import CustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/CustomerFrenchise";
-
-import DetailersManagement from "@pages/Detailers-Management/DetailersManagement";
-import DetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/DetailerFranchise";
-import AddDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/AddDetailerFranchise";
-
-import FeedSupport from "@pages/Feed-Support/FeedSupport";
-import FrenchiseManagement from "@pages/Frenchise/Frenchise";
-import FrenchiseFrenchiseManagement from "@pages/FranchiseDashboard/Frenchise/Frenchise";
-
-import PaymentManagement from "@pages/Payment-Management/PaymentManagement";
-import PaymentManagementFranchise from "@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise";
-
-import Notifications from "@pages/Notification/Notifications";
-import AdminProfile from "@pages/AdminProfile/AdminProfile";
-import Settings from "@pages/Settings/Settings";
-import FrenchiseSettings from "@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise";
-
-import ReportsFranchise from "@pages/FranchiseDashboard/ReportsFranchise/ReportsFranchise";
-import AddCustomerFranchise from "@pages/FranchiseDashboard/CustomersFranchise/AddCustomersFranchise";
-import ProfileFranchise from "@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise";
-import DetailersProfile from "@pages/DetailerProfile/DetailerProfile";
-import Dashboard from "@pages/Dashboard/Dashboard";
-import Freelancer from "@pages/Freelancers/Freelancers";
-import ServicesManagement from "@pages/ServicesManagement/ServicesManagement";
-import OngoingBooking from "@pages/Booking-management/Components/ongoingBooking/OngoingBooking";
-import CreateService from "@pages/ServicesManagement/Components/CreateService";
-import FreelancerProfile from "@pages/Freelancers/Components/FreelancersProfile";
-import UserManagement from "@pages/FranchiseDashboard/UserManagement/UserManagement";
-import EditDetailerFranchise from "@pages/FranchiseDashboard/DetailerFranchise/EditDetailerFranchise";
+// FRANCHISE ROUTES
+const FrenchiseSettings = lazy(
+  () => import("@pages/FranchiseDashboard/SettingsFranchise/SettingsFranchise")
+);
+const ReportsFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/ReportsFranchise/ReportsFranchise")
+);
+const AddCustomerFranchise = lazy(
+  () =>
+    import("@pages/FranchiseDashboard/CustomersFranchise/AddCustomersFranchise")
+);
+const ProfileFranchise = lazy(
+  () => import("@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise")
+);
+const DetailersProfile = lazy(
+  () => import("@pages/DetailerProfile/DetailerProfile")
+);
+const Dashboard = lazy(() => import("@pages/Dashboard/Dashboard"));
+const Freelancer = lazy(() => import("@pages/Freelancers/Freelancers"));
+const ServicesManagement = lazy(
+  () => import("@pages/ServicesManagement/ServicesManagement")
+);
+// const OngoingBooking = lazy(
+//   () =>
+//     import("@pages/Booking-management/Components/ongoingBooking/OngoingBooking")
+// );
+const CreateService = lazy(
+  () => import("@pages/ServicesManagement/Components/CreateService")
+);
+const FreelancerProfile = lazy(
+  () => import("@pages/Freelancers/Components/FreelancersProfile")
+);
+const UserManagement = lazy(
+  () => import("@pages/FranchiseDashboard/UserManagement/UserManagement")
+);
+const EditDetailerFranchise = lazy(
+  () =>
+    import("@pages/FranchiseDashboard/DetailerFranchise/EditDetailerFranchise")
+);
 
 // Admin Routes
 export const adminRoutes = [
-  { path: "/", element: <Dashboard /> },
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<DashboardLoader />}>
+        {" "}
+        <Dashboard />
+      </Suspense>
+    ),
+  },
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/booking-management", element: <BookingManagement /> },
   { path: "/frenchise-management", element: <FrenchiseManagement /> },
@@ -109,7 +108,7 @@ export const adminRoutes = [
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-management", element: <CustomersManagement /> },
   { path: "/services-management", element: <ServicesManagement /> },
-  { path: "/ongoing-bookings", element: <OngoingBooking /> },
+  // { path: "/ongoing-bookings", element: <OngoingBooking /> },
   { path: "/create-service", element: <CreateService /> },
 
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
@@ -136,7 +135,7 @@ export const franchiseRoutes = [
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/add-detailer-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
-  { path: "/ongoing-bookings", element: <OngoingBooking /> },
+  // { path: "/ongoing-bookings", element: <OngoingBooking /> },
 
   { path: "/settings", element: <Settings /> },
   { path: "/reports", element: <ReportsFranchise /> },
@@ -145,35 +144,3 @@ export const franchiseRoutes = [
   { path: "/user-management", element: <UserManagement /> },
   { path: "/edit-detailer-franchise/:id", element: <EditDetailerFranchise /> },
 ];
-
-// Get role (e.g., from localStorage or context)
-// const userRole = "franchise"; // e.g., 'admin' or 'franchise'
-// const userRole=localStorage.getItem("userInfo")
-// const [userInfo, setUserInfo] = useState(
-//   JSON.parse(localStorage.getItem("userInfo")).user.role_id
-// );
-
-// // Choose routes based on role
-// const PrivateRoutes = userInfo === "franchise" ? franchiseRoutes : adminRoutes;
-
-// Determine routes based on user role
-
-// const getPrivateRoutes = () => {
-//   try {
-//     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-//     const roleId = userInfo?.user?.role_id;
-//     if (roleId === 1) {
-//       return adminRoutes;
-//     }
-//     else{
-//       return adminRoutes;
-//     }
-//   } catch (err) {
-//     console.error("Error reading user info:", err);
-//     return []; // fallback: no routes
-//   }
-// };
-
-// const PrivateRoutes = getPrivateRoutes();
-
-// export default PrivateRoutes;

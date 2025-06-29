@@ -15,6 +15,6 @@ export const apiGetServices = async (serviceName) => {
     // params: queryParams,
   });
 
-  return response.data.payload;
+  return response.data.payload.records;
 };
 

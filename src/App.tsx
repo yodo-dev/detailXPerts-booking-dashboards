@@ -1,11 +1,13 @@
-import React from 'react'
-import AllRoutes from '@routes/AllRoutes';
-const App:React.FC = () => {
+import React, { Suspense } from "react";
+import AllRoutes from "@routes/AllRoutes";
+const App: React.FC = () => {
   return (
     <div>
-    <AllRoutes/>
+      <Suspense fallback="loading..........">
+        <AllRoutes />
+      </Suspense>
     </div>
-  )
-}
+  );
+};
 
 export default App;

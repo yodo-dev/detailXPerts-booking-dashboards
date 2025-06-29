@@ -34,7 +34,7 @@ const OverviewCard: React.FC<OverviewCardProps> = ({
   };
 
   return (
-    <div className="overview_card rounded-2xl border border-[#2525250D] p-[20px] cursor-pointer">
+    <div className="overview_card rounded-2xl border border-[1px] border-[#2525250D] p-[20px] bg-[#FFFFFF] cursor-pointer">
       <div className="w-10 h-10 flex items-center justify-center rounded-full mb-4">
         <img src={img} alt="icon" className="w-[44px] h-[44px]" />
       </div>

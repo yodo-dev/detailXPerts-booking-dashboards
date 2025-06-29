@@ -16,6 +16,7 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   imgPosition = "left",
   isLoading = false,
   type,
+  
 }) => {
   const imageElement = showImg && <img src={img} className={`${imgClass}`} />;
   const textElement = <span className={`${btnTextClass}`}>{btnText}</span>;

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { CommonInputsProps } from "./types/index";
 import searchIcon from "@assets/svgs/search-normal.svg";
-import { Eye, EyeClosed, EyeClosedIcon, EyeIcon, EyeOffIcon } from "lucide-react";
+import {
+  Eye,
+  EyeClosed,
+  EyeClosedIcon,
+  EyeIcon,
+  EyeOffIcon,
+} from "lucide-react";
 
 const CommonInput: React.FC<CommonInputsProps> = ({
   showImg,
@@ -14,7 +20,8 @@ const CommonInput: React.FC<CommonInputsProps> = ({
   errors,
   defaultValidation = "Required",
   type = "text",
-  eyeIcon=false,
+  eyeIcon = false,
+  label,
   // passwordShow,
   // setPasswordShow
 }) => {
@@ -30,8 +37,21 @@ const CommonInput: React.FC<CommonInputsProps> = ({
         />
       )}
       <div className="relative">
+        {label ? (
+          <label className="block text-[12px] font-bold mb-[6px] text-[#252525]">
+            {label}
+          </label>
+        ) : (
+          ""
+        )}
         <input
-          type={eyeIcon && passwordShow ? "text" : eyeIcon && passwordShow == false ? "password" : type }
+          type={
+            eyeIcon && passwordShow
+              ? "text"
+              : eyeIcon && passwordShow == false
+              ? "password"
+              : type
+          }
           placeholder={placeholder}
           {...(register && registerName
             ? register(registerName, validation || defaultValidation)
@@ -40,7 +60,21 @@ const CommonInput: React.FC<CommonInputsProps> = ({
             showImg ? "pl-10" : "pl-3"
           } pr-3 ${inputClass} text-[14px]`}
         />
-        {eyeIcon ? passwordShow ? <Eye  className="absolute w-5 top-3 right-4 cursor-pointer" onClick={()=>(setPasswordShow(!passwordShow))}/> : <EyeOffIcon onClick={()=>(setPasswordShow(!passwordShow))}  className="absolute w-5 top-3 right-4 cursor-pointer" /> : ""}
+        {eyeIcon ? (
+          passwordShow ? (
+            <Eye
+              className="absolute w-5 top-3 right-4 cursor-pointer"
+              onClick={() => setPasswordShow(!passwordShow)}
+            />
+          ) : (
+            <EyeOffIcon
+              onClick={() => setPasswordShow(!passwordShow)}
+              className="absolute w-5 top-3 right-4 cursor-pointer"
+            />
+          )
+        ) : (
+          ""
+        )}
       </div>
       {/* {errors?.[registerName] && (
         <p className="text-sm text-red-500 mt-1">

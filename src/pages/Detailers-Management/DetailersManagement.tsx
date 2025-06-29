@@ -21,6 +21,8 @@ import EditDetailers from "./Components/EditDetailers";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import ReactSwitch from "react-switch";
+import DetailersTab from "./Tabs/DetailersTab";
+import FreelanceTab from "./Tabs/FreelanceTab";
 
 const DetailersManagement: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -223,44 +225,36 @@ const DetailersManagement: React.FC = () => {
     setCurrentPage(page);
   };
 
-  const getSingleDetailer = async () => {
-    setSingleFranchises(null);
-    try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
+  // const getSingleDetailer = async () => {
+  //   setSingleFranchises(null);
+  //   try {
+  //     const url = `${import.meta.env.VITE_APP_API_URL}v1/user/${showEditId}`;
 
-      const params = {};
-      const response = await apiGet(url, params, token);
-      if (response.success) {
-        setSingleFranchises(response.payload);
-        setValue("first_name", response.payload.first_name);
-        setValue("last_name", response.payload.last_name);
-        setValue("email", response.payload.email);
-        setValue("business_name", response.payload.first_name);
-        setValue("business_address", response.payload.country);
-        setValue("business_phone", response.payload.number);
-      }
-    } catch (error) {
-      console.log("Error :", error);
-    }
-  };
+  //     const params = {};
+  //     const response = await apiGet(url, params, token);
+  //     if (response.success) {
+  //       setSingleFranchises(response?.payload);
+  //       setValue("first_name", response.payload.first_name);
+  //       setValue("last_name", response.payload.last_name);
+  //       setValue("email", response.payload.email);
+  //       setValue("business_name", response.payload.first_name);
+  //       setValue("business_address", response.payload.country);
+  //       setValue("business_phone", response.payload.number);
+  //     }
+  //   } catch (error) {
+  //     console.log("Error :", error);
+  //   }
+  // };
 
   useEffect(() => {
     getDetailers();
   }, [currentPage]);
 
   useEffect(() => {
-    getSingleDetailer();
+    // getSingleDetailer();
   }, [showEditId]);
 
-  const customLoader = (
-    <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
-      {[...Array(1)].map((_, i) => (
-        <div key={i} className="mb-3 ">
-          <SkeltonLoader columns={[100, 100, 100, 100, 100, 100, 100]} />
-        </div>
-      ))}
-    </div>
-  );
+
 
   const deleteFrenchise = async (id) => {
     const isDeleteModal = await ModalDelete();
@@ -317,22 +311,12 @@ const DetailersManagement: React.FC = () => {
             onClick={() => handleTabs(2)}
           />
         </div>
-        <DataTable
-          columns={columns}
-          customStyles={customStyles}
-          data={franchises}
-          progressPending={loading}
-          pagination
-          paginationComponent={() => (
-            <Pagination
-              currentPage={currentPage}
-              totalRows={totalRows}
-              rowsPerPage={5}
-              onPageChange={handlePageChange}
-            />
-          )}
-          progressComponent={customLoader}
-        />
+      
+      {
+        tab==1 ?
+        <DetailersTab/>
+        : <FreelanceTab/>
+      }
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 

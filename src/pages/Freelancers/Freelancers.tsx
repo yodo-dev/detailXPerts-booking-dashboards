@@ -195,7 +195,6 @@ const Freelancer: React.FC = () => {
   const { setValue } = useForm();
   const [totalRecords, setTotalRecords] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [addEditUsers, setAddEditUsers] = useState(true);
 
   const token = localStorage.getItem("token");
 

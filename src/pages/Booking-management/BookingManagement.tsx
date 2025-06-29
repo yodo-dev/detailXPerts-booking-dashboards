@@ -7,7 +7,7 @@ import DataTable from "react-data-table-component";
 import { customStyles } from "@components/CustomStylesTable";
 import { apiGet } from "../../Auth/Auth";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../assets/svgs/logo1.svg";
+import Logo from "@assets/svgs/logo1.svg";
 import MenuIcon from "@assets/svgs/menu.svg";
 import { DateRange } from "react-date-range";
 import SelectField from "@components/SelectField/SelectField";
@@ -21,6 +21,12 @@ import CalendarIcon from "@assets/svgs/calendar.svg";
 import SkeltonLoader from "@components/SkeltonLoader";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import Pagination from "@components/Pagination";
+import OngoingBookings from "./Components/BookingRequests";
+import BookingRequests from "./Components/BookingRequests";
+import "./BookingManagement.css";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+
 const BookingManagement: React.FC = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
@@ -35,6 +41,7 @@ const BookingManagement: React.FC = () => {
 
   const token = localStorage.getItem("token");
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -42,6 +49,7 @@ const BookingManagement: React.FC = () => {
       key: "selection",
     },
   ]);
+
   const handleFieldClick = () => {
     setIsCalendarVisible(!isCalendarVisible);
   };
@@ -74,116 +82,6 @@ const BookingManagement: React.FC = () => {
       day: "numeric", // '23'
     });
   };
-  const columns0 = [
-    // {
-    //   name: "ID",
-    //   maxWidth: "100px !important",
-    //   selector: (row) => row.id,
-    //   cell: (row) => <span>101</span>,
-    // },
-
-    {
-      name: "Customer",
-      selector: (row) => row.franchise,
-      minWidth: "230px",
-      cell: (row) => (
-        <div
-          // onClick={() => setShowSubTask(true)}
-          className="flex gap-2 w-[190px]"
-        >
-          <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
-            <img
-              src={Logo}
-              // alt={row.detailer.name}
-              className="w-5 h-5 rounded-full"
-            />
-          </div>
-          <div className="">
-            <div className="text-sm cursor-pointer">
-              {/* {row.franchise} */}
-              Ben Ten
-            </div>
-            <div className="text-xs text-gray-400 flex gap-1 mt-1">
-              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
-              Westheimer...
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    {
-      name: "Service Details",
-      minWidth: "200px",
-      selector: (row) => row.service,
-      cell: (row) => <span>{row?.services[0].service.name}</span>,
-    },
-
-    {
-      name: "Vehicle Details",
-      minWidth: "130px",
-      selector: (row) => row.vehicle,
-      cell: (row) => <span>{row?.vehicle?.model}</span>,
-    },
-
-    {
-      name: "Service Date",
-      minWidth: "115px",
-      selector: (row) => row.date,
-      cell: (row) => <span>04-05-2025</span>,
-    },
-
-    {
-      name: "Price",
-      minWidth: "80px",
-      selector: (row) => row.service,
-      cell: (row) => <span>$19.22</span>,
-    },
-
-    {
-      name: "Status",
-      selector: (row) => row.status,
-      minWidth: "115px",
-
-      cell: (row) => (
-        <span
-          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-            row.status === "NEW"
-              ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
-              : row.status === "PENDING"
-              ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
-              : row.status === "Canceled"
-              ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
-              : "bg-[#F1F3FB] text-gray-600"
-          }`}
-        >
-          {row.status}
-        </span>
-      ),
-    },
-
-    {
-      name: "Action",
-      minWidth: "230px",
-      selector: (row) => row.action,
-      cell: (row) => (
-        <span className="flex gap-[10px]">
-          <div></div>
-          <PrimaryButton
-            btnText="Decline"
-            btnClass="bg-[#FF3134] text-white text-[16px] !w-[88px] py-[8px] "
-          />
-
-          <div>
-            <PrimaryButton
-              btnText="Accept"
-              btnClass="bg-[#003CA6] text-white text-[16px] !w-[88px] py-[8px] "
-            />
-          </div>
-        </span>
-      ),
-    },
-  ];
 
   const columns1 = [
     {
@@ -453,14 +351,12 @@ const BookingManagement: React.FC = () => {
       ),
     },
 
- 
     {
       name: "Service Details",
       minWidth: "200px",
       selector: (row) => row.service,
       cell: (row) => <span>{row?.services[0].service.name}</span>,
     },
-
 
     {
       name: "Service Date",
@@ -482,7 +378,6 @@ const BookingManagement: React.FC = () => {
       minWidth: "115px",
 
       cell: (row) => (
-   
         <span
           className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
             row.status === "NEW"
@@ -535,7 +430,6 @@ const BookingManagement: React.FC = () => {
       minWidth: "115px",
 
       cell: (row) => (
-      
         <span
           className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
             row.status === "EXCELLENT"
@@ -554,7 +448,6 @@ const BookingManagement: React.FC = () => {
   ];
 
   const columns4 = [
- 
     {
       name: "Customer",
       selector: (row) => row.franchise,
@@ -585,15 +478,12 @@ const BookingManagement: React.FC = () => {
       ),
     },
 
-   
     {
       name: "Service Details",
       minWidth: "200px",
       selector: (row) => row.service,
       cell: (row) => <span>{row?.services[0].service.name}</span>,
     },
-
- 
 
     {
       name: "Service Date",
@@ -615,7 +505,6 @@ const BookingManagement: React.FC = () => {
       minWidth: "115px",
 
       cell: (row) => (
-      
         <span
           className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
             row.status === "NEW"
@@ -668,7 +557,6 @@ const BookingManagement: React.FC = () => {
       minWidth: "115px",
 
       cell: (row) => (
-      
         <span
           className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
             row.status === "EXCELLENT"
@@ -711,18 +599,6 @@ const BookingManagement: React.FC = () => {
     getBookings();
   }, [currentPage]);
 
-  const tableData = [
-    { key: "id", label: "ID" },
-    { key: "franchise", label: "Franchise" },
-    { key: "detailer", label: "Detailer" },
-    { key: "customer", label: "Customer" },
-    { key: "date", label: "Date" },
-    { key: "service", label: "Service" },
-    { key: "vehicle", label: "Vehicle" },
-    { key: "earning", label: "Earning" },
-    { key: "status", label: "Status" },
-  ];
-
   const customLoader = (
     <div className="p-4 flex w-[100%]  justify-center bg-[#F8F9FA] ">
       {[...Array(1)].map((_, i) => (
@@ -741,7 +617,7 @@ const BookingManagement: React.FC = () => {
     <MainLayout>
       <div className=" px-[40px] pt-0">
         <div className="flex lg:items-center md:flex-row flex-col justify-between mb-6 ">
-          <h2 className="md:mb-0 mb-7 flex gap-5">
+          <h2 className="md:mb-0 mb-7 flex gap-5 font-uber-move-medium">
             <ReactSVG
               className="block lg:hidden mt-1.5"
               onClick={() => setModalOpen(!openModal)}
@@ -883,18 +759,11 @@ const BookingManagement: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white  overflow-x-auto  p-[10px]  rounded-[12px] border-[#0000001A] border-[1px]">
+          <div className="bg-white  overflow-x-auto  p-[10px] w-full rounded-[12px] border-[#0000001A] border-[1px]">
             <div className="w-[100%]">
               {tabs == 0 ? (
                 <>
-                  <DataTable
-                    columns={columns0}
-                    customStyles={customStyles}
-                    data={bookings}
-                 
-                    progressPending={loading}
-                    progressComponent={customLoader}
-                  />
+                  <BookingRequests date={state} />
                 </>
               ) : tabs == 1 ? (
                 <DataTable
