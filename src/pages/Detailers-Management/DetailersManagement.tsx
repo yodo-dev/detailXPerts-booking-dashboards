@@ -254,8 +254,6 @@ const DetailersManagement: React.FC = () => {
     // getSingleDetailer();
   }, [showEditId]);
 
-
-
   const deleteFrenchise = async (id) => {
     const isDeleteModal = await ModalDelete();
     if (!isDeleteModal) {
@@ -311,12 +309,8 @@ const DetailersManagement: React.FC = () => {
             onClick={() => handleTabs(2)}
           />
         </div>
-      
-      {
-        tab==1 ?
-        <DetailersTab/>
-        : <FreelanceTab/>
-      }
+
+        {tab == 1 ? <DetailersTab /> : <FreelanceTab />}
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 

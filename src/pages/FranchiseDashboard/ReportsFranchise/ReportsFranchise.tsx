@@ -8,6 +8,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { ReactSVG } from "react-svg";
 import Linechart from "@components/Charts/Linechart";
+import CalendarIcon from "@assets/svgs/calendar.svg";
 
 const ReportsFranchise: React.FC = () => {
   const data1 = [
@@ -142,6 +143,12 @@ const ReportsFranchise: React.FC = () => {
               className="bg-white border border-black rounded-[8px] p-[15px]"
               readOnly
             />
+            <button
+              className="absolute top-4 right-5 cursor-pointer"
+              onClick={handleFieldClick}
+            >
+              <ReactSVG src={CalendarIcon} className="text-light" />
+            </button>
             <button
               style={{ backgroundColor: "#405089" }}
               className=""

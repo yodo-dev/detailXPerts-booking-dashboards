@@ -13,8 +13,6 @@ const Pagination: React.FC<PaginationProps> = ({
   rowsPerPage,
   onPageChange,
 }) => {
-
-
   const totalPages = Math.ceil(totalRows / rowsPerPage);
 
   const getPageNumbers = () => {
@@ -51,42 +49,47 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="flex gap-2 items-center justify-end py-4 bg-[#f5f7fb]">
-      <button
-        onClick={handlePrev}
-        disabled={currentPage === 1}
-        className="text-gray-600 px-2 cursor-pointer disabled:opacity-50"
-      >
-        Prev
-      </button>
+    <div className="bg-[#f5f7fb] flex md:justify-between justify-center md:pt-0 pt-4 flex-wrap  items-center ps-[24px] pe-[24px]">
+      <div>
+        <p className="font-medium text-[14px]">Showing 1 to 11 of 200 entries</p>
+      </div>
+      <div className="flex gap-2 items-center py-4 ">
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className="text-gray-600 px-2 cursor-pointer disabled:opacity-50"
+        >
+          Prev
+        </button>
 
-      {pages.map((page, index) =>
-        page === "..." ? (
-          <span key={index} className="px-2 text-gray-500">
-            ...
-          </span>
-        ) : (
-          <button
-            key={page}
-            onClick={() => onPageChange(Number(page))}
-            className={`w-8 h-8 rounded cursor-pointer ${
-              currentPage === page
-                ? "bg-[#003CA6] text-white"
-                : "text-black hover:bg-blue-100"
-            }`}
-          >
-            {page}
-          </button>
-        )
-      )}
+        {pages.map((page, index) =>
+          page === "..." ? (
+            <span key={index} className="px-2 text-gray-500">
+              ...
+            </span>
+          ) : (
+            <button
+              key={page}
+              onClick={() => onPageChange(Number(page))}
+              className={`w-8 h-8 rounded cursor-pointer ${
+                currentPage === page
+                  ? "bg-[#003CA6] text-white"
+                  : "text-black hover:bg-blue-100"
+              }`}
+            >
+              {page}
+            </button>
+          )
+        )}
 
-      <button
-        onClick={handleNext}
-        disabled={currentPage === totalPages}
-        className="text-blue-600 px-2 cursor-pointer disabled:opacity-50"
-      >
-        Next
-      </button>
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className="text-blue-600 px-2 cursor-pointer disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

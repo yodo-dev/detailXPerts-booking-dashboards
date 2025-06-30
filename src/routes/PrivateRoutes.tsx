@@ -1,4 +1,6 @@
 import DashboardLoader from "@components/Loaders/DashboardLoader";
+import OngoingBookings from "@pages/Booking-management/Components/OngoingBookings";
+import FranciseManagementDetail from "@pages/Frenchise/Components/FranciseManagementDetail";
 import { lazy, Suspense } from "react";
 
 export const delayedLazy = (importFunc: () => Promise<any>, delay = 1000) => {
@@ -108,7 +110,7 @@ export const adminRoutes = [
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-management", element: <CustomersManagement /> },
   { path: "/services-management", element: <ServicesManagement /> },
-  // { path: "/ongoing-bookings", element: <OngoingBooking /> },
+  { path: "/ongoing-bookings", element: <OngoingBookings /> },
   { path: "/create-service", element: <CreateService /> },
 
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
@@ -118,6 +120,8 @@ export const adminRoutes = [
   { path: "/profile", element: <AdminProfile /> },
   { path: "/settings", element: <FrenchiseSettings /> },
   { path: "/detailers-profile", element: <DetailersProfile /> },
+  { path: "/franchise-profile", element: <FranciseManagementDetail /> },
+
 ];
 
 // Franchise Routes

@@ -28,7 +28,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({
   const [passwordShow, setPasswordShow] = useState(false);
   return (
     // max-w-[366px]
-    <div className="relative  w-full">
+    <div className="relative ">
       {showImg && (
         <img
           src={searchIcon}

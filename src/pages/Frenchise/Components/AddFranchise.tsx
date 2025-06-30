@@ -13,7 +13,7 @@ import FileUploadBox from "@components/FileUploadBox";
 import FileUploaderSingle from "@components/FileUploaderSingle";
 
 const AddFranchise = ({ setShowModal, title, getFranchise }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState();
 
   // console.log("uploaddd", uploadedFiles);
@@ -42,22 +42,6 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise`;
 
-      // const params = {
-      //   region: data.city, // Assuming city is the region
-      //   owner: {
-      //     first_name: data.admin_f_name, // Taking first word as first name
-      //     last_name: data.admin_l_name, // Taking second word as last name
-      //     email: data.admin_email,
-      //     phone: data.admin_phone,
-      //   },
-      //   name: data.name,
-      //   email: data.email,
-      //   phone: data.phone,
-      //   address: data.address,
-      //   city: data.city,
-      //   state: data.state,
-      // };
-
       const formData = new FormData();
       formData.append("region", data.city);
 
@@ -73,7 +57,6 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
       formData.append("city", data.city);
       formData.append("state", data.state);
       formData.append("logo", uploadedFiles);
-
 
       const response = await apiPost(url, formData, token);
       if (response.success) {
@@ -91,9 +74,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
     }
   };
 
-  useEffect(() => {
-    // createFranchise()
-  }, []);
+
 
   return (
     <div className="fixed inset-0 bg-[#363636CC] flex items-center justify-center z-50">
@@ -296,6 +277,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
             <PrimaryButton
               btnText="Add"
               btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-[77px] text-white rounded-md hover:bg-blue-700"
+              isLoading={loading}
             />
           </div>
         </form>

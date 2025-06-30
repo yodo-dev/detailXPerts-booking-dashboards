@@ -1,10 +1,9 @@
 import React from "react";
 
-const Stats: React.FC = ({ imgSrc,singleData }) => {
+const Stats: React.FC = ({ imgSrc }) => {
 
-  console.log("lklkl",singleData)
   return (
-    <div className="p-4 bg-white rounded-[12px] border border-[#929292]">
+    <div className="p-4 bg-white rounded-[12px] border border-[#08204233]">
       <p className=" font-medium text-[16px] mb-1 text-start">Total Bookings</p>
       <div className="flex ">
         <p className="text-[24px] font-semibold text-start">1,980</p>

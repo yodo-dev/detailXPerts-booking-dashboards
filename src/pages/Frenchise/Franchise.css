@@ -1,0 +1,11 @@
+.box-shadow-primary{
+  border: 1px solid;
+
+  border: linear-gradient(
+    90deg,
+    rgba(64, 91, 221, 0.15) 0%,
+    rgba(73, 97, 230, 0.15) 20.7%,
+    rgba(86, 106, 244, 0.15) 62.1%,
+    rgba(90, 109, 248, 0.15) 100%
+  );
+}

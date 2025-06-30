@@ -316,7 +316,7 @@ const Freelancer: React.FC = () => {
       <div className="default_container overflow-x-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
           <h2 className="text-lg font-semibold md:mb-0 mb-2">
-            Freelancer Management
+            Freelancer Managementmmmm
           </h2>
 
           <div className="md:w-[366px]">

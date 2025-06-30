@@ -29,19 +29,19 @@ const Linechart: React.FC<MyComponentProps> = ({
         width={600}
         height={300}
         data={data}
-        margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+        margin={{ top: 35, right: 20, bottom: 5, left: 0 }}
       >
         <CartesianGrid vertical={false} />
         <XAxis
           dataKey="name"
           axisLine={false} // Removes bottom axis line
           tickLine={false} // Removes small tick lines/>
-          tick={{ fontSize: 16, fill: "#252525" }}
+          tick={{ fontSize: 16, fill: "#929292" }}
         />
         <YAxis
           axisLine={false}
           tickLine={false}
-          tick={{ fontSize: 16, fill: "#252525" }}
+          tick={{ fontSize: 16, fill: "#929292" }}
         />
 
         <Tooltip />
@@ -49,9 +49,38 @@ const Linechart: React.FC<MyComponentProps> = ({
         {/* <Legend  /> */}
 
         {legend ? (
+          // <Legend
+          //   iconSize={0} // Hide default icon
+          //   wrapperStyle={{ paddingLeft: "20px" }}
+          //   formatter={(value, entry) => (
+          //     <span
+          //       style={{
+          //         fontSize: "12px",
+          //         color: "#333",
+          //         display: "flex",
+          //         alignItems: "center",
+          //         gap: "8px",
+          //       }}
+          //     >
+          //       <span
+          //         style={{
+          //           display: "inline-block",
+          //           width: "14px",
+          //           height: "14px",
+          //           borderRadius: "10%",
+          //           backgroundColor: entry.color,
+          //         }}
+          //       />
+          //       {value}
+          //     </span>
+          //   )}
+          // />
           <Legend
-            iconSize={0} // Hide default icon
-            wrapperStyle={{ paddingLeft: "20px" }}
+            layout="horizontal"
+            verticalAlign="top"
+            align="right"
+            iconSize={0}
+            wrapperStyle={{ paddingRight: 20, top: 0 }}
             formatter={(value, entry) => (
               <span
                 style={{

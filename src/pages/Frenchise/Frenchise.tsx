@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import ReactSwitch from "react-switch";
+import { Link, useNavigate } from "react-router-dom";
 const FrenchiseManagement: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -32,12 +33,12 @@ const FrenchiseManagement: React.FC = () => {
   const [totalRecords, setTotalRecords] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [addEditUsers, setAddEditUsers] = useState(true);
-  const [editId,setEditId]=useState()
+  const [editId, setEditId] = useState();
 
-  console.log("$$$$$$$$$444",editId)
+  const navigate = useNavigate("");
 
   const handleEdit = (editId) => {
-    setEditId(editId)
+    setEditId(editId);
     setShowEditModal(true);
   };
   const columns = [
@@ -67,18 +68,15 @@ const FrenchiseManagement: React.FC = () => {
           <div className="flex items-center">
             <div
               onClick={() => {
-                setShowSubTask(true);
-                setShowEditId(row.id);
+                // setShowSubTask(true);
+                // setShowEditId(row.id);
+                navigate("/franchise-profile");
               }}
               className="text-sm cursor-pointer "
             >
               {/* {row.franchise} */}
               {row.name}
             </div>
-            {/* <div className="text-xs text-gray-400 flex gap-1 mt-1">
-              <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
-              Westheimer...
-            </div> */}
           </div>
         </div>
       ),
@@ -251,7 +249,9 @@ const FrenchiseManagement: React.FC = () => {
     setSingleFranchises(null);
     // setLoading(true);
     try {
-      const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise/${showEditId}`;
+      const url = `${
+        import.meta.env.VITE_APP_API_URL
+      }v1/franchise/${showEditId}`;
 
       const params = {};
       const response = await apiGet(url, params, token);
@@ -342,7 +342,6 @@ const FrenchiseManagement: React.FC = () => {
             setShowEditModal={setShowEditModal}
             showEditId={showEditId}
             editId={editId}
-            
           />
         ) : (
           ""

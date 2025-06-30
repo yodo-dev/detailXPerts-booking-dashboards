@@ -27,17 +27,7 @@ const BugsModal: React.FC = () => {
                   <div className=" flex items-center justify-center w-[57px] h-[57px] rounded-[12px] border border-[#00000026]">
                     <img src={LogoIcon} className="w-[30px] h-[30px]" alt="" />
                   </div>
-                  {/* <div className="flex flex-col">
-                    <h2 className="!text-[18px] !font-semibold">
-                      {singleData?.first_name} {singleData?.last_name}
-                    </h2>
-                    <p className="text-[12px] font-medium flex gap-2 mt-2">
-                      <ReactSVG src={LocationIcon} />{" "}
-                      {singleData?.address
-                        ? singleData?.address
-                        : "2972 Westheimer Rd.Santa Ana, I"}
-                    </p>
-                  </div> */}
+                
                 </div>
               </div>
 
@@ -56,22 +46,7 @@ const BugsModal: React.FC = () => {
               <span className="text-sm font-medium text-gray-600 mr-2">
                 Status:
               </span>
-              {/* <span className="text-xs bg-[#0676471A] text-[#067647] border border-[#067647] px-3 py-1 rounded-full">
-                  Active
-                </span> */}
-              {/* <span
-                className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-                  singleData?.status === "ACTIVE"
-                    ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
-                    : singleData?.status === "INACTIVE"
-                    ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
-                    : singleData?.status === "Canceled"
-                    ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
-                    : "bg-[#F1F3FB] text-gray-600"
-                }`}
-              >
-                {singleData?.status}
-              </span> */}
+           
             </div>
 
             {/* Franchise Info */}
