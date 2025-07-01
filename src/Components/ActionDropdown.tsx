@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ReactSVG } from "react-svg";
 import TrashIcon from "@assets/svgs/trash.svg";
 import EditIcon from "@assets/svgs/edit-2.svg";
@@ -7,6 +7,7 @@ import blockUser from "@assets/svgs/profile-delete.svg";
 
 import { FileEdit } from "lucide-react";
 import { Link } from "react-router-dom";
+import handleClickOutside from "./handleClickOutside";
 
 function ActionDropdown({
   setOpenDropdown,
@@ -21,18 +22,31 @@ function ActionDropdown({
   handleEdit,
   removeEdit,
 }) {
-  // const handleEdit = () => {
-  //   setShowEditModal(true);
-  //   setShowEditId(rowId);
-  //   setOpenDropdown(false);
-  //   // e.stopPropagation(); // Prevents the outside click handler from firing
 
-  // };
+
+  const dropdownRef = useRef(null);
+
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setOpenDropdown(null);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [setOpenDropdown]);
+
+  handleClickOutside(dropdownRef, () => setOpenDropdown(false));
+
   return (
     <div className="relative ">
       {openDropdown === rowId && (
         <div
-          //   ref={dropdownRef}
+          ref={dropdownRef}
           className="absolute top-[-70px] right-5 z-100 w-30 rounded-md bg-white shadow-lg border border-gray-200"
         >
           <div className="flex flex-col justify-between p-2 ps-0 gap-[5px]">

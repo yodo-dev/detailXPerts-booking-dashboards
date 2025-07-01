@@ -160,8 +160,7 @@ const BookingOngoing = () => {
   const { data } = useBookingApiFranchise("ACCEPTED");
 
   // const {data:DetailersData} = useDetailerFranchise(1)
-  // console.log("asdasdasdasdasdasd",DetailersData?.records)
-  // console.log("oppoppo00000----",DetailersData)
+
   const updateMutation = useMutation({
     mutationFn: ({ currentId, formData }) =>
       BookingChangeStatus(currentId, formData),

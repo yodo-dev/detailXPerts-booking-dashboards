@@ -19,6 +19,7 @@ import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import ReactSwitch from "react-switch";
 import { Link, useNavigate } from "react-router-dom";
+import handleClickOutside from "@components/handleClickOutside";
 const FrenchiseManagement: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -28,12 +29,13 @@ const FrenchiseManagement: React.FC = () => {
   const [franchises, setFranchises] = useState([]);
   const [openDropdown, setOpenDropdown] = React.useState(null);
   const [singleFranchises, setSingleFranchises] = useState({});
-  const dropdownRef = useRef(null);
   const { setValue } = useForm();
   const [totalRecords, setTotalRecords] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [addEditUsers, setAddEditUsers] = useState(true);
   const [editId, setEditId] = useState();
+  const dropdownRef = useRef(null);
+  handleClickOutside(dropdownRef, () => setOpenDropdown(false));
 
   const navigate = useNavigate("");
 
@@ -157,7 +159,7 @@ const FrenchiseManagement: React.FC = () => {
           >
             <ReactSVG src={DotsIcon} />
           </span>
-          <div ref={dropdownRef}>
+          <div>
             <ActionDropdown
               setOpenDropdown={setOpenDropdown}
               openDropdown={openDropdown}

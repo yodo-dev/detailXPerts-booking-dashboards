@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DetailXpertsLogo from "@assets/svgs/detailXperts-logo.svg";
 import { v4 as uuid } from "uuid";
 import { Link, useLocation } from "react-router-dom";
@@ -11,18 +11,21 @@ import "./DashboardHeader.css";
 import useUserInfoStore from "../../Store/Store";
 import ProfileDropdown from "@components/ProfileDropdown/ProfileDropdown";
 import userDummy from "@assets/images/user-dummy-img.jpg";
+import handleClickOutside from "@components/handleClickOutside";
 
 const DashboardHeader: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { User, logout, isAuthenticated } = useUserInfoStore();
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const profileRef = useRef(null);
 
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("userInfo")).user
   );
 
   const dropdownRef = useRef(null);
+  handleClickOutside(dropdownRef, () => setShowProfileDropdown(false));
 
   const role = User?.role_id;
   // const role = 2;
@@ -46,6 +49,9 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/user-management", name: "User Management" },
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
+
+
+
   return (
     <div className="bg-[var(--primary-color)]  py-5 mb-12 mb-[40px] rounded-b-[40px] ">
       <div className="default_container flex items-center justify-between">
@@ -127,6 +133,7 @@ const DashboardHeader: React.FC = () => {
           </Link>
 
           <button
+            ref={profileRef}
             className="cursor-pointer"
             onClick={() => setShowProfileDropdown(!showProfileDropdown)}
           >

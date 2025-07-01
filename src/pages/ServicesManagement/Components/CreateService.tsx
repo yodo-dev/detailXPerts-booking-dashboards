@@ -123,9 +123,7 @@ const CreateService: React.FC = () => {
                   btnTextClass="text-[16px]"
                   onClick={() => setFields((prev) => [...prev, "_"])}
                   type="button"
-                  showImg={true}
-                  img={LeftArrow}
-                />
+cha                />
               </div>
               {fields?.map((field, index) => (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-[20px] relative ">
