@@ -401,6 +401,7 @@ const Settings: React.FC = () => {
                 handleTabChange={handleTabChange}
                 textColorRed={true}
                 disabled={true}
+                
               />
             </div>
           </div>

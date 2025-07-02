@@ -69,6 +69,7 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
   imgPosition = "left",
   isLoading = false,
   type = "button",
+  disabled=false
 }) => {
   const imageElement = showImg && img && (
     <img src={img} className={imgClass} alt="button icon" />
@@ -96,9 +97,10 @@ export const PrimaryButton: React.FC<PrimaryBtnProps> = ({
 
   const button = (
     <button
-      className={`rounded-lg flex items-center justify-center cursor-pointer w-full ${btnClass}`}
+      className={`rounded-lg flex items-center justify-center ${disabled==true ?  "" : "cursor-pointer " } w-full ${btnClass}`}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {buttonBody}
     </button>

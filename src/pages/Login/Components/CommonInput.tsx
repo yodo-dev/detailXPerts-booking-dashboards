@@ -22,6 +22,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({
   type = "text",
   eyeIcon = false,
   label,
+  disabled=false
   // passwordShow,
   // setPasswordShow
 }) => {
@@ -59,6 +60,7 @@ const CommonInput: React.FC<CommonInputsProps> = ({
           className={`w-full rounded-xl bg-white pr-[50px] placeholder:text-[12px] shadow_bg placeholder:text-[var(--text-muted)] py-[14px] outline-none ${
             showImg ? "pl-10" : "pl-3"
           } pr-3 ${inputClass} text-[14px]`}
+           disabled={disabled}
         />
         {eyeIcon ? (
           passwordShow ? (

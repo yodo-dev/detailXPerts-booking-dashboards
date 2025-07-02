@@ -45,12 +45,10 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/payment-management", name: "Payments" },
     { id: uuid(), path: "/services-management", name: "Services" },
 
-    { id: uuid(), path: "/feedback-support", name: "Feedback" },
+    { id: uuid(), path: "/feedback-support", name: "Feedback & Support" },
     { id: uuid(), path: "/user-management", name: "User Management" },
     { id: uuid(), path: "/reports", name: "Reports" },
   ];
-
-
 
   return (
     <div className="bg-[var(--primary-color)]  py-5 mb-12 mb-[40px] rounded-b-[40px] ">
@@ -71,8 +69,12 @@ const DashboardHeader: React.FC = () => {
                 return null; // Skip rendering the link if condition is met
               }
 
+              if (link.name === "Detailers" && role == 1) {
+                return null; // Skip rendering the link if condition is met
+              }
+
               if (link.name === "Feedback & Support" && role == 2) {
-                // return null; // Skip rendering the link if condition is met
+                return null; // Skip rendering the link if condition is met
               }
 
               if (link.name === "Franchise" && role !== 1) {
@@ -86,7 +88,7 @@ const DashboardHeader: React.FC = () => {
                 return null; // Skip rendering the link if condition is met
               }
 
-              if (link.name === "User Management" && role !== 5) {
+              if (link.name === "User Management" && role ==1) {
                 return null; // Skip rendering the link if condition is met
               }
 

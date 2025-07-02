@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CommonInput from "../Login/Components/CommonInput";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,24 +10,25 @@ import toast from "react-hot-toast";
 const ForgotPassword: React.FC = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onForgot = async (data) => {
     try {
-      // setIsLoading(true);
+      setIsLoading(true);
       const url = `${import.meta.env.VITE_APP_API_URL}v1/auth/forgot`;
 
       const data1 = { email: data.email, password: data.password };
       const response = await apiPost(url, data1);
       if (response.success) {
-        // toast.success("Login Successfully!");
-        // setTimeout(() => {
-        //   navigate("/dashboard");
-        // }, 1000);
+        setIsLoading(false);
+        toast.success("Check Your Email for OTP");
+        localStorage.setItem("OtpId", response?.payload?.id);
+        navigate("/otp-verify");
       }
     } catch (error) {
       toast.error("Login Failed");
 
-      // setIsLoading(false);
+      setIsLoading(false);
     } finally {
       // setIsLoading(false);
     }
@@ -53,13 +54,14 @@ const ForgotPassword: React.FC = () => {
                   register={register}
                   registerName={"email"}
                   validation={{ required: "Email is required" }}
+                  type="email"
                 />
               </div>
             </div>
 
             <div className=" w-full">
               <PrimaryButton
-                btnText="Forgot"
+                btnText={isLoading ? "Loading..." : "Forgot"}
                 btnClass="bg-[#003CA6] text-white pt-[14px] pb-[14px] mb-3"
                 type="submit"
               />

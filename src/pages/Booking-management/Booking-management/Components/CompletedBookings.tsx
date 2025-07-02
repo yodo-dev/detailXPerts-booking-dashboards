@@ -76,17 +76,18 @@ function CompletedBookings() {
 
       cell: (row) => (
         <span
-          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-            row.status === "NEW"
-              ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
-              : row.status === "PENDING"
-              ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
-              : row.status === "Canceled"
-              ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
-              : "bg-[#F1F3FB] text-gray-600"
-          }`}
+          // className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
+          //   row.status === "NEW"
+          //     ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
+          //     : row.status === "PENDING"
+          //     ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
+          //     : row.status === "Canceled"
+          //     ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
+          //     : "bg-[#F1F3FB] text-gray-600"
+          // }`}
+          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full bg-[#0676471A] text-[#003CA6] border border-[#003CA6] dark:bg-[#E7F2ED] dark:text-[#067647]`}
         >
-          {row.status}
+          {row.status=="COMPLETED" ? "Completed" : ""}
         </span>
       ),
     },

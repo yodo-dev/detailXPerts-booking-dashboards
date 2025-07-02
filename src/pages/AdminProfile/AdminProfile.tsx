@@ -92,7 +92,6 @@ export default function AdminProfile() {
     getSingleUser(userInfo?.id);
   }, [userInfo]);
 
-
   return (
     <MainLayout>
       <div className="default_container">
@@ -172,6 +171,7 @@ export default function AdminProfile() {
                   showEdit
                   register={register}
                   registerName="email"
+                  disabled={true}
                 />
               </div>
 
@@ -291,7 +291,7 @@ export default function AdminProfile() {
               )}
             </div>
             <button className="w-full bg-[#1B3D96] text-white py-2 rounded-[8px] cursor-pointer">
-              Update
+              {loading ? "Updating..." : "Update"}
             </button>
           </form>
         </div>

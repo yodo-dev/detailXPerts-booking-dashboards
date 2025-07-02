@@ -9,11 +9,10 @@ import SelectField from "@components/SelectField/SelectField";
 import ArrowDown from "@assets/svgs/arrow-down.svg";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import Logo from "@assets/svgs/logo1.svg";
-
-
+import { Link } from "react-router-dom";
 
 function OngoingBookings() {
-    const { data, isLoading } = useGetBookingManagement("IN_PROGRESS");
+  const { data, isLoading } = useGetBookingManagement("IN_PROGRESS");
 
   const dataArr = [
     {
@@ -33,7 +32,7 @@ function OngoingBookings() {
       value: "jefferson",
     },
   ];
-  
+
   const columns1 = [
     {
       name: "Customer",
@@ -53,8 +52,8 @@ function OngoingBookings() {
           </div>
           <div className="">
             <div className="text-sm cursor-pointer">
+              <Link to={"/detailer-info"}>Ben Ten</Link>
               {/* {row.franchise} */}
-              Ben Ten
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
               <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272
@@ -93,17 +92,9 @@ function OngoingBookings() {
 
       cell: (row) => (
         <span
-          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full ${
-            row.status === "NEW"
-              ? "bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]" // Green for Completed
-              : row.status === "PENDING"
-              ? "bg-[#FFA5001A] text-[#FFAF3F] border border-[#FFAF3F] dark:bg-[#F9F5F0] dark:text-[#FFAF3F]" // Orange for In Progress
-              : row.status === "Canceled"
-              ? "bg-[#FEE4E2] text-[#F04438] border border-[#F04438] dark:bg-[#FEEDEC] dark:text-[#F04438]" // Red for Canceled
-              : "bg-[#F1F3FB] text-gray-600"
-          }`}
+          className={`text-xs font-medium me-2 px-2.5 py-1 rounded-full bg-[#0676471A] text-[#067647] border border-[#067647] dark:bg-[#E7F2ED] dark:text-[#067647]`}
         >
-          {row.status}
+          {row.status == "IN_PROGRESS" ? "In Progress" : ""}
         </span>
       ),
     },

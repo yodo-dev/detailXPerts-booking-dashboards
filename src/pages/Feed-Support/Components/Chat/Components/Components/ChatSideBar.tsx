@@ -50,7 +50,7 @@ function ChatSidebar({ label, className }) {
 
   return (
     <aside
-      className={`w-1/3 max-w-sm border-r !bg-[#EFFAFD] border-gray-200 p-4 pt-2 ${className}`}
+      className={`w-1/3 max-w-sm border-r !bg-[#EFFAFD] md:block hidden border-gray-200 p-4 pt-2 ${className}`}
     >
       <div className="flex justify-between">
         <h4 className="text-lg font-bold text-[24px] mb-4 mt-4">{label}</h4>

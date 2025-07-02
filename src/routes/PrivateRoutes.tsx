@@ -1,6 +1,10 @@
 import DashboardLoader from "@components/Loaders/DashboardLoader";
+import ServicesLoader from "@components/Loaders/ServicesLoader";
+import DetailerInfo from "@pages/Booking-management/Components/DetailerInfo";
 import OngoingBookings from "@pages/Booking-management/Components/OngoingBookings";
+import OnGoingDetails from "@pages/Booking-management/Components/OngoingDetails";
 import FranciseManagementDetail from "@pages/Frenchise/Components/FranciseManagementDetail";
+import OTP from "@pages/OTP/OTP";
 import { lazy, Suspense } from "react";
 
 export const delayedLazy = (importFunc: () => Promise<any>, delay = 1000) => {
@@ -109,7 +113,14 @@ export const adminRoutes = [
   { path: "/detailers-management", element: <DetailersManagement /> },
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-management", element: <CustomersManagement /> },
-  { path: "/services-management", element: <ServicesManagement /> },
+  {
+    path: "/services-management",
+    element: (
+      <Suspense fallback={<ServicesLoader />}>
+        <ServicesManagement />
+      </Suspense>
+    ),
+  },
   { path: "/ongoing-bookings", element: <OngoingBookings /> },
   { path: "/create-service", element: <CreateService /> },
 
@@ -121,7 +132,7 @@ export const adminRoutes = [
   { path: "/settings", element: <FrenchiseSettings /> },
   { path: "/detailers-profile", element: <DetailersProfile /> },
   { path: "/franchise-profile", element: <FranciseManagementDetail /> },
-
+  { path: "/detailer-info", element: <OnGoingDetails /> },
 ];
 
 // Franchise Routes
@@ -131,7 +142,7 @@ export const franchiseRoutes = [
   // { path: "/frenchise-management", element: <FrenchiseManagement /> },
   { path: "/frenchise-management", element: <FrenchiseFrenchiseManagement /> },
 
-  { path: "/booking-management", element: <BookingManagementFranchise /> },
+  { path: "/booking-management", element: <BookingManagement /> },
   { path: "/detailers-management", element: <DetailerFranchise /> },
   { path: "/customers-management", element: <CustomerFranchise /> },
   { path: "/payment-management", element: <PaymentManagementFranchise /> },
