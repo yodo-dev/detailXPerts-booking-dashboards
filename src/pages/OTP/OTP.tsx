@@ -1,7 +1,6 @@
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import React, { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
-import OtpInput from "react-otp-input";
 import OtpImg from "@assets/images/otp.png";
 import { useMutation, useQueryClient } from "react-query";
 import { ApiVerifyOtp } from "../../Api/ApiVerifyOtp";
@@ -59,6 +58,7 @@ const OTP: React.FC = () => {
 
   const handleResendCode = () => {
     resendCodeMutation();
+    setTimer(59)
   };
 
   return (

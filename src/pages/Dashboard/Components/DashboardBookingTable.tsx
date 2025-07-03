@@ -134,7 +134,7 @@ const DashboardBookingTable: React.FC = () => {
           View all
         </a>
       </div>
-      <div className="overflow-x-auto rounded-[15px] border-[1px] border-[#E6E7E7]">
+      <div className="overflow-x-auto rounded-[15px] border-[1px]  border-[#E6E7E7]">
         <DataTable
           columns={bookingColumns}
           data={bookings}

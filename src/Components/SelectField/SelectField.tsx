@@ -85,7 +85,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
 }) => {
   return (
     <div className="w-full ">
-      <label htmlFor={name} className="block text-sm text-gray-700 mb-1">
+      <label htmlFor={name} className="block text-sm text-gray-700 mb-1 font-bold">
         {label}
       </label>
       <div className="relative ">

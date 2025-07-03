@@ -33,7 +33,9 @@ const FrenchiseManagement: React.FC = () => {
   const [totalRecords, setTotalRecords] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [addEditUsers, setAddEditUsers] = useState(true);
+  const [permissions, setPermissions] = useState({});
   const [editId, setEditId] = useState();
+
   const dropdownRef = useRef(null);
   handleClickOutside(dropdownRef, () => setOpenDropdown(false));
 
@@ -70,8 +72,6 @@ const FrenchiseManagement: React.FC = () => {
           <div className="flex items-center">
             <div
               onClick={() => {
-                // setShowSubTask(true);
-                // setShowEditId(row.id);
                 navigate("/franchise-profile");
               }}
               className="text-sm cursor-pointer "
@@ -130,20 +130,35 @@ const FrenchiseManagement: React.FC = () => {
       ),
     },
 
+    // {
+    //   name: "Permissions",
+    //   selector: (row) => row.status,
+    //   minWidth: "130px",
+    //   cell: (row) => (
+    //     <ReactSwitch
+    //       checked={addEditUsers}
+    //       onChange={setAddEditUsers}
+    //       checkedIcon={false}
+    //       uncheckedIcon={false}
+    //     />
+    //   ),
+    // },
+
     {
       name: "Permissions",
       selector: (row) => row.status,
       minWidth: "130px",
       cell: (row) => (
         <ReactSwitch
-          checked={addEditUsers}
-          onChange={setAddEditUsers}
+          checked={permissions[row.id] || false}
+          onChange={(checked) =>
+            setPermissions((prev) => ({ ...prev, [row.id]: checked }))
+          }
           checkedIcon={false}
           uncheckedIcon={false}
         />
       ),
     },
-
     {
       name: "Action",
       selector: (row) => row.action,

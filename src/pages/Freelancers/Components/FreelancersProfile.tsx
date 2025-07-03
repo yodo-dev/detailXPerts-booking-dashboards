@@ -1136,7 +1136,7 @@ const FreelancerProfile: React.FC = () => {
 
           <div className="flex space-x-4 mb-6 mt-6">
             <button
-              className={`px-4 py-2 ${
+              className={`px-4 py-2 cursor-pointer ${
                 role === 0 ? "bg-[#003CA6] !text-white" : "bg-white !text-black"
               } rounded-[12px] text-[14px] font-semibold`}
               onClick={() => setRole(0)}
@@ -1144,7 +1144,7 @@ const FreelancerProfile: React.FC = () => {
               Personal Info
             </button>
             <button
-              className={`px-4 py-2 ${
+              className={`px-4 py-2 cursor-pointer ${
                 role === 1 ? "bg-[#003CA6] !text-white" : "bg-white !text-black"
               } rounded-[12px] text-[14px] font-semibold`}
               onClick={() => setRole(1)}

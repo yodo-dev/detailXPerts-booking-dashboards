@@ -134,21 +134,23 @@ const ReportsFranchise: React.FC = () => {
               className="border px-[15px] py-[10px] rounded-[7px] text-[13px] font-medium text-[#082042]"
             /> */}
             {/* <DatePicker value={value} onChange={setValue} multiple /> */}
-            <input
-              type="text"
-              value={`${formatDate(state[0].startDate)} - ${
-                state[0].endDate ? formatDate(state[0].endDate) : ""
-              }`}
-              onClick={handleFieldClick}
-              className="bg-white border border-black rounded-[8px] p-[15px]"
-              readOnly
-            />
-            <button
-              className="absolute top-4 right-5 cursor-pointer"
-              onClick={handleFieldClick}
-            >
-              <ReactSVG src={CalendarIcon} className="text-light" />
-            </button>
+            <div className="relative">
+              <input
+                type="text"
+                value={`${formatDate(state[0].startDate)} - ${
+                  state[0].endDate ? formatDate(state[0].endDate) : ""
+                }`}
+                onClick={handleFieldClick}
+                className="bg-white border border-black rounded-[8px] p-[15px]"
+                readOnly
+              />
+              <button
+                className="absolute top-4 right-5 cursor-pointer"
+                onClick={handleFieldClick}
+              >
+                <ReactSVG src={CalendarIcon} className="text-light" />
+              </button>
+            </div>
             <button
               style={{ backgroundColor: "#405089" }}
               className=""

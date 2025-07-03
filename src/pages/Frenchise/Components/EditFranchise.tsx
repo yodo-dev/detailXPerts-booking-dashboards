@@ -236,6 +236,7 @@ const EditFranchise = ({
             <PrimaryButton
               btnText="Update"
               btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-fit text-white rounded-md hover:bg-blue-700"
+              type="submit"
             />
           </div>
         </form>

@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import { ApicreateService } from "../../../Api/apiCreateService";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import { ReactSVG } from "react-svg";
+import { Link } from "react-router-dom";
 
 const CreateService: React.FC = () => {
   const { data } = useGetVehicleTypes();
@@ -73,17 +74,15 @@ const CreateService: React.FC = () => {
     setFields((prev) => prev?.filter((field, ind) => index !== ind));
   };
 
-  
-
   console.log("fields", fields);
   return (
     <MainLayout>
       <div className="px-[20px] sm:px-[40px]">
         <div className="sm:flex items-center mb-[32px] gap-[16px]">
-          <div className="flex gap-[8px] sm:mb-0 mb-3">
+          <Link to={"/services-management"} className="flex gap-[8px] sm:mb-0 mb-3">
             <img src={LeftArrow} alt="" />
             <p className="!text-[#5B5B5B] !text-[16px] !font-medium">Back</p>
-          </div>
+          </Link>
           <div>
             <h3 className="!text-[#252525] !text-[24px] sm:!text-[32px] !font-medium ">
               Create Service Package
@@ -104,7 +103,7 @@ const CreateService: React.FC = () => {
                     Package Title
                   </label>
                   <CommonInput
-                    inputClass="w-full border border-gray-300 rounded-[10px] !px-[10px] !py-[10px] !sm:px-[16px] !sm:py-[15px] focus:outline-none"
+                    inputClass="w-full font-bold border border-gray-300 rounded-[10px] !px-[10px] !py-[10px] !sm:px-[16px] !sm:py-[15px] focus:outline-none"
                     type="text"
                     placeholder="Title"
                     register={register}
@@ -123,7 +122,8 @@ const CreateService: React.FC = () => {
                   btnTextClass="text-[16px]"
                   onClick={() => setFields((prev) => [...prev, "_"])}
                   type="button"
-cha                />
+                  // cha
+                />
               </div>
               {fields?.map((field, index) => (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-[20px] relative ">

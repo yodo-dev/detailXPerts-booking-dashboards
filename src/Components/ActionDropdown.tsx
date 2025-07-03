@@ -22,8 +22,6 @@ function ActionDropdown({
   handleEdit,
   removeEdit,
 }) {
-
-
   const dropdownRef = useRef(null);
 
   // useEffect(() => {
@@ -59,7 +57,12 @@ function ActionDropdown({
             </button> */}
 
             {viewOnly ? (
-              ""
+              <button className="cursor-pointer flex items-center text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 w-full">
+                {" "}
+                <Link className="flex ">
+                  <ReactSVG src={Eye} className="mr-2" /> View{" "}
+                </Link>{" "}
+              </button>
             ) : (
               <>
                 {removeEdit && (

@@ -155,7 +155,7 @@ function AssignedDetailers() {
   return (
     <div className="md:p-[24px] p-[14px] rounded-[12px] mb-[20px] border border-[#08204233] ">
       <div className="flex w-full justify-between mb-[15px]">
-        <p className="font-semibold text-[12px] font-secondary">
+        <p className="font-semibold text-[20px] font-bold">
           Assigned Detailers
         </p>
         <Link className="text-[#352CAB] cursor-pointer flex gap-[5px]">

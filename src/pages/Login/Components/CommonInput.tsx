@@ -62,16 +62,17 @@ const CommonInput: React.FC<CommonInputsProps> = ({
           } pr-3 ${inputClass} text-[14px]`}
            disabled={disabled}
         />
+
         {eyeIcon ? (
           passwordShow ? (
             <Eye
-              className="absolute w-5 top-3 right-4 cursor-pointer"
+              className="absolute w-5  top-3 right-4 cursor-pointer"
               onClick={() => setPasswordShow(!passwordShow)}
             />
           ) : (
             <EyeOffIcon
               onClick={() => setPasswordShow(!passwordShow)}
-              className="absolute w-5 top-3 right-4 cursor-pointer"
+              className="absolute w-5  top-3 right-4 cursor-pointer"
             />
           )
         ) : (

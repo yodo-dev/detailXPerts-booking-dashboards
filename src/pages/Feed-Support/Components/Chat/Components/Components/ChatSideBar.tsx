@@ -56,7 +56,7 @@ function ChatSidebar({ label, className }) {
         <h4 className="text-lg font-bold text-[24px] mb-4 mt-4">{label}</h4>
       </div>
 
-      <div className="space-y-4 overflow-y-auto h-[calc(100vh-150px)]">
+      <div className="space-y-4 overflow-y-auto h-[calc(100vh-150px)] pb-6">
         {/* {data && data.length > 0 ? (
           data?.map((_, index) => (
             <div
@@ -204,7 +204,7 @@ function ChatSidebar({ label, className }) {
 
                 <div className="flex items-center gap-9 w-full justify-between">
                   <div>
-                    <p className="bold_para capitalize">
+                    <p className="bold_para text-[14px] capitalize">
                       {otherParticipant?.first_name}{" "}
                       {otherParticipant?.last_name}
                     </p>

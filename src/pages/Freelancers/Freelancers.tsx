@@ -31,20 +31,13 @@ const Freelancer: React.FC = () => {
     {
       name: (
         <span className="flex items-center gap-1 p-0 ml-0">
-          <div className="flex ">
-            <CustomCheckbox /> ID
-          </div>
+          <div className="flex ">ID</div>
           <img src={Chevron} alt="Sort Icon" className="w-[16px] h-[16px]" />
         </span>
       ),
       maxWidth: "100px !important",
       selector: (row) => row.id,
-      cell: (row) => (
-        <span className="flex">
-          {" "}
-          <CustomCheckbox /> {row.id}
-        </span>
-      ),
+      cell: (row) => <span className="flex"> {row.id}</span>,
     },
 
     {

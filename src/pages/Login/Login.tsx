@@ -85,8 +85,7 @@ const Login: React.FC = () => {
                   inputClass=" p-10 bg-red-400 !w-full focus "
                   register={register}
                   registerName={"email"}
-                  // validation={"asdasdasdasdasd"}
-                  // errors={errors}
+              
                 />
               </div>
             </div>

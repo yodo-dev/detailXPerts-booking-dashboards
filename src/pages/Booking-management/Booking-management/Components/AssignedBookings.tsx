@@ -127,7 +127,6 @@ function AssignedBookings() {
             <PrimaryButton
               btnText="Track"
               btnClass="bg-[#003CA6] text-white text-[16px] !w-[98px] py-[10px] "
-              onClick={() => navigate("/ongoing-bookings")}
             />
           </div>
         </span>

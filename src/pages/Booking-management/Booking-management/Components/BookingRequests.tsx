@@ -10,13 +10,14 @@ import { useGetBookingManagement } from "../../../Hooks/useGetBookingManagement"
 import "../BookingManagement.css";
 import { useMutation, useQueryClient } from "react-query";
 import { ApiBookingStatusUpdate } from "../../../Api/apiBookingManagement";
+import { ApiResetPassword } from "Api/ApiResetPassword";
 function BookingRequests({ date }) {
   const { data, isLoading } = useGetBookingManagement("PENDING",date);
   const queryClient = useQueryClient("");
   const { mutateAsync: updateMutation, isLoading: UpdatePending } = useMutation(
     {
-      mutationFn: ({ currentId, formData }) =>
-        ApiBookingStatusUpdate(currentId, formData),
+      mutationFn: ({ currentId }) =>
+        ApiResetPassword(currentId),
 
       // onMutate: () => setLoadingId(currentId),
       onSuccess: async () => {

@@ -9,6 +9,7 @@ export const ApiResendCode = async (data) => {
   const BASE_URL = `${import.meta.env.VITE_APP_API_URL}v1/auth/resendOTP/${otpId}?type=reset`;
 
   const response = await axios.get(BASE_URL, data);
+  console.log("popopop",response)
 
   return response.data.payload.records;
 };

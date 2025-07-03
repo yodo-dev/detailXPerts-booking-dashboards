@@ -119,7 +119,7 @@ const DashboardCustomerReviewsTable: React.FC = () => {
 
   return (
     <div className="bg-white rounded-[20px]  shadow p-4">
-      <h2 className="!text-[20px] !font-bold mb-4">Customer Reviews</h2>
+      <h2 className="!text-[20px] !font-bold mb-6">Customer Reviews</h2>
       <div className="overflow-x-auto rounded-[15px] border-[1px] border-[#E6E7E7]">
         <DataTable
           columns={reviewColumns}

@@ -38,6 +38,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
   const token = localStorage.getItem("token");
 
   const createFranchise = async (data) => {
+    console.log("^&^&6",data)
     setLoading(true);
     try {
       const url = `${import.meta.env.VITE_APP_API_URL}v1/franchise`;
@@ -278,6 +279,7 @@ const AddFranchise = ({ setShowModal, title, getFranchise }) => {
               btnText="Add"
               btnClass="cursor-pointer !px-4 !text-[16px] mt-[16px] !font-medium !py-2 bg-[#003CA6] !w-[77px] text-white rounded-md hover:bg-blue-700"
               isLoading={loading}
+              type="submit"
             />
           </div>
         </form>
