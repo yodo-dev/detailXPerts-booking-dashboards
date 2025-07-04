@@ -53,7 +53,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <div>
         <p className="font-medium text-[14px]">Showing 1 to 11 of 200 entries</p>
       </div>
-      <div className="flex gap-2 items-center py-4 ">
+      <div className="flex md:gap-2 gap-1 items-center py-4 ">
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}

@@ -21,7 +21,7 @@ const BookingManagement: React.FC = () => {
 
   const [hoveredBug, setHoveredBug] = useState(false);
 
-  const [tabs, setTabs] = useState(4);
+  const [tabs, setTabs] = useState(0);
 
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
 
@@ -50,9 +50,9 @@ const BookingManagement: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className=" px-[40px] pt-0 uber-move">
-        <div className="flex lg:items-center md:flex-row flex-col justify-between mb-6 ">
-          <h2 className="md:mb-0 mb-7 flex gap-5 font-uber-move-medium">
+      <div className=" md:px-[40px] px-[20px] pt-0 uber-move">
+        <div className="flex lg:items-center md:flex-row flex-col gap-5 md:flex-nowrap flex-wrap justify-between mb-6 ">
+          <h2 className="md:mb-0 mb-7 flex gap-5 font-uber-move-medium md:!text-[32px] !text-[28px]">
             <ReactSVG
               className="block lg:hidden mt-1.5"
               onClick={() => setModalOpen(!openModal)}
@@ -60,7 +60,7 @@ const BookingManagement: React.FC = () => {
             />
             Bookings
           </h2>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-5 md:justify-end justify-between w-[100%]">
             <div className="relative">
               <input
                 type="text"
@@ -98,10 +98,10 @@ const BookingManagement: React.FC = () => {
                 </div>
               )}
             </div>
-            <div className="md:w-[366px] flex">
+            <div className="md:!w-[366px] !w-[100%] flex">
               <CommonInput
                 placeholder="Search"
-                inputClass="!w-[366px] "
+                inputClass="md:!w-[366px] w-full"
                 showImg={true}
               />
             </div>

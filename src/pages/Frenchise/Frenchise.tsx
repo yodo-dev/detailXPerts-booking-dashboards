@@ -300,7 +300,7 @@ const FrenchiseManagement: React.FC = () => {
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
-          <h2 className="text-lg font-semibold md:mb-0 mb-2">
+        <h2 className="md:!text-[32px] !text-[28px]  font-semibold md:mb-0 mb-2">
             Franchise Management
           </h2>
 

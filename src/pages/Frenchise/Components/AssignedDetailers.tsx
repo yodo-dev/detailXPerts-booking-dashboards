@@ -1,6 +1,6 @@
 import { customStyles } from "@components/CustomStylesTable";
 import { useBookingApiFranchise } from "../../../Hooks/useBookingFranchise";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DataTable from "react-data-table-component";
 import PersonImg from "@assets/images/user-profile-img.png";
 import { ReactSVG } from "react-svg";
@@ -18,14 +18,52 @@ function AssignedDetailers() {
   const [openDropdown, setOpenDropdown] = React.useState(null);
   const dropdownRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const { data: bookings } = useBookingApiFranchise("COMPLETED");
+
+  const handleSelectAllToggle = () => {
+    setSelectAll((prev) => {
+      const newState = !prev;
+      if (newState) {
+        const allIds = (bookings || []).map((row) => row.id);
+        setSelectedRows(allIds);
+      } else {
+        setSelectedRows([]);
+      }
+      return newState;
+    });
+  };
+
+  const toggleRowSelection = (id) => {
+    setSelectedRows((prevSelected) => {
+      if (prevSelected.includes(id)) {
+        return prevSelected.filter((rowId) => rowId !== id);
+      } else {
+        return [...prevSelected, id];
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (selectedRows.length === bookings?.length) {
+      setSelectAll(true);
+    } else {
+      setSelectAll(false);
+    }
+  }, [selectedRows, bookings]);
 
   console.log("pppppp");
+
   const columns3 = [
     {
       //   name: `ID`,
       name: (
         <span className="flex items-center gap-2">
-          <CustomCheckbox />
+          <CustomCheckbox
+            checked={selectAll}
+            onChange={() => handleSelectAllToggle()}
+          />
           ID
         </span>
       ), // Header checkbox
@@ -33,8 +71,11 @@ function AssignedDetailers() {
       selector: (row) => row.id,
       cell: (row) => (
         <span className="flex">
-          {" "}
-          <CustomCheckbox /> 101
+          <CustomCheckbox
+            checked={selectedRows.includes(row.id)}
+            onChange={() => toggleRowSelection(row.id)}
+          />
+          {row.id}
         </span>
       ),
     },
@@ -149,8 +190,6 @@ function AssignedDetailers() {
       ))}
     </div>
   );
-
-  const { data: bookings } = useBookingApiFranchise("COMPLETED");
 
   return (
     <div className="md:p-[24px] p-[14px] rounded-[12px] mb-[20px] border border-[#08204233] ">

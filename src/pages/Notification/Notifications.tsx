@@ -79,7 +79,7 @@ const Notifications: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container">
-        <div className="flex sm:flex-row justify-between sm:items-center mb-6">
+        <div className="flex sm:flex-row flex-wrap gap-5 justify-between sm:items-center mb-6">
           <h2 className="text-2xl font-semibold">Notifications</h2>
           {/* <input type="date" name="" id="" className="border px-[15px] py-[10px] rounded-[7px] text-[13px] font-medium text-[#082042]" /> */}
           <div className="relative">

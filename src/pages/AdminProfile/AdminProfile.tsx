@@ -102,7 +102,7 @@ export default function AdminProfile() {
           <form onSubmit={handleSubmit(EditCustomer)}>
             <div className="border border-[#F2F2F2] rounded-[15px] px-3 py-3">
               <p className="!text-[12px] font-semibold mb-3">Profile Photo</p>
-              <div className="flex items-center bg-[#F3F5F9] gap-4 px-3 py-3 rounded-[15px]">
+              <div className="flex items-center flex-wrap bg-[#F3F5F9] gap-4 px-3 py-3 rounded-[15px]">
                 <img
                   src={
                     selectedImage
@@ -124,7 +124,7 @@ export default function AdminProfile() {
                   </p>
                 </div>
 
-                <div className="ml-auto">
+                <div className="ml-auto md:w-fit w-full ">
                   <input
                     type="file"
                     id="upload"
