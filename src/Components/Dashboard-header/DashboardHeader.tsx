@@ -84,7 +84,7 @@ const DashboardHeader: React.FC = () => {
               if (link.name === "Franchise" && role !== 1) {
                 return null; // Skip rendering the link if condition is met
               }
-              if (link.name === "Feedback" && role !== 1) {
+              if (link.name === "Feedback & Support" && role !== 1) {
                 return null; // Skip rendering the link if condition is met
               }
 

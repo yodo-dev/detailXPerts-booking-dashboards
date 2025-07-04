@@ -273,7 +273,7 @@ const DetailersFranchise: React.FC = () => {
               
             /> */}
             <PrimaryButton
-              btnText="Add User"
+              btnText="Add Detailer"
               btnClass="bg-[#003CA6] rounded-xl text-white px-[18px] py-[12px] w-full sm:max-w-[210px]"
               btnTextClass="text-[16px]"
               // onClick={() => setShowModal(true)}

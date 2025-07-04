@@ -1,5 +1,6 @@
 import DashboardLoader from "@components/Loaders/DashboardLoader";
 import ServicesLoader from "@components/Loaders/ServicesLoader";
+import FranchiseDashboard from "@pages/AdminDashboard/Dashboard/Dashboard";
 import DetailerInfo from "@pages/Booking-management/Components/DetailerInfo";
 import OngoingBookings from "@pages/Booking-management/Components/OngoingBookings";
 import OnGoingDetails from "@pages/Booking-management/Components/OngoingDetails";
@@ -146,8 +147,8 @@ export const adminRoutes = [
 
 // Franchise Routes
 export const franchiseRoutes = [
-  { path: "/", element: <Dashboard /> },
-  { path: "/dashboard", element: <Dashboard /> },
+  { path: "/", element: <FranchiseDashboard /> },
+  { path: "/dashboard", element: <FranchiseDashboard /> },
   // { path: "/frenchise-management", element: <FrenchiseManagement /> },
   { path: "/frenchise-management", element: <FrenchiseFrenchiseManagement /> },
 

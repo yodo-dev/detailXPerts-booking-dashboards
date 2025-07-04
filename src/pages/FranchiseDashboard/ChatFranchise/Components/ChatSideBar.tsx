@@ -16,6 +16,7 @@ function ChatSidebar({ label, className }) {
   } = useChat({ type: "SUGGESTION" });
 
   const [chatId, setChatId] = useState();
+  const [bar, setBar] = useState(0);
 
   const {
     currentChatId,
@@ -52,126 +53,11 @@ function ChatSidebar({ label, className }) {
     <aside
       className={`w-1/3 max-w-sm border-r !bg-[#EFFAFD] md:block hidden border-gray-200 p-4 pt-2 ${className}`}
     >
-      <div className="flex justify-between">
+      <div className="flex  justify-between">
         <h4 className="text-lg font-bold text-[24px] mb-4 mt-4">{label}</h4>
       </div>
 
       <div className="space-y-4 overflow-y-auto h-[calc(100vh-150px)] pb-6">
-        {/* {data && data.length > 0 ? (
-          data?.map((_, index) => (
-            <div
-              key={index}
-              className="flex cursor-pointer items-start gap-3 cursor-pointer hover:bg-gray-200 p-2 rounded-lg"
-              onClick={() => {
-                setCurrentChatId(_?.id);
-                // setCurrentChatUserId(_?.participants?.filter((participant)=>(userInfo?.user?.id !== participant?.id)))
-                const otherParticipant = _?.participants?.find(
-                  (participant) => userInfo?.user?.id !== participant?.id
-                );
-                
-                setCurrentChatUserId(otherParticipant?.id);
-              }}
-            >
-              <img
-                src={
-                  _.participants[0]?.image
-                    ? `${import.meta.env.VITE_APP_API_IMG_URL}${
-                        _.participants[0].image
-                      }`
-                    : userDummy
-                }
-                alt="avatar"
-                className="w-[56px] h-[56px] rounded-full object-cover"
-              />
-
-              <div className="flex items-center gap-9 w-full justify-between">
-                <div>
-                  <p className="bold_para capitalize">
-                    {_?.participants[0]?.first_name}{" "}
-                    {_.participants[0]?.last_name}
-                  </p>
-                  <p className="sm_para line-clamp-1 text-gray-500">
-                    {_.messages[0]?.content}
-                  </p>
-                </div>
-
-                <div className="flex flex-col items-end justify-between gap-1">
-                  <p className="sm_para text-xs text-gray-400">12:45</p>
-                  <div className="bg-[var(--red)] size-4 rounded-full flex items-center justify-center p-[10px]">
-                    <span className="font-normal text-[12px] leading-[1] tracking-normal font-segoe text-white">
-                      1
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="">
-            <h3 className="text-center font-thin !text-[18px] mt-50">
-              No Conversation Found
-            </h3>
-          </div>
-        )} */}
-
-        {/* {data && data.length > 0 ? (
-          data.map((chat, index) => {
-            const otherParticipant = chat?.participants?.find(
-              (participant) => userInfo?.user?.id !== participant?.id
-            );
-
-            return (
-              <div
-                key={index}
-                className="flex cursor-pointer items-start gap-3 hover:bg-gray-200 p-2 rounded-lg"
-                onClick={() => {
-                  setCurrentChatId(chat?.id);
-                  setCurrentChatUserId(otherParticipant?.id);
-                }}
-              >
-                <img
-                  src={
-                    otherParticipant?.image
-                      ? `${import.meta.env.VITE_APP_API_IMG_URL}${
-                          otherParticipant.image
-                        }`
-                      : userDummy
-                  }
-                  alt="avatar"
-                  className="w-[56px] h-[56px] rounded-full object-cover"
-                />
-
-                <div className="flex items-center gap-9 w-full justify-between">
-                  <div>
-                    <p className="bold_para capitalize">
-                      {otherParticipant?.first_name}{" "}
-                      {otherParticipant?.last_name}
-                    </p>
-                    <p className="sm_para line-clamp-1 text-gray-500">
-                      {chat.messages[0]?.content}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-end justify-between gap-1">
-                    <p className="sm_para text-xs text-gray-400">12:45</p>
-                    <div className="bg-[var(--red)] size-4 rounded-full flex items-center justify-center p-[10px]">
-                      <span className="font-normal text-[12px] leading-[1] tracking-normal font-segoe text-white">
-                        1
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <div className="">
-            <h3 className="text-center font-thin !text-[18px] mt-50">
-              No Conversation Found
-            </h3>
-          </div>
-        )} */}
-
         {isLoading ? (
           // Loader while fetching chat list
           <ChatSidebarSkeleton />
@@ -184,7 +70,11 @@ function ChatSidebar({ label, className }) {
             return (
               <div
                 key={index}
-                className="flex cursor-pointer items-start gap-3 hover:bg-gray-200 p-2 rounded-lg"
+                className={`flex ${
+                  chat?.id == currentChatId
+                    ? "bg-[#003ca6] text-white"
+                    : "hover:bg-gray-200 "
+                }  cursor-pointer items-start gap-3 p-2 rounded-lg`}
                 onClick={() => {
                   setCurrentChatId(chat?.id);
                   setCurrentChatUserId(otherParticipant?.id);
@@ -202,25 +92,24 @@ function ChatSidebar({ label, className }) {
                   className="w-[56px] h-[56px] rounded-full object-cover"
                 />
 
-                <div className="flex items-center gap-9 w-full justify-between">
+                <div className="flex  h-[50px] items-center gap-9 w-full justify-between">
                   <div>
-                    <p className="bold_para text-[14px] capitalize">
+                    <p className="bold_para font-medium text-[12px] capitalize">
                       {otherParticipant?.first_name}{" "}
                       {otherParticipant?.last_name}
                     </p>
-                    <p className="sm_para line-clamp-1 text-gray-500">
+                    <p
+                      className={`sm_para text-[12px] font-normal line-clamp-1 text-gray-500  ${
+                        chat?.id == currentChatId
+                          ? " text-white"
+                          : "hover:bg-gray-200 "
+                      }`}
+                    >
                       {chat.messages[0]?.content}
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-end justify-between gap-1">
-                    <p className="sm_para text-xs text-gray-400">12:45</p>
-                    <div className="bg-[var(--red)] size-4 rounded-full flex items-center justify-center p-[10px]">
-                      <span className="font-normal text-[12px] leading-[1] tracking-normal font-segoe text-white">
-                        1
-                      </span>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             );
