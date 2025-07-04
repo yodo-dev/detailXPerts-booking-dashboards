@@ -62,13 +62,6 @@ const FrenchiseManagement: React.FC = () => {
           // onClick={() => setShowSubTask(true)}
           className="flex gap-2 w-[190px]"
         >
-          {/* <div className="w-[40px] h-[40px] flex items-center justify-center border border-[#25252526] rounded-full">
-            <img
-              src={Logo}
-              // alt={row.detailer.name}
-              className="w-5 h-5 rounded-full"
-            />
-          </div> */}
           <div className="flex items-center">
             <div
               onClick={() => {
@@ -129,20 +122,6 @@ const FrenchiseManagement: React.FC = () => {
         </span>
       ),
     },
-
-    // {
-    //   name: "Permissions",
-    //   selector: (row) => row.status,
-    //   minWidth: "130px",
-    //   cell: (row) => (
-    //     <ReactSwitch
-    //       checked={addEditUsers}
-    //       onChange={setAddEditUsers}
-    //       checkedIcon={false}
-    //       uncheckedIcon={false}
-    //     />
-    //   ),
-    // },
 
     {
       name: "Permissions",
@@ -300,7 +279,7 @@ const FrenchiseManagement: React.FC = () => {
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
-        <h2 className="md:!text-[32px] !text-[28px]  font-semibold md:mb-0 mb-2">
+          <h2 className="md:!text-[32px] !text-[28px]  font-semibold md:mb-0 mb-2">
             Franchise Management
           </h2>
 
@@ -325,6 +304,7 @@ const FrenchiseManagement: React.FC = () => {
           customStyles={customStyles}
           data={franchises}
           pagination
+          // className="!overflow-x-clip !overflow-y-visible"
           paginationComponent={() => (
             <Pagination
               currentPage={currentPage}

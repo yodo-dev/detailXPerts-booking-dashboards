@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
   return (
     <MainLayout>
       <div className="default_container ">
-        <div className="inline-flex gap-3 mb-10 w-full">
+        {/* <div className="inline-flex gap-3 mb-10 w-full">
           <button
             onClick={() => setTab(1)}
             className={`h-fit cursor-pointer rounded-full px-[30px] py-[12px] w-fit ${
@@ -58,19 +58,19 @@ const Profile: React.FC = () => {
           >
             Payment Details
           </button>
-        </div>
+        </div> */}
 
         {tab == 1 ? (
-          <div className="">
-            <h2 className="mb-[20px] mt-10">Profile</h2>
+          <div className="uber-move">
+            <h2 className="mb-[20px] mt-10 uber-move">Settings</h2>
 
             <div className=" gap-2 w-[100%] bg-white px-[5px]">
               <div className="p-4 rounded-[15px] border-[#afacac56] space-y-6 max-w-full">
                 {/* User Management */}
                 <div className="">
-                  <h2 className="!font-semibold !text-[18px] mb-4 !text-[#252525]">
+                  <p className="font-semibold text-[18px] mb-4 text-[#252525]">
                     Password Policies
-                  </h2>
+                  </p>
                   <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 ">
                     <div className="col-span-1">
                       <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
@@ -152,9 +152,9 @@ const Profile: React.FC = () => {
 
                 {/* Job Management */}
                 <div>
-                  <h2 className="!font-semibold !text-[18px] mb-4 !text-[#252525]">
+                  <p className="font-semibold text-[18px] mb-4 text-[#252525]">
                     Access Logs
-                  </h2>
+                  </p>
                   <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-3 ">
                     <div className="col-span-1">
                       <div className="flex justify-between items-center bg-[#F7F8FC]  p-3 rounded-[5px] ">
@@ -218,9 +218,9 @@ const Profile: React.FC = () => {
 
                 <div className="border-t mt-7 mb-[50px] grid  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-3 pt-[50px] border-[#acacac3a]">
                   <div className="col-span-1">
-                    <h2 className="!text-[25px] !font-semibold">
+                    <p className="text-[25px] uber-move font-semibold">
                       2 Factor Authentication (2FA)
-                    </h2>
+                    </p>
                   </div>
                   <div className="col-span-1">
                     <div className="flex justify-end me-3">

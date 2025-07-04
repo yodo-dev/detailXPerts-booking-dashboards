@@ -3,6 +3,10 @@ import ServicesLoader from "@components/Loaders/ServicesLoader";
 import DetailerInfo from "@pages/Booking-management/Components/DetailerInfo";
 import OngoingBookings from "@pages/Booking-management/Components/OngoingBookings";
 import OnGoingDetails from "@pages/Booking-management/Components/OngoingDetails";
+import BookingFranchise from "@pages/FranchiseDashboard/Booking-franchise/BookingFranchise";
+import ChatFranchise from "@pages/FranchiseDashboard/ChatFranchise/ChatFranchise";
+import CustomersProfile from "@pages/FranchiseDashboard/CustomersFranchise/Components/CustomersProfile";
+import DetailerFranchiseInfo from "@pages/FranchiseDashboard/DetailerFranchise/Components/DetailerFranchiseInfo";
 import FranciseManagementDetail from "@pages/Frenchise/Components/FranciseManagementDetail";
 import OTP from "@pages/OTP/OTP";
 import { lazy, Suspense } from "react";
@@ -93,6 +97,10 @@ const EditDetailerFranchise = lazy(
     import("@pages/FranchiseDashboard/DetailerFranchise/EditDetailerFranchise")
 );
 
+const AddUserManagement = lazy(
+  () => import("@pages/FranchiseDashboard/UserManagement/Components/AddUser")
+);
+
 // Admin Routes
 export const adminRoutes = [
   {
@@ -133,6 +141,7 @@ export const adminRoutes = [
   { path: "/detailers-profile", element: <DetailersProfile /> },
   { path: "/franchise-profile", element: <FranciseManagementDetail /> },
   { path: "/detailer-info", element: <OnGoingDetails /> },
+  { path: "/add-user-management", element: <AddUserManagement /> },
 ];
 
 // Franchise Routes
@@ -142,7 +151,7 @@ export const franchiseRoutes = [
   // { path: "/frenchise-management", element: <FrenchiseManagement /> },
   { path: "/frenchise-management", element: <FrenchiseFrenchiseManagement /> },
 
-  { path: "/booking-management", element: <BookingManagement /> },
+  { path: "/booking-management", element: <BookingManagementFranchise /> },
   { path: "/detailers-management", element: <DetailerFranchise /> },
   { path: "/customers-management", element: <CustomerFranchise /> },
   { path: "/payment-management", element: <PaymentManagementFranchise /> },
@@ -150,9 +159,15 @@ export const franchiseRoutes = [
   { path: "/detailers-franchise", element: <AddDetailerFranchise /> },
   { path: "/add-detailer-franchise", element: <AddDetailerFranchise /> },
   { path: "/customers-franchise", element: <AddCustomerFranchise /> },
+  { path: "/customers-profile", element: <CustomersProfile /> },
+  { path: "/add-user-management", element: <AddUserManagement /> },
+  { path: "/booking-franchise", element: <BookingFranchise /> },
+  { path: "/detailer-franchise-info", element: <DetailerFranchiseInfo /> },
+  { path: "/chat", element: <ChatFranchise /> },
+
   // { path: "/ongoing-bookings", element: <OngoingBooking /> },
 
-  { path: "/settings", element: <Settings /> },
+  { path: "/settings", element: <ProfileFranchise /> },
   { path: "/reports", element: <ReportsFranchise /> },
   { path: "/notifications", element: <Notifications /> },
   { path: "/feedback-support", element: <FeedSupport /> },

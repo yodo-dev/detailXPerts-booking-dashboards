@@ -48,6 +48,7 @@ const DashboardHeader: React.FC = () => {
     { id: uuid(), path: "/feedback-support", name: "Feedback & Support" },
     { id: uuid(), path: "/user-management", name: "User Management" },
     { id: uuid(), path: "/reports", name: "Reports" },
+    { id: uuid(), path: "/chat", name: "Chat" },
   ];
 
   return (
@@ -66,6 +67,9 @@ const DashboardHeader: React.FC = () => {
               const isActive = location.pathname === link.path;
 
               if (link.name === "Reports" && role == 1) {
+                return null; // Skip rendering the link if condition is met
+              }
+              if (link.name === "Chat" && role == 1) {
                 return null; // Skip rendering the link if condition is met
               }
 
@@ -88,7 +92,7 @@ const DashboardHeader: React.FC = () => {
                 return null; // Skip rendering the link if condition is met
               }
 
-              if (link.name === "User Management" && role ==1) {
+              if (link.name === "User Management" && role == 1) {
                 return null; // Skip rendering the link if condition is met
               }
 

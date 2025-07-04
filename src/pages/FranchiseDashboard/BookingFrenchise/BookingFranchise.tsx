@@ -116,7 +116,7 @@ const BookingManagement: React.FC = () => {
   const [totalRecords, setTotalRecords] = useState();
   const [hoveredBug, setHoveredBug] = useState(false);
 
-  const [tabs, setTabs] = useState(4);
+  const [tabs, setTabs] = useState(0);
 
   const token = localStorage.getItem("token");
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);

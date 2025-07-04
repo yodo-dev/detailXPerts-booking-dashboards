@@ -23,6 +23,7 @@ import SkeltonLoader from "@components/SkeltonLoader";
 import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import { useCustomerFranchise } from "../../../Hooks/useCustomerFranchise";
+import { Link } from "react-router-dom";
 
 const CustomerFranchise: React.FC = () => {
   const [showSubTask, setShowSubTask] = useState(false);
@@ -40,7 +41,6 @@ const CustomerFranchise: React.FC = () => {
   const [totalRecords, setTotalRecords] = useState();
 
   const { data } = useCustomerFranchise(currentPage);
-
 
   const columns = [
     {
@@ -69,13 +69,15 @@ const CustomerFranchise: React.FC = () => {
           <div className="">
             <div
               className="text-sm cursor-pointer"
-              onClick={() => {
-                setShowSubTask(true);
-                setShowEditId(row?.id);
-              }}
+              // onClick={() => {
+              //   setShowSubTask(true);
+              //   setShowEditId(row?.id);
+              // }}
             >
               {/* {row.franchise} */}
-              {row.first_name} {row.last_name}
+              <Link to={"/customers-profile"}>
+                {row.first_name} {row.last_name}
+              </Link>
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
               {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}
@@ -170,28 +172,6 @@ const CustomerFranchise: React.FC = () => {
 
   const token = localStorage.getItem("token");
 
-  // const getCustomers = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const url = `${
-  //       import.meta.env.VITE_APP_API_URL
-  //     }v1/user?role_id=5&page=${currentPage}&limit=5`;
-
-  //     const params = {};
-  //     const response = await apiGet(url, params, token);
-  //     if (response.success) {
-  //       //
-  //       setTotalRecords(response.payload.totalRecords);
-
-  //       setCustomers(response?.payload?.records);
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     // setLoading(false);
-  //   }
-  // };
-
-
   const getSingleCustomer = async () => {
     setSingleCustomers(null);
     try {
@@ -217,14 +197,14 @@ const CustomerFranchise: React.FC = () => {
   // useEffect(() => {
   //   getCustomers();
   // }, [currentPage]);
-  
-useEffect(() => {
-  if (!data) {
-    setLoading(true);
-  } else {
-    setLoading(false);
-  }
-}, [data]);
+
+  useEffect(() => {
+    if (!data) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [data]);
 
   useEffect(() => {
     getSingleCustomer();
@@ -270,7 +250,6 @@ useEffect(() => {
     setCurrentPage(page);
   };
 
-
   return (
     <MainLayout>
       <div className="default_container p-4 overflow-x-auto">
@@ -281,7 +260,6 @@ useEffect(() => {
               placeholder="filter by franchise, rating, location"
               showImg={true}
             />
-        
           </div>
         </div>
 
@@ -305,7 +283,6 @@ useEffect(() => {
             />
           )}
         />
-
 
         {showModal ? <AddFranchise setShowModal={setShowModal} /> : ""}
 

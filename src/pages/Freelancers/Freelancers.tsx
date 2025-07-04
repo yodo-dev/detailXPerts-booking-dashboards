@@ -169,6 +169,7 @@ const Freelancer: React.FC = () => {
               setShowEditId={setShowEditId}
               showEditId={showEditId}
               handleDelete={handleDelete}
+              removeEdit={true}
             />
           </div>
         </div>

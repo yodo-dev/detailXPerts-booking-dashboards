@@ -133,34 +133,34 @@ const CustomersManagement: React.FC = () => {
       ),
     },
 
-    {
-      name: "Action",
-      selector: (row) => row.action,
-      minWidth: "10px",
-      cell: (row) => (
-        <div>
-          <span
-            onClick={() => {
-              setOpenDropdown(openDropdown === row.id ? null : row.id);
-            }}
-            className="cursor-pointer bg-red-500"
-          >
-            <ReactSVG src={DotsIcon} />
-          </span>
-          <div ref={dropdownRef}>
-            <ActionDropdown
-              setOpenDropdown={setOpenDropdown}
-              openDropdown={openDropdown}
-              rowId={row.id}
-              setShowEditModal={setShowEditModal}
-              setShowEditId={setShowEditId}
-              showEditId={showEditId}
-              handleDelete={deleteFrenchise}
-            />
-          </div>
-        </div>
-      ),
-    },
+    // {
+    //   name: "Action",
+    //   selector: (row) => row.action,
+    //   minWidth: "10px",
+    //   cell: (row) => (
+    //     <div>
+    //       <span
+    //         onClick={() => {
+    //           setOpenDropdown(openDropdown === row.id ? null : row.id);
+    //         }}
+    //         className="cursor-pointer bg-red-500"
+    //       >
+    //         <ReactSVG src={DotsIcon} />
+    //       </span>
+    //       <div ref={dropdownRef}>
+    //         <ActionDropdown
+    //           setOpenDropdown={setOpenDropdown}
+    //           openDropdown={openDropdown}
+    //           rowId={row.id}
+    //           setShowEditModal={setShowEditModal}
+    //           setShowEditId={setShowEditId}
+    //           showEditId={showEditId}
+    //           handleDelete={deleteFrenchise}
+    //         />
+    //       </div>
+    //     </div>
+    //   ),
+    // },
   ];
 
   const token = localStorage.getItem("token");

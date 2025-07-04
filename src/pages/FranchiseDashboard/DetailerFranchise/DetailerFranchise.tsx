@@ -22,7 +22,7 @@ import { ModalDelete } from "@components/Modal";
 import Pagination from "@components/Pagination";
 import { useDetailerFranchise } from "../../../Hooks/useDetailerFranchise";
 import AddDetailerFranchise from "./Components/StepFormAddDetailer/AddDetailerFranchise";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { detailerFranchiseDelete } from "../../../Api/apiDetailersFranchise";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -81,11 +81,13 @@ const DetailersFranchise: React.FC = () => {
               onClick={() => {
                 // setShowSubTask(true);
                 // setShowEditId(row?.id);
-                navigate("/customers-franchise");
+                // navigate("/customers-franchise");
               }}
             >
               {/* {row.franchise} */}
+              <Link to={"/detailer-franchise-info"}>
               {row?.first_name} {row?.last_name}
+              </Link>
             </div>
             <div className="text-xs text-gray-400 flex gap-1 mt-1">
               {/* <ReactSVG src={LocationIcon} className="w-[14px] h-[14px]" /> 9272 */}

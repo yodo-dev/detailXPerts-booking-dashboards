@@ -1,0 +1,88 @@
+import { v4 as uuid } from "uuid";
+// import userImg from "../../../../assets/images/dashboard-images/user-img.png";
+// import userImg2 from "../../../../assets/images/dashboard-images/user-img-2.png";
+// import userImg3 from "../../../../assets/images/dashboard-images/user-img-3.png";
+
+export const users = [
+  {
+    id: uuid(),
+    name: "Alex Stewart",
+    // avatar: userImg,
+    lastOnline: "08:20",
+    timeFormat:"PM",
+    unreadMessages: 12,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "John Doe",
+    // avatar: userImg2,
+    lastOnline: "07:20",
+    timeFormat:"AM",
+    unreadMessages: 3,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Max Ronaldo",
+    // avatar: userImg3,
+    lastOnline: "09:20",
+    timeFormat:"AM",
+    unreadMessages: 8,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "John Snow",
+    // avatar: userImg,
+    lastOnline: "06:25",
+    timeFormat:"PM",
+    unreadMessages: 7,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Brendon Tailor",
+    // avatar: userImg2,
+    lastOnline: "08:22",
+    timeFormat:"PM",
+    unreadMessages: 5,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Joe Root",
+    // avatar: userImg3,
+    lastOnline: "08:56",
+    timeFormat:"PM",
+    unreadMessages: 8,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Jofra Archer",
+    // avatar: userImg,
+    lastOnline: "08:10",
+    timeFormat:"AM",
+    unreadMessages: 6,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Brendon Maccullum",
+    // avatar: userImg2,
+    lastOnline: "08:30",
+    timeFormat:"AM",
+    unreadMessages: 4,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+  {
+    id: uuid(),
+    name: "Ben Stokes",
+    // avatar: userImg3,
+    lastOnline: "05:40",
+    timeFormat:"AM",
+    unreadMessages: 2,
+    message: "One Bedroom Upper and two bathrooms available",
+  },
+];
