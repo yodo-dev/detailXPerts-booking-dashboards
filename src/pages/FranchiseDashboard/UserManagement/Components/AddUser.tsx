@@ -6,7 +6,7 @@ import UploadIcon from "@assets/svgs/uploadFile.svg";
 import SelectField from "@components/SelectField/SelectField";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import CommonInput from "@pages/Login/Components/CommonInput";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
 import { detailerFranchiseAdd } from "../../../../Api/apiDetailersFranchise";
 import FileUploadBox from "@components/FileUploadBox";
 import { getRoles } from "../../../../Api/apiRoles";

@@ -6,7 +6,7 @@ import "react-phone-input-2/lib/style.css";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import uploadServer from "../../../../../assets/svgs/uploadServer.svg";
 import userIcon from "../../../../../assets/svgs/userIcon.svg";
-import CommonInput from "../../../../Login/Components/CommonInput";
+import CommonInput from "../../../../Admin/Login/Components/CommonInput";
 import { apiPost } from "../../../../../Auth/Auth";
 import toast from "react-hot-toast";
 import Step1 from "./Steps/Step1";

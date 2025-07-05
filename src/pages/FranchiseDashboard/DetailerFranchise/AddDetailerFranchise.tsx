@@ -354,7 +354,7 @@ import UploadIcon from "@assets/svgs/uploadFile.svg";
 import SelectField from "@components/SelectField/SelectField";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import CommonInput from "@pages/Login/Components/CommonInput";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
 import { detailerFranchiseAdd } from "../../../Api/apiDetailersFranchise";
 import FileUploadBox from "@components/FileUploadBox";
 import { getRoles } from "../../../Api/apiRoles";
@@ -458,7 +458,7 @@ const AddDetailerFranchise: React.FC = () => {
     formData.append("first_name", formValues.first_name);
     formData.append("last_name", formValues.last_name);
     formData.append("email", formValues.email);
-    formData.append("phone", formValues.phone);
+    formData.append("number", formValues.phone);
     formData.append("about", formValues.about);
     formData.append("role_id", formValues.role_id);
 

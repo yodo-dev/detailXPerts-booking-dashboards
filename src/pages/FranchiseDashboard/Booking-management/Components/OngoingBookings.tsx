@@ -1,7 +1,7 @@
 import React from "react";
 import { customStyles } from "@components/DataTableStyle";
 import DataTable from "react-data-table-component";
-import { useGetBookingManagement } from "../../../Hooks/useGetBookingManagement";
+import { useGetBookingManagement } from "../../../../Hooks/useGetBookingManagement";
 import SkeltonLoader from "@components/SkeltonLoader";
 import LocationIcon from "@assets/svgs/location.svg";
 import { ReactSVG } from "react-svg";

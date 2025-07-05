@@ -1,14 +1,14 @@
 import DashboardLoader from "@components/Loaders/DashboardLoader";
 import ServicesLoader from "@components/Loaders/ServicesLoader";
-import FranchiseDashboard from "@pages/AdminDashboard/Dashboard/Dashboard";
+import FranchiseDashboard from "@pages/Admin/AdminDashboard/Dashboard/Dashboard";
 import DetailerInfo from "@pages/Booking-management/Components/DetailerInfo";
-import OngoingBookings from "@pages/Booking-management/Components/OngoingBookings";
-import OnGoingDetails from "@pages/Booking-management/Components/OngoingDetails";
+import OngoingBookings from "@pages/Admin/Booking-management/Components/OngoingBookings";
+import OnGoingDetails from "@pages/Admin/Booking-management/Components/OngoingDetails";
 import BookingFranchise from "@pages/FranchiseDashboard/Booking-franchise/BookingFranchise";
 import ChatFranchise from "@pages/FranchiseDashboard/ChatFranchise/ChatFranchise";
 import CustomersProfile from "@pages/FranchiseDashboard/CustomersFranchise/Components/CustomersProfile";
 import DetailerFranchiseInfo from "@pages/FranchiseDashboard/DetailerFranchise/Components/DetailerFranchiseInfo";
-import FranciseManagementDetail from "@pages/Frenchise/Components/FranciseManagementDetail";
+import FranciseManagementDetail from "@pages/Admin/Frenchise/Components/FranciseManagementDetail";
 import OTP from "@pages/OTP/OTP";
 import { lazy, Suspense } from "react";
 
@@ -22,19 +22,19 @@ export const delayedLazy = (importFunc: () => Promise<any>, delay = 1000) => {
 };
 
 const BookingManagement = lazy(
-  () => import("@pages/Booking-management/BookingManagement")
+  () => import("@pages/Admin/Booking-management/BookingManagement")
 );
 const BookingManagementFranchise = lazy(
   () => import("@pages/FranchiseDashboard/BookingFrenchise/BookingFranchise")
 );
 const CustomersManagement = lazy(
-  () => import("@pages/Customers-Management/CustomersManagement")
+  () => import("@pages/Admin/Customers-Management/CustomersManagement")
 );
 const CustomerFranchise = lazy(
   () => import("@pages/FranchiseDashboard/CustomersFranchise/CustomerFrenchise")
 );
 const DetailersManagement = lazy(
-  () => import("@pages/Detailers-Management/DetailersManagement")
+  () => import("@pages/Admin/Detailers-Management/DetailersManagement")
 );
 const DetailerFranchise = lazy(
   () => import("@pages/FranchiseDashboard/DetailerFranchise/DetailerFranchise")
@@ -43,20 +43,20 @@ const AddDetailerFranchise = lazy(
   () =>
     import("@pages/FranchiseDashboard/DetailerFranchise/AddDetailerFranchise")
 );
-const FeedSupport = lazy(() => import("@pages/Feed-Support/FeedSupport"));
-const FrenchiseManagement = lazy(() => import("@pages/Frenchise/Frenchise"));
+const FeedSupport = lazy(() => import("@pages/Admin/Feed-Support/FeedSupport"));
+const FrenchiseManagement = lazy(() => import("@pages/Admin/Frenchise/Frenchise"));
 const FrenchiseFrenchiseManagement = lazy(
   () => import("@pages/FranchiseDashboard/Frenchise/Frenchise")
 );
 const PaymentManagement = lazy(
-  () => import("@pages/Payment-Management/PaymentManagement")
+  () => import("@pages/Admin/Payment-Management/PaymentManagement")
 );
 const PaymentManagementFranchise = lazy(
   () => import("@pages/FranchiseDashboard/PaymentFranchise/PaymentFranchise")
 );
-const Notifications = lazy(() => import("@pages/Notification/Notifications"));
-const AdminProfile = lazy(() => import("@pages/AdminProfile/AdminProfile"));
-const Settings = lazy(() => import("@pages/Settings/Settings"));
+const Notifications = lazy(() => import("@pages/Admin/Notification/Notifications"));
+const AdminProfile = lazy(() => import("@pages/Admin/AdminProfile/AdminProfile"));
+const Settings = lazy(() => import("@pages/Admin/Settings/Settings"));
 
 // FRANCHISE ROUTES
 const FrenchiseSettings = lazy(
@@ -73,22 +73,22 @@ const ProfileFranchise = lazy(
   () => import("@pages/FranchiseDashboard/ProfileFranchise/ProfileFranchise")
 );
 const DetailersProfile = lazy(
-  () => import("@pages/DetailerProfile/DetailerProfile")
+  () => import("@pages/Admin/DetailerProfile/DetailerProfile")
 );
-const Dashboard = lazy(() => import("@pages/Dashboard/Dashboard"));
-const Freelancer = lazy(() => import("@pages/Freelancers/Freelancers"));
+const Dashboard = lazy(() => import("@pages/Admin/Dashboard/Dashboard"));
+const Freelancer = lazy(() => import("@pages/Admin/Freelancers/Freelancers"));
 const ServicesManagement = lazy(
-  () => import("@pages/ServicesManagement/ServicesManagement")
+  () => import("@pages/Admin/ServicesManagement/ServicesManagement")
 );
 // const OngoingBooking = lazy(
 //   () =>
 //     import("@pages/Booking-management/Components/ongoingBooking/OngoingBooking")
 // );
 const CreateService = lazy(
-  () => import("@pages/ServicesManagement/Components/CreateService")
+  () => import("@pages/Admin/ServicesManagement/Components/CreateService")
 );
 const FreelancerProfile = lazy(
-  () => import("@pages/Freelancers/Components/FreelancersProfile")
+  () => import("@pages/Admin/Freelancers/Components/FreelancersProfile")
 );
 const UserManagement = lazy(
   () => import("@pages/FranchiseDashboard/UserManagement/UserManagement")

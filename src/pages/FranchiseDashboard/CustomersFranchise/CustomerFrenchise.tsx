@@ -1,11 +1,11 @@
 import MainLayout from "@layouts/MainLayout";
 import React, { useState, useRef, useEffect } from "react";
-import Chevron from "../../assets/svgs/chevron.svg";
+import Chevron from "@assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
 import DataTable from "react-data-table-component";
-import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
+import AddFranchise from "@pages/Admin/Frenchise/Components/AddFranchise";
 import SubTasks from "@components/SubTasks/SubTasks";
 // import { Swiper, SwiperSlide } from "swiper/react";
 import { customStyles } from "@components/CustomStylesTable";

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import uploadServer from "../../../../../../assets/svgs/uploadServer.svg";
-import userIcon from "../../../../../../assets/svgs/userIcon.svg";
+import uploadServer from "@assets/svgs/uploadServer.svg";
+import userIcon from "@assets/svgs/userIcon.svg";
 import { ReactSVG } from "react-svg";
-import CommonInput from "@pages/Login/Components/CommonInput";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 const Step1: React.FC = ({ register, errors, setShowModal }) => {
   const [image, setImage] = useState();

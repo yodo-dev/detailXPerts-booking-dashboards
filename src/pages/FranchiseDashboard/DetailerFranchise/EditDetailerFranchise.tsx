@@ -6,7 +6,7 @@ import UploadIcon from "@assets/svgs/uploadFile.svg";
 import SelectField from "@components/SelectField/SelectField";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import CommonInput from "@pages/Login/Components/CommonInput";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
 import {
   detailerFranchiseAdd,
   detailerFranchiseEdit,
@@ -135,12 +135,12 @@ const EditDetailerFranchise: React.FC = () => {
 
     onSuccess: (data) => {
       console.log("✅ Message sent successfully:", data);
-      toast.success("Detailer Successsfully Created!");
+      toast.success("Detailer Successsfully Updated!");
       queryClient.invalidateQueries(["detailersFranchise"]);
     },
     onError: (error) => {
       console.error("❌ Error sending message:", error);
-      toast.success("Detailer Successsfully Created!");
+      toast.error("Something Went Wrong!");
     },
   });
 

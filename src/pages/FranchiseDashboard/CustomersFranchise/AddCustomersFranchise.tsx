@@ -1,19 +1,19 @@
 import React, { useRef, useState } from "react";
 import MainLayout from "@layouts/MainLayout";
-import arrowDown from "../../../assets/svgs/arrow-down.svg";
+import arrowDown from "@assets/svgs/arrow-down.svg";
 import { ReactSVG } from "react-svg";
-import AvatarPic from "../../../assets/svgs/Avatars.svg";
-import ArrowDown from "../../../assets/svgs/arrow-down.svg";
+import AvatarPic from "@assets/svgs/Avatars.svg";
+import ArrowDown from "@assets/svgs/arrow-down.svg";
 import VehicleCard from "@components/CarCards/CarCards";
 import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import { Label } from "recharts";
 import Linechart from "@components/Charts/Linechart";
 import DownloadButton from "../DetailerFranchise/Components/ButtonComponent";
-import userImg from "../../../assets/images/user-profile-img.png";
-import LocationIcon from "../../../assets/svgs/location.svg";
-import StartIcon from "../../../assets/svgs/Star 3.svg";
-import editIcon from "../../../assets/svgs/edit-2.svg";
-import mapImg from "../../../assets/images/map.png";
+import userImg from "@assets/images/user-profile-img.png";
+import LocationIcon from "@assets/svgs/location.svg";
+import StartIcon from "@assets/svgs/Star 3.svg";
+import editIcon from "@assets/svgs/edit-2.svg";
+import mapImg from "@assets/images/map.png";
 
 import { AvailabilityCard } from "./Components/AvailabilityCard";
 import SelectField from "@components/SelectField/SelectField";

@@ -1,6 +1,4 @@
 import React from "react";
-// import UserPic from "../../../assets/images/user-profile-img.png";
-// import StartPic from "../../../assets/svgs/starsRating.svg";
 
 const CustomerReviews: React.FC = () => {
   return (

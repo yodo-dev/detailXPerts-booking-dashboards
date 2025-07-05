@@ -1,9 +1,9 @@
-import Dashboard from "@pages/Dashboard/Dashboard";
-import ForgotPassword from "@pages/ForgotPassword/ForgotPassword";
-import Login from "@pages/Login/Login";
-import OTP from "@pages/OTP/OTP";
-import Register from "@pages/Register/Register";
-import ResetPassword from "@pages/ResetPassword/ResetPassword";
+import Dashboard from "@pages/Admin/Dashboard/Dashboard";
+import ForgotPassword from "@pages/Admin/ForgotPassword/ForgotPassword";
+import Login from "@pages/Admin/Login/Login";
+import OTP from "@pages/Admin/OTP/OTP";
+import Register from "@pages/Admin/Register/Register";
+import ResetPassword from "@pages/Admin/ResetPassword/ResetPassword";
 
 const PublicRoutes = [
   // {path:"/", element:<Dashboard/>},

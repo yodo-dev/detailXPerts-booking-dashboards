@@ -3,7 +3,7 @@ import React from "react";
 // import arrowRight from "@assets/svgs/dashboard-svgs/arrow-right.svg";
 // import Loader from "@/Components/Loader/Loader";
 // import FormInput from "@/Components/Inputs/FormInput";
-import FormInput from "../../../Login/Components/CommonInput";
+import FormInput from "../../../Admin/Login/Components/CommonInput";
 
 
 interface CheckOutProps {

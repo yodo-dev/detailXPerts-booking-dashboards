@@ -1,13 +1,13 @@
 import React from "react";
-import CrossIcon from "../../assets/svgs/cross.svg";
+import CrossIcon from "@assets/svgs/cross.svg";
 import { ReactSVG } from "react-svg";
-import LogoIcon from "../../assets/svgs/logo1.svg";
-import LocationIcon from "../../assets/svgs/location.svg";
+import LogoIcon from "@assets/svgs/logo1.svg";
+import LocationIcon from "@assets/svgs/location.svg";
 import { PrimaryButton } from "@components/Buttons/CommonButtons";
 import CommonTable from "../Table/Table";
-import uploadFile from "../../assets/svgs/uploadFile.svg";
+import uploadFile from "@assets/svgs/uploadFile.svg";
 import Stats from "./Components/Stats";
-import Star from "../../assets/svgs/Star 3.svg";
+import Star from "@assets/svgs/Star 3.svg";
 import TableComp from "./Components/Table";
 import { Table } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";

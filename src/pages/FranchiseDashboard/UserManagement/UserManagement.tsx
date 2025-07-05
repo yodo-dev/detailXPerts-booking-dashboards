@@ -10,8 +10,8 @@ import DataTable from "react-data-table-component";
 import { apiDelete, apiGet } from "../../../Auth/Auth";
 import SkeltonLoader from "@components/SkeltonLoader";
 import { customStyles } from "@components/CustomStylesTable";
-import Logo from "../../assets/svgs/logo1.svg";
-import LocationIcon from "../../assets/svgs/location.svg";
+import Logo from "@assets/svgs/logo1.svg";
+import LocationIcon from "@assets/svgs/location.svg";
 import DotsIcon from "@assets/svgs/dots-vertical.svg";
 import ActionDropdown from "@components/ActionDropdown";
 import dummyImage from "@assets/images/user-profile-img.png";
@@ -69,7 +69,6 @@ const UserManagement: React.FC = () => {
             <div
               onClick={() => {
                 // setShowSubTask(true);
-                navigate("/freelancer-profile");
                 setShowEditId(row.id);
               }}
               className="text-sm cursor-pointer "

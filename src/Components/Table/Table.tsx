@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
-import Chevron from "../../assets/svgs/chevron.svg";
+import Chevron from "@assets/svgs/chevron.svg";
 import LocationIcon from "@assets/svgs/location.svg";
 import Dots from "@assets/svgs/dots.svg";
 import Eye from "@assets/svgs/eye.svg";

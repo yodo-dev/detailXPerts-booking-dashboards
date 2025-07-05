@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "@layouts/MainLayout";
 import AddCircle from "../../assets/svgs/add-circle.svg";
-import CommonInput from "@pages/Login/Components/CommonInput";
-import { apiGet, apiPost, apiPut } from "../../Auth/Auth";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
+import { apiGet, apiPost, apiPut } from "../../../Auth/Auth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 

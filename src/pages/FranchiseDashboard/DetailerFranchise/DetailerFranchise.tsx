@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { ReactSVG } from "react-svg";
 import dayjs from "dayjs";
 
-import CommonInput from "@pages/Login/Components/CommonInput";
-import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
+import CommonInput from "@pages/Admin/Login/Components/CommonInput";
+// import AddFranchise from "@pages/Frenchise/Components/AddFranchise";
 import SubTasks from "@components/SubTasks/SubTasks";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

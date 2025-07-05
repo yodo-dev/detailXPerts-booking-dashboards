@@ -1,17 +1,17 @@
 import MainLayout from "@layouts/MainLayout";
 import React, { useState } from "react";
-import Chevron from "../../assets/svgs/chevron.svg";
+import Chevron from "@assets/svgs/chevron.svg";
 import { ReactSVG } from "react-svg";
 import CommonInput from "@components/inputs/CommonInput";
 import Table from "@components/Table/Table";
-import BugIcon from "../../assets/svgs/bug.svg"
-import BulbIcon from "../../assets/svgs/bulb.svg"
-import UsersList from "../../assets/svgs/users-list.svg"
-import BlackbubIcon from "../../assets/svgs/blackBug.svg"
-import WhiteUser from "../../assets/svgs/WhiteUserList.svg"
-import whiteBuld from "../../assets/svgs/whiteBulb.svg"
-import WhiteStart from "../../assets/svgs/WhiteStar.svg"
-import BlackStar from "../../assets/svgs/BlackStart.svg"
+import BugIcon from "@assets/svgs/bug.svg"
+import BulbIcon from "@assets/svgs/bulb.svg"
+import UsersList from "@assets/svgs/users-list.svg"
+import BlackbubIcon from "@assets/svgs/blackBug.svg"
+import WhiteUser from "@assets/svgs/WhiteUserList.svg"
+import whiteBuld from "@assets/svgs/whiteBulb.svg"
+import WhiteStart from "@assets/svgs/WhiteStar.svg"
+import BlackStar from "@assets/svgs/BlackStart.svg"
 import ReviewsSection from "./Components/ReviewsSection";
 
 // import White
